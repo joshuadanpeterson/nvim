@@ -1,48 +1,16 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-
-  And then you can explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Set relative and absolute numbers
+vim.o.number = true         -- Show line numbers
+vim.o.relativenumber = true -- Show relative line numbers
+
+-- Set word wrap and linebreak
+vim.o.wrap = true
+vim.o.linebreak = true
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -70,29 +38,86 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  {
+    'tpope/vim-fugitive',
+  },
+  {
+    'tpope/vim-rhubarb',
+  },
+
+  -- nvim-cmp
+  {
+    'hrsh7th/cmp-nvim-lsp',
+  },
+
+  -- Add plenary.nvim
+  {
+    'nvim-lua/plenary.nvim',
+  },
+
+  -- Add LuaSnip
+  {
+    'L3MON4D3/LuaSnip',
+  },
+
+  -- nvim-lint
+  {
+    'mfussenegger/nvim-lint',
+  },
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
+  {
+    'tpope/vim-sleuth',
+  },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
+  -- LSP Configuration & Plugins
   {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+    -- Optional: Configuration for nvim-lspconfig
+    config = function()
+      -- Your lspconfig setup here
+    end,
+  },
 
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+  -- Treesitter
+  {
+    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
+  },
 
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
-    },
+  {
+    'williamboman/mason.nvim',
+    -- Optional: Configuration for mason.nvim
+    config = function()
+      -- Your mason setup here
+    end,
+  },
+
+  {
+    'williamboman/mason-lspconfig.nvim',
+    -- Optional: Configuration for mason-lspconfig.nvim
+  },
+
+  {
+    'j-hui/fidget.nvim',
+    -- Optional: Configuration for fidget.nvim
+    config = function()
+      require('fidget').setup({})
+    end,
+  },
+
+  {
+    'folke/neodev.nvim',
+    -- Optional: Configuration for neodev.nvim
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({
+        -- Optional configuration here
+      })
+    end,
   },
 
   {
@@ -109,6 +134,100 @@ require('lazy').setup({
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
+
+-- Nord theme
+  {
+     'shaunsingh/nord.nvim',
+     -- Optional: Configuration for the theme
+     config = function()
+       -- Load the theme
+       vim.cmd('colorscheme nord')
+
+       -- Enable transparent background
+       vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+       vim.cmd('hi SignColumn guibg=NONE')
+       vim.cmd('hi NormalNC guibg=NONE')
+       vim.cmd('hi MsgArea guibg=NONE')
+       vim.cmd('hi TelescopeBorder guibg=NONE')
+       vim.cmd('hi NvimTreeNormal guibg=NONE')
+
+     end
+   },
+
+-- Install Telescope
+  {
+     'nvim-telescope/telescope.nvim',
+     requires = { {'nvim-lua/plenary.nvim'} }
+   },
+
+-- lualine configuration
+   {
+     'nvim-lualine/lualine.nvim',
+     event = 'BufReadPre',
+     config = function()
+        vim.keymap.set('n', '<leader>l', ':lua require("lualine").refresh<CR>', {desc = 'Refresh status line'})
+       require('lualine').setup {
+         opts = {
+           options = {
+             icons_enabled = true,
+             theme = 'nord',
+             component_separators = '|',
+             section_separators = '',
+           },
+           sections = {
+      lualine_a = {'mode'},
+      lualine_b = {
+        {
+          'filename',
+          file_status = true,
+          path = 1,
+        },
+        'diagnostics',
+        'branch',
+        'diff',
+      },
+      lualine_c = {
+        {
+          'searchcount',
+          maxcount = 999,
+          timeout = 500,
+        }
+      },
+      lualine_x = {
+        {
+          'datetime',
+          style = '%H:%M:%S',
+        },
+        'encoding',
+        {
+          'filetype',
+          colored = true,
+        },
+      },
+      lualine_y = {'progress'},
+      lualine_z = {'location'},
+    },
+    inactive_sections = {
+      lualine_a = {
+        {
+          'filename',
+          file_status = true,
+          path = 1,
+        },
+        'diagnostics',
+        'diff',
+      },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {'location'},
+    },
+    tabline = {},
+       }}
+     end,
+   },
+
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -151,86 +270,66 @@ require('lazy').setup({
       end,
     },
   },
+})
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+require 'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        }
+      })
 
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
+}
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
+-- Configure 'nvim-lint'
+require('lint').linters_by_ft = {
+  lua = { 'luacheck' }
+}
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.lua" },
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
 
-  -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
 
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-  },
+-- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
+--       These are some example plugins that I've included in the kickstart repository.
+--       Uncomment any of the lines below to enable them.
+require 'kickstart.plugins.autoformat'
+require 'kickstart.plugins.debug'
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
-}, {})
+-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+--    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
+--    up-to-date with whatever is in the kickstart repo.
+--    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+--
+--    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+--    { import = 'custom.plugins' },
+-- }, {})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -345,7 +444,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -443,48 +542,53 @@ end, 0)
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+local on_attach = function(_, _bufnr)
+  -- Key mappings or other buffer-specific settings go here
+  -- Example of setting a keymap with bufnr:
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+    { noremap = true, silent = true })
+  -- ... more configurations
+end
+-- NOTE: Remember that lua is a real programming language, and as such it is possible
+-- to define small helper and utility functions so you don't have to repeat yourself
+-- many times.
+--
+-- In this case, we create a function that lets us more easily define mappings specific
+-- for LSP related items. It sets the mode, buffer and description for us each time.
+local nmap = function(keys, func, desc)
+  if desc then
+    desc = 'LSP: ' .. desc
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+  vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 end
+
+nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+-- See `:help K` for why this keymap
+nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+-- Lesser used LSP functionality
+nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+nmap('<leader>wl', function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, '[W]orkspace [L]ist Folders')
+
+-- Create a command `:Format` local to the LSP buffer
+vim.api.nvim_create_user_command('Format', function()
+  vim.lsp.buf.format()
+end, { desc = 'Format current buffer with LSP' })
 
 -- document existing key chains
 require('which-key').register {
@@ -504,6 +608,27 @@ require('mason-lspconfig').setup()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+
+-- Load Neovim's built-in LSP configuration module
+local lspconfig = require('lspconfig')
+
+-- Configure Jedi Language Server
+lspconfig.jedi_language_server.setup {
+  on_attach = on_attach, -- assuming you have an `on_attach` function as shown in your config
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
+
+-- TypeScript and JavaScript LSP configuration
+lspconfig.tsserver.setup {
+  on_attach = function(_client, _bufnr)
+    -- Your custom on_attach function
+    -- (e.g., key mappings for LSP functions)
+  end,
+  -- Additional LSP settings can be added here
+}
+
 --
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
@@ -603,6 +728,12 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- Set multiline comment toggle
+vim.api.nvim_set_keymap("n", "<C-_>", ":lua require('Comment.api').toggle_current_linewise()<CR>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-_>", ":lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>",
+  { noremap = true, silent = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
