@@ -12,6 +12,13 @@ vim.o.relativenumber = true -- Show relative line numbers
 vim.o.wrap = true
 vim.o.linebreak = true
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -45,6 +52,9 @@ require('lazy').setup({
     'tpope/vim-rhubarb',
   },
 
+  -- GitGutter: Displays git diff markers in the sign column.
+  { 'airblade/vim-gitgutter' },
+
   -- nvim-cmp
   {
     'hrsh7th/cmp-nvim-lsp',
@@ -63,6 +73,62 @@ require('lazy').setup({
   -- nvim-lint
   {
     'mfussenegger/nvim-lint',
+  },
+
+ -- Adding nvim-ts-autotag
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
+
+  -- AutoPairs: Automatically pairs brackets, quotes, etc.
+  { 'windwp/nvim-autopairs' },
+
+    -- Vim-Surround: Easily manage pairs like brackets, quotes in your text.
+  { 'tpope/vim-surround' },
+
+  -- nvim-tree: A modern file explorer written in Lua.
+  { 'kyazdani42/nvim-tree.lua'},
+
+  -- FZF Vim: Integrates the FZF command-line fuzzy finder with Vim.
+  { 'junegunn/fzf.vim' },
+
+  -- Vim-Startify: Provides a startup screen with session management.
+  { 'mhinz/vim-startify' },
+
+  -- Vim-Commentary: Efficient commenting in Vim, toggle comments easily.
+  { 'tpope/vim-commentary' },
+
+  -- Coc.nvim: Intellisense engine with support for LSP and more.
+  { 'neoclide/coc.nvim', branch = 'release' },
+
+  -- ALE: Asynchronous Lint Engine for syntax and error checking.
+  { 'dense-analysis/ale' },
+
+  -- nvim-web-devicons: Adds filetype icons to Neovim plugins.
+  { 'kyazdani42/nvim-web-devicons' },
+
+  -- Vim-Sneak: Minimalist motion plugin to jump to any location in file.
+  { 'justinmk/vim-sneak' },
+
+  -- Telescope-project: Manage and switch between projects with Telescope.
+  { 'nvim-telescope/telescope-project.nvim' },
+
+  -- IndentLine: Display vertical lines at each indentation level.
+  { 'Yggdroot/indentLine' },
+
+  -- Adding nvim-treesitter/playground
+  {
+    'nvim-treesitter/playground',
+    cmd = "TSPlaygroundToggle",
+  },
+
+  -- Adding nvim-ts-rainbow
+  {
+    'p00f/nvim-ts-rainbow',
+    after = 'nvim-treesitter', -- Ensure it loads after nvim-treesitter
   },
 
   -- Detect tabstop and shiftwidth automatically
@@ -116,6 +182,22 @@ require('lazy').setup({
     config = function()
       require('Comment').setup({
         -- Optional configuration here
+        padding = true,
+        sticky = true,
+        ignore = '^$',
+        mappings = {
+          basic = true,
+          extra = true,
+          extended = false,
+        },
+        toggler = {
+          line = 'gcc', -- Toggle line comment
+          block = 'gbc', -- Toggle block comment
+        },
+        opleader = {
+          line = 'gc', -- Line comment operation
+          block = 'gb', -- Block comment operation
+         },
       })
     end,
   },
@@ -270,6 +352,22 @@ require('lazy').setup({
       end,
     },
   },
+})
+
+-- Configure nvim-tree
+require("nvim-tree").setup({
+    sort = {
+        sorter = "case_sensitive",
+    },
+    view = {
+        width = 30,
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = true,
+    },
 })
 
 require 'lspconfig'.lua_ls.setup {
@@ -477,12 +575,18 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'json', 'css' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
+    auto_install = true,
 
     highlight = { enable = true },
+    autotag = { enable = true },
+    playground = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = true, -- Also highlight other brackets/parentheses
+    },
     indent = { enable = true },
     incremental_selection = {
       enable = true,
@@ -542,7 +646,7 @@ end, 0)
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, _bufnr)
+local on_attach = function(_, bufnr)
   -- Key mappings or other buffer-specific settings go here
   -- Example of setting a keymap with bufnr:
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
@@ -555,7 +659,7 @@ end
 --
 -- In this case, we create a function that lets us more easily define mappings specific
 -- for LSP related items. It sets the mode, buffer and description for us each time.
-local nmap = function(keys, func, desc)
+local nmap = function(keys, func, desc, bufnr)
   if desc then
     desc = 'LSP: ' .. desc
   end
