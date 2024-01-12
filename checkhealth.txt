@@ -1,0 +1,9 @@
+- WARNING {fidget.nvim}: overriding <config>
+- WARNING {nvim-autopairs}: overriding <config>
+- WARNING {Comment.nvim}: overriding <config>
+- WARNING {telescope.nvim}: unknown key <requires>
+- WARNING {telescope.nvim}: overriding <requires>
+- WARNING {nvim-lspconfig}: overriding <config>
+- WARNING {mason.nvim}: overriding <config>
+- WARNING {nvim-treesitter}: unknown key <run>
+- WARNING {nvim-ts-autotag}: overriding <config>
