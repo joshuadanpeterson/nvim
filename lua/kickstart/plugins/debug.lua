@@ -5,6 +5,9 @@
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
+--[[
+  kickstart.plugins.debug: Sets up debugging tools within Neovim, possibly using plugins like nvim-dap. This includes configurations for connecting to debuggers, setting breakpoints, watching variables, and navigating through the call stack.
+]]
 
 return {
   -- NOTE: Yes, you can install new plugins here!

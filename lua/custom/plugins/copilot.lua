@@ -1,4 +1,8 @@
 -- Copilot.lua
+--[[
+  custom.plugins.copilot: Sets up GitHub Copilot in Neovim, providing AI-powered code completion and suggestions. This configuration could include keybindings to trigger Copilot suggestions and any Copilot-specific settings.
+]]
+
 return {
   {
     "zbirenbaum/copilot.lua",

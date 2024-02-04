@@ -9,6 +9,8 @@ vim.o.linebreak = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
+vim.api.nvim_set_hl(0, 'Comment', { italic = true })
+
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -28,27 +30,25 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- note: first, some plugins that don't require any configuration
 
-    -- import custom plugins
-    { import = 'custom.plugins' }
+  -- import custom plugins
+  { import = 'custom.plugins' },
+  { import = 'kickstart.plugins' }
 })
 
 -- Plugin Manager Setup
 
--- Harpoon Configuration
--- require("custom.plugins.harpoon")
-
 -- configure nvim-tree
 require("nvim-tree").setup({
-    sort_by = "case_sensitive",
-    view = {
-        width = 30,
-    },
-    renderer = {
-        group_empty = true,
-    },
-    filters = {
-        dotfiles = true,
-    },
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
 })
 
 require 'lspconfig'.lua_ls.setup {
@@ -160,7 +160,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Autocomplete Configuration: Map Enter Key for Selection in Insert Mode
-vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? coc#_select_confirm() : "\<CR>"]], {expr = true, noremap = true})
+vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? coc#_select_confirm() : "\<CR>"]], { expr = true, noremap = true })
 
 -- [[ Basic Keymaps ]]
 
@@ -191,7 +191,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     mappings = {
       i = {
@@ -200,7 +200,41 @@ require('telescope').setup {
       },
     },
   },
-}
+  pickers = {
+  },
+  extensions = {
+    dash = {
+      -- configure path to Dash.app if installed somewhere other than /Applications/Dash.app
+      dash_app_path = '/Applications/Dash.app',
+      -- search engine to fall back to when Dash has no results, must be one of: 'ddg', 'duckduckgo', 'startpage', 'google'
+      search_engine = 'google',
+      -- debounce while typing, in milliseconds
+      debounce = 0,
+      -- map filetype strings to the keywords you've configured for docsets in Dash
+      -- setting to false will disable filtering by filetype for that filetype
+      -- filetypes not included in this table will not filter the query by filetype
+      -- check src/lua_bindings/dash_config_binding.rs to see all defaults
+      -- the values you pass for file_type_keywords are merged with the defaults
+      -- to disable filtering for all filetypes,
+      -- set file_type_keywords = false
+      file_type_keywords = {
+        dashboard = false,
+        NvimTree = false,
+        TelescopePrompt = false,
+        terminal = false,
+        packer = false,
+        fzf = false,
+        -- a table of strings will search on multiple keywords
+        javascript = { 'javascript', 'nodejs' },
+        typescript = { 'typescript', 'javascript', 'nodejs' },
+        typescriptreact = { 'typescript', 'javascript', 'react' },
+        javascriptreact = { 'javascript', 'react' },
+        -- you can also do a string, for example,
+        sh = 'bash'
+      },
+    },
+  },
+})
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -281,6 +315,8 @@ vim.defer_fn(function()
     },
     -- Which query to use for finding delimiters
     query = 'rainbow-parens',
+    -- Highlight the entire buffer all at once
+    strategy = require('ts-rainbow').strategy.global,
     indent = { enable = true },
     incremental_selection = {
       enable = true,
@@ -529,7 +565,7 @@ cmp.setup {
 
 -- Integrates autopairs into Autocompletion
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
 -- Set multiline comment toggle
 vim.api.nvim_set_keymap("n", "<C-_>", ":lua require('Comment.api').toggle_current_linewise()<CR>",
@@ -541,25 +577,96 @@ vim.api.nvim_set_keymap("v", "<C-_>", ":lua require('Comment.api').toggle_linewi
 local harpoon = require('harpoon')
 harpoon:setup({})
 
-    -- basic telescope-ui configuration
-    local conf = require("telescope.config").values
-    local function toggle_telescope(harpoon_files)
-      local file_paths = {}
-      for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-      end
+-- basic telescope-ui configuration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
 
-      require("telescope.pickers").new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table({
-          results = file_paths,
-        }),
-        previewer = conf.file_previewer({}),
-        sorter = conf.generic_sorter({}),
-      }):find()
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
+end
+
+vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
+  { desc = "Open Harpoon Window with Telescope" })
+
+-- The Fine Command Line Configuration
+local fineline = require('fine-cmdline')
+local fn = fineline.fn
+
+fineline.setup({
+  cmdline = {
+    enable_keymaps = false,
+    smart_history = true,
+    prompt = ': ' -- Open Command Line
+    -- Let the user handle the keybindings
+  },
+  popup = {
+    buf_options = {
+      -- Setup a special file type if you need to
+      filetype = 'FineCmdlinePrompt'
+    },
+    position = {
+      row = '50%',
+      col = '50%',
+    },
+    size = {
+      width = '60%',
+    },
+    border = {
+      style = 'rounded',
+    },
+    win_options = {
+      winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+    },
+  },
+
+  hooks = {
+    before_mount = function(input)
+    end,
+
+    after_mount = function(input)
+      -- Set keymaps using vim.keymap.set
+      -- Close Command Line
+      vim.keymap.set('i', '<C-c>', function() fn.close() end, { buffer = input.bufnr })
+      vim.keymap.set('n', '<leader>c', function() fn.close() end, { buffer = input.bufnr })
+
+      -- make escape go to normal mode
+      vim.keymap.set('i', '<Esc>', '<cmd>stopinsert<cr>', { buffer = input.bufnr })
+
+      -- Show and Navigate Completion Menu
+      vim.keymap.set('i', '<Tab>', function() fn.complete_or_next_item() end, { buffer = input.bufnr })
+      vim.keymap.set('i', '<Up>', function() fn.previous_item() end, { buffer = input.bufnr })
+      vim.keymap.set('i', '<Down>j', function() fn.next_item() end, { buffer = input.bufnr })
+
+      vim.keymap.set('i', '<leader>k', function() fn.up_history() end, { buffer = input.bufnr })
+      vim.keymap.set('i', '<leader>j', function() fn.down_history() end, { buffer = input.bufnr })
+
+      -- Add additional keymaps as needed...
+    end,
+    set_keymaps = function(imap, feedkeys)
     end
+  }
 
-vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end, { desc = "Open Harpoon Window with Telescope"})
+})
+
+-- The Fine Command Line & Searchbox Keymaps
+vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', { noremap = true })
+
+-- CODESTATS_API_KEY
+local codestats_api_key = os.getenv("CODESTATS_API_KEY")
+assert(codestats_api_key ~= nil, "CODESTATS_API_KEY is not set")
+require('codestats-nvim').setup({
+  token = codestats_api_key
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
