@@ -1,16 +1,8 @@
--- Basic settings
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.wrap = true
-vim.o.linebreak = true
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwplugin = 1
-vim.opt.termguicolors = true
-vim.api.nvim_set_hl(0, 'Comment', { italic = true })
-vim.opt.conceallevel = 1
+-- init.lua
 
+
+-- Custom configs
+require('custom.settings') -- For basic Neovim settings
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -34,6 +26,9 @@ require('lazy').setup({
   { import = 'custom.plugins' },
   { import = 'kickstart.plugins' }
 })
+
+-- Custom configs
+require('custom.keymaps') -- For keybindings managed with which-key
 
 -- Plugin Manager Setup
 
@@ -90,9 +85,6 @@ require('lint').linters_by_ft = {
 -- configure copilot.lua
 require('copilot')
 
--- nord theme
--- require('custom.plugins.colorscheme')
-
 -- Lualine
 require('lualine')
 
@@ -108,75 +100,6 @@ vim.api.nvim_create_autocmd({ "bufwritepost" }, {
 --       uncomment any of the lines below to enable them.
 require 'kickstart.plugins.autoformat'
 require 'kickstart.plugins.debug'
-
--- note: the import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
---    you can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
---    up-to-date with whatever is in the kickstart repo.
---    uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
---
---    for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
--- { import = 'custom.plugins' },
--- }, {})
-
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
--- Autocomplete Configuration: Map Enter Key for Selection in Insert Mode
-vim.api.nvim_set_keymap('i', '<CR>', [[pumvisible() ? coc#_select_confirm() : "\<CR>"]], { expr = true, noremap = true })
-
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -286,15 +209,6 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -386,54 +300,6 @@ end
 -- NOTE: Remember that lua is a real programming language, and as such it is possible
 -- to define small helper and utility functions so you don't have to repeat yourself
 -- many times.
---
--- In this case, we create a function that lets us more easily define mappings specific
--- for LSP related items. It sets the mode, buffer and description for us each time.
-local nmap = function(keys, func, desc, bufnr)
-  if desc then
-    desc = 'LSP: ' .. desc
-  end
-
-  vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-end
-
-nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
--- See `:help K` for why this keymap
-nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
--- Lesser used LSP functionality
-nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-nmap('<leader>wl', function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, '[W]orkspace [L]ist Folders')
-
--- Create a command `:Format` local to the LSP buffer
-vim.api.nvim_create_user_command('Format', function()
-  vim.lsp.buf.format()
-end, { desc = 'Format current buffer with LSP' })
-
--- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -563,6 +429,15 @@ cmp.setup {
   },
 }
 
+-- Setup LSP Configurations for `nvim-cmp`
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+-- Example: Setting up Lua LSP
+require 'lspconfig'.lua_ls.setup {
+  capabilities = capabilities,
+}
+
 -- `/` cmdline setup.
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
@@ -590,12 +465,6 @@ cmp.setup.cmdline(':', {
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
--- Set multiline comment toggle
-vim.api.nvim_set_keymap("n", "<C-_>", ":lua require('Comment.api').toggle_current_linewise()<CR>",
-  { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<C-_>", ":lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>",
-  { noremap = true, silent = true })
-
 -- [[ Configure Harpoon Telescope ]]
 local harpoon = require('harpoon')
 harpoon:setup({})
@@ -619,8 +488,9 @@ local function toggle_telescope(harpoon_files)
 end
 
 vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
-  { desc = "Open Harpoon Window with Telescope" })
+  { desc = "Open harpoon window" })
 
+-- noice
 require("telescope").load_extension("noice")
 
 -- multicursors.nvim Status Line module
@@ -641,20 +511,10 @@ local function get_name()
   return ''
 end
 
---- for lualine add this component
+-- for lualine add this component
 lualine_b = {
   { get_name, cond = is_active },
 }
-
--- Notifications
-vim.keymap.set('', '<Esc>', "<ESC>:noh<CR>:require('notify').dismiss()<CR>", { silent = true })
-vim.cmd [[highlight NotifyBackground guibg=#000000]]
-require("notify").setup({
-  background_colour = "NotifyBackground",
-})
-
--- Dismiss Noice Message
-vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
 
 -- CODESTATS_API_KEY
 local codestats_api_key = os.getenv("CODESTATS_API_KEY")

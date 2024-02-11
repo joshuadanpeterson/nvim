@@ -43,17 +43,6 @@ return {
                 'justinmk/vim-sneak'
         },
 
-        -- useful plugin to show you pending keybinds.
-        -- Shows a popup with possible keybindings of the command you started typing.
-        {
-                'folke/which-key.nvim',
-                opts = function(_, opts)
-                        if require("lazyvim.util").has("noice.nvim") then
-                                opts.defaults["<leader>sn"] = { name = "+noice" }
-                        end
-                end
-        },
-
         -- Codestats
         {
                 'YannickFricke/codestats.nvim',
@@ -98,7 +87,7 @@ return {
         -- Multi-cursor configuration
         -- This is the Neovim implementation of the famous Emacs Hydra package.
         {
-                'anuvyklack/hydra.nvim'
+                'smoka7/hydra.nvim'
         },
 
         {
@@ -165,7 +154,7 @@ return {
                 config = function()
                         require("notify").setup {
                                 stages = 'fade_in_slide_out',
-                                background_color = '#000000',
+                                background_colour = '#000000',
                                 timeout = 3000,
                         }
                         vim.notify = require('notify')

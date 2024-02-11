@@ -31,12 +31,6 @@ return {
                 'hrsh7th/cmp-nvim-lsp',
         },
 
-        -- Intellisense engine for Vim8 & Neovim, full language server protocol support.
-        {
-                'neoclide/coc.nvim',
-                branch = 'release'
-        },
-
         -- ale: asynchronous lint engine for syntax and error checking.
         {
                 'dense-analysis/ale'
@@ -57,7 +51,6 @@ return {
                         'rafamadriz/friendly-snippets',
                 }
         },
-
 
         -- Command Line Completion
         -- The next generation auto-completion framework for Neovim.

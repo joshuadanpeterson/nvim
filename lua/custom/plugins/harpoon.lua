@@ -12,7 +12,7 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-ui-select.nvim"
+            "nvim-telescope/telescope-ui-select.nvim",
         },
         config = function()
             local harpoon = require('harpoon')

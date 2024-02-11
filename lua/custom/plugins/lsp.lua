@@ -112,7 +112,7 @@ return {
         -- A pretty list to help navigate problems in your code, powered by Neovim's built-in diagnostics.
         {
                 "folke/trouble.nvim",
-                dependencies = { "nvim-tree/nvim-web-devicons" },
+                dependencies = { "kyazdani42/nvim-web-devicons" },
                 opts = {
                         -- your configuration comes here
                         -- or leave it empty to use the default settings

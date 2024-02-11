@@ -18,5 +18,6 @@ return {
 	{ import = 'custom.plugins.noice' },
 	{ import = 'kickstart.plugins.autoformat' },
 	{ import = 'kickstart.plugins.debug' },
+	{ import = 'custom.plugins.which-key' }
 	-- Add other plugin files here
 }
