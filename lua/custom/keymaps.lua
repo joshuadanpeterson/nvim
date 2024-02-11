@@ -1,0 +1,2 @@
+-- custom/keymaps.lua
+-- This config file contains my keymaps

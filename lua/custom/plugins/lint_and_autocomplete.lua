@@ -65,5 +65,10 @@ return {
                 'Shougo/ddc.vim'
         },
 
+        -- cmp-cmdline
+        {
+                'hrsh7th/cmp-cmdline'
+        },
+
 
 }

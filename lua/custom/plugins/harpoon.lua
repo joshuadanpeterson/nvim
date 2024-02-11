@@ -23,7 +23,7 @@ return {
             vim.keymap.set("n", "<leader>d", function() harpoon:list():remove() end, { desc = "Delete Harpoon File" })
             vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end, { desc = "Previous Harpoon File" })
             vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end, { desc = "Next Harpoon File" })
-            vim.keymap.set("n", "<leader>m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+            vim.keymap.set("n", "<C-h>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
                 { desc = "Harpoon Quick Menu" })
             for i = 1, 9 do
                 vim.keymap.set("n", "<leader>" .. i, function() harpoon:list():select(i) end,

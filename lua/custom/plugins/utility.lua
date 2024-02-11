@@ -93,6 +93,84 @@ return {
                         "folke/trouble.nvim",
                         "nvim-telescope/telescope.nvim"
                 }
-        }
+        },
+
+        -- Multi-cursor configuration
+        -- This is the Neovim implementation of the famous Emacs Hydra package.
+        {
+                'anuvyklack/hydra.nvim'
+        },
+
+        {
+                'terryma/vim-multiple-cursors'
+        },
+
+        -- lazy.nvim:
+        {
+                "smoka7/multicursors.nvim",
+                event = "VeryLazy",
+                dependencies = {
+                        'smoka7/hydra.nvim',
+                },
+                opts = {},
+                cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+                keys = {
+                        {
+                                mode = { 'v', 'n' },
+                                '<Leader>m',
+                                '<cmd>MCstart<cr>',
+                                desc = 'Create a selection for selected text or word under the cursor',
+                        },
+                },
+        },
+
+        -- formatter.nvim
+        {
+                'mhartington/formatter.nvim',
+                config = function()
+                        require("formatter").setup {
+                                logging = true,
+                                log_level = vim.log.levels.WARN,
+                                filetype = {
+                                        lua = {
+                                                require("formatter.filetypes.lua").stylua,
+                                                function()
+                                                        if vim.fn.expand('%:t') == "special.lua" then -- Use vim.fn.expand for filename check
+                                                                return nil
+                                                        end
+                                                        return {
+                                                                exe = "stylua",
+                                                                args = {
+                                                                        "--search-parent-directories",
+                                                                        "--stdin-filepath", vim.fn.fnameescape(vim.api
+                                                                        .nvim_buf_get_name(0)),
+                                                                        "--",
+                                                                        "-"
+                                                                },
+                                                                stdin = true
+                                                        }
+                                                end
+                                        },
+                                        ["*"] = {
+                                                require("formatter.filetypes.any").remove_trailing_whitespace
+                                        }
+                                }
+                        }
+                end
+        },
+
+        -- notify.nvim
+        {
+                'rcarriga/nvim-notify',
+                config = function()
+                        require("notify").setup {
+                                stages = 'fade_in_slide_out',
+                                background_color = '#000000',
+                                timeout = 3000,
+                        }
+                        vim.notify = require('notify')
+                end
+        },
+
 
 }

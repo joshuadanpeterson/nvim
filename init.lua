@@ -1,4 +1,3 @@
--- init.lua
 -- Basic settings
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -10,6 +9,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
+vim.opt.conceallevel = 1
 
 
 -- lazy.nvim setup
@@ -301,7 +301,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'json', 'css' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'json', 'css', 'markdown', 'markdown_inline' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = true,
@@ -563,6 +563,29 @@ cmp.setup {
   },
 }
 
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
+})
+
 -- Integrates autopairs into Autocompletion
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
@@ -598,68 +621,40 @@ end
 vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
   { desc = "Open Harpoon Window with Telescope" })
 
--- The Fine Command Line Configuration
-local fineline = require('fine-cmdline')
-local fn = fineline.fn
+require("telescope").load_extension("noice")
 
-fineline.setup({
-  cmdline = {
-    enable_keymaps = false,
-    smart_history = true,
-    prompt = ': ' -- Open Command Line
-    -- Let the user handle the keybindings
-  },
-  popup = {
-    buf_options = {
-      -- Setup a special file type if you need to
-      filetype = 'FineCmdlinePrompt'
-    },
-    position = {
-      row = '50%',
-      col = '50%',
-    },
-    size = {
-      width = '60%',
-    },
-    border = {
-      style = 'rounded',
-    },
-    win_options = {
-      winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
-    },
-  },
+-- multicursors.nvim Status Line module
+require('multicursors').setup {
+  hint_config = false,
+}
 
-  hooks = {
-    before_mount = function(input)
-    end,
+local function is_active()
+  local ok, hydra = pcall(require, 'hydra.statusline')
+  return ok and hydra.is_active()
+end
 
-    after_mount = function(input)
-      -- Set keymaps using vim.keymap.set
-      -- Close Command Line
-      vim.keymap.set('i', '<C-c>', function() fn.close() end, { buffer = input.bufnr })
-      vim.keymap.set('n', '<leader>c', function() fn.close() end, { buffer = input.bufnr })
+local function get_name()
+  local ok, hydra = pcall(require, 'hydra.statusline')
+  if ok then
+    return hydra.get_name()
+  end
+  return ''
+end
 
-      -- make escape go to normal mode
-      vim.keymap.set('i', '<Esc>', '<cmd>stopinsert<cr>', { buffer = input.bufnr })
+--- for lualine add this component
+lualine_b = {
+  { get_name, cond = is_active },
+}
 
-      -- Show and Navigate Completion Menu
-      vim.keymap.set('i', '<Tab>', function() fn.complete_or_next_item() end, { buffer = input.bufnr })
-      vim.keymap.set('i', '<Up>', function() fn.previous_item() end, { buffer = input.bufnr })
-      vim.keymap.set('i', '<Down>j', function() fn.next_item() end, { buffer = input.bufnr })
-
-      vim.keymap.set('i', '<leader>k', function() fn.up_history() end, { buffer = input.bufnr })
-      vim.keymap.set('i', '<leader>j', function() fn.down_history() end, { buffer = input.bufnr })
-
-      -- Add additional keymaps as needed...
-    end,
-    set_keymaps = function(imap, feedkeys)
-    end
-  }
-
+-- Notifications
+vim.keymap.set('', '<Esc>', "<ESC>:noh<CR>:require('notify').dismiss()<CR>", { silent = true })
+vim.cmd [[highlight NotifyBackground guibg=#000000]]
+require("notify").setup({
+  background_colour = "NotifyBackground",
 })
 
--- The Fine Command Line & Searchbox Keymaps
-vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', { noremap = true })
+-- Dismiss Noice Message
+vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
 
 -- CODESTATS_API_KEY
 local codestats_api_key = os.getenv("CODESTATS_API_KEY")

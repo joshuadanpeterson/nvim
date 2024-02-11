@@ -14,6 +14,8 @@ return {
 	{ import = 'custom.plugins.utility' },
 	{ import = 'custom.plugins.lsp' },
 	{ import = 'custom.plugins.lint_and_autocomplete' },
+	{ import = 'custom.plugins.obsidian' },
+	{ import = 'custom.plugins.noice' },
 	{ import = 'kickstart.plugins.autoformat' },
 	{ import = 'kickstart.plugins.debug' },
 	-- Add other plugin files here
