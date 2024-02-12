@@ -13,10 +13,15 @@ return {
 	-- nvim-tree: a modern file explorer written in lua.
 	{
 		'kyazdani42/nvim-tree.lua',
+		version = "*",
+		lazy = false,
 		dependencies = {
 			'kyazdani42/nvim-web-devicons', -- optional, for file icons
 		},
-		tag = 'nightly'    -- optional, updated every week. (see issue #1193)
+		tag = 'nightly',    -- optional, updated every week. (see issue #1193)
+		config = function()
+			require('nvim-tree').setup{}
+		end,
 	},
 
 	-- vim-startify: provides a startup screen with session management.
@@ -28,18 +33,6 @@ return {
 	{
 		'j-hui/fidget.nvim',
 		tag = "v1.0.0",
-		-- optional: configuration for fidget.nvim
-		config = function()
-			require('fidget').setup({
-				opts = {
-					integration = {
-						["nvim-tree"] = {
-							enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-						},
-					},
-				}
-			})
-		end,
 	},
 
 	-- Customizable Neovim dashboard for better startup experience.

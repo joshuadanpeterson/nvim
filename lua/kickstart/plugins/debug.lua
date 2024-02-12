@@ -28,6 +28,9 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    -- Go debugger
+    require('dap-go').setup()
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -41,7 +44,16 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve', 'python'
+        'delve', -- Debugger for Go
+        'debugpy', -- Debugger for Python
+        'bash-debug-adapter', -- For debugging shell scripts
+        'chrome-debug-adapter', -- If you work with JavaScript and want to debug in the Chrome browser
+        'codeLLdb', -- For languages that compile to native code, like Rust and C/C++
+        'firefox-debug-adapter', -- To debug JavaScript in firefox
+        'go-debug-adapter', -- For Go language development
+        'js-debug-adapter', -- For JavaScript/Node.js development
+        'node-debug2-adapter', -- An alternative or additional DAP for Node.js
+        'php-debug', -- For PHP development
       },
     }
 

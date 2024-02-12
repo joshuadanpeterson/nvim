@@ -1,122 +1,202 @@
 -- lsp.lua
 --[[
-        custom.plugins.lsp: Configures the Language Server Protocol (LSP) support in Neovim, enabling features like auto-completion, go-to definition, and inline errors. This includes setting up language servers, customizing LSP-related keybindings, and integrating with completion plugins.
+        custom.plugins.lsp: Configures the Language Server Protocol (LSP) support in Neovim, enabling features like auto-completion, go-to definition, and inline errors, Treesitter for enhanced syntax highlighting and language features. This includes setting up language servers, customizing LSP-related keybindings, and integrating with completion plugins.
 ]]
 
 
 return {
+        -- nvim-treesitter for enhanced syntax highlighting and additional language features
+        {
+                'nvim-treesitter/nvim-treesitter',
+                run = ':TSUpdate',
+                config = function()
+                        require('nvim-treesitter.configs').setup {
+                                -- Ensure all maintained parsers are installed
+                                ensure_installed = "all",
+                                sync_install = false, -- Install parsers synchronously (only applies to `ensure_installed`)
 
-        -- adding nvim-treesitter/playground
+                                highlight = {
+                                        enable = true, -- Enable Treesitter-based highlighting
+                                },
+
+                                -- Treesitter playground for exploring Treesitter queries and captures
+                                playground = {
+                                        enable = true,
+                                        disable = {},
+                                        updatetime = 25, -- Debounced time for highlighting nodes from source code
+                                        persist_queries = false, -- Persist queries across sessions
+                                },
+                        }
+                end
+        },
+
+        -- nvim-treesitter/playground to explore Treesitter queries in a UI
         {
                 'nvim-treesitter/playground',
-                cmd = "Tsplaygroundtoggle",
+                cmd = 'TSPlaygroundToggle',
         },
-        -- lsp configuration & plugins
+
+        -- nvim-lspconfig for configuring language servers
         {
                 'neovim/nvim-lspconfig',
                 config = function()
-                        -- Switch for controlling whether you want autoformatting.
-                        --  Use :KickstartFormatToggle to toggle autoformatting on or off
-                        local format_is_enabled = true
-                        vim.api.nvim_create_user_command('KickstartFormatToggle', function()
-                                format_is_enabled = not format_is_enabled
-                                print('Setting autoformatting to: ' .. tostring(format_is_enabled))
-                        end, {})
+                        require('mason').setup()
+                        require('mason-lspconfig').setup({
+                                ensure_installed = {
+                                        -- LSP servers
+                                        "lua_ls", -- Lua
+                                        "tsserver", -- TypeScript/JavaScript
+                                        "pyright", -- Python
+                                        "html",  -- HTML
+                                        "cssls", -- CSS
+                                        "bashls", -- Bash
+                                        "rust_analyzer", -- Rust
+                                        "gopls", -- Go
+                                        "phpactor", -- PHP
+                                        "ruby_ls", -- Ruby
+                                        "jsonls", -- JSON
+                                        "yamlls", -- YAML
+                                        "sqls",  -- SQL
+                                        "dockerls", -- Docker
+                                        "vimls", -- VimScript
+                                        -- Add more servers per your requirement
 
-                        -- Create an augroup that is used for managing our formatting autocmds.
-                        --      We need one augroup per client to make sure that multiple clients
-                        --      can attach to the same buffer without interfering with each other.
-                        local _augroups = {}
-                        local get_augroup = function(client)
-                                if not _augroups[client.id] then
-                                        local group_name = 'kickstart-lsp-format-' .. client.name
-                                        local id = vim.api.nvim_create_augroup(group_name, { clear = true })
-                                        _augroups[client.id] = id
-                                end
+                                        -- Linters
+                                        "luacheck", -- Lua
+                                        "eslint", -- TypeScript/JavaScript
+                                        "flake8", "pylint", "mypy", -- Python
+                                        "htmlhint", -- HTML
+                                        "stylelint", -- CSS
+                                        "shellcheck", -- Bash
+                                        "clippy", -- Rust
+                                        "golangci-lint", -- Go
+                                        "phpcs", "phpstan", -- PHP
+                                        "rubocop", -- Ruby
+                                        "jsonlint", -- JSON
+                                        "yamllint", -- YAML
+                                        "sqlfluff", -- SQL
+                                        "hadolint", -- Docker
+                                        "vint", -- VimScript
 
-                                return _augroups[client.id]
-                        end
-
-                        -- Whenever an LSP attaches to a buffer, we will run this function.
-                        --
-                        -- See `:help LspAttach` for more information about this autocmd event.
-                        vim.api.nvim_create_autocmd('LspAttach', {
-                                group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
-                                -- This is where we attach the autoformatting for reasonable clients
-                                callback = function(args)
-                                        local client_id = args.data.client_id
-                                        local client = vim.lsp.get_client_by_id(client_id)
-                                        local bufnr = args.buf
-
-                                        -- Only attach to clients that support document formatting
-                                        if not client.server_capabilities.documentFormattingProvider then
-                                                return
-                                        end
-
-                                        -- Tsserver usually works poorly. Sorry you work with bad languages
-                                        -- You can remove this line if you know what you're doing :)
-                                        if client.name == 'tsserver' then
-                                                return
-                                        end
-
-                                        -- Create an autocmd that will run *before* we save the buffer.
-                                        --  Run the formatting command for the LSP that has just attached.
-                                        vim.api.nvim_create_autocmd('BufWritePre', {
-                                                group = get_augroup(client),
-                                                buffer = bufnr,
-                                                callback = function()
-                                                        if not format_is_enabled then
-                                                                return
-                                                        end
-
-                                                        vim.lsp.buf.format {
-                                                                async = false,
-                                                                filter = function(c)
-                                                                        return c.id == client.id
-                                                                end,
-                                                        }
-                                                end,
-                                        })
-                                end,
+                                        -- Formatters
+                                        "stylua", -- Lua
+                                        "prettier", -- TypeScript/JavaScript, JSON, YAML, HTML, CSS
+                                        "black", -- Python
+                                        "gofumpt", "goimports", -- Go
+                                        "php-cs-fixer", -- PHP
+                                        "rufo", -- Ruby
+                                        "sqlformat", -- SQL
+                                        "dockerfile_lint", -- Docker
+                                        "vim-codefmt" -- VimScript
+                                        -- More formatters can be added per your requirements
+                                },
+                                automatic_installation = true, -- Automatically install missing LSPs
                         })
-                end,
+                        -- Example for configuring Lua language server:
+                        require('lspconfig').lua_ls.setup {
+                          on_init = function(client)
+                            local path = client.workspace_folders[1].name
+                            if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                              client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+                                Lua = {
+                                  runtime = {
+                                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                                    version = 'LuaJIT',
+                                  },
+                                  diagnostics = {
+                                    -- Get the language server to recognize the `vim` global
+                                    globals = {'vim'},
+                                  },
+                                  workspace = {
+                                    -- Make the server aware of Neovim runtime files
+                                    checkThirdParty = false,
+                                    library = {
+                                      [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                                      [vim.fn.stdpath('config') .. '/lua'] = true,
+                                    },
+                                  },
+                                  -- Do not send telemetry data containing a randomized but unique identifier
+                                  telemetry = {
+                                    enable = false,
+                                  },
+                                },
+                              })
+
+                              client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                            end
+                            return true
+                          end
+                        }
+
+                        -- Setup for TypeScript and JavaScript via tsserver
+                        require('lspconfig').tsserver.setup {}
+
+                        -- Python via pyright
+                        require('lspconfig').pyright.setup {}
+
+                        -- HTML
+                        require('lspconfig').html.setup {}
+
+                        -- CSS, SCSS, and LESS
+                        require('lspconfig').cssls.setup {}
+
+                        -- Bash
+                        require('lspconfig').bashls.setup {}
+
+                        -- Rust
+                        require('lspconfig').rust_analyzer.setup {}
+
+                        -- Go
+                        require('lspconfig').gopls.setup {}
+
+                        -- PHP
+                        require('lspconfig').phpactor.setup {}
+
+                        -- Ruby
+                        require('lspconfig').solargraph.setup {}
+
+                        -- SQL
+                        require('lspconfig').sqls.setup {}
+
+                        -- Docker
+                        require('lspconfig').dockerls.setup {}
+
+                        -- VimScript
+                        require('lspconfig').vimls.setup {}
+
+                        -- JSON
+                        require('lspconfig').jsonls.setup {}
+
+                        -- YAML
+                        require('lspconfig').yamlls.setup {}
+                end
         },
 
-        -- treesitter
-        {
-                {
-                        'nvim-treesitter/nvim-treesitter',
-                        run = ':Tsupdate'
-                },
-        },
-
+        -- Mason for managing LSP servers, linters, and formatters
         {
                 'williamboman/mason.nvim',
-                -- optional: configuration for mason.nvim
                 config = function()
-                        -- your mason setup here
-                end,
+                        require('mason').setup()
+                end
         },
 
+        -- Mason-LSPConfig to bridge Mason and nvim-lspconfig
+        'williamboman/mason-lspconfig.nvim',
+
+        -- Neodev for Lua development with Neovim API support
+        'folke/neodev.nvim',
+
+        -- Trouble.nvim for an enhanced diagnostic list
         {
-                'williamboman/mason-lspconfig.nvim',
-                -- optional: configuration for mason-lspconfig.nvim
+                'folke/trouble.nvim',
+                requires = 'nvim-tree/nvim-web-devicons',
+                config = function()
+                        require('trouble').setup {
+                                -- Configuration options
+                        }
+                end
         },
 
-        {
-                'folke/neodev.nvim',
-                -- optional: configuration for neodev.nvim
-        },
-
-        -- trouble.nvim
-        -- A pretty list to help navigate problems in your code, powered by Neovim's built-in diagnostics.
-        {
-                "folke/trouble.nvim",
-                dependencies = { "kyazdani42/nvim-web-devicons" },
-                opts = {
-                        -- your configuration comes here
-                        -- or leave it empty to use the default settings
-                        -- refer to the configuration section below
-                },
-        }
+        -- Ensure you have the necessary plugins for LSP features like autocompletion, etc.
+        -- For example, nvim-cmp and its sources, LuaSnip for snippets, etc.
 }
