@@ -1,5 +1,5 @@
--- custom/keymaps.lua
 -- This config file contains my keymaps
+-- lua/config/keymaps.lua
 
 local wk = require("which-key")
 local harpoon = require("harpoon")
@@ -49,6 +49,13 @@ local telescopeMappings = {
 	['<leader>sG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
 	['<leader>sd'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
 	['<leader>sr'] = { require('telescope.builtin').resume, "Resume Last Search" },
+	['<leader>sc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
+	['<leader>ch'] = { require('telescope.builtin').command_history, "Search Command History" },
+	['<leader>sH'] = { require('telescope.builtin').search_history, "Search History"},
+	['<leader>pg'] = { require('telescope.builtin').man_pages, "Search Man Pages"},
+	['<leader>km'] = { require('telescope.builtin').keymaps, "Search Keymaps"},
+	['<leader>cs'] = { require('telescope.builtin').colorscheme, "Search Colorschemes"},
+	['<leader>ss'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions"},
 }
 
 -- Setup with default options

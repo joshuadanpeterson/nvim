@@ -2,7 +2,7 @@
 
 
 -- Custom configs
-require('custom.settings') -- For basic Neovim settings
+require('config.settings') -- For basic Neovim settings
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -24,11 +24,11 @@ require('lazy').setup({
 
   -- import custom plugins
   { import = 'custom.plugins' },
-  { import = 'kickstart.plugins' }
+  { import = 'kickstart.plugins' },
 })
 
 -- Custom configs
-require('custom.keymaps') -- For keybindings managed with which-key
+require('config.keymaps') -- For keybindings managed with which-key
 
 -- Plugin Manager Setup
 
@@ -120,6 +120,13 @@ require('telescope').setup({
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+      -- Enable mouse support in Telescope window
+        ['<C-n>'] = "move_selection_next",
+        ['<C-p>'] = "move_selection_previous",
+      -- Add mouse support for scrolling and selection
+        ["<LeftMouse>"] = "select_default",
+        ["<ScrollWheelUp>"] = "preview_scrolling_up",
+        ["<ScrollWheelDown>"] = "preview_scrolling_down",
       },
     },
   },
@@ -544,7 +551,6 @@ require('fidget').setup({
       group_style = "Title",      -- Highlight group for group name (LSP server name)
       icon_style = "Question",    -- Highlight group for group icons
       priority = 30,              -- Ordering priority for LSP notification group
-      skip_history = true,        -- Whether progress notifications should be omitted from history
       format_message =            -- How to format a progress message
         require("fidget.progress.display").default_format_message,
       format_annote =             -- How to format a progress annotation
@@ -559,7 +565,6 @@ require('fidget').setup({
     -- Options related to Neovim's built-in LSP client
     lsp = {
       progress_ringbuf_size = 0,  -- Configure the nvim's LSP progress ring buffer size
-      log_handler = false,        -- Log `$/progress` handler invocations (for debugging)
     },
   },
 
@@ -567,16 +572,9 @@ require('fidget').setup({
   notification = {
     poll_rate = 10,               -- How frequently to update and render notifications
     filter = vim.log.levels.INFO, -- Minimum notifications level
-    history_size = 128,           -- Number of removed messages to retain in history
     override_vim_notify = false,  -- Automatically override vim.notify() with Fidget
     configs =                     -- How to configure notification groups when instantiated
       { default = require("fidget.notification").default_config },
-    redirect =                    -- Conditionally redirect notifications to another backend
-      function(msg, level, opts)
-        if opts and opts.on_open then
-          return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
-        end
-      end,
 
     -- Options related to how notifications are rendered as text
     view = {
@@ -585,10 +583,6 @@ require('fidget').setup({
       group_separator = "---",    -- Separator between notification groups
       group_separator_hl =        -- Highlight group used for group separator
         "Comment",
-      render_message =            -- How to render notification messages
-        function(msg, cnt)
-          return cnt == 1 and msg or string.format("(%dx) %s", cnt, msg)
-        end,
     },
 
     -- Options related to the notification window and buffer
@@ -606,17 +600,9 @@ require('fidget').setup({
     },
   },
 
-  -- Options related to integrating with other plugins
-  integration = {
-    ["nvim-tree"] = {
-      enable = true,              -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-    },
-  },
-
   -- Options related to logging
   logger = {
     level = vim.log.levels.WARN,  -- Minimum logging level
-    max_size = 10000,             -- Maximum log file size, in KB
     float_precision = 0.01,       -- Limit the number of decimals displayed for floats
     path =                        -- Where Fidget writes its logs to
       string.format("%s/fidget.nvim.log", vim.fn.stdpath("cache")),
