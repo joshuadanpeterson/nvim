@@ -53,6 +53,7 @@
   "ripgrep": { "branch": "master", "commit": "9b42af96f0143a395b9379b6c761b5625367a3b9" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope-project.nvim": { "branch": "master", "commit": "1aaf16580a614601a7f7077d9639aeb457dc5559" },
+  "telescope-themes": { "branch": "main", "commit": "cc6ae4304ab442843830561b774aa16758ca2b1e" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" },
   "transparent.nvim": { "branch": "main", "commit": "fd35a46f4b7c1b244249266bdcb2da3814f01724" },

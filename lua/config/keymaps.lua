@@ -54,9 +54,9 @@ local telescopeMappings = {
 	['<leader>sH'] = { require('telescope.builtin').search_history, "Search History"},
 	['<leader>pg'] = { require('telescope.builtin').man_pages, "Search Man Pages"},
 	['<leader>km'] = { require('telescope.builtin').keymaps, "Search Keymaps"},
-	['<leader>cs'] = { require('telescope.builtin').colorscheme, "Search Colorschemes"},
 	['<leader>ss'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions"},
 	['<leader>da'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
+	['<leader>st'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
 }
 
 -- Setup with default options

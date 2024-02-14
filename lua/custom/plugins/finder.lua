@@ -47,8 +47,14 @@ return {
 				end,
 			},
 			{
-				"nvim-telescope/telescope-ui-select.nvim"
+				"nvim-telescope/telescope-ui-select.nvim",
+				"andrew-george/telescope-themes"
 			}
 		},
+		config = function()
+			-- load extension
+			local telescope = require('telescope')
+			telescope.load_extension('themes')
+		end
 	}
 }
