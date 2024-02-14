@@ -139,7 +139,7 @@ require('telescope').setup({
       -- search engine to fall back to when Dash has no results, must be one of: 'ddg', 'duckduckgo', 'startpage', 'google'
       search_engine = 'google',
       -- debounce while typing, in milliseconds
-      debounce = 0,
+      debounce = 20,
       -- map filetype strings to the keywords you've configured for docsets in Dash
       -- setting to false will disable filtering by filetype for that filetype
       -- filetypes not included in this table will not filter the query by filetype
@@ -150,7 +150,7 @@ require('telescope').setup({
       file_type_keywords = {
         dashboard = false,
         NvimTree = false,
-        TelescopePrompt = false,
+        TelescopePrompt = true,
         terminal = false,
         packer = false,
         fzf = false,
@@ -165,6 +165,7 @@ require('telescope').setup({
     },
   },
 })
+
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

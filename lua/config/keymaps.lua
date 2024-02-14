@@ -56,6 +56,7 @@ local telescopeMappings = {
 	['<leader>km'] = { require('telescope.builtin').keymaps, "Search Keymaps"},
 	['<leader>cs'] = { require('telescope.builtin').colorscheme, "Search Colorschemes"},
 	['<leader>ss'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions"},
+	['<leader>da'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
 }
 
 -- Setup with default options
