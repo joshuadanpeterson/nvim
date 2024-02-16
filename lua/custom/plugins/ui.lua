@@ -106,4 +106,9 @@ return {
 		'MunifTanjim/nui.nvim'
 	},
 
+	-- tmuxline
+	{
+		'edkolev/tmuxline.vim'
+	},
+
 }
