@@ -3,6 +3,8 @@
         custom.plugins.utility: Sets up various utility plugins that provide additional functionality to Neovim, such as file management, clipboard integration, or terminal enhancements. Each utility plugin's specific configuration would be included here.
 ]]
 
+-- nonicons_extention
+local nonicons_extention = require("nvim-nonicons.extentions.nvim-notify")
 
 return {
 
@@ -156,6 +158,7 @@ return {
                                 stages = 'fade_in_slide_out',
                                 background_colour = '#000000',
                                 timeout = 3000,
+                                icons = nonicons_extention.icons,
                         }
                         vim.notify = require('notify')
                 end

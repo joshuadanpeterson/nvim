@@ -10,6 +10,15 @@ return {
 		lazy = true
 	},
 
+	-- nvim-nonicons: more icons
+	{
+		'yamatsum/nvim-nonicons',
+		requires = {'kyazdani42/nvim-web-devicons'},
+		config = function()
+			require('nvim-nonicons').setup {}
+		end,
+	},
+
 	-- nvim-tree: a modern file explorer written in lua.
 	{
 		'kyazdani42/nvim-tree.lua',

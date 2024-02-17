@@ -32,7 +32,8 @@ require('config.keymaps') -- For keybindings managed with which-key
 
 -- Plugin Manager Setup
 
--- configure vim-tree
+-- configure nvim-tree
+local nonicons_extention = require("nvim-nonicons.extentions.nvim-tree")
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -40,6 +41,9 @@ require("nvim-tree").setup({
   },
   renderer = {
     group_empty = true,
+    icons = {
+      glyphs = nonicons_extention.glyphs,
+    },
   },
   filters = {
     dotfiles = true,
@@ -82,12 +86,6 @@ require('lint').linters_by_ft = {
   lua = { 'luacheck' }
 }
 
--- configure copilot.lua
-require('copilot')
-
--- Lualine
-require('lualine')
-
 vim.api.nvim_create_autocmd({ "bufwritepost" }, {
   pattern = { "*.lua" },
   callback = function()
@@ -111,11 +109,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local icons = require("nvim-nonicons")
 require('telescope').setup({
   defaults = {
+    prompt_prefix = "  " .. icons.get("telescope") .. "  ",
+    selection_caret = " ❯ ",
+    entry_prefix = "   ",
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -501,24 +502,6 @@ require("telescope").load_extension("noice")
 -- multicursors.nvim Status Line module
 require('multicursors').setup {
   hint_config = false,
-}
-
-local function is_active()
-  local ok, hydra = pcall(require, 'hydra.statusline')
-  return ok and hydra.is_active()
-end
-
-local function get_name()
-  local ok, hydra = pcall(require, 'hydra.statusline')
-  if ok then
-    return hydra.get_name()
-  end
-  return ''
-end
-
--- for lualine add this component
-lualine_b = {
-  { get_name, cond = is_active },
 }
 
 -- fidget.nvim
