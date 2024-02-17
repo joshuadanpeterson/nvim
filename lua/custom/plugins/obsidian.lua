@@ -11,6 +11,7 @@ return {
                 'hrsh7th/nvim-cmp',                -- Autocompletion plugin
                 'nvim-telescope/telescope.nvim',   -- Fuzzy finder plugin for searching and navigating
                 'nvim-treesitter/nvim-treesitter', -- Syntax highlighting based on tree-sitter
+                'epwalsh/pomo.nvim',               -- Pomodoro timer
         },
         config = function()                        -- Configuration function for the plugin
                 require('obsidian').setup({
