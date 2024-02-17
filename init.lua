@@ -29,6 +29,7 @@ require('lazy').setup({
 
 -- Custom configs
 require('config.keymaps') -- For keybindings managed with which-key
+require('config.cmp') -- For autocomplete config
 
 -- Plugin Manager Setup
 
