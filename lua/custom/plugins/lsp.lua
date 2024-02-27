@@ -5,36 +5,6 @@
 
 
 return {
-        -- nvim-treesitter for enhanced syntax highlighting and additional language features
-        {
-                'nvim-treesitter/nvim-treesitter',
-                run = ':TSUpdate',
-                config = function()
-                        require('nvim-treesitter.configs').setup {
-                                -- Ensure all maintained parsers are installed
-                                ensure_installed = "all",
-                                sync_install = false, -- Install parsers synchronously (only applies to `ensure_installed`)
-
-                                highlight = {
-                                        enable = true, -- Enable Treesitter-based highlighting
-                                },
-
-                                -- Treesitter playground for exploring Treesitter queries and captures
-                                playground = {
-                                        enable = true,
-                                        disable = {},
-                                        updatetime = 25, -- Debounced time for highlighting nodes from source code
-                                        persist_queries = false, -- Persist queries across sessions
-                                },
-                        }
-                end
-        },
-
-        -- nvim-treesitter/playground to explore Treesitter queries in a UI
-        {
-                'nvim-treesitter/playground',
-                cmd = 'TSPlaygroundToggle',
-        },
 
         -- nvim-lspconfig for configuring language servers
         {

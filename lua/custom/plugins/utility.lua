@@ -247,5 +247,34 @@ return {
                 'vimpostor/vim-tpipeline'
         },
 
+        -- firenvim for using Neovim in Chrome
+        {
+            'glacambre/firenvim',
+            dependencies = {
+                        "nvim-treesitter/nvim-treesitter"
+                },
+            -- Lazy load firenvim
+            -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+            lazy = not vim.g.started_by_firenvim,
+            build = function()
+                vim.fn["firenvim#install"](0)
+            end
+        },
+
+        -- ranger.nvim file manager
+        {
+          "kelly-lin/ranger.nvim",
+          config = function()
+            require("ranger-nvim").setup({ replace_netrw = true })
+            vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+              noremap = true,
+              callback = function()
+                require("ranger-nvim").open(true)
+              end,
+            })
+          end,
+        }
+
+
 
 }

@@ -19,24 +19,10 @@ return {
 		end,
 	},
 
-	-- nvim-tree: a modern file explorer written in lua.
-	{
-		'kyazdani42/nvim-tree.lua',
-		version = "*",
-		lazy = false,
-		dependencies = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icons
-		},
-		tag = 'nightly',    -- optional, updated every week. (see issue #1193)
-		config = function()
-			require('nvim-tree').setup{}
-		end,
-	},
-
-	-- vim-startify: provides a startup screen with session management.
-	{
-		'mhinz/vim-startify'
-	},
+	-- -- vim-startify: provides a startup screen with session management.
+	-- {
+	-- 	'mhinz/vim-startify'
+	-- },
 
 	-- Standalone UI for Neovim LSP progress.
 	{

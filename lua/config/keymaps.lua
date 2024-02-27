@@ -59,6 +59,16 @@ local telescopeMappings = {
 	['<leader>st'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
 }
 
+-- Rnvimr Keymaps
+local rnvimrMappings = {
+	['<leader>rt'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
+	-- Assuming you want a dedicated keymap for resizing as well, you could use something like this:
+	['<leader>rr'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
+	-- If you need the original <M-i> and <M-o> functionality mapped to other keys, you'll need to customize these bindings
+	-- For example, for toggling with <M-o> and resizing with <M-i>, but these are not directly translatable into Lua config without considering terminal keymap conflicts
+}
+
+
 -- Setup with default options
 wk.setup {}
 
@@ -66,3 +76,6 @@ wk.setup {}
 wk.register(generalMappings)
 wk.register(lspMappings)
 wk.register(telescopeMappings)
+
+-- Registering Rnvimr mappings
+wk.register(rnvimrMappings)

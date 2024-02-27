@@ -30,6 +30,7 @@ require('lazy').setup({
 -- Custom configs
 require('config.keymaps') -- For keybindings managed with which-key
 require('config.cmp') -- For autocomplete config
+require('config.tmux') -- For Tmux navigation
 
 -- Plugin Manager Setup
 
@@ -151,7 +152,6 @@ require('telescope').setup({
       -- set file_type_keywords = false
       file_type_keywords = {
         dashboard = false,
-        NvimTree = false,
         TelescopePrompt = true,
         terminal = false,
         packer = false,
