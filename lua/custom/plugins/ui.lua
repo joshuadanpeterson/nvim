@@ -30,6 +30,12 @@ return {
 		tag = "v1.0.0",
 	},
 
+	-- dressing.nvim - improves UI
+	{
+	  'stevearc/dressing.nvim',
+	  opts = {},
+	},
+
 	-- Customizable Neovim dashboard for better startup experience.
 	{
 		"nvimdev/dashboard-nvim",

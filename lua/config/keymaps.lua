@@ -68,6 +68,18 @@ local rnvimrMappings = {
 	-- For example, for toggling with <M-o> and resizing with <M-i>, but these are not directly translatable into Lua config without considering terminal keymap conflicts
 }
 
+-- legendary.nvim Keymaps
+local legendaryMappings = {
+	['<leader>lg'] = { ":Legendary<CR>", "Search Legendary"},
+	['<leader>lk'] = { ":Legendary keymaps<CR>", "Search Legendary Keymaps"},
+	['<leader>lc'] = { ":Legendary commands<CR>", "Search Legendary Commands"},
+	['<leader>lf'] = { ":Legendary functions<CR>", "Search Legendary Functions"},
+	['<leader>la'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds"},
+	['<leader>lr'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed"},
+	['<leader>l!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters"},
+
+}
+
 
 -- Setup with default options
 wk.setup {}
@@ -79,3 +91,6 @@ wk.register(telescopeMappings)
 
 -- Registering Rnvimr mappings
 wk.register(rnvimrMappings)
+
+-- Registering legendary.nvim mappings
+wk.register(legendaryMappings)

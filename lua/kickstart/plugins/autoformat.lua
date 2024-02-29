@@ -34,6 +34,12 @@ return {
     'tpope/vim-sleuth',
   },
 
+  -- conform.nvim: format plugin
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
+
   -- Comment.nvim
   -- Smart and powerful comment plugin for neovim that supports toggling, motions, operators, and more.
   {
