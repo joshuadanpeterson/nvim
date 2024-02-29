@@ -4,16 +4,16 @@
 ]]
 
 local function is_active()
-  local ok, hydra = pcall(require, 'hydra.statusline')
-  return ok and hydra.is_active()
+    local ok, hydra = pcall(require, 'hydra.statusline')
+    return ok and hydra.is_active()
 end
 
 local function get_name()
-  local ok, hydra = pcall(require, 'hydra.statusline')
-  if ok then
-    return hydra.get_name()
-  end
-  return ''
+    local ok, hydra = pcall(require, 'hydra.statusline')
+    if ok then
+        return hydra.get_name()
+    end
+    return ''
 end
 
 local function setup_lualine()
@@ -22,35 +22,37 @@ local function setup_lualine()
         options = {
             icons_enabled = true,
             theme = 'nord',
-            component_separators = { left = '', right = ''},
-            section_separators = { left = '', right = ''},
-         },
+            component_separators = { left = '', right = '' },
+            section_separators = { left = '', right = '' },
+        },
         sections = {
             lualine_a = { 'mode' },
-            lualine_b = { {'filename', file_status = true, path = 1,}, 'diagnostics', 'branch', 'diff', get_name, cond = is_active },
-            lualine_c = { { 'searchcount',
-                            maxcount = 999,
-                            timeout = 500,
-                           },
+            lualine_b = { { 'filename', file_status = true, path = 1, }, 'diagnostics', 'branch', 'diff', get_name, cond = is_active },
+            lualine_c = { {
+                'searchcount',
+                maxcount = 999,
+                timeout = 500,
+            },
             },
             lualine_x = { {
-                    'datetime',
-                    fmt = function()
-                        return os.date('%Y-%m-%d %H:%M')
-                    end,
-                },
+                'datetime',
+                fmt = function()
+                    return os.date('%Y-%m-%d %H:%M')
+                end,
+            },
                 'encoding',
-                { 'filetype',
+                {
+                    'filetype',
                     colored = true,
                 },
                 {
-                  'copilot',
+                    'copilot',
                     -- Default values
                     symbols = {
                         status = {
                             icons = {
                                 enabled = " ",
-                                sleep = " ",   -- auto-trigger disabled
+                                sleep = " ", -- auto-trigger disabled
                                 disabled = " ",
                                 warning = " ",
                                 unknown = " "
@@ -90,30 +92,20 @@ local function setup_lualine()
     require('lualine').setup(config)
 end
 
-local function refresh_lualine()
-    -- Unload the lualine module
-    package.loaded['lualine'] = nil
-    -- Reload and re-setup lualine with the current configuration
-    setup_lualine()
-end
-
--- Keymap to refresh lualine
-vim.keymap.set('n', '<leader>nl', refresh_lualine, { desc = 'Refresh status line' })
-
 return {
-  -- lualine configuration
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    event = 'bufreadpre',
-    config = function()
-        require('lualine').setup {
-        }
-    end
-  },
+    -- lualine configuration
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        event = 'bufreadpre',
+        config = function()
+            require('lualine').setup {
+            }
+        end
+    },
 
-  -- copilot lualine
-  {
-    'AndreM222/copilot-lualine',
-  },
+    -- copilot lualine
+    {
+        'AndreM222/copilot-lualine',
+    },
 }

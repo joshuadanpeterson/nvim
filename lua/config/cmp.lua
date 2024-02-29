@@ -4,37 +4,35 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
-local lspconfig = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local tailwindcss_colorizer_cmp = require("tailwindcss-colorizer-cmp")
 
 -- Define icons for different kinds of completions
 local kind_icons = {
-  Text = "",
-  Method = "󰆧",
-  Function = "󰊕",
-  Constructor = "",
-  Field = "󰇽",
-  Variable = "󰂡",
-  Class = "󰠱",
-  Interface = "",
-  Module = "",
-  Property = "󰜢",
-  Unit = "",
-  Value = "󰎠",
-  Enum = "",
-  Keyword = "󰌋",
-  Snippet = "",
-  Color = "󰏘",
-  File = "󰈙",
-  Reference = "",
-  Folder = "󰉋",
-  EnumMember = "",
-  Constant = "󰏿",
-  Struct = "",
-  Event = "",
-  Operator = "󰆕",
-  TypeParameter = "󰅲",
+    Text = "",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰇽",
+    Variable = "󰂡",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰅲",
 }
 
 -- nvim-cmp setup
@@ -98,38 +96,9 @@ cmp.setup({
 
 
 
--- LSP servers setup
-local servers = { 'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer', 'gopls', 'phpactor', 'ruby_ls', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls' }
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        capabilities = cmp_nvim_lsp.default_capabilities(),
-    }
-end
-
--- Linting setup
-require('lint').linters_by_ft = {
-    lua = { 'luacheck' },
-    javascript = { 'eslint' },
-    typescript = { 'eslint' },
-    python = { 'flake8', 'pylint', 'mypy' },
-    html = { 'htmlhint' },
-    css = { 'stylelint' },
-    sh = { 'shellcheck' },
-    rust = { 'clippy' },
-    go = { 'golangci-lint' },
-    php = { 'phpcs', 'phpstan' },
-    ruby = { 'rubocop' },
-    json = { 'jsonlint' },
-    yaml = { 'yamllint' },
-    sql = { 'sqlfluff' },
-    dockerfile = { 'hadolint' },
-    vim = { 'vint' },
-}
-
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*",
     callback = function()
         require('lint').try_lint()
     end,
 })
-

@@ -39,22 +39,6 @@ return {
                                 preferred_link_style = "wikilinks", -- Use wikilinks style for note linking
                         },
 
-                        -- Custom key mappings for enhanced navigation and editing
-                        mappings = {
-                                ["gf"] = { -- Go to file (note) under cursor
-                                        action = function()
-                                                return require("obsidian").util.gf_passthrough()
-                                        end,
-                                        opts = { noremap = false, expr = true, buffer = true },
-                                },
-                                ["<leader>ch"] = { -- Toggle checkboxes within notes
-                                        action = function()
-                                                return require("obsidian").util.toggle_checkbox()
-                                        end,
-                                        opts = { buffer = true },
-                                },
-                        },
-
                         -- Optional, customize how names/IDs for new notes are created.
                         note_id_func = function(title)
                                 -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.

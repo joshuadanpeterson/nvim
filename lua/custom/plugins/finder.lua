@@ -26,10 +26,10 @@ return {
 	-- fzf vim: integrates the fzf command-line fuzzy finder with vim.
 	{
 		'junegunn/fzf.vim',
-		    {
+		{
 			"nvim-telescope/telescope.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
-		    },
+		},
 	},
 
 	-- Fuzzy Finder (files, lsp, etc) with dependencies including plenary.nvim and telescope-ui-select.nvim
@@ -67,22 +67,18 @@ return {
 	{
 		"shivamashtikar/tmuxjump.vim",
 		dependencies = {
-		    "junegunn/fzf.vim", -- fzf.vim for fuzzy finding
-		    "nvim-telescope/telescope.nvim", -- telescope.nvim for enhanced searching
+			"junegunn/fzf.vim", -- fzf.vim for fuzzy finding
+			"nvim-telescope/telescope.nvim", -- telescope.nvim for enhanced searching
 		},
 		config = function()
-		    -- Optionally set tmuxjump to use Telescope
-		    vim.g.tmuxjump_telescope = true
+			-- Optionally set tmuxjump to use Telescope
+			vim.g.tmuxjump_telescope = true
 
-		    -- If you have a custom capture script
-		    -- vim.g.tmuxjump_custom_capture = "/path/to/your/custom_script.sh"
+			-- If you have a custom capture script
+			-- vim.g.tmuxjump_custom_capture = "/path/to/your/custom_script.sh"
 
-		    -- Key mappings
-		    vim.api.nvim_set_keymap("n", "<leader>ft", ":TmuxJumpFile<CR>", { noremap = true })
-		    vim.api.nvim_set_keymap("n", "<leader>;", ":TmuxJumpFirst<CR>", { noremap = true })
-
-		    -- For specific file types, like purescript
-		    vim.cmd([[
+			-- For specific file types, like purescript
+			vim.cmd([[
 			autocmd FileType purescript nnoremap <leader>ft :TmuxJumpFile purs<CR>
 			autocmd FileType purescript nnoremap <leader>; :TmuxJumpFirst purs<CR>
 		    ]])
