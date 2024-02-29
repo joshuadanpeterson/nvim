@@ -124,3 +124,6 @@ vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end
 
 -- noice
 require("telescope").load_extension("noice")
+
+-- emoji.nvim
+require("telescope").load_extension("emoji")

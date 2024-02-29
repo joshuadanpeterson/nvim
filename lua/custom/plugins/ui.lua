@@ -13,7 +13,7 @@ return {
 	-- nvim-nonicons: more icons
 	{
 		'yamatsum/nvim-nonicons',
-		requires = {'kyazdani42/nvim-web-devicons'},
+		requires = { 'kyazdani42/nvim-web-devicons' },
 		config = function()
 			require('nvim-nonicons').setup {}
 		end,
@@ -32,8 +32,8 @@ return {
 
 	-- dressing.nvim - improves UI
 	{
-	  'stevearc/dressing.nvim',
-	  opts = {},
+		'stevearc/dressing.nvim',
+		opts = {},
 	},
 
 	-- Customizable Neovim dashboard for better startup experience.
@@ -110,6 +110,23 @@ return {
 	-- tmuxline
 	{
 		'edkolev/tmuxline.vim'
+	},
+
+	-- emoji.nvim
+	{
+		"allaman/emoji.nvim",
+		version = "1.0.0", -- optionally pin to a tag
+		ft = "markdown", -- adjust to your needs
+		dependencies = {
+			-- optional for nvim-cmp integration
+			"hrsh7th/nvim-cmp",
+			-- optional for telescope integration
+			"nvim-telescope/telescope.nvim",
+		},
+		opts = {
+			-- default is false
+			enable_cmp_integration = true,
+		},
 	},
 
 }

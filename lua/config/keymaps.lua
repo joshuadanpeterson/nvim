@@ -70,6 +70,7 @@ local telescopeMappings = {
 	['ss'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
 	['da'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
 	['st'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
+	['em'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
 	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
