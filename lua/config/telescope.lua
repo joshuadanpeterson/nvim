@@ -96,7 +96,6 @@ end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
-
 -- [[ Configure Harpoon Telescope ]]
 local harpoon = require('harpoon')
 harpoon:setup({})
@@ -122,11 +121,61 @@ end
 vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
         { desc = "Open harpoon window" })
 
--- noice
+-- Load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes
 require("telescope").load_extension("noice")
-
--- emoji.nvim
 require("telescope").load_extension("emoji")
-
--- telescope-swap-files
 require('telescope').load_extension('uniswapfiles')
+require('telescope').load_extension('ui-select')
+require('telescope').load_extension('themes')
+
+-- Extend Telescope mappings with Flash integration
+require('telescope').setup({
+        defaults = {
+                mappings = {
+                        n = {
+                                ["s"] = function(prompt_bufnr)
+                                        require("flash").jump({
+                                                pattern = "^",
+                                                label = { after = { 0, 0 } },
+                                                search = {
+                                                        mode = "search",
+                                                        exclude = {
+                                                                function(win)
+                                                                        return vim.bo[vim.api.nvim_win_get_buf(win)]
+                                                                            .filetype ~= "TelescopeResults"
+                                                                end,
+                                                        },
+                                                },
+                                                action = function(match)
+                                                        local picker = require("telescope.actions.state")
+                                                            .get_current_picker(prompt_bufnr)
+                                                        picker:set_selection(match.pos[1] - 1)
+                                                end,
+                                        })
+                                end,
+                        },
+                        i = {
+                                ["<c-s>"] = function(prompt_bufnr)
+                                        require("flash").jump({
+                                                pattern = "^",
+                                                label = { after = { 0, 0 } },
+                                                search = {
+                                                        mode = "search",
+                                                        exclude = {
+                                                                function(win)
+                                                                        return vim.bo[vim.api.nvim_win_get_buf(win)]
+                                                                            .filetype ~= "TelescopeResults"
+                                                                end,
+                                                        },
+                                                },
+                                                action = function(match)
+                                                        local picker = require("telescope.actions.state")
+                                                            .get_current_picker(prompt_bufnr)
+                                                        picker:set_selection(match.pos[1] - 1)
+                                                end,
+                                        })
+                                end,
+                        },
+                },
+        },
+})

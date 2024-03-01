@@ -38,24 +38,17 @@ return {
 		branch = '0.1.x',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			{
-				'nvim-telescope/telescope-fzf-native.nvim',
-				build = 'make',
-				cond = function()
-					return vim.fn.executable 'make' == 1
-				end,
-			},
-			{
-				"nvim-telescope/telescope-ui-select.nvim",
-				"andrew-george/telescope-themes"
-			},
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+			'nvim-telescope/telescope-ui-select.nvim',
+			'andrew-george/telescope-themes',
 			'Lilja/telescope-swap-files',
 		},
 		config = function()
-			-- load extension
-			local telescope = require('telescope')
-			telescope.load_extension('themes')
-		end
+			require('telescope').setup {
+				-- Your existing Telescope configuration
+			}
+		end,
+
 	},
 
 	-- Tmux Telescope Plugin

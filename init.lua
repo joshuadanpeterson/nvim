@@ -110,7 +110,7 @@ require('legendary').setup({
   -- in the legend by default, set to false to disable
   include_legendary_cmds = true,
   -- Options for list sorting. Note that fuzzy-finders will still
-  -- do their own sorting. For telescope.nvim, you can set it to use
+  -- do their own sorting. For elescope.nvim, you can set it to use
   -- `require('telescope.sorters').fuzzy_with_index_bias({})` when
   -- triggered via `legendary.nvim`. Example config for `dressing.nvim`:
   --
