@@ -127,3 +127,6 @@ require("telescope").load_extension("noice")
 
 -- emoji.nvim
 require("telescope").load_extension("emoji")
+
+-- telescope-swap-files
+require('telescope').load_extension('uniswapfiles')

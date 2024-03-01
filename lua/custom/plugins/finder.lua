@@ -38,13 +38,8 @@ return {
 		branch = '0.1.x',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			-- Fuzzy Finder Algorithm which requires local dependencies to be built.
-			-- Only load if `make` is available. Make sure you have the system
-			-- requirements installed.
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
-				-- NOTE: If you are having trouble with this installation,
-				--       refer to the README for telescope-fzf-native for more instructions.
 				build = 'make',
 				cond = function()
 					return vim.fn.executable 'make' == 1
@@ -54,7 +49,7 @@ return {
 				"nvim-telescope/telescope-ui-select.nvim",
 				"andrew-george/telescope-themes"
 			},
-
+			'Lilja/telescope-swap-files',
 		},
 		config = function()
 			-- load extension
@@ -74,9 +69,6 @@ return {
 			-- Optionally set tmuxjump to use Telescope
 			vim.g.tmuxjump_telescope = true
 
-			-- If you have a custom capture script
-			-- vim.g.tmuxjump_custom_capture = "/path/to/your/custom_script.sh"
-
 			-- For specific file types, like purescript
 			vim.cmd([[
 			autocmd FileType purescript nnoremap <leader>ft :TmuxJumpFile purs<CR>
@@ -88,5 +80,13 @@ return {
 	-- Ranger Neovim plugin
 	{
 		'kevinhwang91/rnvimr',
+	},
+
+	-- Flash.nvim
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
 	},
 }

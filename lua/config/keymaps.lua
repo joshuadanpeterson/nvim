@@ -74,6 +74,7 @@ local telescopeMappings = {
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
 	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
+	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 }
 
 -- Rnvimr and Ranger Keymaps
@@ -125,6 +126,14 @@ local lazyMappings = {
 	["li"] = { ":LazyFormatInfo<CR>", "Open LazyFormatInfo" },
 }
 
+-- Flash Keymaps
+local flashMappings = {
+	['fs'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
+	['fS'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
+	['fr'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
+	['fR'] = { function() require("flash").treesitter_search() end, "Treesitter Search", mode = { "o", "x" } },
+	['f<c-s>'] = { function() require("flash").toggle() end, "Toggle Flash Search", mode = "c" },
+}
 
 -- DAP Plugin Keymaps
 local dapMappings = {
@@ -183,3 +192,15 @@ wk.register(obsidianMappings, { prefix = "<leader>", mode = "n" })
 
 -- Registering Lazy mappings under the 'n' (normal) mode leader key
 wk.register(lazyMappings, { prefix = "<leader>", mode = "n" })
+
+-- Registering Flash mappings with which-key
+for key, mapping in pairs(flashMappings) do
+	local mode = mapping.mode or "n" -- default to normal mode if mode not provided
+	if type(mode) == "table" then
+		for _, m in ipairs(mode) do
+			wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>", mode = m })
+		end
+	else
+		wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>", mode = mode })
+	end
+end
