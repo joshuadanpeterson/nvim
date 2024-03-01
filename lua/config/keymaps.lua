@@ -46,31 +46,31 @@ local lspMappings = {
 	['wa'] = { vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
 	['wr'] = { vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
 	['wl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
-	['q'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
+	['Q'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
 	[']d'] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
 	['[d'] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-	['f'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
+	['fm'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
 }
 
 -- Telescope Keymaps
 local telescopeMappings = {
-	['gf'] = { require('telescope.builtin').git_files, "Search Git Files" },
-	['sf'] = { require('telescope.builtin').find_files, "Search Files" },
-	['sh'] = { require('telescope.builtin').help_tags, "Search Help" },
-	['sw'] = { require('telescope.builtin').grep_string, "Search Current Word" },
-	['sg'] = { require('telescope.builtin').live_grep, "Search by Grep" },
-	['sG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
-	['sd'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
-	['sr'] = { require('telescope.builtin').resume, "Resume Last Search" },
-	['sc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
-	['ch'] = { require('telescope.builtin').command_history, "Search Command History" },
-	['sH'] = { require('telescope.builtin').search_history, "Search History" },
-	['pg'] = { require('telescope.builtin').man_pages, "Search Man Pages" },
-	['km'] = { require('telescope.builtin').keymaps, "Search Keymaps" },
-	['ss'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
-	['da'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
-	['st'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
-	['em'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
+	['tf'] = { require('telescope.builtin').git_files, "Search Git Files" },
+	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
+	['th'] = { require('telescope.builtin').help_tags, "Search Help" },
+	['tw'] = { require('telescope.builtin').grep_string, "Search Current Word" },
+	['tg'] = { require('telescope.builtin').live_grep, "Search by Grep" },
+	['tG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
+	['td'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
+	['tr'] = { require('telescope.builtin').resume, "Resume Last Search" },
+	['tc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
+	['tC'] = { require('telescope.builtin').command_history, "Search Command History" },
+	['tH'] = { require('telescope.builtin').search_history, "Search History" },
+	['tM'] = { require('telescope.builtin').man_pages, "Search Man Pages" },
+	['tm'] = { require('telescope.builtin').keymaps, "Search Keymaps" },
+	['ts'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
+	['ta'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
+	['tt'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
+	['te'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
 	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
@@ -102,26 +102,38 @@ local tmuxTelescopeMappings = {
 
 -- Harpoon Keymaps
 local harpoonMappings = {
-	["a"] = { function() harpoon.mark.add_file() end, "Add Harpoon File" },
-	["d"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
-	["p"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
-	["n"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
-	["h"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
+	["ha"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
+	["hr"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
+	["hp"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
+	["hn"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
+	["hm"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
 }
 
 -- Obsidian Keymaps
 local obsidianMappings = {
-	["gn"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
-	["ch"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
+	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
+	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
 }
+
+-- Lazy Keymaps
+local lazyMappings = {
+	["lz"] = { ":Lazy<CR>", "Open Lazy" },
+	["lr"] = { ":LazyRoot<CR>", "Open LazyRoot" },
+	["le"] = { ":LazyExtras<CR>", "Open LazyExtras" },
+	["lf"] = { ":LazyFormat<CR>", "Open LazyFormat" },
+	["lh"] = { ":LazyHealth<CR>", "Open LazyHealth" },
+	["li"] = { ":LazyFormatInfo<CR>", "Open LazyFormatInfo" },
+}
+
+
 -- DAP Plugin Keymaps
 local dapMappings = {
 	["<F5>"] = { dap.continue, "Debug: Start/Continue" },
 	["<F1>"] = { dap.step_into, "Debug: Step Into" },
 	["<F2>"] = { dap.step_over, "Debug: Step Over" },
 	["<F3>"] = { dap.step_out, "Debug: Step Out" },
-	["b"] = { dap.toggle_breakpoint, "Debug: Toggle Breakpoint" },
-	["B"] = { function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Debug: Set Breakpoint" },
+	["db"] = { dap.toggle_breakpoint, "Debug: Toggle Breakpoint" },
+	["dB"] = { function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Debug: Set Breakpoint" },
 	["<F7>"] = { dapui.toggle, "Debug: See last session result." },
 }
 
@@ -168,3 +180,6 @@ end
 
 -- Registering Obsidian mappings under the 'n' (normal) mode leader key
 wk.register(obsidianMappings, { prefix = "<leader>", mode = "n" })
+
+-- Registering Lazy mappings under the 'n' (normal) mode leader key
+wk.register(lazyMappings, { prefix = "<leader>", mode = "n" })
