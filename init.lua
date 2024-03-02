@@ -35,22 +35,20 @@ require('lazy').setup({
   },
 
   -- import custom plugins
-  { import = 'custom.plugins' },
-  { import = 'kickstart.plugins' },
+  { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
+  { import = 'plugins' },
 
 })
 
 -- Custom configs
-require('config.keymaps')               -- For keybindings managed with which-key
-require('config.cmp')                   -- For autocomplete config
-require('config.tmux')                  -- For Tmux navigation
-require('config.conform')               -- For conform.nvim
-require('config.telescope')             -- For Telescope
-require('config.lsp')                   -- For LSP configurations
-require('config.linter')                -- For linter configurations
-require('config.fidget')                -- For fidget configurations
-require('kickstart.plugins.autoformat') -- For Kickstart Autoformat plugins
-require('kickstart.plugins.debug')      -- For Kickstart Debug plugins
+require('config.keymaps')   -- For keybindings managed with which-key
+require('config.cmp')       -- For autocomplete config
+require('config.tmux')      -- For Tmux navigation
+require('config.conform')   -- For conform.nvim
+require('config.telescope') -- For Telescope
+require('config.lsp')       -- For LSP configurations
+require('config.linter')    -- For linter configurations
+require('config.fidget')    -- For fidget configurations
 
 -- Plugin Manager Setup
 
@@ -217,6 +215,7 @@ assert(codestats_api_key ~= nil, "CODESTATS_API_KEY is not set")
 require('codestats-nvim').setup({
   token = codestats_api_key
 })
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

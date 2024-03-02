@@ -12,6 +12,7 @@ return {
                 'nvim-telescope/telescope.nvim',   -- Fuzzy finder plugin for searching and navigating
                 'nvim-treesitter/nvim-treesitter', -- Syntax highlighting based on tree-sitter
                 'epwalsh/pomo.nvim',               -- Pomodoro timer
+                'edkolev/tmuxline.vim',            -- tmuxline status line for blending of Neovim and tmux statuslines
         },
         config = function()                        -- Configuration function for the plugin
                 require('obsidian').setup({

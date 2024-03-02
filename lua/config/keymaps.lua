@@ -81,7 +81,7 @@ local telescopeMappings = {
 local rnvimrMappings = {
 	['rt'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
 	['rr'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
-	['rf'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
+	['rn'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
 }
 
 -- legendary.nvim Keymaps

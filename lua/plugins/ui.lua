@@ -71,6 +71,7 @@ return {
 						{ action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
 						{ action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "x" },
 						{ action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+						{ action = "Leet", desc = " LeetCode", icon = " ", key = "d" },
 						{ action = "qa", desc = " Quit", icon = " ", key = "q" },
 					},
 					footer = function()
