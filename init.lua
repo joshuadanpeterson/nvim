@@ -3,7 +3,7 @@
 
 -- Custom configs
 require('config.settings') -- For basic Neovim settings
--- require("config.vim")      -- For vim config
+require("config.vim")      -- For vim config
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -37,7 +37,6 @@ require('lazy').setup({
   -- import custom plugins
   { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
   { import = 'plugins' },
-
 })
 
 -- Custom configs

@@ -270,8 +270,17 @@ return {
                 config = function()
                         require("ranger-nvim").setup({ replace_netrw = true })
                 end,
-        }
+        },
 
+        -- live-server for HTML, CSS & JavaScript
+        {
+                'barrett-ruth/live-server.nvim',
+                build = 'pnpm add -g live-server',
+                cmd = { 'LiveServerStart', 'LiveServerStop' },
+                config = function()
+                        require('live-server').setup()
+                end,
+        },
 
 
 }

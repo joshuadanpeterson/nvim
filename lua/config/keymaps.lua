@@ -20,6 +20,10 @@ local function refresh_lualine()
 	setup_lualine()
 end
 
+-- set up telescope.actions
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
 -- General and Basic Keymaps
 local generalMappings = {
 	['<Space>'] = { '<Nop>', "No Operation" },
@@ -28,6 +32,7 @@ local generalMappings = {
 	['<C-_>'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", "Toggle comment for current line", mode = { "n", "v" } },
 	['<Esc>'] = { "<ESC>:noh<CR>:require('notify').dismiss()<CR>", "Clear search highlight and notifications" },
 	['nl'] = { refresh_lualine, "Refresh status line" },
+	['nd'] = { ":NoiceDismiss<CR>", "Dismiss Noice Message" },
 }
 
 -- LSP Keymaps
@@ -56,7 +61,8 @@ local lspMappings = {
 local telescopeMappings = {
 	['tf'] = { require('telescope.builtin').git_files, "Search Git Files" },
 	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
-	['th'] = { require('telescope.builtin').help_tags, "Search Help" },
+	['tb'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
+	['th'] = { ":FuzzyHelp<CR>", "Search Help" },
 	['tw'] = { require('telescope.builtin').grep_string, "Search Current Word" },
 	['tg'] = { require('telescope.builtin').live_grep, "Search by Grep" },
 	['tG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
@@ -65,7 +71,7 @@ local telescopeMappings = {
 	['tc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
 	['tC'] = { require('telescope.builtin').command_history, "Search Command History" },
 	['tH'] = { require('telescope.builtin').search_history, "Search History" },
-	['tM'] = { require('telescope.builtin').man_pages, "Search Man Pages" },
+	['tM'] = { ":FuzzyMan<CR>", "Search Man Pages" },
 	['tm'] = { require('telescope.builtin').keymaps, "Search Keymaps" },
 	['ts'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
 	['ta'] = { "<cmd>Telescope dash search<CR>", "Search Dash" },
@@ -75,6 +81,7 @@ local telescopeMappings = {
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
 	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
 	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
+	['tn'] = { "<cmd>Telescope noice<CR>", "Search Noice Messages" },
 }
 
 -- Rnvimr and Ranger Keymaps
@@ -93,6 +100,12 @@ local legendaryMappings = {
 	['la'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds" },
 	['lr'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed" },
 	['l!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters" },
+}
+
+-- live-server.nvim Keymaps
+local liveServerMappings = {
+	['ls'] = { ":LiveServerStart<CR>", "Start LiveServer" },
+	['lt'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
 }
 
 -- Tmux Telescope Plugin Keymaps
@@ -160,6 +173,9 @@ wk.register(rnvimrMappings, { prefix = "<leader>", mode = "n" })
 
 -- Registering legendary.nvim mappings
 wk.register(legendaryMappings, { prefix = "<leader>", mode = "n" })
+
+-- Registering legendary.nvim mappings
+wk.register(liveServerMappings, { prefix = "<leader>", mode = "n" })
 
 -- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
 wk.register(tmuxTelescopeMappings, { prefix = "<leader>", mode = "n" })

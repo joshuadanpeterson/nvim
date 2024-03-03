@@ -1,6 +1,13 @@
 -- [[ configure telescope ]]
 -- see `:help telescope` and `:help telescope.setup()`
+
+-- set up nvim-nonicons
 local icons = require("nvim-nonicons")
+
+-- set up telescope.actions
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
 require('telescope').setup({
         defaults = {
                 prompt_prefix = "  " .. icons.get("telescope") .. "  ",
@@ -19,6 +26,7 @@ require('telescope').setup({
                                 ["<scrollwheeldown>"] = "preview_scrolling_down",
                         },
                 },
+                previewer = true,
         },
         pickers = {
         },
@@ -54,7 +62,6 @@ require('telescope').setup({
                 },
         },
 })
-
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -133,7 +140,7 @@ require('telescope').setup({
         defaults = {
                 mappings = {
                         n = {
-                                ["s"] = function(prompt_bufnr)
+                                ["tf"] = function(prompt_bufnr)
                                         require("flash").jump({
                                                 pattern = "^",
                                                 label = { after = { 0, 0 } },
@@ -179,3 +186,42 @@ require('telescope').setup({
                 },
         },
 })
+
+-- Set up Help Page fuzzy search with a command
+vim.api.nvim_create_user_command('FuzzyHelp', function()
+        require('telescope.builtin').help_tags({
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = action_state.get_selected_entry(bufnr)
+                                actions.close(bufnr)
+                                vim.cmd('vert bo help ' .. selection.value)
+                                vim.defer_fn(function()
+                                        require('telescope.builtin')
+                                            .current_buffer_fuzzy_find()
+                                end, 100)
+                        end)
+                        return true
+                end
+        })
+end, {})
+
+-- Set up Man Page fuzzy search with a command
+vim.api.nvim_create_user_command('FuzzyMan', function()
+        require('telescope.builtin').man_pages({
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = action_state.get_selected_entry(bufnr)
+                                actions.close(bufnr)
+                                vim.cmd('vert bo Man ' .. selection.value)
+                                vim.defer_fn(function()
+                                        require('telescope.builtin')
+                                            .current_buffer_fuzzy_find({
+                                                    file_encoding = "utf-8",
+                                                    previewer = false,
+                                            })
+                                end, 100)
+                        end)
+                        return true
+                end
+        })
+end, {})
