@@ -194,6 +194,7 @@ require('telescope').setup({
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
         require('telescope.builtin').help_tags({
+                prompt_title = 'Search Help',
                 sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<cr>', function(bufnr)
@@ -213,6 +214,7 @@ end, {})
 -- set up man page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyMan', function()
         require('telescope.builtin').man_pages({
+                prompt_title = 'Search Man Pages',
                 sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<cr>', function(bufnr)
@@ -235,6 +237,7 @@ end, {})
 -- set up noice fuzzy search with a command to open new buffer
 vim.api.nvim_create_user_command('FuzzyNoice', function()
         require('telescope').extensions.noice.noice({
+                prompt_title = 'Search Noice Messages',
                 sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<CR>', function(bufnr)

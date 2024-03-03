@@ -40,7 +40,10 @@ return {
         -- Query Dash.app within Neovim with your fuzzy finder
         {
                 'mrjones2014/dash.nvim',
-                build = 'make install'
+                build = 'make install',
+                opts = {
+                        search_engine = 'google',
+                },
         },
 
         -- vim-sneak: minimalist motion plugin to jump to any location in file with two characters.
