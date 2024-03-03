@@ -81,7 +81,7 @@ local telescopeMappings = {
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
 	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
 	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
-	['tn'] = { "<cmd>Telescope noice<CR>", "Search Noice Messages" },
+	['tn'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
 }
 
 -- Rnvimr and Ranger Keymaps

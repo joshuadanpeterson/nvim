@@ -63,35 +63,35 @@ require('telescope').setup({
         },
 })
 
--- Enable telescope fzf native, if installed
+-- enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
--- Telescope live_grep in git root
--- Function to find the git root directory based on the current buffer's path
+-- telescope live_grep in git root
+-- function to find the git root directory based on the current buffer's path
 local function find_git_root()
-        -- Use the current buffer's path as the starting point for the git search
+        -- use the current buffer's path as the starting point for the git search
         local current_file = vim.api.nvim_buf_get_name(0)
         local current_dir
         local cwd = vim.fn.getcwd()
-        -- If the buffer is not associated with a file, return nil
+        -- if the buffer is not associated with a file, return nil
         if current_file == "" then
                 current_dir = cwd
         else
-                -- Extract the directory from the current file's path
+                -- extract the directory from the current file's path
                 current_dir = vim.fn.fnamemodify(current_file, ":h")
         end
 
-        -- Find the Git root directory from the current file's path
-        local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")
+        -- find the git root directory from the current file's path
+        local git_root = vim.fn.systemlist("git -c " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")
             [1]
         if vim.v.shell_error ~= 0 then
-                print("Not a git repository. Searching on current working directory")
+                print("not a git repository. searching on current working directory")
                 return cwd
         end
         return git_root
 end
 
--- Custom live_grep function to search in git root
+-- custom live_grep function to search in git root
 local function live_grep_git_root()
         local git_root = find_git_root()
         if git_root then
@@ -103,7 +103,8 @@ end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
--- [[ Configure Harpoon Telescope ]]
+
+-- [[ configure harpoon telescope ]]
 local harpoon = require('harpoon')
 harpoon:setup({})
 
@@ -116,7 +117,7 @@ local function toggle_telescope(harpoon_files)
         end
 
         require("telescope.pickers").new({}, {
-                prompt_title = "Harpoon",
+                prompt_title = "harpoon",
                 finder = require("telescope.finders").new_table({
                         results = file_paths,
                 }),
@@ -126,16 +127,16 @@ local function toggle_telescope(harpoon_files)
 end
 
 vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
-        { desc = "Open harpoon window" })
+        { desc = "open harpoon window" })
 
--- Load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes
+-- load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes
 require("telescope").load_extension("noice")
 require("telescope").load_extension("emoji")
 require('telescope').load_extension('uniswapfiles')
 require('telescope').load_extension('ui-select')
 require('telescope').load_extension('themes')
 
--- Extend Telescope mappings with Flash integration
+-- extend telescope mappings with flash integration
 require('telescope').setup({
         defaults = {
                 mappings = {
@@ -149,7 +150,7 @@ require('telescope').setup({
                                                         exclude = {
                                                                 function(win)
                                                                         return vim.bo[vim.api.nvim_win_get_buf(win)]
-                                                                            .filetype ~= "TelescopeResults"
+                                                                            .filetype ~= "telescoperesults"
                                                                 end,
                                                         },
                                                 },
@@ -171,7 +172,7 @@ require('telescope').setup({
                                                         exclude = {
                                                                 function(win)
                                                                         return vim.bo[vim.api.nvim_win_get_buf(win)]
-                                                                            .filetype ~= "TelescopeResults"
+                                                                            .filetype ~= "telescoperesults"
                                                                 end,
                                                         },
                                                 },
@@ -187,11 +188,11 @@ require('telescope').setup({
         },
 })
 
--- Set up Help Page fuzzy search with a command
+-- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
         require('telescope.builtin').help_tags({
                 attach_mappings = function(_, map)
-                        map('i', '<CR>', function(bufnr)
+                        map('i', '<cr>', function(bufnr)
                                 local selection = action_state.get_selected_entry(bufnr)
                                 actions.close(bufnr)
                                 vim.cmd('vert bo help ' .. selection.value)
@@ -205,14 +206,14 @@ vim.api.nvim_create_user_command('FuzzyHelp', function()
         })
 end, {})
 
--- Set up Man Page fuzzy search with a command
+-- set up man page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyMan', function()
         require('telescope.builtin').man_pages({
                 attach_mappings = function(_, map)
-                        map('i', '<CR>', function(bufnr)
+                        map('i', '<cr>', function(bufnr)
                                 local selection = action_state.get_selected_entry(bufnr)
                                 actions.close(bufnr)
-                                vim.cmd('vert bo Man ' .. selection.value)
+                                vim.cmd('vert bo man ' .. selection.value)
                                 vim.defer_fn(function()
                                         require('telescope.builtin')
                                             .current_buffer_fuzzy_find({
@@ -220,6 +221,36 @@ vim.api.nvim_create_user_command('FuzzyMan', function()
                                                     previewer = false,
                                             })
                                 end, 100)
+                        end)
+                        return true
+                end
+        })
+end, {})
+
+-- set up noice fuzzy search with a command to open new buffer
+vim.api.nvim_create_user_command('FuzzyNoice', function()
+        require('telescope').extensions.noice.noice({
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = action_state.get_selected_entry(bufnr)
+                                actions.close(bufnr)
+
+                                -- Attempt to extract the content from the complex structure
+                                local content_to_yank = ""
+                                if selection.message and selection.message._lines and #selection.message._lines > 0 then
+                                        local line = selection.message._lines[1]
+                                        if line and line._texts and #line._texts > 0 then
+                                                content_to_yank = line._texts[1]._content or ""
+                                        end
+                                end
+
+                                -- Yank the extracted content to the "+" register (system clipboard)
+                                if content_to_yank ~= "" then
+                                        vim.fn.setreg('+', content_to_yank)
+                                        vim.notify("Yanked to clipboard: " .. content_to_yank, vim.log.levels.INFO)
+                                else
+                                        vim.notify("No content found to yank.", vim.log.levels.ERROR)
+                                end
                         end)
                         return true
                 end
