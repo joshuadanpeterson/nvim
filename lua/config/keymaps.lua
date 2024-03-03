@@ -59,13 +59,12 @@ local lspMappings = {
 
 -- Telescope Keymaps
 local telescopeMappings = {
-	['tf'] = { require('telescope.builtin').git_files, "Search Git Files" },
 	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
+	['tR'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
 	['tb'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
 	['th'] = { ":FuzzyHelp<CR>", "Search Help" },
 	['tw'] = { require('telescope.builtin').grep_string, "Search Current Word" },
 	['tg'] = { require('telescope.builtin').live_grep, "Search by Grep" },
-	['tG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
 	['td'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
 	['tr'] = { require('telescope.builtin').resume, "Resume Last Search" },
 	['tc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
@@ -149,6 +148,17 @@ local flashMappings = {
 	['f<c-s>'] = { function() require("flash").toggle() end, "Toggle Flash Search", mode = "c" },
 }
 
+-- Telescope Git Keymaps
+local gitMappings = {
+	['tf'] = { require('telescope.builtin').git_files, "Search Git Files" },
+	['tG'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
+	['gs'] = { require('telescope.builtin').git_stash, "Search Git Stash" },
+	['gS'] = { require('telescope.builtin').git_status, "Search Git Status" },
+	['gC'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
+	['gc'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
+	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
+}
+
 -- DAP Plugin Keymaps
 local dapMappings = {
 	["<F5>"] = { dap.continue, "Debug: Start/Continue" },
@@ -221,3 +231,6 @@ for key, mapping in pairs(flashMappings) do
 		wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>", mode = mode })
 	end
 end
+
+-- Registering Telescope Git mappings under the 'n' (normal) mode leader key
+wk.register(gitMappings, { prefix = "<leader>", mode = "n" })
