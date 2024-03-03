@@ -151,12 +151,13 @@ local flashMappings = {
 -- Telescope Git Keymaps
 local gitMappings = {
 	['gf'] = { require('telescope.builtin').git_files, "Search Git Files" },
-	['gg'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
+	['gd'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
 	['gs'] = { require('telescope.builtin').git_stash, "Search Git Stash" },
 	['gS'] = { require('telescope.builtin').git_status, "Search Git Status" },
 	['gC'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
 	['gc'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
 	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
+	['gt'] = { ':GitGutterSignsToggle<CR>', 'Toggle Git Signs' },
 }
 
 -- DAP Plugin Keymaps
