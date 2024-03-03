@@ -23,6 +23,11 @@ return {
 		'nvim-telescope/telescope-project.nvim'
 	},
 
+	-- fzy native search
+	{
+		'nvim-telescope/telescope-fzy-native.nvim'
+	},
+
 	-- fzf vim: integrates the fzf command-line fuzzy finder with vim.
 	{
 		'junegunn/fzf.vim',

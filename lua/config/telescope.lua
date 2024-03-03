@@ -4,9 +4,10 @@
 -- set up nvim-nonicons
 local icons = require("nvim-nonicons")
 
--- set up telescope.actions
+-- import telescope modules
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
+local sorters = require('telescope.sorters')
 
 require('telescope').setup({
         defaults = {
@@ -129,12 +130,13 @@ end
 vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
         { desc = "open harpoon window" })
 
--- load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes
+-- load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes, fzy native search
 require("telescope").load_extension("noice")
 require("telescope").load_extension("emoji")
 require('telescope').load_extension('uniswapfiles')
 require('telescope').load_extension('ui-select')
 require('telescope').load_extension('themes')
+require('telescope').load_extension('fzy_native')
 
 -- extend telescope mappings with flash integration
 require('telescope').setup({
@@ -150,7 +152,7 @@ require('telescope').setup({
                                                         exclude = {
                                                                 function(win)
                                                                         return vim.bo[vim.api.nvim_win_get_buf(win)]
-                                                                            .filetype ~= "telescoperesults"
+                                                                            .filetype ~= "TelescopeResults"
                                                                 end,
                                                         },
                                                 },
@@ -163,6 +165,7 @@ require('telescope').setup({
                                 end,
                         },
                         i = {
+                                -- Assuming you want these mappings to work in insert mode
                                 ["<c-s>"] = function(prompt_bufnr)
                                         require("flash").jump({
                                                 pattern = "^",
@@ -172,7 +175,7 @@ require('telescope').setup({
                                                         exclude = {
                                                                 function(win)
                                                                         return vim.bo[vim.api.nvim_win_get_buf(win)]
-                                                                            .filetype ~= "telescoperesults"
+                                                                            .filetype ~= "TelescopeResults"
                                                                 end,
                                                         },
                                                 },
@@ -191,6 +194,7 @@ require('telescope').setup({
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
         require('telescope.builtin').help_tags({
+                sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<cr>', function(bufnr)
                                 local selection = action_state.get_selected_entry(bufnr)
@@ -209,11 +213,12 @@ end, {})
 -- set up man page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyMan', function()
         require('telescope.builtin').man_pages({
+                sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<cr>', function(bufnr)
                                 local selection = action_state.get_selected_entry(bufnr)
                                 actions.close(bufnr)
-                                vim.cmd('vert bo man ' .. selection.value)
+                                vim.cmd('vert bo Man ' .. selection.value)
                                 vim.defer_fn(function()
                                         require('telescope.builtin')
                                             .current_buffer_fuzzy_find({
@@ -230,6 +235,7 @@ end, {})
 -- set up noice fuzzy search with a command to open new buffer
 vim.api.nvim_create_user_command('FuzzyNoice', function()
         require('telescope').extensions.noice.noice({
+                sorter = sorters.get_fzy_sorter(),
                 attach_mappings = function(_, map)
                         map('i', '<CR>', function(bufnr)
                                 local selection = action_state.get_selected_entry(bufnr)
