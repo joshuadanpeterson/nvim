@@ -16,13 +16,8 @@ return {
                 'tpope/vim-rhubarb',
         },
 
-        -- gitgutter: Displays git diff markers in the sign column.
+        -- adds git related signs to the gutter, as well as utilities for managing changes
         {
-                'airblade/vim-gitgutter'
-        },
-
-        {
-                -- adds git related signs to the gutter, as well as utilities for managing changes
                 'lewis6991/gitsigns.nvim',
                 config = function()
                         require('gitsigns').setup {
