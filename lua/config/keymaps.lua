@@ -160,6 +160,7 @@ local gitMappings = {
 	['gp'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
 	['gB'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
 	['gD'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
+	['gP'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
 }
 
 -- DAP Plugin Keymaps

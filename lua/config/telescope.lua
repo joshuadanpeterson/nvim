@@ -137,6 +137,7 @@ require('telescope').load_extension('uniswapfiles')
 require('telescope').load_extension('ui-select')
 require('telescope').load_extension('themes')
 require('telescope').load_extension('fzy_native')
+require("telescope").load_extension("git_signs")
 
 -- extend telescope mappings with flash integration
 require('telescope').setup({

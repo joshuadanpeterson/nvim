@@ -85,5 +85,14 @@ return {
                                         end, { expr = true, buffer = bufnr, desc = 'jump to previous hunk' })
                                 end, }
                 end
-        }
+        },
+
+        -- telescope-gitsigns
+        {
+                "radyz/telescope-gitsigns",
+                dependencies = {
+                        "lewis6991/gitsigns.nvim",
+                        "nvim-telescope/telescope.nvim",
+                }
+        },
 }
