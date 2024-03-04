@@ -127,6 +127,7 @@ local harpoonMappings = {
 local obsidianMappings = {
 	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
 	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
+	['op'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
 }
 
 -- Lazy Keymaps

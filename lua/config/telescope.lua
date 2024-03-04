@@ -266,3 +266,12 @@ vim.api.nvim_create_user_command('FuzzyNoice', function()
                 end
         })
 end, {})
+
+-- set up fuzzy search with a command for Obsidian Programming Vault
+vim.api.nvim_create_user_command('SearchObsidianProgramming', function()
+        require('telescope.builtin').find_files({
+                prompt_title = "Search Obsidian Programming Vault",
+                cwd = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/Programming",
+                -- other options
+        })
+end, {})
