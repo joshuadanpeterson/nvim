@@ -159,6 +159,7 @@ local gitMappings = {
 	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
 	['gp'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
 	['gB'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
+	['gD'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
 }
 
 -- DAP Plugin Keymaps
