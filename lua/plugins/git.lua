@@ -63,7 +63,7 @@ return {
                                         enable = false
                                 },
                                 on_attach                    = function(bufnr)
-                                        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
+                                        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk,
                                                 { buffer = bufnr, desc = 'preview git hunk' })
 
                                         -- don't override the built-in and fugitive keymaps
