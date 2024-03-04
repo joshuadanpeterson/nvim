@@ -285,15 +285,15 @@ return {
                 end,
         },
 
-        -- hologram.nvim for image rendering inside of Neovim
-        {
-                "edluffy/hologram.nvim",
-                config = function()
-                        require('hologram').setup {
-                                auto_display = true,
-                        }
-                end
-        },
+        -- -- hologram.nvim for image rendering inside of Neovim
+        -- {
+        --         "edluffy/hologram.nvim",
+        --         config = function()
+        --                 require('hologram').setup {
+        --                         auto_display = true,
+        --                 }
+        --         end
+        -- },
 
 
 }
