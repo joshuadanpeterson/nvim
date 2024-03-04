@@ -148,7 +148,7 @@ local flashMappings = {
 	['f<c-s>'] = { function() require("flash").toggle() end, "Toggle Flash Search", mode = "c" },
 }
 
--- Telescope Git Keymaps
+-- Git Keymaps
 local gitMappings = {
 	['gf'] = { require('telescope.builtin').git_files, "Search Git Files" },
 	['gd'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
@@ -157,7 +157,7 @@ local gitMappings = {
 	['gC'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
 	['gc'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
 	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
-	['gt'] = { ':GitGutterSignsToggle<CR>', 'Toggle Git Signs' },
+	['gp'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
 }
 
 -- DAP Plugin Keymaps
@@ -233,5 +233,5 @@ for key, mapping in pairs(flashMappings) do
 	end
 end
 
--- Registering Telescope Git mappings under the 'n' (normal) mode leader key
+-- Registering Git mappings under the 'n' (normal) mode leader key
 wk.register(gitMappings, { prefix = "<leader>", mode = "n" })
