@@ -158,6 +158,7 @@ local gitMappings = {
 	['gc'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
 	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
 	['gp'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
+	['gB'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
 }
 
 -- DAP Plugin Keymaps
