@@ -143,7 +143,7 @@ require('telescope').setup({
         defaults = {
                 mappings = {
                         n = {
-                                ["tf"] = function(prompt_bufnr)
+                                ["<c-s>"] = function(prompt_bufnr)
                                         require("flash").jump({
                                                 pattern = "^",
                                                 label = { after = { 0, 0 } },
