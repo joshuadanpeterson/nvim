@@ -128,6 +128,27 @@ local obsidianMappings = {
 	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
 	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
 	['op'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
+
+	-- Adding new mappings for Obsidian commands
+	["oo"] = { "<cmd>ObsidianOpen<CR>", "Open Note in Obsidian" },
+	["oN"] = { "<cmd>ObsidianNew<CR>", "Create New Note" },
+	["oq"] = { "<cmd>ObsidianQuickSwitch<CR>", "Quick Switch Note" },
+	["of"] = { "<cmd>ObsidianFollowLink<CR>", "Follow Note Link" },
+	["ob"] = { "<cmd>ObsidianBacklinks<CR>", "Show Backlinks" },
+	["ot"] = { "<cmd>ObsidianTags<CR>", "Show Tags" },
+	["od"] = { "<cmd>ObsidianToday<CR>", "Open Today's Note" },
+	["oy"] = { "<cmd>ObsidianYesterday<CR>", "Open Yesterday's Note" },
+	["om"] = { "<cmd>ObsidianTomorrow<CR>", "Open Tomorrow's Note" },
+	["oD"] = { "<cmd>ObsidianDailies<CR>", "List Daily Notes" },
+	["oT"] = { "<cmd>ObsidianTemplate<CR>", "Insert Template" },
+	["os"] = { "<cmd>ObsidianSearch<CR>", "Search Notes" },
+	["ol"] = { "<cmd>ObsidianLink<CR>", "Link Note" },
+	["oL"] = { "<cmd>ObsidianLinkNew<CR>", "Link to New Note" },
+	["oS"] = { "<cmd>ObsidianLinks<CR>", "List Links" },
+	["oE"] = { "<cmd>ObsidianExtractNote<CR>", "Extract Note" },
+	["ow"] = { "<cmd>ObsidianWorkspace<CR>", "Switch Workspace" },
+	["oi"] = { "<cmd>ObsidianPasteImg<CR>", "Paste Image" },
+	["oR"] = { "<cmd>ObsidianRename<CR>", "Rename Note" },
 }
 
 -- Lazy Keymaps
@@ -220,7 +241,18 @@ for i = 1, 9 do
 end
 
 -- Registering Obsidian mappings under the 'n' (normal) mode leader key
-wk.register(obsidianMappings, { prefix = "<leader>", mode = "n" })
+-- Invoke only if Obsidian is loaded
+local function isInObsidianVault()
+	local obsidian_config_path = vim.fn.getcwd() .. "/.obsidian"
+	return vim.fn.isdirectory(obsidian_config_path) ~= 0
+end
+
+if isInObsidianVault() then
+	local status = pcall(require, 'obsidian')
+	if status then
+		wk.register(obsidianMappings, { prefix = "<leader>", mode = "n" })
+	end
+end
 
 -- Registering Lazy mappings under the 'n' (normal) mode leader key
 wk.register(lazyMappings, { prefix = "<leader>", mode = "n" })
