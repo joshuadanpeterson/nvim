@@ -275,3 +275,169 @@ vim.api.nvim_create_user_command('SearchObsidianProgramming', function()
                 -- other options
         })
 end, {})
+
+-- set up fuzzy search for messages
+vim.api.nvim_create_user_command('TelescopeMessages', function()
+        require('telescope.builtin').find_files({
+                prompt_title = "View Messages Log",
+                cwd = vim.fn.stdpath('cache'), -- Assuming you are logging messages to a file in the cache directory.
+
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = require('telescope.actions.state').get_selected_entry(bufnr)
+                                require('telescope.actions').close(bufnr)
+                                -- Here you could yank the content, open it, or do any other processing.
+                                vim.notify("Selected: " .. selection.value, vim.log.levels.INFO)
+                        end)
+                        return true
+                end
+        })
+end, {})
+
+-- set up fuzzy search for log files
+-- create spinner for directory search
+-- local function start_spinner()
+--         local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+--         local current_frame = 1
+--         local spinner_timer = vim.loop.new_timer()
+
+--         vim.notify("Starting log directory listing...", vim.log.levels.INFO, { title = "Noice" })
+
+--         -- Start the spinner
+--         spinner_timer:start(0, 100, vim.schedule_wrap(function()
+--                 if not vim.g.spinner_active then
+--                         spinner_timer:stop()             -- Stop the spinner if global flag is cleared
+--                         spinner_timer:close()
+--                         vim.api.nvim_command("echon ''") -- Clear any remaining spinner character
+--                         vim.notify("Log directory listing complete.", vim.log.levels.INFO, { title = "Noice" })
+--                 else
+--                         vim.api.nvim_echo({ { spinner_frames[current_frame], 'None' } }, false, {})
+--                         current_frame = (current_frame % #spinner_frames) + 1
+--                 end
+--         end))
+
+--         vim.g.spinner_active = true
+-- end
+
+-- local function stop_spinner()
+--         vim.g.spinner_active = false -- This will stop the spinner
+-- end
+
+-- -- Function to search for and save directories containing .log files
+-- local function save_log_directories()
+--         start_spinner() -- Start the spinner before the job starts
+--         local cmd =
+--         "find ~ -type f -name '*.log' 2>&1 | grep -v 'Operation not permitted' | sort -u > ~/.cache/nvim/log_directories.txt"
+
+--         vim.fn.jobstart(cmd, {
+--                 on_exit = function(j, exit_code)
+--                         stop_spinner() -- Stop the spinner when the job is done
+--                         if exit_code == 0 then
+--                                 vim.notify("Log directory listing complete. You can now use 'SearchLogFiles'.",
+--                                         vim.log.levels.INFO, { title = "Noice" })
+--                         else
+--                                 vim.notify("Error during log directory listing. Exit code: " .. exit_code,
+--                                         vim.log.levels.ERROR, { title = "Noice" })
+--                         end
+--                 end,
+--         })
+-- end
+
+-- -- save_log_directories()
+
+-- -- Function to check log directory status
+-- local function check_log_directory_status()
+--         local filepath = vim.fn.expand("~/.cache/nvim/log_directories.txt")
+--         if vim.fn.filereadable(filepath) == 1 then
+--                 local last_modified = os.date("%c", vim.fn.getftime(filepath))
+--                 vim.notify("Log directory listing file exists. Last updated: " .. last_modified, vim.log.levels.INFO,
+--                         { title = "Noice" })
+--         else
+--                 vim.notify("Log directory listing file does not exist.", vim.log.levels.WARN, { title = "Noice" })
+--         end
+-- end
+
+-- -- Create the user commands
+-- vim.api.nvim_create_user_command('SaveLogDirectories', save_log_directories, {})
+-- vim.api.nvim_create_user_command('CheckLogDirectoryStatus', check_log_directory_status, {})
+
+-- Function to start the spinner
+local function start_spinner()
+        local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+        local current_frame = 1
+        local spinner_timer = vim.loop.new_timer()
+
+        vim.notify("Starting log directory listing...", vim.log.levels.INFO, { title = "Noice" })
+
+        -- Start the spinner
+        spinner_timer:start(0, 100, vim.schedule_wrap(function()
+                if not vim.g.spinner_active then
+                        spinner_timer:stop()             -- Stop the spinner if global flag is cleared
+                        spinner_timer:close()
+                        vim.api.nvim_command("echon ''") -- Clear any remaining spinner character
+                else
+                        vim.api.nvim_echo({ { spinner_frames[current_frame], 'None' } }, false, {})
+                        current_frame = (current_frame % #spinner_frames) + 1
+                end
+        end))
+
+        vim.g.spinner_active = true
+end
+
+-- Function to stop the spinner and notify that it's okay to search
+local function stop_spinner()
+        vim.g.spinner_active = false -- This will stop the spinner
+        vim.notify("Log directory listing complete. Okay to search now.", vim.log.levels.INFO, { title = "Noice" })
+end
+
+-- Telescope finder for log files
+local search_log_files
+
+search_log_files = function()
+        require('telescope.builtin').find_files({
+                prompt_title = "Search Log Files",
+                find_command = {
+                        'rg', '--files', '--hidden', '--glob', '!.git', '--glob', '!node_modules',
+                        '--glob', '*.log',
+                        vim.fn.expand("~/Library/Logs"),
+                        '/Library/Logs',
+                        '/private/var/log',
+                        '/Library/Logs/DiagnosticReports/',
+                        vim.fn.expand("~/Library/Logs/DiagnosticReports/"),
+                        '/var/db/diagnostics/',
+                        '/Library/Application Support/',
+                        vim.fn.expand("~/Library/Application Support/")
+                },
+
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = require('telescope.actions.state').get_selected_entry(bufnr)
+                                require('telescope.actions').close(bufnr)
+                                if selection then
+                                        vim.cmd('edit ' .. selection.value)
+                                        -- Open grep in the current buffer immediately after opening the file
+                                        require('telescope.builtin').current_buffer_fuzzy_find({
+                                                prompt_title = 'Search in ' .. vim.fn.fnamemodify(selection.value, ":t"),
+                                        })
+                                end
+                        end)
+
+                        -- Map a key to go back to the previous Telescope search
+                        map('i', '<C-b>', function()
+                                local curr_buf = vim.api.nvim_get_current_buf()
+                                vim.cmd('bdelete! ' .. curr_buf)
+                                search_log_files() -- Reopen Telescope finder
+                        end)
+
+
+                        return true
+                end
+        })
+end
+
+-- Command to initialize a Telescope finder for log files
+vim.api.nvim_create_user_command('SearchLogFiles', function()
+        start_spinner()                                  -- Start the spinner before initiating the search
+        search_log_files()
+        vim.defer_fn(function() stop_spinner() end, 500) -- Assume the search completes within this time; adjust as needed
+end, {})
