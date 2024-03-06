@@ -20,10 +20,6 @@ local function refresh_lualine()
 	setup_lualine()
 end
 
--- set up telescope.actions
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
-
 -- General and Basic Keymaps
 local generalMappings = {
 	['<Space>'] = { '<Nop>', "No Operation" },
