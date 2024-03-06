@@ -29,6 +29,7 @@ local generalMappings = {
 	['c'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", "Toggle comment for current line", mode = { "n", "v" } },
 	['<Esc>'] = { "<ESC>:noh<CR>:require('notify').dismiss()<CR>", "Clear search highlight and notifications" },
 	['l'] = { refresh_lualine, "Refresh status line" },
+	['n'] = { "<cmd>Noice<cr>", "Noice" },
 	['d'] = { ":NoiceDismiss<CR>", "Dismiss Noice Message" },
 }
 
@@ -77,12 +78,12 @@ local telescopeMappings = {
 	['t'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
 	['e'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
-	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
-	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
 	['F'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 	['n'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
 	['l'] = { ":SearchLogFiles<CR>", "Search Log Files" },
 	['N'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
+	['o'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+	['B'] = { "<cmd>Telescope buffers<cr>", "List Buffers" },
 }
 
 -- Rnvimr and Ranger Keymaps
