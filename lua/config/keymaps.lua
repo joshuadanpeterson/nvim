@@ -22,9 +22,10 @@ end
 
 -- General and Basic Keymaps
 local generalMappings = {
+	name = "General and Basic Keymaps",
 	['<Space>'] = { '<Nop>', "No Operation" },
-	['k'] = { "v:count == 0 ? 'gk' : 'k'", "Move up (respecting display lines)", expr = true },
-	['j'] = { "v:count == 0 ? 'gj' : 'j'", "Move down (respecting display lines)", expr = true },
+	['kk'] = { "v:count == 0 ? 'gk' : 'k'", "Move up (respecting display lines)", expr = true },
+	['jj'] = { "v:count == 0 ? 'gj' : 'j'", "Move down (respecting display lines)", expr = true },
 	['<C-_>'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", "Toggle comment for current line", mode = { "n", "v" } },
 	['<Esc>'] = { "<ESC>:noh<CR>:require('notify').dismiss()<CR>", "Clear search highlight and notifications" },
 	['nl'] = { refresh_lualine, "Refresh status line" },
@@ -33,21 +34,22 @@ local generalMappings = {
 
 -- LSP Keymaps
 local lspMappings = {
+	-- name = "LSP Keymaps",
 	['rn'] = { vim.lsp.buf.rename, "Rename" },
 	['ca'] = { vim.lsp.buf.code_action, "Code Action" },
 	['gd'] = { require('telescope.builtin').lsp_definitions, "Goto Definition" },
 	['gr'] = { require('telescope.builtin').lsp_references, "Goto References" },
 	['gI'] = { require('telescope.builtin').lsp_implementations, "Goto Implementations" },
-	['D'] = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
+	['DD'] = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
 	['ds'] = { require('telescope.builtin').lsp_document_symbols, "Document Symbols" },
 	['ws'] = { require('telescope.builtin').lsp_workspace_symbols, "Workspace Symbols" },
-	['K'] = { vim.lsp.buf.hover, "Hover Documentation" },
+	['KK'] = { vim.lsp.buf.hover, "Hover Documentation" },
 	['C-k>'] = { vim.lsp.buf.signature_help, "Signature Help" },
 	['gD'] = { vim.lsp.buf.declaration, "Goto Declaration" },
 	['wa'] = { vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
 	['wr'] = { vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
 	['wl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
-	['Q'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
+	['QQ'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
 	[']d'] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
 	['[d'] = { vim.diagnostic.goto_next, "Next Diagnostic" },
 	['fm'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
@@ -55,6 +57,7 @@ local lspMappings = {
 
 -- Telescope Keymaps
 local telescopeMappings = {
+	-- name = "Telescope Keymaps",
 	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
 	['tR'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
 	['tb'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
@@ -73,9 +76,9 @@ local telescopeMappings = {
 	['dw'] = { ":DashWord<CR>", "Search Dash by word" },
 	['tt'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
 	['te'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
-	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
+	['??'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
-	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
+	["//"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
 	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 	['tn'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
 	['tl'] = { ":SearchLogFiles<CR>", "Search Log Files" },
@@ -83,6 +86,7 @@ local telescopeMappings = {
 
 -- Rnvimr and Ranger Keymaps
 local rnvimrMappings = {
+	-- name = "Rnvimr and Ranger Keymaps",
 	['rt'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
 	['rr'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
 	['rn'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
@@ -90,6 +94,7 @@ local rnvimrMappings = {
 
 -- legendary.nvim Keymaps
 local legendaryMappings = {
+	-- name = "Legendary Keymaps",
 	['lg'] = { ":Legendary<CR>", "Search Legendary" },
 	['lk'] = { ":Legendary keymaps<CR>", "Search Legendary Keymaps" },
 	['lc'] = { ":Legendary commands<CR>", "Search Legendary Commands" },
@@ -101,18 +106,21 @@ local legendaryMappings = {
 
 -- live-server.nvim Keymaps
 local liveServerMappings = {
+	-- name = "LiveServer KeyMaps",
 	['ls'] = { ":LiveServerStart<CR>", "Start LiveServer" },
 	['lt'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
 }
 
 -- Tmux Telescope Plugin Keymaps
 local tmuxTelescopeMappings = {
+	-- name   = "tmux Telescope Keymaps",
 	["ft"] = { ":TmuxJumpFile<CR>", "Jump to File in Tmux Pane" },
-	[";"]  = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
+	[";;"] = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
 }
 
 -- Harpoon Keymaps
 local harpoonMappings = {
+	-- name = "Harpoon Keymaps",
 	["ha"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
 	["hr"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
 	["hp"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
@@ -122,6 +130,7 @@ local harpoonMappings = {
 
 -- Obsidian Keymaps
 local obsidianMappings = {
+	-- name = "Obsidian Keymaps",
 	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
 	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
 	['op'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
@@ -150,6 +159,7 @@ local obsidianMappings = {
 
 -- Lazy Keymaps
 local lazyMappings = {
+	-- name = "Lazy Keymaps",
 	["lz"] = { ":Lazy<CR>", "Open Lazy" },
 	["lr"] = { ":LazyRoot<CR>", "Open LazyRoot" },
 	["le"] = { ":LazyExtras<CR>", "Open LazyExtras" },
@@ -160,6 +170,7 @@ local lazyMappings = {
 
 -- Flash Keymaps
 local flashMappings = {
+	-- name = "Flash Keymaps",
 	['fs'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
 	['fS'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
 	['fr'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
@@ -169,6 +180,7 @@ local flashMappings = {
 
 -- Git Keymaps
 local gitMappings = {
+	-- name = "Git Keymaps",
 	['gf'] = { require('telescope.builtin').git_files, "Search Git Files" },
 	['gd'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
 	['gs'] = { require('telescope.builtin').git_stash, "Search Git Stash" },
@@ -184,7 +196,7 @@ local gitMappings = {
 
 -- ChatGPT Keymaps
 local chatgptMappings = {
-	name = "ChatGPT",
+	-- name = "ChatGPT Keymaps",
 	['cc'] = { "<cmd>ChatGPT<CR>", "ChatGPT" },
 	['ce'] = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
 	['cg'] = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
@@ -202,6 +214,7 @@ local chatgptMappings = {
 
 -- DAP Plugin Keymaps
 local dapMappings = {
+	-- name = "DAP Plugin Keymaps",
 	["<F5>"] = { dap.continue, "Debug: Start/Continue" },
 	["<F1>"] = { dap.step_into, "Debug: Step Into" },
 	["<F2>"] = { dap.step_over, "Debug: Step Over" },
@@ -255,7 +268,7 @@ wk.register(harpoonMappings, { prefix = "<leader>", mode = "n" })
 for i = 1, 9 do
 	wk.register({
 		[tostring(i)] = { function() harpoon.ui.nav_file(i) end, "Harpoon to File " .. i }
-	}, { prefix = "<leader>", mode = "n" })
+	}, { prefix = "<leader>h", mode = "n" })
 end
 
 -- Registering Obsidian mappings under the 'n' (normal) mode leader key

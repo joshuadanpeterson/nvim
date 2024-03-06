@@ -127,8 +127,8 @@ local function toggle_telescope(harpoon_files)
         }):find()
 end
 
-vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
-        { desc = "open harpoon window" })
+vim.keymap.set("n", "<leader>he", function() toggle_telescope(harpoon:list()) end,
+        { desc = "Open Harpoon Window" })
 
 -- load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes, fzy native search
 require("telescope").load_extension("noice")
@@ -295,6 +295,73 @@ vim.api.nvim_create_user_command('TelescopeMessages', function()
 end, {})
 
 -- set up fuzzy search for log files
+-- create spinner for directory search
+-- local function start_spinner()
+--         local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+--         local current_frame = 1
+--         local spinner_timer = vim.loop.new_timer()
+
+--         vim.notify("Starting log directory listing...", vim.log.levels.INFO, { title = "Noice" })
+
+--         -- Start the spinner
+--         spinner_timer:start(0, 100, vim.schedule_wrap(function()
+--                 if not vim.g.spinner_active then
+--                         spinner_timer:stop()             -- Stop the spinner if global flag is cleared
+--                         spinner_timer:close()
+--                         vim.api.nvim_command("echon ''") -- Clear any remaining spinner character
+--                         vim.notify("Log directory listing complete.", vim.log.levels.INFO, { title = "Noice" })
+--                 else
+--                         vim.api.nvim_echo({ { spinner_frames[current_frame], 'None' } }, false, {})
+--                         current_frame = (current_frame % #spinner_frames) + 1
+--                 end
+--         end))
+
+--         vim.g.spinner_active = true
+-- end
+
+-- local function stop_spinner()
+--         vim.g.spinner_active = false -- This will stop the spinner
+-- end
+
+-- -- Function to search for and save directories containing .log files
+-- local function save_log_directories()
+--         start_spinner() -- Start the spinner before the job starts
+--         local cmd =
+--         "find ~ -type f -name '*.log' 2>&1 | grep -v 'Operation not permitted' | sort -u > ~/.cache/nvim/log_directories.txt"
+
+--         vim.fn.jobstart(cmd, {
+--                 on_exit = function(j, exit_code)
+--                         stop_spinner() -- Stop the spinner when the job is done
+--                         if exit_code == 0 then
+--                                 vim.notify("Log directory listing complete. You can now use 'SearchLogFiles'.",
+--                                         vim.log.levels.INFO, { title = "Noice" })
+--                         else
+--                                 vim.notify("Error during log directory listing. Exit code: " .. exit_code,
+--                                         vim.log.levels.ERROR, { title = "Noice" })
+--                         end
+--                 end,
+--         })
+-- end
+
+-- -- save_log_directories()
+
+-- -- Function to check log directory status
+-- local function check_log_directory_status()
+--         local filepath = vim.fn.expand("~/.cache/nvim/log_directories.txt")
+--         if vim.fn.filereadable(filepath) == 1 then
+--                 local last_modified = os.date("%c", vim.fn.getftime(filepath))
+--                 vim.notify("Log directory listing file exists. Last updated: " .. last_modified, vim.log.levels.INFO,
+--                         { title = "Noice" })
+--         else
+--                 vim.notify("Log directory listing file does not exist.", vim.log.levels.WARN, { title = "Noice" })
+--         end
+-- end
+
+-- -- Create the user commands
+-- vim.api.nvim_create_user_command('SaveLogDirectories', save_log_directories, {})
+-- vim.api.nvim_create_user_command('CheckLogDirectoryStatus', check_log_directory_status, {})
+
+-- Function to start the spinner
 -- create spinner for directory search
 -- local function start_spinner()
 --         local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
