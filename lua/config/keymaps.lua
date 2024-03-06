@@ -291,10 +291,12 @@ for key, mapping in pairs(flashMappings) do
 	local mode = mapping.mode or "n" -- default to normal mode if mode not provided
 	if type(mode) == "table" then
 		for _, m in ipairs(mode) do
-			wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>F", mode = m })
+			wk.register({ name = "Flash Keymaps" }, { [key] = { mapping[1], mapping[2] } },
+				{ prefix = "<leader>F", mode = m })
 		end
 	else
-		wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>f", mode = mode })
+		wk.register({ name = "Flash Keymaps" }, { [key] = { mapping[1], mapping[2] } },
+			{ prefix = "<leader>F", mode = mode })
 	end
 end
 
