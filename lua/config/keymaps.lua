@@ -34,30 +34,30 @@ local generalMappings = {
 
 -- LSP Keymaps
 local lspMappings = {
-	-- name = "LSP Keymaps",
-	['rn'] = { vim.lsp.buf.rename, "Rename" },
-	['ca'] = { vim.lsp.buf.code_action, "Code Action" },
-	['gd'] = { require('telescope.builtin').lsp_definitions, "Goto Definition" },
-	['gr'] = { require('telescope.builtin').lsp_references, "Goto References" },
-	['gI'] = { require('telescope.builtin').lsp_implementations, "Goto Implementations" },
-	['DD'] = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
-	['ds'] = { require('telescope.builtin').lsp_document_symbols, "Document Symbols" },
-	['ws'] = { require('telescope.builtin').lsp_workspace_symbols, "Workspace Symbols" },
-	['KK'] = { vim.lsp.buf.hover, "Hover Documentation" },
-	['C-k>'] = { vim.lsp.buf.signature_help, "Signature Help" },
-	['gD'] = { vim.lsp.buf.declaration, "Goto Declaration" },
-	['wa'] = { vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
-	['wr'] = { vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
-	['wl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
-	['QQ'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
-	[']d'] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
-	['[d'] = { vim.diagnostic.goto_next, "Next Diagnostic" },
-	['fm'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
+	name = "LSP Keymaps",
+	['r'] = { vim.lsp.buf.rename, "Rename" },
+	['c'] = { vim.lsp.buf.code_action, "Code Action" },
+	['d'] = { require('telescope.builtin').lsp_definitions, "Goto Definition" },
+	['R'] = { require('telescope.builtin').lsp_references, "Goto References" },
+	['i'] = { require('telescope.builtin').lsp_implementations, "Goto Implementations" },
+	['D'] = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
+	['s'] = { require('telescope.builtin').lsp_document_symbols, "Document Symbols" },
+	['w'] = { require('telescope.builtin').lsp_workspace_symbols, "Workspace Symbols" },
+	['H'] = { vim.lsp.buf.hover, "Hover Documentation" },
+	['S'] = { vim.lsp.buf.signature_help, "Signature Help" },
+	['g'] = { vim.lsp.buf.declaration, "Goto Declaration" },
+	['a'] = { vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
+	['x'] = { vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
+	['l'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
+	['Q'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
+	[']'] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
+	['['] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+	['f'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
 }
 
 -- Telescope Keymaps
 local telescopeMappings = {
-	-- name = "Telescope Keymaps",
+	name = "Telescope Keymaps",
 	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
 	['tR'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
 	['tb'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
@@ -82,11 +82,12 @@ local telescopeMappings = {
 	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 	['tn'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
 	['tl'] = { ":SearchLogFiles<CR>", "Search Log Files" },
+	['tN'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
 }
 
 -- Rnvimr and Ranger Keymaps
 local rnvimrMappings = {
-	-- name = "Rnvimr and Ranger Keymaps",
+	name = "Rnvimr and Ranger Keymaps",
 	['rt'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
 	['rr'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
 	['rn'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
@@ -94,7 +95,7 @@ local rnvimrMappings = {
 
 -- legendary.nvim Keymaps
 local legendaryMappings = {
-	-- name = "Legendary Keymaps",
+	name = "Legendary Keymaps",
 	['lg'] = { ":Legendary<CR>", "Search Legendary" },
 	['lk'] = { ":Legendary keymaps<CR>", "Search Legendary Keymaps" },
 	['lc'] = { ":Legendary commands<CR>", "Search Legendary Commands" },
@@ -106,21 +107,21 @@ local legendaryMappings = {
 
 -- live-server.nvim Keymaps
 local liveServerMappings = {
-	-- name = "LiveServer KeyMaps",
+	name = "LiveServer KeyMaps",
 	['ls'] = { ":LiveServerStart<CR>", "Start LiveServer" },
 	['lt'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
 }
 
 -- Tmux Telescope Plugin Keymaps
 local tmuxTelescopeMappings = {
-	-- name   = "tmux Telescope Keymaps",
+	name = "tmux Telescope Keymaps",
 	["ft"] = { ":TmuxJumpFile<CR>", "Jump to File in Tmux Pane" },
 	[";;"] = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
 }
 
 -- Harpoon Keymaps
 local harpoonMappings = {
-	-- name = "Harpoon Keymaps",
+	name = "Harpoon Keymaps",
 	["ha"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
 	["hr"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
 	["hp"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
@@ -130,7 +131,7 @@ local harpoonMappings = {
 
 -- Obsidian Keymaps
 local obsidianMappings = {
-	-- name = "Obsidian Keymaps",
+	name = "Obsidian Keymaps",
 	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
 	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
 	['op'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
@@ -159,7 +160,7 @@ local obsidianMappings = {
 
 -- Lazy Keymaps
 local lazyMappings = {
-	-- name = "Lazy Keymaps",
+	name = "Lazy Keymaps",
 	["lz"] = { ":Lazy<CR>", "Open Lazy" },
 	["lr"] = { ":LazyRoot<CR>", "Open LazyRoot" },
 	["le"] = { ":LazyExtras<CR>", "Open LazyExtras" },
@@ -170,7 +171,7 @@ local lazyMappings = {
 
 -- Flash Keymaps
 local flashMappings = {
-	-- name = "Flash Keymaps",
+	-- name = "Flash",
 	['fs'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
 	['fS'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
 	['fr'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
@@ -229,7 +230,7 @@ wk.setup {}
 
 -- Registering mappings
 wk.register(generalMappings, { prefix = "<leader>", mode = "n" })
-wk.register(lspMappings, { prefix = "<leader>", mode = "n" })
+wk.register(lspMappings, { prefix = "<leader>L", mode = "n" })
 -- Registering Telescope mappings under the 'n' (normal) mode leader key
 wk.register(telescopeMappings, { prefix = "<leader>", mode = "n" })
 
