@@ -94,3 +94,33 @@ if vim.fn.exists('+termguicolors') == 1 then
     vim.api.nvim_set_option('t_8b', '\\<Esc>[48;2;%lu;%lu;%lum')
     vim.opt.termguicolors = true
 end
+
+-- Set which-key backgrounds to transparent
+vim.cmd [[
+augroup TransparentWhichKeyWindows
+    autocmd!
+    autocmd VimEnter * hi WhichKeyFloat guibg=NONE ctermbg=NONE
+    autocmd VimEnter * hi WhichKey guibg=NONE ctermbg=NONE
+    autocmd VimEnter * hi WhichKeyGroup guibg=NONE ctermbg=NONE
+    autocmd VimEnter * hi WhichKeyDesc guibg=NONE ctermbg=NONE
+    autocmd VimEnter * hi WhichKeySeperator guibg=NONE ctermbg=NONE
+augroup END
+]]
+
+-- Set floating window borders
+vim.cmd [[
+augroup FloatingWindowBorders
+    autocmd!
+    autocmd ColorScheme * hi FloatBorder guifg=#87CEEB guibg=NONE
+    autocmd VimEnter * hi FloatBorder guifg=#87CEEB guibg=NONE
+augroup END
+]]
+
+-- set legendary's floating window transparent
+vim.cmd([[
+augroup TransparentFloatingWindows
+    autocmd!
+    autocmd VimEnter * hi NormalFloat guibg=NONE
+    autocmd VimEnter * hi FloatBorder guibg=NONE
+augroup END
+]])
