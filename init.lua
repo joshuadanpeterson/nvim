@@ -3,7 +3,7 @@
 
 -- Custom configs
 require('config.settings') -- For basic Neovim settings
-require("config.vim")      -- For vim config
+-- require("config.vim")      -- For vim config
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -36,18 +36,11 @@ require('lazy').setup({
 
   -- import custom plugins
   { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
-  { import = 'plugins' },
+  { import = 'plugins' },    -- load plugins
 })
 
--- Custom configs
-require('config.keymaps')   -- For keybindings managed with which-key
-require('config.cmp')       -- For autocomplete config
-require('config.tmux')      -- For Tmux navigation
-require('config.conform')   -- For conform.nvim
-require('config.telescope') -- For Telescope
-require('config.lsp')       -- For LSP configurations
-require('config.linter')    -- For linter configurations
-require('config.fidget')    -- For fidget configurations
+-- initialize configurations
+require('config')
 
 -- Plugin Manager Setup
 
