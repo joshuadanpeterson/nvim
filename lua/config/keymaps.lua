@@ -186,6 +186,24 @@ local gitMappings = {
 	['gP'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
 }
 
+-- ChatGPT Keymaps
+local chatgptMappings = {
+	name = "ChatGPT",
+	['cc'] = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+	['ce'] = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
+	['cg'] = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+	['ct'] = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+	['ck'] = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+	['cd'] = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+	['ca'] = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+	['co'] = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+	['cs'] = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+	['cf'] = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+	['cx'] = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+	['cr'] = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+	['cl'] = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+}
+
 -- DAP Plugin Keymaps
 local dapMappings = {
 	["<F5>"] = { dap.continue, "Debug: Start/Continue" },
@@ -217,6 +235,9 @@ wk.register(liveServerMappings, { prefix = "<leader>", mode = "n" })
 
 -- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
 wk.register(tmuxTelescopeMappings, { prefix = "<leader>", mode = "n" })
+
+-- Registering ChatGPT Keymaps
+wk.register(chatgptMappings, { prefix = "<leader>" })
 
 -- Registering DAP mappings under the 'n' (normal) mode leader key
 -- Note: F-keys are registered globally, not under a leader key.
