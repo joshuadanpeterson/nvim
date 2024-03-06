@@ -17,9 +17,9 @@ return {
                 require('noice').setup({
                         -- Command line configuration section.
                         cmdline = {
-                                enabled = true, -- Enables the enhanced command line UI provided by Noice.
+                                enabled = true,         -- Enables the enhanced command line UI provided by Noice.
                                 view = "cmdline_popup", -- Uses a popup window for the command line to replace the default at the bottom.
-                                opts = {}, -- Global options for the command line view; it's kept empty for default settings.
+                                opts = {},              -- Global options for the command line view; it's kept empty for default settings.
 
                                 -- Defines custom formats for different command line scenarios.
                                 format = {
@@ -36,24 +36,24 @@ return {
 
                         -- Messages configuration section.
                         messages = {
-                                enabled = true, -- Enables the enhanced messages UI, allowing for better message management.
-                                view = "notify", -- Uses `nvim-notify` for displaying messages.
-                                view_error = "notify", -- Uses `nvim-notify` for displaying error messages.
-                                view_warn = "notify", -- Uses `nvim-notify` for displaying warning messages.
-                                view_history = "messages", -- Uses the default messages view for displaying message history.
+                                enabled = true,              -- Enables the enhanced messages UI, allowing for better message management.
+                                view = "notify",             -- Uses `nvim-notify` for displaying messages.
+                                view_error = "notify",       -- Uses `nvim-notify` for displaying error messages.
+                                view_warn = "notify",        -- Uses `nvim-notify` for displaying warning messages.
+                                view_history = "notify",     -- Uses the default messages view for displaying message history.
                                 view_search = "virtualtext", -- Uses virtual text for displaying search count messages.
                         },
 
                         -- Popup menu configuration section.
                         popupmenu = {
-                                enabled = true, -- Enables the enhanced popup menu UI.
+                                enabled = true,  -- Enables the enhanced popup menu UI.
                                 backend = "nui", -- Specifies `nui.nvim` as the backend for displaying the popup menu.
                                 kind_icons = {}, -- Configuration for icons next to completion items, if desired.
                         },
 
                         -- Configuration for redirecting command output or messages.
                         redirect = {
-                                view = "popup", -- Uses a popup view for displaying redirected messages.
+                                view = "popup",                  -- Uses a popup view for displaying redirected messages.
                                 filter = { event = "msg_show" }, -- Filters for specific types of messages to redirect.
                         },
 
@@ -97,7 +97,7 @@ return {
 
                         -- Notification integration configuration.
                         notify = {
-                                enabled = true, -- Enables using `noice.nvim` for `vim.notify`, integrating with `nvim-notify`.
+                                enabled = true,  -- Enables using `noice.nvim` for `vim.notify`, integrating with `nvim-notify`.
                                 view = "notify", -- Specifies that notifications should be displayed using `nvim-notify`.
                         },
 
@@ -186,10 +186,10 @@ return {
                                 lsp_doc_border = false,
                         },
                         throttle = 1000 / 30, -- Defines the frequency for UI updates, improving performance.
-                        views = {}, -- Configuration for custom views.
-                        routes = {}, -- Configuration for routing messages through different views or filters.
-                        status = {}, -- Configuration for integrating with the status line.
-                        format = {}, -- Configuration for custom formatting of messages and inputs.
+                        views = {},           -- Configuration for custom views.
+                        routes = {},          -- Configuration for routing messages through different views or filters.
+                        status = {},          -- Configuration for integrating with the status line.
+                        format = {},          -- Configuration for custom formatting of messages and inputs.
                 })
         end
 }
