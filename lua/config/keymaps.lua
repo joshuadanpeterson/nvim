@@ -23,13 +23,13 @@ end
 -- General and Basic Keymaps
 local generalMappings = {
 	name = "General and Basic Keymaps",
-	['<Space>'] = { '<Nop>', "No Operation" },
-	['kk'] = { "v:count == 0 ? 'gk' : 'k'", "Move up (respecting display lines)", expr = true },
-	['jj'] = { "v:count == 0 ? 'gj' : 'j'", "Move down (respecting display lines)", expr = true },
-	['<C-_>'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", "Toggle comment for current line", mode = { "n", "v" } },
+	-- ['<Space>'] = { '<Nop>', "No Operation" },
+	['k'] = { "v:count == 0 ? 'gk' : 'k'", "Move up (respecting display lines)", expr = true },
+	['j'] = { "v:count == 0 ? 'gj' : 'j'", "Move down (respecting display lines)", expr = true },
+	['c'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", "Toggle comment for current line", mode = { "n", "v" } },
 	['<Esc>'] = { "<ESC>:noh<CR>:require('notify').dismiss()<CR>", "Clear search highlight and notifications" },
-	['nl'] = { refresh_lualine, "Refresh status line" },
-	['nd'] = { ":NoiceDismiss<CR>", "Dismiss Noice Message" },
+	['l'] = { refresh_lualine, "Refresh status line" },
+	['d'] = { ":NoiceDismiss<CR>", "Dismiss Noice Message" },
 }
 
 -- LSP Keymaps
@@ -58,141 +58,141 @@ local lspMappings = {
 -- Telescope Keymaps
 local telescopeMappings = {
 	name = "Telescope Keymaps",
-	['tS'] = { require('telescope.builtin').find_files, "Search Files" },
-	['tR'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
-	['tb'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
-	['th'] = { ":FuzzyHelp<CR>", "Search Help" },
-	['tw'] = { require('telescope.builtin').grep_string, "Search Current Word" },
-	['tg'] = { require('telescope.builtin').live_grep, "Search by Grep" },
-	['td'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
-	['tr'] = { require('telescope.builtin').resume, "Resume Last Search" },
-	['tc'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
-	['tC'] = { require('telescope.builtin').command_history, "Search Command History" },
-	['tH'] = { require('telescope.builtin').search_history, "Search History" },
-	['tM'] = { ":FuzzyMan<CR>", "Search Man Pages" },
-	['tm'] = { require('telescope.builtin').keymaps, "Search Keymaps" },
-	['ts'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
-	['ds'] = { ":Dash<CR>", "Search Dash" },
-	['dw'] = { ":DashWord<CR>", "Search Dash by word" },
-	['tt'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
-	['te'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
-	['??'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
+	['S'] = { require('telescope.builtin').find_files, "Search Files" },
+	['R'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
+	['b'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
+	['h'] = { ":FuzzyHelp<CR>", "Search Help" },
+	['w'] = { require('telescope.builtin').grep_string, "Search Current Word" },
+	['g'] = { require('telescope.builtin').live_grep, "Search by Grep" },
+	['d'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
+	['r'] = { require('telescope.builtin').resume, "Resume Last Search" },
+	['c'] = { require('telescope.builtin').commands, "Search Telescope Commands" },
+	['C'] = { require('telescope.builtin').command_history, "Search Command History" },
+	['H'] = { require('telescope.builtin').search_history, "Search History" },
+	['M'] = { ":FuzzyMan<CR>", "Search Man Pages" },
+	['m'] = { require('telescope.builtin').keymaps, "Search Keymaps" },
+	['s'] = { require('telescope.builtin').spell_suggest, "Search Spelling Suggestions" },
+	['D'] = { ":Dash<CR>", "Search Dash" },
+	['W'] = { ":DashWord<CR>", "Search Dash by word" },
+	['t'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
+	['e'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
+	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['<space>'] = { require('telescope.builtin').buffers, "[ ] Find existing buffers" },
-	["//"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
-	['tF'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
-	['tn'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
-	['tl'] = { ":SearchLogFiles<CR>", "Search Log Files" },
-	['tN'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
+	["/"] = { require('telescope.builtin').current_buffer_fuzzy_find, "[/] Fuzzily search in current buffer" },
+	['F'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
+	['n'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
+	['l'] = { ":SearchLogFiles<CR>", "Search Log Files" },
+	['N'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
 }
 
 -- Rnvimr and Ranger Keymaps
 local rnvimrMappings = {
 	name = "Rnvimr and Ranger Keymaps",
-	['rt'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
-	['rr'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
-	['rn'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
+	['t'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
+	['r'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
+	['n'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
 }
 
 -- legendary.nvim Keymaps
 local legendaryMappings = {
 	name = "Legendary Keymaps",
-	['lg'] = { ":Legendary<CR>", "Search Legendary" },
-	['lk'] = { ":Legendary keymaps<CR>", "Search Legendary Keymaps" },
-	['lc'] = { ":Legendary commands<CR>", "Search Legendary Commands" },
-	['lf'] = { ":Legendary functions<CR>", "Search Legendary Functions" },
-	['la'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds" },
-	['lr'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed" },
-	['l!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters" },
+	['g'] = { ":Legendary<CR>", "Search Legendary" },
+	['k'] = { ":Legendary keymaps<CR>", "Search Legendary Keymaps" },
+	['c'] = { ":Legendary commands<CR>", "Search Legendary Commands" },
+	['f'] = { ":Legendary functions<CR>", "Search Legendary Functions" },
+	['a'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds" },
+	['r'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed" },
+	['!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters" },
 }
 
 -- live-server.nvim Keymaps
 local liveServerMappings = {
 	name = "LiveServer KeyMaps",
-	['ls'] = { ":LiveServerStart<CR>", "Start LiveServer" },
-	['lt'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
+	['s'] = { ":LiveServerStart<CR>", "Start LiveServer" },
+	['t'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
 }
 
 -- Tmux Telescope Plugin Keymaps
 local tmuxTelescopeMappings = {
 	name = "tmux Telescope Keymaps",
-	["ft"] = { ":TmuxJumpFile<CR>", "Jump to File in Tmux Pane" },
-	[";;"] = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
+	["t"] = { ":TmuxJumpFile<CR>", "Jump to File in Tmux Pane" },
+	[";"] = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
 }
 
 -- Harpoon Keymaps
 local harpoonMappings = {
 	name = "Harpoon Keymaps",
-	["ha"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
-	["hr"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
-	["hp"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
-	["hn"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
-	["hm"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
+	["a"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
+	["r"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
+	["p"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
+	["n"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
+	["m"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
 }
 
 -- Obsidian Keymaps
 local obsidianMappings = {
 	name = "Obsidian Keymaps",
-	["on"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
-	["oc"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
-	['op'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
+	["n"] = { function() return require("obsidian").util.gf_passthrough() end, "Go to Note Under Cursor", opts = { noremap = false, expr = true, buffer = true } },
+	["c"] = { function() return require("obsidian").util.toggle_checkbox() end, "Toggle Checkboxes", opts = { buffer = true } },
+	['p'] = { ':SearchObsidianProgramming<CR>', "Search Obsidian Programming Vault" },
 
 	-- Adding new mappings for Obsidian commands
-	["oo"] = { "<cmd>ObsidianOpen<CR>", "Open Note in Obsidian" },
-	["oN"] = { "<cmd>ObsidianNew<CR>", "Create New Note" },
-	["oq"] = { "<cmd>ObsidianQuickSwitch<CR>", "Quick Switch Note" },
-	["of"] = { "<cmd>ObsidianFollowLink<CR>", "Follow Note Link" },
-	["ob"] = { "<cmd>ObsidianBacklinks<CR>", "Show Backlinks" },
-	["ot"] = { "<cmd>ObsidianTags<CR>", "Show Tags" },
-	["od"] = { "<cmd>ObsidianToday<CR>", "Open Today's Note" },
-	["oy"] = { "<cmd>ObsidianYesterday<CR>", "Open Yesterday's Note" },
-	["om"] = { "<cmd>ObsidianTomorrow<CR>", "Open Tomorrow's Note" },
-	["oD"] = { "<cmd>ObsidianDailies<CR>", "List Daily Notes" },
-	["oT"] = { "<cmd>ObsidianTemplate<CR>", "Insert Template" },
-	["os"] = { "<cmd>ObsidianSearch<CR>", "Search Notes" },
-	["ol"] = { "<cmd>ObsidianLink<CR>", "Link Note" },
-	["oL"] = { "<cmd>ObsidianLinkNew<CR>", "Link to New Note" },
-	["oS"] = { "<cmd>ObsidianLinks<CR>", "List Links" },
-	["oE"] = { "<cmd>ObsidianExtractNote<CR>", "Extract Note" },
-	["ow"] = { "<cmd>ObsidianWorkspace<CR>", "Switch Workspace" },
-	["oi"] = { "<cmd>ObsidianPasteImg<CR>", "Paste Image" },
-	["oR"] = { "<cmd>ObsidianRename<CR>", "Rename Note" },
+	["o"] = { "<cmd>ObsidianOpen<CR>", "Open Note in Obsidian" },
+	["N"] = { "<cmd>ObsidianNew<CR>", "Create New Note" },
+	["q"] = { "<cmd>ObsidianQuickSwitch<CR>", "Quick Switch Note" },
+	["f"] = { "<cmd>ObsidianFollowLink<CR>", "Follow Note Link" },
+	["b"] = { "<cmd>ObsidianBacklinks<CR>", "Show Backlinks" },
+	["t"] = { "<cmd>ObsidianTags<CR>", "Show Tags" },
+	["d"] = { "<cmd>ObsidianToday<CR>", "Open Today's Note" },
+	["y"] = { "<cmd>ObsidianYesterday<CR>", "Open Yesterday's Note" },
+	["m"] = { "<cmd>ObsidianTomorrow<CR>", "Open Tomorrow's Note" },
+	["D"] = { "<cmd>ObsidianDailies<CR>", "List Daily Notes" },
+	["T"] = { "<cmd>ObsidianTemplate<CR>", "Insert Template" },
+	["s"] = { "<cmd>ObsidianSearch<CR>", "Search Notes" },
+	["l"] = { "<cmd>ObsidianLink<CR>", "Link Note" },
+	["L"] = { "<cmd>ObsidianLinkNew<CR>", "Link to New Note" },
+	["S"] = { "<cmd>ObsidianLinks<CR>", "List Links" },
+	["E"] = { "<cmd>ObsidianExtractNote<CR>", "Extract Note" },
+	["w"] = { "<cmd>ObsidianWorkspace<CR>", "Switch Workspace" },
+	["i"] = { "<cmd>ObsidianPasteImg<CR>", "Paste Image" },
+	["R"] = { "<cmd>ObsidianRename<CR>", "Rename Note" },
 }
 
 -- Lazy Keymaps
 local lazyMappings = {
 	name = "Lazy Keymaps",
-	["lz"] = { ":Lazy<CR>", "Open Lazy" },
-	["lr"] = { ":LazyRoot<CR>", "Open LazyRoot" },
-	["le"] = { ":LazyExtras<CR>", "Open LazyExtras" },
-	["lf"] = { ":LazyFormat<CR>", "Open LazyFormat" },
-	["lh"] = { ":LazyHealth<CR>", "Open LazyHealth" },
-	["li"] = { ":LazyFormatInfo<CR>", "Open LazyFormatInfo" },
+	["z"] = { ":Lazy<CR>", "Open Lazy" },
+	["r"] = { ":LazyRoot<CR>", "Open LazyRoot" },
+	["e"] = { ":LazyExtras<CR>", "Open LazyExtras" },
+	["f"] = { ":LazyFormat<CR>", "Open LazyFormat" },
+	["h"] = { ":LazyHealth<CR>", "Open LazyHealth" },
+	["i"] = { ":LazyFormatInfo<CR>", "Open LazyFormatInfo" },
 }
 
 -- Flash Keymaps
 local flashMappings = {
-	-- name = "Flash",
-	['fs'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
-	['fS'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
-	['fr'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
-	['fR'] = { function() require("flash").treesitter_search() end, "Treesitter Search", mode = { "o", "x" } },
-	['f<c-s>'] = { function() require("flash").toggle() end, "Toggle Flash Search", mode = "c" },
+	-- name = "Flash Keymaps",
+	['s'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
+	['S'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
+	['r'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
+	['R'] = { function() require("flash").treesitter_search() end, "Treesitter Search", mode = { "o", "x" } },
+	['t'] = { function() require("flash").toggle() end, "Toggle Flash Search", mode = "c" },
 }
 
 -- Git Keymaps
 local gitMappings = {
-	-- name = "Git Keymaps",
-	['gf'] = { require('telescope.builtin').git_files, "Search Git Files" },
-	['gd'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
-	['gs'] = { require('telescope.builtin').git_stash, "Search Git Stash" },
-	['gS'] = { require('telescope.builtin').git_status, "Search Git Status" },
-	['gC'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
-	['gc'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
-	['gb'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
-	['gp'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
-	['gB'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
-	['gD'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
-	['gP'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
+	name = "Git Keymaps",
+	['f'] = { require('telescope.builtin').git_files, "Search Git Files" },
+	['d'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", "Grep in Git Directory" },
+	['s'] = { require('telescope.builtin').git_stash, "Search Git Stash" },
+	['S'] = { require('telescope.builtin').git_status, "Search Git Status" },
+	['C'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
+	['c'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
+	['b'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
+	['p'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
+	['B'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
+	['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
+	['P'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
 }
 
 -- ChatGPT Keymaps
@@ -215,43 +215,38 @@ local chatgptMappings = {
 
 -- DAP Plugin Keymaps
 local dapMappings = {
-	-- name = "DAP Plugin Keymaps",
-	["<F5>"] = { dap.continue, "Debug: Start/Continue" },
-	["<F1>"] = { dap.step_into, "Debug: Step Into" },
-	["<F2>"] = { dap.step_over, "Debug: Step Over" },
-	["<F3>"] = { dap.step_out, "Debug: Step Out" },
-	["db"] = { dap.toggle_breakpoint, "Debug: Toggle Breakpoint" },
-	["dB"] = { function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Debug: Set Breakpoint" },
-	["<F7>"] = { dapui.toggle, "Debug: See last session result." },
+	name = "DAP Plugin Keymaps",
+	["b"] = { dap.toggle_breakpoint, "Debug: Toggle Breakpoint" },
+	["B"] = { function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, "Debug: Set Breakpoint" },
 }
 
 -- Setup with default options
 wk.setup {}
 
 -- Registering mappings
-wk.register(generalMappings, { prefix = "<leader>", mode = "n" })
+wk.register(generalMappings, { prefix = "<leader>b", mode = "n" })
 wk.register(lspMappings, { prefix = "<leader>L", mode = "n" })
 -- Registering Telescope mappings under the 'n' (normal) mode leader key
-wk.register(telescopeMappings, { prefix = "<leader>", mode = "n" })
+wk.register(telescopeMappings, { prefix = "<leader>t", mode = "n" })
 
 -- Registering Rnvimr mappings
-wk.register(rnvimrMappings, { prefix = "<leader>", mode = "n" })
+wk.register(rnvimrMappings, { prefix = "<leader>r", mode = "n" })
 
 -- Registering legendary.nvim mappings
-wk.register(legendaryMappings, { prefix = "<leader>", mode = "n" })
+wk.register(legendaryMappings, { prefix = "<leader>l", mode = "n" })
 
 -- Registering legendary.nvim mappings
-wk.register(liveServerMappings, { prefix = "<leader>", mode = "n" })
+wk.register(liveServerMappings, { prefix = "<leader>S", mode = "n" })
 
 -- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
-wk.register(tmuxTelescopeMappings, { prefix = "<leader>", mode = "n" })
+wk.register(tmuxTelescopeMappings, { prefix = "<leader>T", mode = "n" })
 
 -- Registering ChatGPT Keymaps
 wk.register(chatgptMappings, { prefix = "<leader>c" })
 
 -- Registering DAP mappings under the 'n' (normal) mode leader key
 -- Note: F-keys are registered globally, not under a leader key.
-wk.register(dapMappings, { mode = "n" })
+wk.register(dapMappings, { prefix = "d", mode = "n" })
 
 -- For F-keys which are not under the leader key, you can register them separately
 wk.register({
@@ -263,7 +258,7 @@ wk.register({
 }, { mode = "n", prefix = "" })
 
 -- Registering Harpoon mappings under the 'n' (normal) mode leader key
-wk.register(harpoonMappings, { prefix = "<leader>", mode = "n" })
+wk.register(harpoonMappings, { prefix = "<leader>h", mode = "n" })
 
 -- Registering numeric mappings for selecting Harpoon files
 for i = 1, 9 do
@@ -282,24 +277,25 @@ end
 if isInObsidianVault() then
 	local status = pcall(require, 'obsidian')
 	if status then
-		wk.register(obsidianMappings, { prefix = "<leader>", mode = "n" })
+		wk.register(obsidianMappings, { prefix = "<leader>o", mode = "n" })
 	end
 end
 
 -- Registering Lazy mappings under the 'n' (normal) mode leader key
-wk.register(lazyMappings, { prefix = "<leader>", mode = "n" })
+wk.register(lazyMappings, { prefix = "<leader>l", mode = "n" })
 
 -- Registering Flash mappings with which-key
 for key, mapping in pairs(flashMappings) do
+	print("Key:", key, "Mapping:", vim.inspect(mapping))
 	local mode = mapping.mode or "n" -- default to normal mode if mode not provided
 	if type(mode) == "table" then
 		for _, m in ipairs(mode) do
-			wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>", mode = m })
+			wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>F", mode = m })
 		end
 	else
-		wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>", mode = mode })
+		wk.register({ [key] = { mapping[1], mapping[2] } }, { prefix = "<leader>f", mode = mode })
 	end
 end
 
 -- Registering Git mappings under the 'n' (normal) mode leader key
-wk.register(gitMappings, { prefix = "<leader>", mode = "n" })
+wk.register(gitMappings, { prefix = "<leader>g", mode = "n" })
