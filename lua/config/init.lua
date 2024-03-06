@@ -10,6 +10,7 @@ local telescope = require('config.telescope') -- For Telescope
 local lsp = require('config.lsp')             -- For LSP configurations
 local linter = require('config.linter')       -- For linter configurations
 local fidget = require('config.fidget')       -- For fidget configurations
+local noice = require('config.noice')
 
 return {
     keymaps,
@@ -20,4 +21,5 @@ return {
     lsp,
     linter,
     fidget,
+    noice,
 }
