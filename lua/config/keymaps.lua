@@ -174,7 +174,7 @@ local lazyMappings = {
 
 -- Flash Keymaps
 local flashMappings = {
-	-- name = "Flash Keymaps",
+	name = "Flash Keymaps",
 	['s'] = { function() require("flash").jump() end, "Flash", mode = { "n", "x", "o" } },
 	['S'] = { function() require("flash").treesitter() end, "Flash Treesitter", mode = { "n", "x", "o" } },
 	['r'] = { function() require("flash").remote() end, "Remote Flash", mode = "o" },
@@ -293,12 +293,10 @@ for key, mapping in pairs(flashMappings) do
 	local mode = mapping.mode or "n" -- default to normal mode if mode not provided
 	if type(mode) == "table" then
 		for _, m in ipairs(mode) do
-			wk.register({ name = "Flash Keymaps" }, { [key] = { mapping[1], mapping[2] } },
-				{ prefix = "<leader>F", mode = m })
+			wk.register({ [key] = mapping }, { prefix = "<leader>F", mode = m })
 		end
 	else
-		wk.register({ name = "Flash Keymaps" }, { [key] = { mapping[1], mapping[2] } },
-			{ prefix = "<leader>F", mode = mode })
+		wk.register({ [key] = mapping }, { prefix = "<leader>F", mode = mode })
 	end
 end
 
