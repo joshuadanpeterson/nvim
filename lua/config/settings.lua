@@ -104,15 +104,7 @@ augroup TransparentWhichKeyWindows
     autocmd VimEnter * hi WhichKeyGroup guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeyDesc guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeySeperator guibg=NONE ctermbg=NONE
-augroup END
-]]
-
--- Set floating window borders
-vim.cmd [[
-augroup FloatingWindowBorders
-    autocmd!
-    autocmd ColorScheme * hi FloatBorder guifg=#87CEEB guibg=NONE
-    autocmd VimEnter * hi FloatBorder guifg=#87CEEB guibg=NONE
+    autocmd VimEnter * hi WhichKeyBorder guibg=#87CEEB ctermbg=NONE
 augroup END
 ]]
 
