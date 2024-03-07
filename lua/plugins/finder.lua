@@ -10,22 +10,22 @@ return {
 	-- Telescope
 	-- Sets vim.ui.select to telescope. That means for example that neovim core stuff can fill the telescope picker
 	{
-		"nvim-telescope/telescope-ui-select.nvim"
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 
 	-- Fuzzy Finder Algorithm, requires local dependencies to be built. Only loads if make is available.
 	{
-		'nvim-telescope/telescope-fzf-native.nvim'
+		'nvim-telescope/telescope-fzf-native.nvim',
 	},
 
 	-- telescope-project: manage and switch between projects with telescope.
 	{
-		'nvim-telescope/telescope-project.nvim'
+		'nvim-telescope/telescope-project.nvim',
 	},
 
 	-- fzy native search
 	{
-		'nvim-telescope/telescope-fzy-native.nvim'
+		'nvim-telescope/telescope-fzy-native.nvim',
 	},
 
 	-- fzf vim: integrates the fzf command-line fuzzy finder with vim.
