@@ -195,7 +195,7 @@ local gitMappings = {
 	['p'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
 	['B'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
 	['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
-	['P'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
+	['P'] = { '<cmd>Telescope git_signs<CR>', 'Search Preview Hunks' },
 	['G'] = { "<cmd>Telescope repo list<CR>", "Search Git Repos" },
 	['l'] = { "<cmd>FloatermNew lazygit<CR>", "Open Lazygit" },
 }
