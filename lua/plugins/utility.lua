@@ -295,5 +295,10 @@ return {
         --         end
         -- },
 
+        -- vim-floaterm: open terminal window inside of Neovim
+        {
+                'voldikss/vim-floaterm',
+        },
+
 
 }

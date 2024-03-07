@@ -197,6 +197,7 @@ local gitMappings = {
 	['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
 	['P'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
 	['G'] = { "<cmd>Telescope repo list<CR>", "Search Git Repos" },
+	['l'] = { "<cmd>FloatermNew lazygit<CR>", "Open Lazygit" },
 }
 
 -- ChatGPT Keymaps
