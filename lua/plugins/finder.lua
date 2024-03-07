@@ -28,6 +28,11 @@ return {
 		'nvim-telescope/telescope-fzy-native.nvim',
 	},
 
+	-- telescope-zoxide
+	{
+		'jvgrootveld/telescope-zoxide',
+	},
+
 	-- fzf vim: integrates the fzf command-line fuzzy finder with vim.
 	{
 		'junegunn/fzf.vim',
