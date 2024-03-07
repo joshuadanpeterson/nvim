@@ -103,11 +103,6 @@ return {
 		end,
 	},
 
-	-- The Fine Command Line
-	{
-		'MunifTanjim/nui.nvim'
-	},
-
 	-- tmuxline
 	{
 		'edkolev/tmuxline.vim'
