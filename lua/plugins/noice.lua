@@ -17,9 +17,20 @@ return {
                 require('noice').setup({
                         -- Command line configuration section.
                         cmdline = {
-                                enabled = true,         -- Enables the enhanced command line UI provided by Noice.
-                                view = "cmdline_popup", -- Uses a popup window for the command line to replace the default at the bottom.
-                                opts = {},              -- Global options for the command line view; it's kept empty for default settings.
+                                enabled = true,                  -- Enables the enhanced command line UI provided by Noice.
+                                view = "cmdline_popup",          -- Uses a popup window for the command line to replace the default at the bottom.
+                                opts = {
+                                        relative = "editor",     -- Make the window relative to the editor's dimensions
+                                        position = "50%",        -- Attempt to position in the center (this is a simplistic approach)
+                                        size = {                 -- Define the size of the cmdline popup
+                                                width = 60,      -- Set the width (you can adjust this to your liking)
+                                                height = "auto", -- Let the height adjust automatically based on the content
+                                        },
+                                        border = {
+                                                style =
+                                                "single" -- Define the border style, options include "single", "double", "rounded", "solid", or "shadow"
+                                        },
+                                },
 
                                 -- Defines custom formats for different command line scenarios.
                                 format = {
@@ -180,7 +191,7 @@ return {
                         presets = {
                                 -- Allows for enabling, disabling, or configuring presets that modify UI behavior.
                                 bottom_search = false,
-                                command_palette = false,
+                                command_palette = true,
                                 long_message_to_split = false,
                                 inc_rename = false,
                                 lsp_doc_border = false,
