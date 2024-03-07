@@ -105,6 +105,7 @@ local legendaryMappings = {
 	['a'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds" },
 	['r'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed" },
 	['!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters" },
+	['s'] = { ":LegendaryScratch<CR>", "Launch Scratch Pad" },
 }
 
 -- live-server.nvim Keymaps
