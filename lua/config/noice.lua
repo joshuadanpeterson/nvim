@@ -3,6 +3,7 @@ require('plugins.noice')
 
 local noice_hl = vim.api.nvim_create_augroup("NoiceHighlights", {})
 vim.api.nvim_clear_autocmds({ group = noice_hl })
+
 vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
     group = noice_hl,
     callback = function()
