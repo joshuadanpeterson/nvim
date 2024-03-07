@@ -9,10 +9,13 @@ local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 local sorters = require('telescope.sorters')
 
+-- Useful for easily creating commands
+local z_utils = require("telescope._extensions.zoxide.utils")
+
 require('telescope').setup({
         defaults = {
                 prompt_prefix = "  " .. icons.get("telescope") .. "  ",
-                selection_caret = " ❯ ",
+                selection_caret = "❯ ",
                 entry_prefix = "   ",
                 mappings = {
                         i = {
@@ -28,6 +31,13 @@ require('telescope').setup({
                         },
                 },
                 previewer = true,
+                file_ignore_patterns = {},
+                path_display = {},
+                winblend = 0,
+                border = {},
+                borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                color_devicons = true,
+                set_env = { ['COLORTERM'] = 'truecolor' },
         },
         pickers = {
         },
@@ -61,7 +71,44 @@ require('telescope').setup({
                                 sh = 'bash'
                         },
                 },
-        },
+
+                zoxide = {
+                        prompt_title = "[ Zoxide List ]",
+
+                        -- Zoxide list command with score
+                        list_command = "zoxide query -ls",
+                        mappings = {
+                                default = {
+                                        action = function(selection)
+                                                vim.cmd.edit(selection.path)
+                                        end,
+                                        after_action = function(selection)
+                                                print("Directory changed to " .. selection.path)
+                                        end
+                                },
+                                ["<C-s>"] = { action = z_utils.create_basic_command("split") },
+                                ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
+                                ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
+                                ["<C-b>"] = {
+                                        keepinsert = true,
+                                        action = function(selection)
+                                                builtin.file_browser({ cwd = selection.path })
+                                        end
+                                },
+                                ["<C-f>"] = {
+                                        keepinsert = true,
+                                        action = function(selection)
+                                                builtin.find_files({ cwd = selection.path })
+                                        end
+                                },
+                                ["<C-t>"] = {
+                                        action = function(selection)
+                                                vim.cmd.tcd(selection.path)
+                                        end
+                                },
+                        }
+                }
+        }
 })
 
 -- enable telescope fzf native, if installed
@@ -138,6 +185,7 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('themes')
 require('telescope').load_extension('fzy_native')
 require("telescope").load_extension("git_signs")
+require("telescope").load_extension('zoxide')
 
 -- extend telescope mappings with flash integration
 require('telescope').setup({

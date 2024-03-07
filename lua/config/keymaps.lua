@@ -84,6 +84,7 @@ local telescopeMappings = {
 	['N'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
 	['o'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 	['B'] = { "<cmd>Telescope buffers<cr>", "List Buffers" },
+	['z'] = { "<cmd>Telescope zoxide list<CR>", "Zoxide List" },
 }
 
 -- Rnvimr and Ranger Keymaps
