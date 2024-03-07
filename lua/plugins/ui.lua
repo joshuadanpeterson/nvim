@@ -125,4 +125,9 @@ return {
 		},
 	},
 
+	-- glow: markdown preview
+	{
+		{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+	},
+
 }

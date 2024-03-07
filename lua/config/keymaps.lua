@@ -196,6 +196,7 @@ local gitMappings = {
 	['B'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
 	['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
 	['P'] = { '<cmd>Telescope git_signs', 'Search Preview Hunks' },
+	['G'] = { "<cmd>Telescope repo list<CR>", "Search Git Repos" },
 }
 
 -- ChatGPT Keymaps

@@ -186,6 +186,8 @@ require('telescope').load_extension('themes')
 require('telescope').load_extension('fzy_native')
 require("telescope").load_extension("git_signs")
 require("telescope").load_extension('zoxide')
+require 'telescope'.load_extension('repo')
+
 
 -- extend telescope mappings with flash integration
 require('telescope').setup({
