@@ -192,10 +192,9 @@ local gitMappings = {
 	['C'] = { '<cmd>Telescope git_bcommits<CR>', "Search Git Buffer Commits" },
 	['c'] = { require('telescope.builtin').git_commits, "Search Git Directory Commits" },
 	['b'] = { require('telescope.builtin').git_branches, "Search Git Branches" },
-	['p'] = { ':Gitsigns preview_hunk<CR>', 'Toggle Gitsigns Preview Hunk' },
+	['p'] = { '<cmd>Telescope git_signs<CR>', 'Search Preview Hunks' },
 	['B'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
 	['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
-	['P'] = { '<cmd>Telescope git_signs<CR>', 'Search Preview Hunks' },
 	['G'] = { "<cmd>Telescope repo list<CR>", "Search Git Repos" },
 	['l'] = { "<cmd>FloatermNew lazygit<CR>", "Open Lazygit" },
 }
