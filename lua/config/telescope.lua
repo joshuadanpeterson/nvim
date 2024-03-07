@@ -133,7 +133,7 @@ local function find_git_root()
         local git_root = vim.fn.systemlist("git -c " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")
             [1]
         if vim.v.shell_error ~= 0 then
-                print("not a git repository. searching on current working directory")
+                print("Not a Git Repository. Searching on Current Working Directory")
                 return cwd
         end
         return git_root
