@@ -10,6 +10,7 @@ return {
         {
                 'nvim-treesitter/nvim-treesitter',
                 run = ':TSUpdate',
+                event = { 'BufReadPre', 'BufNewFile' },
                 dependencies = {
                         'nvim-treesitter/nvim-treesitter-textobjects',
                 },
