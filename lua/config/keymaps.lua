@@ -313,7 +313,7 @@ for key, mapping in pairs(flashMappings) do
 end
 
 -- Registering Git mappings under the 'n' (normal) mode leader key
-wk.register(gitMappings, { prefix = "<leader>g", mode = "n" })
+wk.register(gitMappings, { prefix = "<leader>G", mode = "n" })
 
 -- Registering CLI mappings under the 'n' (normal) mode leader key
 wk.register(cliMappings, { prefix = "<leader>C", mode = "n" })
@@ -328,6 +328,6 @@ wk.register({
 	["<leader><Tab>"] = "Tab Managment",
 	["<leader>["] = "Previous",
 	["<leader>]"] = "Next",
-	["<leader>g"] = "Git & Misc.",
+	["<leader>g"] = "Misc.",
 	["<leader>z"] = "Fold Managment",
 })
