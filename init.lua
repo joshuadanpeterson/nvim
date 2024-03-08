@@ -21,7 +21,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ configure plugins ]]
 require('lazy').setup({
-  -- note: first, some plugins that don't require any configuration
 
   -- legendary.nvim
   {
