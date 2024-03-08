@@ -10,18 +10,6 @@ return {
         {
                 'nvim-treesitter/nvim-treesitter',
                 run = ':TSUpdate',
-                config = function()
-                        require('nvim-treesitter.configs').setup {
-                                -- Ensure all maintained parsers are installed
-                                ensure_installed = "all",
-                                sync_install = false, -- Install parsers synchronously (only applies to `ensure_installed`)
-
-                                highlight = {
-                                        enable = true, -- Enable Treesitter-based highlighting
-                                },
-
-                        }
-                end
         },
 
         -- nvim-treesitter/playground to explore Treesitter queries in a UI
