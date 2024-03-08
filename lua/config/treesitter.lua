@@ -16,7 +16,12 @@ vim.defer_fn(function()
 
         highlight = { enable = true },
         autotag = { enable = true },
-        playground = { enable = true },
+        playground = {
+            enable = true,
+            disable = {},
+            updatetime = 25,         -- Debounced time for highlighting nodes from source code
+            persist_queries = false, -- Persist queries across sessions
+        },
         rainbow = {
             enable = true,
             extended_mode = true, -- Also highlight other brackets/parentheses

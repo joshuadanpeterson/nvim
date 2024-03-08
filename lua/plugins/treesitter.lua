@@ -20,13 +20,6 @@ return {
                                         enable = true, -- Enable Treesitter-based highlighting
                                 },
 
-                                -- Treesitter playground for exploring Treesitter queries and captures
-                                playground = {
-                                        enable = true,
-                                        disable = {},
-                                        updatetime = 25, -- Debounced time for highlighting nodes from source code
-                                        persist_queries = false, -- Persist queries across sessions
-                                },
                         }
                 end
         },
