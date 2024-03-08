@@ -34,9 +34,9 @@ vim.defer_fn(function()
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = '<c-space>',
-                node_incremental = '<c-space>',
-                scope_incremental = '<c-s>',
+                init_selection = '<A-space>',
+                node_incremental = '<A-space>',
+                scope_incremental = '<A-s>',
                 node_decremental = '<M-space>',
             },
         },
@@ -46,12 +46,12 @@ vim.defer_fn(function()
                 lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
                 keymaps = {
                     -- You can use the capture groups defined in textobjects.scm
-                    ['aa'] = '@parameter.outer',
-                    ['ia'] = '@parameter.inner',
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
-                    ['ac'] = '@class.outer',
-                    ['ic'] = '@class.inner',
+                    ['<A-o>'] = '@parameter.outer',
+                    ['<A-O>'] = '@parameter.inner',
+                    ['<A-f>'] = '@function.outer',
+                    ['<A-F>'] = '@function.inner',
+                    ['<A-c>'] = '@class.outer',
+                    ['<A-C>'] = '@class.inner',
                 },
             },
             move = {
