@@ -314,3 +314,20 @@ end
 
 -- Registering Git mappings under the 'n' (normal) mode leader key
 wk.register(gitMappings, { prefix = "<leader>g", mode = "n" })
+
+-- Registering CLI mappings under the 'n' (normal) mode leader key
+wk.register(cliMappings, { prefix = "<leader>C", mode = "n" })
+
+-- Registering Default Keymaps Names
+wk.register({
+	["<leader>f"] = "File Keymaps",
+	["<leader>u"] = "Toggle Keymaps",
+	["<leader>q"] = "Quit",
+	["<leader>w"] = "Window Managment",
+	["<leader>x"] = "Lists",
+	["<leader><Tab>"] = "Tab Managment",
+	["<leader>["] = "Previous",
+	["<leader>]"] = "Next",
+	["<leader>g"] = "Git & Misc.",
+	["<leader>z"] = "Fold Managment",
+})
