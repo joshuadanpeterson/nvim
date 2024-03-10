@@ -133,4 +133,24 @@ return {
                         })
                 end,
         },
+
+        -- obsidian-bridge.nvim: sync obsidian w/neovim
+        {
+                "oflisback/obsidian-bridge.nvim",
+                dependencies = {
+                        "nvim-telescope/telescope.nvim",
+                        "nvim-lua/plenary.nvim",
+
+                },
+                config = function()
+                        require("obsidian-bridge").setup({
+                                scroll_sync = false -- See "Sync of buffer scrolling" section below
+                        })
+                end,
+                event = {
+                        "BufReadPre *.md",
+                        "BufNewFile *.md",
+                },
+                lazy = true,
+        },
 }
