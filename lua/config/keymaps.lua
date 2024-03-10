@@ -1,4 +1,4 @@
--- This config file contains my which-key keymaps
+-- This config file contains my keymaps
 -- lua/config/keymaps.lua
 
 -- import dependencies
@@ -326,8 +326,8 @@ wk.register({
 	["<leader>w"] = "Window Managment",
 	["<leader>x"] = "Lists",
 	["<leader><Tab>"] = "Tab Managment",
-	-- ["<leader>["] = "Previous",
-	-- ["<leader>]"] = "Next",
-	-- ["<leader>g"] = "Misc.",
-	-- ["<leader>z"] = "Fold Managment",
+	["<leader>["] = "Previous",
+	["<leader>]"] = "Next",
+	["<leader>g"] = "Misc.",
+	["<leader>z"] = "Fold Managment",
 })
