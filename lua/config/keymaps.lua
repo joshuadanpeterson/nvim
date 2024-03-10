@@ -6,6 +6,7 @@ local wk = require("which-key")
 local harpoon = require("harpoon")
 local dap = require('dap')
 local dapui = require('dapui')
+local tmux = require('config.tmux')
 
 -- set up lualine function
 local function setup_lualine()
@@ -120,6 +121,10 @@ local tmuxTelescopeMappings = {
 	name = "tmux Telescope Keymaps",
 	["t"] = { ":TmuxJumpFile<CR>", "Jump to File in Tmux Pane" },
 	[";"] = { ":TmuxJumpFirst<CR>", "Jump to First Tmux Pane" },
+	["s"] = { tmux.switch_to_tmux_session, 'Switch Tmux Session', { noremap = true, silent = true } },
+	["w"] = { tmux.switch_tmux_window, 'Switch Tmux Window', { noremap = true, silent = true } },
+	["p"] = { tmux.switch_tmux_pane, 'Switch Tmux Pane', { noremap = true, silent = true } },
+	["m"] = { tmux.tmux_menu_picker, 'Tmux Menu Picker', { noremap = true, silent = true } },
 }
 
 -- Harpoon Keymaps
