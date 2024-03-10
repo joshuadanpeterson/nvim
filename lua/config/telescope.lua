@@ -389,7 +389,9 @@ search_log_files = function()
                         vim.fn.expand("~/Library/Logs/DiagnosticReports/"),
                         '/var/db/diagnostics/',
                         '/Library/Application Support/',
-                        vim.fn.expand("~/Library/Application Support/")
+                        vim.fn.expand("~/Library/Application Support/"),
+                        '/.npm/_logs',
+                        vim.fn.expand("~/.npm/_logs/"),
                 },
 
                 attach_mappings = function(_, map)
