@@ -225,15 +225,13 @@ vim.keymap.set("n", "<leader>he", function() toggle_telescope(harpoon:list()) en
 -- load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes, fzy native search
 require("telescope").load_extension("noice")
 require("telescope").load_extension("emoji")
-require('telescope').load_extension('uniswapfiles')
-require('telescope').load_extension('ui-select')
-require('telescope').load_extension('themes')
-require('telescope').load_extension('fzy_native')
+require("telescope").load_extension("uniswapfiles")
+require("telescope").load_extension("ui-select")
+require("telescope").load_extension("themes")
+require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_signs")
-require("telescope").load_extension('zoxide')
-require 'telescope'.load_extension('repo')
-
-
+require("telescope").load_extension("zoxide")
+require("telescope").load_extension("repo")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
