@@ -341,7 +341,7 @@ local function start_spinner()
         local current_frame = 1
         local spinner_timer = vim.loop.new_timer()
 
-        vim.notify("Starting log directory listing...", vim.log.levels.INFO, { title = "Noice" })
+        vim.notify("Starting directory listing...", vim.log.levels.INFO, { title = "Noice" })
 
         -- Start the spinner
         spinner_timer:start(0, 100, vim.schedule_wrap(function()
@@ -361,7 +361,7 @@ end
 -- Function to stop the spinner and notify that it's okay to search
 local function stop_spinner()
         vim.g.spinner_active = false -- This will stop the spinner
-        vim.notify("Log directory listing complete. Okay to search now.", vim.log.levels.INFO, { title = "Noice" })
+        vim.notify("Directory listing complete. Okay to search now.", vim.log.levels.INFO, { title = "Noice" })
 end
 
 -- Telescope finder for log files
@@ -383,6 +383,21 @@ search_log_files = function()
                         vim.fn.expand("~/Library/Application Support/"),
                         '/.npm/_logs',
                         vim.fn.expand("~/.npm/_logs/"),
+                        '/.cache/',
+                        vim.fn.expand("~/.cache/"),
+                        '/.local',
+                        vim.fn.expand("~/.local/"),
+                        '/.config/',
+                        vim.fn.expand("~/.config/"),
+                        '/.fig/',
+                        vim.fn.expand("~/.fig/"),
+                        '/npm-debug.log',
+                        vim.fn.expand("~/npm-debug.log"),
+                        '/.pgadmin/',
+                        vim.fn.expand("~/.pgadmin/"),
+                        '/.ipfs/',
+                        vim.fn.expand("~/.ipfs/"),
+                        'tmux.*\\.log',
                 },
 
                 attach_mappings = function(_, map)
@@ -415,5 +430,48 @@ end
 vim.api.nvim_create_user_command('SearchLogFiles', function()
         start_spinner()                                  -- Start the spinner before initiating the search
         search_log_files()
+        vim.defer_fn(function() stop_spinner() end, 500) -- Assume the search completes within this time; adjust as needed
+end, {})
+
+-- Telescope finder for Changelog files
+local search_changelog_files
+
+search_changelog_files = function()
+        require('telescope.builtin').find_files({
+                prompt_title = "Search Changelog Files",
+                find_command = {
+                        'rg', '--files', '--hidden', '--glob', '!.git', '--glob', '!node_modules',
+                        '--glob', '*Changelog.md', '--glob', '*CHANGELOG.md',
+                        vim.fn.expand("~/"),
+                },
+                attach_mappings = function(_, map)
+                        map('i', '<CR>', function(bufnr)
+                                local selection = require('telescope.actions.state').get_selected_entry(bufnr)
+                                require('telescope.actions').close(bufnr)
+                                if selection then
+                                        vim.cmd('edit ' .. selection.value)
+                                        -- Open grep in the current buffer immediately after opening the file
+                                        require('telescope.builtin').current_buffer_fuzzy_find({
+                                                prompt_title = 'Search in ' .. vim.fn.fnamemodify(selection.value, ":t"),
+                                        })
+                                end
+                        end)
+
+                        -- Map a key to go back to the previous Telescope search
+                        map('i', '<C-b>', function()
+                                local curr_buf = vim.api.nvim_get_current_buf()
+                                vim.cmd('bdelete! ' .. curr_buf)
+                                search_changelog_files() -- Reopen Telescope finder
+                        end)
+
+                        return true
+                end
+        })
+end
+
+-- Command to initialize a Telescope finder for Changelog files
+vim.api.nvim_create_user_command('SearchChangelogFiles', function()
+        start_spinner()                                  -- Start the spinner before initiating the search
+        search_changelog_files()
         vim.defer_fn(function() stop_spinner() end, 500) -- Assume the search completes within this time; adjust as needed
 end, {})

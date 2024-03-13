@@ -32,6 +32,8 @@ local generalMappings = {
 	['l'] = { refresh_lualine, "Refresh status line" },
 	['n'] = { "<cmd>Noice<cr>", "Noice" },
 	['d'] = { ":NoiceDismiss<CR>", "Dismiss Noice Message" },
+	['L'] = { ":SearchLogFiles<CR>", "Search Log Files" },
+	['C'] = { ":SearchChangelogFiles<CR>", "Search Changelog Files" },
 }
 
 -- LSP Keymaps
@@ -60,7 +62,14 @@ local lspMappings = {
 -- Telescope Keymaps
 local telescopeMappings = {
 	name = "Telescope Keymaps",
-	['S'] = { require('telescope.builtin').find_files, "Search Files" },
+	['S'] = {
+		function()
+			require('telescope.builtin').find_files({
+				find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' }
+			})
+		end,
+		"Search Files"
+	},
 	['R'] = { '<cmd>Telescope registers<CR>', "Search Registers" },
 	['b'] = { require('telescope.builtin').current_buffer_fuzzy_find, "Search Current Buffer" },
 	['h'] = { ":FuzzyHelp<CR>", "Search Help" },
@@ -81,7 +90,6 @@ local telescopeMappings = {
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
 	['F'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 	['n'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
-	['l'] = { ":SearchLogFiles<CR>", "Search Log Files" },
 	['N'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
 	['o'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 	['B'] = { "<cmd>Telescope buffers<cr>", "List Buffers" },
@@ -306,7 +314,6 @@ wk.register(lazyMappings, { prefix = "<leader>l", mode = "n" })
 
 -- Registering Flash mappings with which-key
 for key, mapping in pairs(flashMappings) do
-	print("Key:", key, "Mapping:", vim.inspect(mapping))
 	local mode = mapping.mode or "n" -- default to normal mode if mode not provided
 	if type(mode) == "table" then
 		for _, m in ipairs(mode) do
