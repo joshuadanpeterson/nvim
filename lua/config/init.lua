@@ -11,6 +11,7 @@ local lsp = require('config.lsp')             -- For LSP configurations
 local linter = require('config.linter')       -- For linter configurations
 local fidget = require('config.fidget')       -- For fidget configurations
 local noice = require('config.noice')
+local lualine = require('config.lualine')
 
 return {
     keymaps,
@@ -22,4 +23,5 @@ return {
     linter,
     fidget,
     noice,
+    lualine,
 }
