@@ -116,3 +116,27 @@ augroup TransparentFloatingWindows
     autocmd VimEnter * hi FloatBorder guibg=NONE
 augroup END
 ]])
+
+-- set firenvim window height to kill 'custom_entries_view' error
+if vim.g.started_by_firenvim then
+    vim.api.nvim_create_autocmd("BufEnter", {
+        callback = function()
+            vim.o.lines = 8
+        end,
+    })
+end
+
+-- firenvim settings
+vim.g.firenvim_config = {
+    globalSettings = { alt = "all" },
+    localSettings = {
+        [".*"] = {
+            cmdline  = "neovim",
+            content  = "text",
+            priority = 0,
+            selector = "textarea",
+            takeover = "always",
+            messages = "neovim",
+        }
+    }
+}
