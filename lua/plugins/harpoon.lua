@@ -18,6 +18,5 @@ return {
             local harpoon = require('harpoon')
             harpoon:setup({})
         end
-    }
-
+    },
 }
