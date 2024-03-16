@@ -121,7 +121,7 @@ augroup END
 if vim.g.started_by_firenvim then
     vim.api.nvim_create_autocmd("BufEnter", {
         callback = function()
-            vim.o.lines = 8
+            vim.o.lines = 12
         end,
     })
 end
