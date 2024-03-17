@@ -142,7 +142,6 @@ local harpoonMappings = {
 	["r"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
 	["p"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
 	["n"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
-	["m"] = { function() harpoon.ui.toggle_quick_menu() end, "Harpoon Quick Menu" },
 }
 
 -- Obsidian Keymaps
