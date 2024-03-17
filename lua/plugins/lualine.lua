@@ -7,7 +7,10 @@ return {
     -- lualine configuration
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'letieu/harpoon-lualine',
+        },
         event = 'bufreadpre',
         config = function()
             require('lualine').setup {
@@ -24,7 +27,6 @@ return {
     {
         "letieu/harpoon-lualine",
         dependencies = {
-            "nvim-lualine/lualine.nvim",
             {
                 "ThePrimeagen/harpoon",
                 branch = "harpoon2",
