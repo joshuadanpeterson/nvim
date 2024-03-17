@@ -19,6 +19,7 @@ return {
             harpoon:setup({})
         end
     },
+
     -- Using Grapple.nvim
     {
         "cbochs/grapple.nvim",

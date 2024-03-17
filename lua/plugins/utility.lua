@@ -156,7 +156,7 @@ return {
                 end
         },
 
-        -- notify.nvim
+        -- nvim-notify
         {
                 'rcarriga/nvim-notify',
                 config = function()
@@ -284,16 +284,6 @@ return {
                         require('live-server').setup()
                 end,
         },
-
-        -- -- hologram.nvim for image rendering inside of Neovim
-        -- {
-        --         "edluffy/hologram.nvim",
-        --         config = function()
-        --                 require('hologram').setup {
-        --                         auto_display = true,
-        --                 }
-        --         end
-        -- },
 
         -- vim-floaterm: open terminal window inside of Neovim
         {
