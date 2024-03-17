@@ -68,10 +68,11 @@ local config = {
             diagnostics,
             branch,
             'diff',
-            { get_name,   cond = is_active }
+            { get_name,   cond = is_active },
+            'grapple',
         },
         lualine_c = { searchcount },
-        lualine_x = { 'grapple', 'encoding', filetype, copilot },
+        lualine_x = { 'encoding', filetype, copilot },
         lualine_y = { 'progress', 'location' },
         lualine_z = { datetime },
     },
