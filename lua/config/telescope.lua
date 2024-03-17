@@ -232,6 +232,7 @@ require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_signs")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
+require("telescope").load_extension("grapple")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
