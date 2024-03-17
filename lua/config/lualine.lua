@@ -34,6 +34,7 @@ local function setup_lualine()
                 maxcount = 999,
                 timeout = 500,
             },
+                -- install harpoon2
                 "harpoon2",
             },
             lualine_x = { {
