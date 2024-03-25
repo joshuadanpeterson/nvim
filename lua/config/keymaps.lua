@@ -75,6 +75,7 @@ local telescopeMappings = {
 	['h'] = { ":FuzzyHelp<CR>", "Search Help" },
 	['w'] = { require('telescope.builtin').grep_string, "Search Current Word" },
 	['g'] = { require('telescope.builtin').live_grep, "Search by Grep" },
+	['G'] = { "<cmd>Telescope helpgrep<CR>", "Search Grep Help" },
 	['d'] = { require('telescope.builtin').diagnostics, "Search Diagnostics" },
 	['r'] = { require('telescope.builtin').resume, "Resume Last Search" },
 	['c'] = { require('telescope.builtin').commands, "Search Telescope Commands" },

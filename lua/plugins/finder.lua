@@ -33,6 +33,11 @@ return {
 		'jvgrootveld/telescope-zoxide',
 	},
 
+	-- telescope-helpgrep.nvim
+	{
+		'catgoose/telescope-helpgrep.nvim',
+	},
+
 	-- telescope-repo: search filesystem for git repos
 	{
 		'cljoly/telescope-repo.nvim',

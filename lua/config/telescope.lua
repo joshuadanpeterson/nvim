@@ -152,6 +152,12 @@ require('telescope').setup({
                                         end
                                 },
                         }
+                },
+
+                helpgrep = {
+                        ignore_paths = {
+                                vim.fn.stdpath("state") .. "/lazy/readme",
+                        },
                 }
         }
 })
@@ -233,6 +239,7 @@ require("telescope").load_extension("git_signs")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("grapple")
+require("telescope").load_extension("helpgrep")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
