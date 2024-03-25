@@ -238,7 +238,6 @@ require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_signs")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
-require("telescope").load_extension("grapple")
 require("telescope").load_extension("helpgrep")
 
 -- set up help page fuzzy search with a command
