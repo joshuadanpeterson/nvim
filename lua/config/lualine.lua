@@ -53,6 +53,12 @@ local copilot = {
     show_loading = true
 }
 
+local Harpoonline = require("harpoonline")
+Harpoonline.setup({
+    on_update = function() require("lualine").refresh() end,
+})
+local harpoonline = { Harpoonline.format, "filename" }
+
 -- Define the lualine setup configuration
 local config = {
     options = {
@@ -69,9 +75,9 @@ local config = {
             branch,
             'diff',
             { get_name,   cond = is_active },
-            'grapple',
+            -- 'grapple',
         },
-        lualine_c = { searchcount },
+        lualine_c = { harpoonline, searchcount },
         lualine_x = { 'encoding', filetype, copilot },
         lualine_y = { 'progress', 'location' },
         lualine_z = { datetime },

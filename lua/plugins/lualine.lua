@@ -22,6 +22,8 @@ return {
         'AndreM222/copilot-lualine',
     },
 
+    -- harpoonline
     {
+        "abeldekat/harpoonline",
     },
 }
