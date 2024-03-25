@@ -9,7 +9,6 @@ return {
         'nvim-lualine/lualine.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
-            'letieu/harpoon-lualine',
         },
         event = 'bufreadpre',
         config = function()
@@ -23,14 +22,6 @@ return {
         'AndreM222/copilot-lualine',
     },
 
-    -- harpoon-lualine
     {
-        "letieu/harpoon-lualine",
-        dependencies = {
-            {
-                "ThePrimeagen/harpoon",
-                branch = "harpoon2",
-            }
-        },
     },
 }
