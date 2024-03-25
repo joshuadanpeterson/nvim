@@ -26,7 +26,9 @@ local datetime = {
         return os.date('%Y-%m-%d %H:%M')
     end,
 }
+
 local filetype = { 'filetype', colored = true }
+
 local copilot = {
     'copilot',
     symbols = {
