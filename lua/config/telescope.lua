@@ -173,7 +173,8 @@ require('telescope').setup({
                                 "interactive",
                                 "optimize_code",
                                 "summarize",
-                                "translate"
+                                "translate",
+                                "code_readability_analysis",
                         },
                         theme = require("telescope.themes").get_dropdown {}
                 },
