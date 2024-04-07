@@ -158,7 +158,25 @@ require('telescope').setup({
                         ignore_paths = {
                                 vim.fn.stdpath("state") .. "/lazy/readme",
                         },
-                }
+                },
+
+                -- Telescope GPT: a Telescope extension that integrates ChatGPT
+                gpt = {
+                        title = "GPT Actions",
+                        commands = {
+                                "add_tests",
+                                "chat",
+                                "docstring",
+                                "explain_code",
+                                "fix_bugs",
+                                "grammar_correction",
+                                "interactive",
+                                "optimize_code",
+                                "summarize",
+                                "translate"
+                        },
+                        theme = require("telescope.themes").get_dropdown {}
+                },
         }
 })
 
@@ -239,6 +257,7 @@ require("telescope").load_extension("git_signs")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("helpgrep")
+require('telescope').load_extension('gpt')
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()

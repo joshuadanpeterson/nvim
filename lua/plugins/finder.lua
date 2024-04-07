@@ -52,6 +52,15 @@ return {
 		},
 	},
 
+	-- Telescope GPT: adds ChatGPT functionality to Telescope
+	{
+		'HPRIOR/telescope-gpt',
+		dependencies = {
+			'nvim-telescope/telescope.nvim',
+			'jackMort/ChatGPT.nvim'
+		},
+	},
+
 	-- Fuzzy Finder (files, lsp, etc) with dependencies including plenary.nvim and telescope-ui-select.nvim
 	{
 		'nvim-telescope/telescope.nvim',
