@@ -1,5 +1,6 @@
 -- init.lua
-
+--  This script initializes Neovim with custom configurations and plugins.
+--  It sets up lazy.nvim, legendary.nvim, and other plugins for a seamless development experience.
 
 -- Custom configs
 require('config.settings') -- For basic Neovim settings
