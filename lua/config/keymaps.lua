@@ -219,6 +219,7 @@ local gitMappings = {
 local chatgptMappings = {
 	name = "ChatGPT Keymaps",
 	['c'] = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+	['C'] = { "<cmd>Telescope gpt<CR>", "Telescope GPT" },
 	['e'] = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
 	['g'] = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
 	['t'] = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
