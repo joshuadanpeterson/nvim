@@ -193,8 +193,15 @@ require('legendary').setup({
   log_level = 'info',
 })
 
--- Setup neovim lua configuration
-require('neodev').setup()
+-- Setup neodev config for nvim-dap-ui
+require("neodev").setup({
+  library = {
+    plugins = {
+      "nvim-dap-ui"
+    },
+    types = true
+  },
+})
 
 -- multicursors.nvim Status Line module
 require('multicursors').setup {
