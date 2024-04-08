@@ -139,7 +139,7 @@ local tmuxTelescopeMappings = {
 -- Harpoon Keymaps
 local harpoonMappings = {
 	name = "Harpoon Keymaps",
-	["a"] = { function() harpoon:list():append() end, "Add File to Harpoon Menu" },
+	["a"] = { function() harpoon:list():add() end, "Add File to Harpoon Menu" },
 	["r"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
 	["p"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
 	["n"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
