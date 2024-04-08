@@ -178,6 +178,12 @@ require('telescope').setup({
                         },
                         theme = require("telescope.themes").get_dropdown {}
                 },
+
+                -- tldr pages Telescope extension
+                tldr = {
+                        tldr_command = 'tldr',
+                        tldr_args = '--color always',
+                },
         }
 })
 
@@ -259,6 +265,7 @@ require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("helpgrep")
 require('telescope').load_extension('gpt')
+-- require("telescope").load_extension("tldr")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
