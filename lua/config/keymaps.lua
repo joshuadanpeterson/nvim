@@ -291,8 +291,11 @@ wk.register(harpoonMappings, { prefix = "<leader>h", mode = "n" })
 
 -- Registering numeric mappings for selecting Harpoon files
 for i = 1, 9 do
+	local desc = "Harpoon to File " .. i
+	local action = function() harpoon:list():select(i) end
+
 	wk.register({
-		[tostring(i)] = { function() harpoon.ui.nav_file(i) end, "Harpoon to File " .. i }
+		[tostring(i)] = { action, desc }
 	}, { prefix = "<leader>h", mode = "n" })
 end
 
