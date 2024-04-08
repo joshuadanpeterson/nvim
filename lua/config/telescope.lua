@@ -227,7 +227,6 @@ end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
-
 -- [[ configure harpoon telescope ]]
 local harpoon = require('harpoon')
 harpoon:setup({})
