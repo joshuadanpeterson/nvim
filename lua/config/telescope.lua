@@ -264,7 +264,7 @@ require("telescope").load_extension("git_signs")
 require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("helpgrep")
-require('telescope').load_extension('gpt')
+require("telescope").load_extension("gpt")
 -- require("telescope").load_extension("tldr")
 
 -- set up help page fuzzy search with a command
