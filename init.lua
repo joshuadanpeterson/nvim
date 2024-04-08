@@ -207,7 +207,3 @@ assert(codestats_api_key ~= nil, "CODESTATS_API_KEY is not set")
 require('codestats-nvim').setup({
   token = codestats_api_key
 })
-
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
