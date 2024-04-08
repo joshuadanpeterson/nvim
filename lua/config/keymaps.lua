@@ -100,7 +100,7 @@ local telescopeMappings = {
 -- Rnvimr and Ranger Keymaps
 local rnvimrMappings = {
 	name = "Rnvimr and Ranger Keymaps",
-	['t'] = { ":RnvimrToggle<CR>", "Toggle Rnvimr" },
+	['t'] = { ":RnvimrToggleeCR>", "Toggle Rnvimr" },
 	['r'] = { ":RnvimrResize<CR>", "Resize Rnvimr" },
 	['n'] = { function() require("ranger-nvim").open(true) end, "Open Ranger" },
 }
@@ -114,7 +114,7 @@ local legendaryMappings = {
 	['f'] = { ":Legendary functions<CR>", "Search Legendary Functions" },
 	['a'] = { ":Legendary autocmds<CR>", "Search Legendary Autocmds" },
 	['r'] = { ":LegendaryRepeat<CR>", "Repeat Last Item Executed" },
-	['!'] = { ":LegendaryRepeat!<CR>", "Repeat Last Item Executed, no filters" },
+	['!'] = { ":LegendaryRepeat!eCR>", "Repeat Last Item Executed, no filters" },
 	['s'] = { ":LegendaryScratch<CR>", "Launch Scratch Pad" },
 }
 
@@ -262,7 +262,7 @@ wk.register(telescopeMappings, { prefix = "<leader>t", mode = "n" })
 wk.register(rnvimrMappings, { prefix = "<leader>r", mode = "n" })
 
 -- Registering legendary.nvim mappings
-wk.register(legendaryMappings, { prefix = "<leader>l", mode = "n" })
+wk.register(legendaryMappings, { prefix = "<leader>M", mode = "n" })
 
 -- Registering legendary.nvim mappings
 wk.register(liveServerMappings, { prefix = "<leader>S", mode = "n" })
