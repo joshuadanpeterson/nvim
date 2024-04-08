@@ -61,6 +61,12 @@ return {
 		},
 	},
 
+	-- tldr Telescope extension
+	{
+		'mrjones2014/tldr.nvim',
+		dependencies = { 'nvim-telescope/telescope.nvim' },
+	},
+
 	-- Fuzzy Finder (files, lsp, etc) with dependencies including plenary.nvim and telescope-ui-select.nvim
 	{
 		'nvim-telescope/telescope.nvim',
