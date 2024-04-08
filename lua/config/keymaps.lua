@@ -143,9 +143,6 @@ local harpoonMappings = {
 	["r"] = { function() harpoon:list():remove() end, "Remove File from Harpoon Menu" },
 	["p"] = { function() harpoon.nav.prev() end, "Previous Harpoon File" },
 	["n"] = { function() harpoon.nav.next() end, "Next Harpoon File" },
-	["g"] = { "<cmd>Telescope grapple tags<CR>", "Search Grapple Tags" },
-	["t"] = { function() require("grapple").tag() end, "Tag Current Buffer" },
-	["u"] = { function() require("grapple").untag() end, "Untag Current Buffer" },
 }
 
 -- Obsidian Keymaps
