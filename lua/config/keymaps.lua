@@ -96,6 +96,7 @@ local telescopeMappings = {
 	['B'] = { "<cmd>Telescope buffers<cr>", "List Buffers" },
 	['z'] = { "<cmd>Telescope zoxide list<CR>", "Zoxide List" },
 	['l'] = { "<cmd>Telescope lazy<CR>", "Search Lazy for Plugins" },
+	['T'] = { "<cmd>Tldr<CR>", "Search tldr pages" },
 }
 
 -- Rnvimr and Ranger Keymaps
