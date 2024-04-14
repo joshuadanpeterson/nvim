@@ -5,9 +5,10 @@
 local icons = require("nvim-nonicons")
 
 -- import telescope modules
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
-local sorters = require('telescope.sorters')
+local actions = require('telescope.actions')            -- For FuzzyMan, FuzzyNoice, FuzzyHelp
+local action_state = require('telescope.actions.state') -- For FuzzyMan, FuzzyNoice, FuzzyHelp
+local sorters = require('telescope.sorters')            -- For FuzzyMan, FuzzyNoice, FuzzyHelp
+local conf = require("telescope.config").values         -- For Telescope Harpoon
 
 -- Useful for easily creating commands
 local z_utils = require("telescope._extensions.zoxide.utils")
@@ -224,7 +225,6 @@ require('telescope').setup({
                                 height = 0.5,
                         },
                 },
-
         }
 })
 
@@ -268,12 +268,11 @@ end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
--- [[ configure harpoon telescope ]]
+-- configure Telescope Harpoon
 local harpoon = require('harpoon')
 harpoon:setup({})
 
 -- basic telescope-ui configuration
-local conf = require("telescope.config").values
 local function toggle_telescope(harpoon_files)
         local file_paths = {}
         for _, item in ipairs(harpoon_files.items) do
@@ -305,7 +304,7 @@ require("telescope").load_extension("zoxide")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("helpgrep")
 require("telescope").load_extension("gpt")
--- require("telescope").load_extension("tldr")
+require("telescope").load_extension("lazy")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
