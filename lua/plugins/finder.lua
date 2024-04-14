@@ -79,12 +79,6 @@ return {
 			'Lilja/telescope-swap-files',
 			'tsakirist/telescope-lazy.nvim',
 		},
-		config = function()
-			require('telescope').setup {
-				-- Your existing Telescope configuration
-			}
-		end,
-
 	},
 
 	-- Tmux Telescope Plugin
