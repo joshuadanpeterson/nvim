@@ -76,6 +76,7 @@
   "telescope-gitsigns": { "branch": "main", "commit": "e568da4b8b6da800bd9274f7b509c0da81fc8615" },
   "telescope-gpt": { "branch": "main", "commit": "a7cfb9629314355964679f2b1f366fcd0fa8c50e" },
   "telescope-helpgrep.nvim": { "branch": "main", "commit": "a70290897d29d90a9d91ec9c159e917502fe0b6f" },
+  "telescope-lazy.nvim": { "branch": "main", "commit": "08eb9d05455cabc126e9b850470205d4f3ac7caf" },
   "telescope-project.nvim": { "branch": "master", "commit": "1aaf16580a614601a7f7077d9639aeb457dc5559" },
   "telescope-repo.nvim": { "branch": "master", "commit": "ca8a541eeb9cba5061db864a2927507a79882a88" },
   "telescope-swap-files": { "branch": "master", "commit": "398ff72c026f0f211d8b0aa24b959993ed273524" },

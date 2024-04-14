@@ -77,6 +77,7 @@ return {
 			'nvim-telescope/telescope-ui-select.nvim',
 			'andrew-george/telescope-themes',
 			'Lilja/telescope-swap-files',
+			'tsakirist/telescope-lazy.nvim',
 		},
 		config = function()
 			require('telescope').setup {
