@@ -256,7 +256,10 @@ wk.setup {}
 
 -- Registering mappings
 wk.register(generalMappings, { prefix = "<leader>b", mode = "n" })
+
+-- Registering LSP mappings
 wk.register(lspMappings, { prefix = "<leader>L", mode = "n" })
+
 -- Registering Telescope mappings under the 'n' (normal) mode leader key
 wk.register(telescopeMappings, { prefix = "<leader>t", mode = "n" })
 
