@@ -62,7 +62,7 @@ local lspMappings = {
 -- Telescope Keymaps
 local telescopeMappings = {
 	name = "Telescope Keymaps",
-	['S'] = {
+	['f'] = {
 		function()
 			require('telescope.builtin').find_files({
 				find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' }
@@ -89,7 +89,7 @@ local telescopeMappings = {
 	['t'] = { "<cmd>Telescope themes<CR>", "Search Themes" },
 	['e'] = { "<cmd>Telescope emoji<CR>", "Search Emojis" },
 	['?'] = { require('telescope.builtin').oldfiles, "[?] Find recently opened files" },
-	['F'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
+	['S'] = { "<cmd>Telescope uniswapfiles telescope_swap_files<CR>", "Search Swap Files" },
 	['n'] = { ":FuzzyNoice<CR>", "Search Noice Messages" },
 	['N'] = { "<cmd>Telescope notify<CR>", "Search Notify Messages" },
 	['o'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
@@ -97,6 +97,20 @@ local telescopeMappings = {
 	['z'] = { "<cmd>Telescope zoxide list<CR>", "Zoxide List" },
 	['l'] = { "<cmd>Telescope lazy<CR>", "Search Lazy for Plugins" },
 	['T'] = { "<cmd>Tldr<CR>", "Search tldr pages" },
+	['j'] = {
+		function()
+			if vim.bo.filetype == 'json' then
+				-- Add a debug print before calling Telescope
+				print("Calling Telescope jsonfly with filetype: " .. vim.bo.filetype)
+				vim.cmd("Telescope jsonfly")
+			else
+				print("This command is only available for JSON files. Current filetype: " ..
+					vim.bo.filetype)
+			end
+		end,
+		"Search JSON with jsonfly"
+	}
+
 }
 
 -- Rnvimr and Ranger Keymaps
