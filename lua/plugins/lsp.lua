@@ -16,6 +16,7 @@ return {
                                         -- LSP servers
                                         "lua_ls",        -- Lua
                                         "tsserver",      -- TypeScript/JavaScript
+                                        "eslint-lsp",    -- JavaScript
                                         "pyright",       -- Python
                                         "html",          -- HTML
                                         "cssls",         -- CSS
@@ -23,7 +24,7 @@ return {
                                         "rust_analyzer", -- Rust
                                         "gopls",         -- Go
                                         "phpactor",      -- PHP
-                                        "ruby_ls",       -- Ruby
+                                        "solargraph",    -- Ruby
                                         "jsonls",        -- JSON
                                         "yamlls",        -- YAML
                                         "sqls",          -- SQL
@@ -33,7 +34,7 @@ return {
 
                                         -- Linters
                                         "luacheck",                 -- Lua
-                                        "eslint",                   -- TypeScript/JavaScript
+                                        "eslint_d",                 -- TypeScript/JavaScript
                                         "flake8", "pylint", "mypy", -- Python
                                         "htmlhint",                 -- HTML
                                         "stylelint",                -- CSS
@@ -107,7 +108,20 @@ return {
                         }
 
                         -- Setup for TypeScript and JavaScript via tsserver
-                        require('lspconfig').tsserver.setup {}
+                        require('lspconfig').tsserver.setup {
+                                on_attach = function(client, bufnr)
+                                        -- Disable tsserver formatting if you prefer formatting via prettier or another tool
+                                        client.server_capabilities.document_formatting = false
+
+                                        -- Example keybindings for LSP functions
+                                        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+                                        local opts = { noremap = true, silent = true }
+                                        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+                                        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+                                        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+                                        -- Add more keybindings as needed
+                                end,
+                        }
 
                         -- Python via pyright
                         require('lspconfig').pyright.setup {}
