@@ -78,6 +78,7 @@ return {
 			'andrew-george/telescope-themes',
 			'Lilja/telescope-swap-files',
 			'tsakirist/telescope-lazy.nvim',
+			'Myzel394/jsonfly.nvim',
 		},
 	},
 

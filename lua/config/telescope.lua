@@ -305,6 +305,7 @@ require("telescope").load_extension("repo")
 require("telescope").load_extension("helpgrep")
 require("telescope").load_extension("gpt")
 require("telescope").load_extension("lazy")
+require("telescope").load_extension("jsonfly")
 
 -- set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
