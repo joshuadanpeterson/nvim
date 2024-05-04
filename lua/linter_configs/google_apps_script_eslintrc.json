@@ -1,0 +1,14 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"globals": {
+		"SpreadsheetApp": "readonly",
+		"DocumentApp": "readonly",
+		"Logger": "readonly"
+	},
+	"rules": {
+		"no-undef": "warn"
+	}
+}

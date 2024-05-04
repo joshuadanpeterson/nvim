@@ -249,7 +249,23 @@ if vim.g.started_by_firenvim then
     })
 end
 
--- firenvim settings
+-- Firenvim in Google Apps Script
+-- Set linter for Apps Script
+if vim.g.started_by_firenvim then
+    vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*script.google.com_*.txt", -- This pattern will match the buffer name
+        callback = function()
+            vim.bo.filetype = "javascript"
+            vim.cmd("syntax enable")         -- Ensure syntax is enabled for this buffer
+            vim.cmd("set syntax=javascript") -- Force JavaScript syntax rules
+            if vim.bo.filetype == 'javascript' then
+                require('lint').try_lint()   -- Trigger linting
+            end
+        end,
+    })
+end
+
+-- Firenvim settings
 vim.g.firenvim_config = {
     globalSettings = { alt = "all" },
     localSettings = {
@@ -259,7 +275,14 @@ vim.g.firenvim_config = {
             priority = 0,
             selector = "textarea",
             takeover = "always",
-            messages = "neovim",
+        },
+        -- Specific settings for Google Apps Script
+        ['https://script.google.com/.*'] = {
+            cmdline  = "neovim",
+            content  = "text", -- Ensure it's text to handle as plain text
+            priority = 1,      -- Higher priority to override the default settings
+            selector = "textarea",
+            takeover = "always",
         }
     }
 }
