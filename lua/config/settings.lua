@@ -238,10 +238,13 @@ augroup TransparentFloatingWindows
 augroup END
 ]])
 
+-- Firenvim autocmd to set filetype based on URL
+-- set firenvim window height to kill 'custom_entries_view' error on GitHub.com
 if vim.g.started_by_firenvim then
     vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "github.com/*", -- Match GitHub URLs
         callback = function()
-            vim.o.lines = 12
+            vim.o.lines = 15
         end,
     })
 end
