@@ -238,54 +238,111 @@ augroup TransparentFloatingWindows
 augroup END
 ]])
 
--- Firenvim autocmd to set filetype based on URL
--- set firenvim window height to kill 'custom_entries_view' error on GitHub.com
+-- Firenvim config
+-- Check if Neovim is started by Firenvim
 if vim.g.started_by_firenvim then
+    -- Specific settings for GitHub
     vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "github.com/*", -- Match GitHub URLs
+        pattern = "github.com/*",
         callback = function()
-            vim.o.lines = 15
+            vim.o.lines = 15 -- Set window height to prevent 'custom_entries_view' error
         end,
     })
-end
 
--- Firenvim in Google Apps Script
--- Set linter for Apps Script
-if vim.g.started_by_firenvim then
+    -- Specific settings for Google Apps Script
     vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "*script.google.com_*.txt", -- This pattern will match the buffer name
+        pattern = "*script.google.com_*.txt",
         callback = function()
             vim.bo.filetype = "javascript"
-            vim.cmd("syntax enable")         -- Ensure syntax is enabled for this buffer
-            vim.cmd("set syntax=javascript") -- Force JavaScript syntax rules
+            vim.cmd("syntax enable")
+            vim.cmd("set syntax=javascript")
             if vim.bo.filetype == 'javascript' then
-                require('lint').try_lint()   -- Trigger linting
+                require('lint').try_lint()
             end
         end,
     })
-end
 
--- Firenvim settings
-vim.g.firenvim_config = {
-    globalSettings = { alt = "all" },
-    localSettings = {
-        [".*"] = {
-            cmdline  = "neovim",
-            content  = "text",
-            priority = 0,
-            selector = "textarea",
-            takeover = "always",
-        },
-        -- Specific settings for Google Apps Script
-        ['https://script.google.com/.*'] = {
-            cmdline  = "neovim",
-            content  = "text", -- Ensure it's text to handle as plain text
-            priority = 1,      -- Higher priority to override the default settings
-            selector = "textarea",
-            takeover = "always",
+    -- LeetCode
+    -- Combine all LeetCode specific settings into one coherent block
+    vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*leetcode.com_*.txt", -- This pattern targets files from LeetCode
+        callback = function()
+            local bufname = vim.fn.bufname('%')
+
+            -- Debug: Print current buffer name
+            print("Current buffer name: " .. bufname)
+
+            -- Apply settings if the buffer is a Python file from LeetCode
+            if bufname:match('leetcode.com_.*%.txt') then
+                print("LeetCode settings applied")
+
+                -- Set the filetype and syntax for Python
+                vim.bo.filetype = "python"
+                vim.cmd("syntax enable")
+                vim.cmd("set syntax=python")
+
+                -- Ensure we're only using Pylint for Python files
+                if vim.bo.filetype == 'python' then
+                    -- Set the Pylint configuration specific to LeetCode
+                    vim.fn.setenv('PYTHON_LINT_CONFIG', '~/.config/nvim/lua/linter_configs/.pylintrc_leetcode')
+
+                    -- Use only pylint for linting on LeetCode
+                    vim.b.ale_linters = { 'pylint' }
+
+                    -- Trigger linting with nvim-lint if required
+                    require('lint').try_lint()
+                end
+            else
+                -- Reset the environment variable when not editing a LeetCode Python file
+                vim.fn.setenv('PYTHON_LINT_CONFIG', nil)
+            end
+        end,
+    })
+
+    -- Set pylint as linter for LeetCode
+    -- Function to set ALE linter options based on the file pattern
+    local function set_leetcode_pylint_options()
+        local bufname = vim.fn.bufname('%')
+
+        -- Match the filename pattern for LeetCode
+        if string.match(bufname, 'leetcode.com_.*%.txt') then
+            -- Set specific pylint options for LeetCode
+            vim.b.ale_linters = { 'pylint' }
+            vim.b.ale_python_pylint_options = '--rcfile=~/.config/nvim/lua/linter_configs/.pylintrc_leetcode'
+        else
+            -- Set default pylint options
+            vim.b.ale_linters = { 'pylint' }
+            vim.b.ale_python_pylint_options = '--rcfile=/path/to/your/.pylintrc_leetcode'
+        end
+    end
+
+    -- Auto-command to apply the linter settings based on the file name
+    vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*.py",
+        callback = set_leetcode_pylint_options,
+    })
+
+    -- Global and specific settings for Firenvim
+    vim.g.firenvim_config = {
+        globalSettings = { alt = "all" },
+        localSettings = {
+            [".*"] = {
+                cmdline = "neovim",
+                content = "text",
+                priority = 0,
+                selector = "textarea",
+                takeover = "always",
+            },
+            ['https://script.google.com/.*'] = {
+                cmdline = "neovim",
+                content = "text", -- Ensure it's text to handle as plain text
+                priority = 1,     -- Higher priority to override the default settings
+                selector = "textarea",
+                takeover = "always",
+            }
         }
     }
-}
+end
 
 -- Add LSP debugging
 vim.lsp.set_log_level("debug")

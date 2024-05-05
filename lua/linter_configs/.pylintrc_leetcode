@@ -1,0 +1,26 @@
+# This is a global configuration file for pylint, tailored for LeetCode challenges
+[MASTER]
+# Allow short variable names often used in algorithmic challenges
+good-names=i,j,k,ex,Run,_
+
+# Increase the allowed similarity lines for LeetCode solutions that may have repetitive patterns
+min-similarity-lines=10
+
+# Extend the maximum line length to accommodate longer single-line expressions
+max-line-length=120
+
+# Exclude virtual environment directory and tests from linting
+ignore=venv,tests
+
+# The following setting is disabled, but you can enable it if needed
+# disable=invalid-name
+
+# Specify directories to add to the Python path
+# init-hook='import sys; sys.path.append("./path/to/directory")'
+[MESSAGES CONTROL]
+# Disable missing docstring warnings and invalid naming types, common in short LeetCode solutions
+disable=invalid-name, C0111, too-few-public-methods, missing-docstring
+
+
+[BASIC]
+module-rgx=^[a-z0-9_]+\.[a-z0-9_]+_.*$

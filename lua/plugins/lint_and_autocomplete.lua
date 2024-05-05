@@ -95,10 +95,10 @@ return {
   },
 
   -- ddc.vim - The next generation auto-completion framework for Neovim
-  {
-    "Shougo/ddc.vim",
-    event = "InsertEnter",
-  },
+  -- {
+  --   "Shougo/ddc.vim",
+  --   event = "InsertEnter",
+  -- },
 
   -- cmp-cmdline for command line completion
   {
