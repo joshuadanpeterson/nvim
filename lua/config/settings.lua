@@ -13,6 +13,7 @@ vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
+vim.opt.guifont = "MesloLGS NF:h18"
 
 -- Set highlight on search
 vim.o.hlsearch = false
