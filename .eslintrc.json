@@ -1,0 +1,23 @@
+{
+    "plugins": [
+        "googleappsscript"
+    ],
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "googleappsscript/googleappsscript": true
+    },
+    "globals": {
+        "SpreadsheetApp": "readonly",
+        "DocumentApp": "readonly",
+        "Logger": "readonly"
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-undef": "warn"
+    }
+}

@@ -1,7 +1,11 @@
 {
+	"plugins": [
+		"googleappsscript"
+	],
 	"env": {
 		"browser": true,
-		"es2021": true
+		"es2021": true,
+		"googleappsscript/googleappsscript": true
 	},
 	"globals": {
 		"SpreadsheetApp": "readonly",
