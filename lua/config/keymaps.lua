@@ -36,6 +36,19 @@ local generalMappings = {
 	['C'] = { ":SearchChangelogFiles<CR>", "Search Changelog Files" },
 }
 
+-- Vim Dadbod (SQL) Keymaps
+local vimDadbodMappings = {
+	name = "Vim Dadbod (SQL) Keymaps",
+	['b'] = { ":DBUI<CR>", "DBUI" },
+	['t'] = { ":DBUIToggle<CR>", "DBUIToggle" },
+	['f'] = { ":DBUIFindBuffer<CR>", "DBUIFindBuffer" },
+	['a'] = { ":DBUIAddConnection<CR>", "DBUIAddConnection" },
+	['l'] = { ":DBLastQueryInfo<CR>", "DBLastQueryInfo" },
+	['c'] = { ":DBUIClose<CR>", "DBUIClose" },
+	['C'] = { ":DBCompletionClearCache<CR>", "DBCompletionClearCache" },
+	['h'] = { ":DBUIHideNotifications<CR>", "Hide Notifications " },
+}
+
 -- LSP Keymaps
 local lspMappings = {
 	name = "LSP Keymaps",
@@ -270,6 +283,9 @@ wk.setup {}
 
 -- Registering mappings
 wk.register(generalMappings, { prefix = "<leader>b", mode = "n" })
+
+-- Regstering DBUI mappings
+wk.register(vimDadbodMappings, { prefix = "<leader>D", mode = "n" })
 
 -- Registering LSP mappings
 wk.register(lspMappings, { prefix = "<leader>L", mode = "n" })
