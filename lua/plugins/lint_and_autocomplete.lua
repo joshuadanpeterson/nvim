@@ -40,6 +40,8 @@ return {
   -- Autocompletion plugin for Neovim that uses a modern architecture
   {
     "hrsh7th/nvim-cmp",
+    lazy = false,
+    priority = 100,
     dependencies = {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
@@ -64,7 +66,10 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
