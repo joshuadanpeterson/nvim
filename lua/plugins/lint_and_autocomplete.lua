@@ -78,6 +78,7 @@ return {
           { name = 'buffer' },
           { name = "emoji" },
           { name = 'vim-dadbod-completion' },
+          { name = "path" },
         }),
       })
       cmp.setup.filetype({ "sql" }, {
