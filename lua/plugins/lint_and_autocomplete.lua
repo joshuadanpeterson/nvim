@@ -43,6 +43,7 @@ return {
     lazy = false,
     priority = 100,
     dependencies = {
+      "onsails/lspkind.nvim",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
