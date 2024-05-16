@@ -13,7 +13,7 @@ vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
-vim.opt.guifont = "MesloLGS NF:h18"
+vim.opt.guifont = "FiraCode:h18"
 -- Ensure sqlfluff is in your PATH
 vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
 
