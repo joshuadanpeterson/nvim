@@ -77,8 +77,16 @@ return {
           { name = "luasnip" },
           { name = 'buffer' },
           { name = "emoji" },
+          { name = 'vim-dadbod-completion' },
         }),
       })
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      }
+      )
     end
   },
 
