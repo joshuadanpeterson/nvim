@@ -52,24 +52,26 @@ local vimDadbodMappings = {
 -- LSP Keymaps
 local lspMappings = {
 	name = "LSP Keymaps",
-	['r'] = { vim.lsp.buf.rename, "Rename" },
-	['c'] = { vim.lsp.buf.code_action, "Code Action" },
-	['d'] = { require('telescope.builtin').lsp_definitions, "Goto Definition" },
+	['r'] = { ":Lspsaga rename<CR>", "Rename" },
+	['c'] = { ":Lspsaga code_action", "Code Action" },
+	['d'] = { ":Lspsaga peek_definition<CR>", "Peek Definition" },
 	['R'] = { require('telescope.builtin').lsp_references, "Goto References" },
-	['i'] = { require('telescope.builtin').lsp_implementations, "Goto Implementations" },
-	['D'] = { require('telescope.builtin').lsp_type_definitions, "Type Definition" },
+	['i'] = { ":Lspsaga finder<CR>", "Show References and Implementations" },
+	['t'] = { ":Lspsaga peek_type_definition<CR>", "Peek Type Definition" },
 	['s'] = { require('telescope.builtin').lsp_document_symbols, "Document Symbols" },
 	['w'] = { require('telescope.builtin').lsp_workspace_symbols, "Workspace Symbols" },
-	['H'] = { vim.lsp.buf.hover, "Hover Documentation" },
+	['H'] = { ":Lspsaga hover_doc<CR>", "Hover Documentation" },
 	['S'] = { vim.lsp.buf.signature_help, "Signature Help" },
 	['g'] = { vim.lsp.buf.declaration, "Goto Declaration" },
 	['a'] = { vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
 	['x'] = { vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
 	['l'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
-	['Q'] = { vim.diagnostic.setloclist, "Open Diagnostics List" },
-	[']'] = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
-	['['] = { vim.diagnostic.goto_next, "Next Diagnostic" },
+	['D'] = { ":Lspsaga show_buf_diagnostics", "Show Buffer Diagnostics" },
+	['W'] = { ":Lspsaga show_workspace_diagnostics", "Show Workspace Diagnostics" },
+	[']'] = { ":Lspsaga diagnostic_jump_prev<CR>", "Previous Diagnostic" },
+	['['] = { ":Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
 	['f'] = { function() vim.lsp.buf.format { async = true } end, "Format Document" },
+	['o'] = { ":Lspsaga outline<CR>", "Outline Doc" },
 }
 
 -- Telescope Keymaps
@@ -256,7 +258,7 @@ local chatgptMappings = {
 -- CLI App Keymaps
 local cliMappings = {
 	name = "CLI App Mappings",
-	['t'] = { "<cmd>FloatermNew<CR>", "Launch Terminal" },       -- Launch Terminal
+	['t'] = { ":Lspsaga term_toggle<CR>", "Launch Terminal" },   -- Launch Terminal
 	['d'] = { "<cmd>FloatermNew lazydocker<CR>", "Launch Lazydocker" }, -- Launch Lazydocker: docker
 	['p'] = { "<cmd>FloatermNew python<CR>", "Launch Python3 REPL" }, -- Launch Python3 REPL: python
 	['n'] = { "<cmd>FloatermNew node<CR>", "Launch Node REPL" }, -- Launch Node REPL: javascript
