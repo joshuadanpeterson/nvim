@@ -209,6 +209,20 @@ return {
                 }
         },
 
+        -- For using glow for LSP hover
+        {
+                'JASONews/glow-hover',
+                config = function()
+                        require 'glow-hover'.setup {
+                                -- The followings are the default values
+                                max_width = 50,
+                                padding = 10,
+                                border = 'shadow',
+                                glow_path = 'glow'
+                        }
+                end,
+        },
+
         -- Ensure you have the necessary plugins for LSP features like autocompletion, etc.
         -- For example, nvim-cmp and its sources, LuaSnip for snippets, etc.
 }
