@@ -275,16 +275,6 @@ return {
                 end,
         },
 
-        -- live-server for HTML, CSS & JavaScript
-        {
-                'barrett-ruth/live-server.nvim',
-                build = 'pnpm add -g live-server',
-                cmd = { 'LiveServerStart', 'LiveServerStop' },
-                config = function()
-                        require('live-server').setup()
-                end,
-        },
-
         -- vim-floaterm: open terminal window inside of Neovim
         {
                 'voldikss/vim-floaterm',

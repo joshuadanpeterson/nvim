@@ -147,13 +147,6 @@ local legendaryMappings = {
 	['s'] = { ":LegendaryScratch<CR>", "Launch Scratch Pad" },
 }
 
--- live-server.nvim Keymaps
-local liveServerMappings = {
-	name = "LiveServer KeyMaps",
-	['s'] = { ":LiveServerStart<CR>", "Start LiveServer" },
-	['t'] = { ":LiveServerStop<CR>", "Stop LiveServer" },
-}
-
 -- Tmux Telescope Plugin Keymaps
 local tmuxTelescopeMappings = {
 	name = "tmux Telescope Keymaps",
