@@ -21,6 +21,9 @@ vim.cmd [[
   autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]]
 
+-- Set the PATH environment variable explicitly for Neovim
+vim.env.PATH = vim.env.PATH .. ':/usr/local/Cellar/node/22.2.0/bin'
+
 -- Optional: Configure vim-dadbod
 vim.g.db_ui_auto_execute_table_helpers = 1
 
