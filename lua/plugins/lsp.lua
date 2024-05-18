@@ -189,6 +189,26 @@ return {
                 end
         },
 
+        -- nvim-emmet | for integration with emmet-language-server
+        {
+                "olrtg/nvim-emmet",
+                config = function()
+                        vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+                end,
+        },
+
+        -- lspsaga.nvim for beautiful UIs for various LSP-related features
+        {
+                'nvimdev/lspsaga.nvim',
+                config = function()
+                        require('lspsaga').setup({})
+                end,
+                dependencies = {
+                        'nvim-treesitter/nvim-treesitter', -- optional
+                        'nvim-tree/nvim-web-devicons',     -- optional
+                }
+        },
+
         -- Ensure you have the necessary plugins for LSP features like autocompletion, etc.
         -- For example, nvim-cmp and its sources, LuaSnip for snippets, etc.
 }
