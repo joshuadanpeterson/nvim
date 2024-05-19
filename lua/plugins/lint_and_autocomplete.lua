@@ -44,14 +44,15 @@ return {
     priority = 100,
     dependencies = {
       "onsails/lspkind.nvim",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
-      "rafamadriz/friendly-snippets",
       "roobert/tailwindcss-colorizer-cmp.nvim",
+      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
+      -- VSCode-like snippets
+      require("luasnip.loaders.from_vscode").lazy_load()
       cmp.setup({
         snippet = {
           expand = function(args)
