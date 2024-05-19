@@ -3,18 +3,18 @@
 
 return {
   -- LuaSnip: A snippet engine for Neovim written in Lua
-  { "L3MON4D3/LuaSnip" },
-
-  -- luasnip completion source for nvim-cmp
   {
-    "saadparwaiz1/cmp_luasnip",
-    after = 'nvim-cmp', -- Corrected from 'afer' to 'after'
-  },
-
-  -- A collection of snippets for various programming languages
-  {
-    "rafamadriz/friendly-snippets",
-    event = "InsertEnter",
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      -- luasnip completion source for nvim-cmp
+      "saadparwaiz1/cmp_luasnip",
+      -- A collection of snippets for various programming languages
+      "rafamadriz/friendly-snippets",
+    },
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
   },
 
   -- An asynchronous linting framework for Neovim
