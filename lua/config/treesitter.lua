@@ -1,6 +1,8 @@
 -- Treesitter configuration
 -- config/treesitter.lua
 
+-- Set this to true to skip the deprecated module loading for context_commentstring
+vim.g.skip_ts_context_commentstring_module = true
 require('plugins.treesitter')
 
 -- [[ Configure Treesitter ]]
