@@ -1,9 +1,11 @@
 -- linter configuration
 -- config/linter.lua
 
+Lint = require('lint');
+
 -- Function to set custom eslint configuration for Google Apps Script
 local function set_custom_eslint()
-    require('lint').linters.eslint = {
+    Lint.linters.eslint = {
         cmd = 'eslint',
         args = {
             '--stdin',
@@ -17,7 +19,7 @@ local function set_custom_eslint()
 end
 
 -- Configure 'nvim-lint'
-require('lint').linters_by_ft = {
+Lint.linters_by_ft = {
     lua = { 'luacheck' },
     javascript = {
         function()
