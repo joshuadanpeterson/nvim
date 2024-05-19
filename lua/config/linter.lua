@@ -51,9 +51,10 @@ Lint.linters_by_ft = {
 }
 
 -- Automatically run the linter on buffer read and write
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
-    pattern = "*",
-    callback = function()
-        require('lint').try_lint()
-    end,
-})
+vim.cmd [[
+  augroup LintOnSave
+    autocmd!
+    autocmd BufWritePost * lua Lint.try_lint()
+    autocmd BufReadPost * lua Lint.try_lint()
+  augroup END
+]]
