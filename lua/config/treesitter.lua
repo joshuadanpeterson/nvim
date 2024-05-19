@@ -3,6 +3,7 @@
 
 -- Set this to true to skip the deprecated module loading for context_commentstring
 vim.g.skip_ts_context_commentstring_module = true
+
 require('plugins.treesitter')
 
 -- [[ Configure Treesitter ]]
@@ -11,11 +12,11 @@ require('plugins.treesitter')
 vim.defer_fn(function()
     require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = { 'c', 'lua', 'vimdoc', 'vim' },
+        ensure_installed = { "bash", "comment", "csv", "dockerfile", "dart", "go", "graphql", "http", "htmldjango", "json", "jq", "markdown", "php", "regex", "scss", "toml", "xml", "yaml", 'c', 'lua', 'vimdoc', 'vim', "python", "html", "css", "javascript", "jsx", "typescript", "tsx" },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = true,
-        sync_install = false,
+        sync_install = true,
 
         highlight = { enable = true },
         autotag = { enable = true },
