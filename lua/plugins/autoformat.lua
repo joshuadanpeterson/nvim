@@ -79,8 +79,10 @@ return {
     end
   },
 
-  -- For JSX syntax highlighting
+  -- For JSX syntax highlighting and indentation
   {
-    "neoclide/vim-jsx-improve",
+    'maxmellon/vim-jsx-pretty',
+    ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
   },
+
 }
