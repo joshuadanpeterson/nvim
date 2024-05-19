@@ -1,4 +1,4 @@
--- lsp.lua
+-- plugins/lsp.lua
 --[[
         custom.plugins.lsp: Configures the Language Server Protocol (LSP) support in Neovim, enabling features like auto-completion, go-to definition, and inline errors, Treesitter for enhanced syntax highlighting and language features. This includes setting up language servers, customizing LSP-related keybindings, and integrating with completion plugins.
 ]]
