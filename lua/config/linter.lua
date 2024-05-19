@@ -33,6 +33,8 @@ Lint.linters_by_ft = {
         end,
     },
     typescript = { 'eslint_d' }, -- Add similar condition if TypeScript is used in Apps Script
+    javascriptreact = { 'eslint_d' },
+    typescriptreact = { 'eslint_d' },
     python = { 'flake8', 'pylint', 'mypy' },
     html = { 'htmlhint' },
     css = { 'stylelint' },
