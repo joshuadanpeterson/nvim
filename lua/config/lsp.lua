@@ -28,30 +28,29 @@ local function setup_servers()
         'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
     }
 
--- Special configurations for specific LSP servers
-local special_configurations = {
-    lua_ls = {
-        settings = {
-            Lua = {
-                workspace = {
-                    checkThirdParty = false,
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-                telemetry = { enable = false },
-            },
-        },
-        on_init = function(client)
-            client.config.settings = vim.tbl_deep_extend('force', client.config.settings or {}, {
+    local special_configurations = {
+        lua_ls = {
+            settings = {
                 Lua = {
-                    runtime = { version = 'LuaJIT' },
-                    diagnostics = { globals = { 'vim' } },
+                    workspace = {
+                        checkThirdParty = false,
+                        library = vim.api.nvim_get_runtime_file("", true),
+                    },
+                    telemetry = { enable = false },
                 },
-            })
-            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-            return true
-        end,
-    },
-}
+            },
+            on_init = function(client)
+                client.config.settings = vim.tbl_deep_extend('force', client.config.settings or {}, {
+                    Lua = {
+                        runtime = { version = 'LuaJIT' },
+                        diagnostics = { globals = { 'vim' } },
+                    },
+                })
+                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                return true
+            end,
+        },
+    }
 
 -- Function to set up LSP servers
 local function setup_servers()
