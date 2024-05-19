@@ -153,4 +153,10 @@ return {
       color_square_width = 2,
     },
   },
+
+  -- null-ls.nvim
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
 }
