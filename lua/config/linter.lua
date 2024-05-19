@@ -58,3 +58,23 @@ vim.cmd [[
     autocmd BufReadPost * lua Lint.try_lint()
   augroup END
 ]]
+
+-- Debugging key type in Lint.lua (add this part in Lint.lua file in nvim-lint)
+-- local function lookup_linter(ft)
+--     print('Looking up linter for filetype:', ft)
+--     local key = Lint.linters_by_ft[ft]
+--     print('Key type:', type(key))
+--     if type(key) == 'function' then
+--         print('Key is a function:', key)
+--     else
+--         print('Key value:', key)
+--     end
+--     if key == nil then
+--         print('No linter found for filetype:', ft)
+--     end
+--     return key
+-- end
+
+-- -- Example usage
+-- local ft = 'javascript' -- Replace with actual filetype during testing
+-- lookup_linter(ft)
