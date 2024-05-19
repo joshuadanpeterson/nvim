@@ -85,4 +85,10 @@ return {
     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
   },
 
+  -- To help Neovim recognize JS and JSX inside of HTMl files
+  {
+    'jonsmithers/vim-html-template-literals',
+    'pangloss/vim-javascript'
+  },
+
 }
