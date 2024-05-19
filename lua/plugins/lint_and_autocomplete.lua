@@ -6,14 +6,10 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      -- luasnip completion source for nvim-cmp
-      "saadparwaiz1/cmp_luasnip",
-      -- A collection of snippets for various programming languages
-      "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",     -- luasnip completion source for nvim-cmp
+      "rafamadriz/friendly-snippets", -- A collection of snippets for various programming languages
     },
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
+    version = "v2.*",                 -- Follow latest release
     build = "make install_jsregexp"
   },
 
@@ -28,13 +24,17 @@ return {
   -- nvim-cmp source for Neovim's built-in LSP
   {
     "hrsh7th/cmp-nvim-lsp",
-    after = 'nvim-cmp',
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+    }
   },
 
-  -- Asynchronous lint engine for syntax and error checking
+  -- nvim-cmp-buffer-lines for buffer autocomplete
   {
-    "dense-analysis/ale",
-    ft = { "javascript", "python", "rust", "go" },
+    "amarakon/nvim-cmp-buffer-lines",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+    },
   },
 
   -- Autocompletion plugin for Neovim that uses a modern architecture
@@ -45,50 +45,15 @@ return {
     dependencies = {
       "onsails/lspkind.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "roobert/tailwindcss-colorizer-cmp.nvim",
-      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+      "amarakon/nvim-cmp-buffer-lines",
     },
     config = function()
-      local cmp = require("cmp")
-      -- VSCode-like snippets
       require("luasnip.loaders.from_vscode").lazy_load()
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = 'buffer' },
-          { name = "emoji" },
-          { name = 'vim-dadbod-completion' },
-          { name = "path" },
-        }),
-      })
-      cmp.setup.filetype({ "sql" }, {
-        sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-        },
-      }
-      )
     end
   },
 
@@ -110,7 +75,7 @@ return {
     config = function()
       require('cmp').setup({
         sources = {
-          { name = "buffer" },
+          { name = "path" },
         },
       })
     end,
@@ -152,6 +117,15 @@ return {
   -- null-ls.nvim
   {
     "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.diagnostics.eslint,
+        },
+      })
+    end,
   },
 }

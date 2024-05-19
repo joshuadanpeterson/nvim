@@ -6,45 +6,11 @@ local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 local tailwindcss_colorizer_cmp = require("tailwindcss-colorizer-cmp")
 
--- Define icons for different kinds of completions
-local kind_icons = {
-    Text = "",
-    Method = "󰆧",
-    Function = "󰊕",
-    Constructor = "",
-    Field = "󰇽",
-    Variable = "󰂡",
-    Class = "󰠱",
-    Interface = "",
-    Module = "",
-    Property = "󰜢",
-    Unit = "",
-    Value = "󰎠",
-    Enum = "",
-    Keyword = "󰌋",
-    Snippet = "",
-    Color = "󰏘",
-    File = "󰈙",
-    Reference = "",
-    Folder = "󰉋",
-    EnumMember = "",
-    Constant = "󰏿",
-    Struct = "",
-    Event = "",
-    Operator = "󰆕",
-    TypeParameter = "󰅲",
-}
-
--- nvim-cmp setup
 cmp.setup({
     snippet = {
         expand = function(args)
-            -- For luasnip users
             luasnip.lsp_expand(args.body)
         end,
-    },
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
     },
     window = {
         completion = cmp.config.window.bordered(),
@@ -82,52 +48,38 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-    }, {
         { name = 'buffer' },
+        { name = 'path' },
+        { name = 'emoji' },
     }),
     formatting = {
-        fields = { "abbr", "kind", "menu" },
         format = function(entry, vim_item)
-            -- Tailwind CSS colorizer formatter integration
-            vim_item = tailwindcss_colorizer_cmp.formatter(entry, vim_item) or vim_item
+            -- Apply tailwindcss colorizer formatter
+            vim_item = tailwindcss_colorizer_cmp.formatter(entry, vim_item)
 
-            -- lspkind formatter integration
-            local lspkind_formatted = lspkind.cmp_format({
-                mode = "symbol_text",
-                with_text = true,
+
+            -- Apply lspkind formatter
+            return lspkind.cmp_format({
+                mode = 'symbol_text',
                 maxwidth = 50,
-                ellipsis_char = "...",
-                before = function(entry, vim_item)
-                    -- Optional: Customize vim_item here if needed
-                    return vim_item
-                end,
+                ellipsis_char = '...',
             })(entry, vim_item)
-
-            -- Additional customization if needed
-            if not lspkind_formatted.kind then
-                -- Fallback to kind_icons array if lspkind is not available
-                vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind] or '', vim_item.kind)
-            end
-
-            -- Source
-            vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                luasnip = "[LuaSnip]",
-                nvim_lua = "[Lua]",
-                latex_symbols = "[LaTeX]",
-            })[entry.source.name]
-
-            return vim_item
-        end
+        end,
     },
 })
 
-
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*",
+-- Ensure `nvim-cmp` works for embedded JavaScript/JSX in HTML files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "html",
     callback = function()
-        require('lint').try_lint()
+        require('cmp').setup.buffer({
+            sources = {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'buffer' },
+                { name = 'path' },
+                { name = 'emoji' },
+            },
+        })
     end,
 })

@@ -107,7 +107,7 @@ typescript.setup({
 -- Configure other LSP servers
 lspconfig.html.setup({
     cmd = { "/System/Volumes/Data/Users/joshpeterson/.nvm/versions/node/v18.12.1/bin/html-languageserver", "--stdio" },
-    filetypes = { "html", "htmldjango", "handlebars" },
+    filetypes = { 'html', 'htmldjango', 'handlebars', 'typescriptreact', 'javascriptreact' },
     init_options = {
         configurationSection = { "html", "css", "javascript" },
         embeddedLanguages = {
@@ -128,7 +128,6 @@ lspconfig.pyright.setup({
 })
 
 lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
     capabilities = capabiliteez,
     filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript' },
     init_options = {
@@ -138,7 +137,7 @@ lspconfig.emmet_ls.setup({
                 ["bem.enabled"] = true,
             },
         },
-    }
+    },
 })
 
 -- Configure null-ls
