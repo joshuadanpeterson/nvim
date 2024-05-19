@@ -1,4 +1,5 @@
 -- Treesitter configuration
+-- config/treesitter.lua
 
 require('plugins.treesitter')
 
