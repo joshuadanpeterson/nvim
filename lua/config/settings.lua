@@ -16,6 +16,7 @@ vim.opt.conceallevel = 1
 vim.opt.guifont = "FiraCode:h18"
 -- Ensure sqlfluff is in your PATH
 vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
+
 -- Ensure that the source is enabled for SQL filetypes
 vim.cmd [[
   autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
