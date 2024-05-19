@@ -70,4 +70,13 @@ return {
                         }
                 end
         },
+
+        -- For commenting in mixed contexts, such as JSX inside of HTML
+        {
+                'joosepalviste/nvim-ts-context-commentstring',
+                dependencies = { 'nvim-treesitter/nvim-treesitter' },
+                config = function()
+                        require('nvim-treesitter.configs').setup {}
+                end
+        },
 }
