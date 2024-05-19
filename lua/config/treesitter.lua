@@ -87,6 +87,14 @@ vim.defer_fn(function()
                     ['<leader>A'] = '@parameter.inner',
                 },
             },
+            -- Enable context_commentstring
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+            },
         },
     }
 end, 0)
+
+-- Setup ts_context_commentstring
+require('ts_context_commentstring').setup {}
