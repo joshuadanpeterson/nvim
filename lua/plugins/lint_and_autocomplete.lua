@@ -1,4 +1,4 @@
--- lint_and_autocomplete.lua
+-- plugins/lint_and_autocomplete.lua
 -- Sets up linting, autocomplete, and snippets for Neovim using Lua.
 
 return {
