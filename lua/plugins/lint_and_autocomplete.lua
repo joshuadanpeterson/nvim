@@ -91,6 +91,18 @@ return {
     end
   },
 
+  -- nvim-cmp/cmp-buffer
+  {
+    "hrsh7th/cmp-buffer",
+    config = function()
+      require('cmp').setup({
+        sources = {
+          { name = "buffer" },
+        },
+      })
+    end,
+  },
+
   -- Adds VSCode-like pictograms
   {
     "onsails/lspkind-nvim",
