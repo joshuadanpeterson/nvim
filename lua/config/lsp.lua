@@ -3,6 +3,8 @@
 
 local lspconfig = require('lspconfig')
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local typescript = require('typescript')
+local null_ls = require('null-ls')
 
 -- Enhanced capabilities from nvim-cmp for LSP
 local capabilities = cmp_nvim_lsp.default_capabilities()
