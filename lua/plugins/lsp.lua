@@ -227,6 +227,11 @@ return {
         {
                 "jose-elias-alvarez/typescript.nvim"
         },
+
+        -- emmet-ls
+        {
+                "aca/emmet-ls"
+        },
         -- Ensure you have the necessary plugins for LSP features like autocompletion, etc.
         -- For example, nvim-cmp and its sources, LuaSnip for snippets, etc.
 }
