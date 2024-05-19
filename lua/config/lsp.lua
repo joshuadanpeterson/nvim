@@ -140,7 +140,24 @@ lspconfig.emmet_ls.setup({
         },
     }
 })
+
+-- Configure null-ls
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+        null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.formatting.stylua,
     },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap = true, silent = true }
+        buf_set_keymap('n', 'gd', ':Lspsaga peek_definition<CR>', opts)
+        buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+        -- Add more keybindings as needed
+    end,
 })
 
 -- Configure nvim-cmp for auto-completion
