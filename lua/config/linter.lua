@@ -1,4 +1,5 @@
 -- linter configuration
+-- config/linter.lua
 
 -- Function to set custom eslint configuration for Google Apps Script
 local function set_custom_eslint()
