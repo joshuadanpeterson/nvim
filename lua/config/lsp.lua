@@ -52,8 +52,6 @@ local function setup_servers()
         },
     }
 
--- Function to set up LSP servers
-local function setup_servers()
     for _, server in ipairs(servers) do
         local config = special_configurations[server] or {}
         config.capabilities = capabilities
@@ -64,10 +62,52 @@ end
 -- Configure LSP servers
 setup_servers()
 
--- Ensure html LSP is configured
+-- Configure TypeScript server with typescript.nvim
+typescript.setup({
+    disable_commands = false,
+    debug = false,
+    server = {
+        on_attach = function(client, bufnr)
+            local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+            local opts = { noremap = true, silent = true }
+            buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+            buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+            buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+            buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+            buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        end,
+        capabilities = capabilities,
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            },
+        },
+        init_options = {
+            hostInfo = "neovim",
+            preferences = {
+                quotePreference = "single",
+                allowIncompleteCompletions = false,
+            },
+        },
+    },
+})
+
+-- Configure other LSP servers
 lspconfig.html.setup({
     cmd = { "/System/Volumes/Data/Users/joshpeterson/.nvm/versions/node/v18.12.1/bin/html-languageserver", "--stdio" },
-    filetypes = { "html" },
+    filetypes = { "html", "htmldjango", "handlebars" },
     init_options = {
         configurationSection = { "html", "css", "javascript" },
         embeddedLanguages = {
@@ -76,16 +116,14 @@ lspconfig.html.setup({
         },
         provideFormatter = true
     },
-    capabilities = capabilities, -- Add capabilities to support nvim-cmp
+    capabilities = capabilities,
 })
 
--- Configure cssls
 lspconfig.cssls.setup({
     capabilities = capabilities,
 })
 
--- Configure tsserver
-lspconfig.tsserver.setup({
+lspconfig.pyright.setup({
     capabilities = capabilities,
 })
 
