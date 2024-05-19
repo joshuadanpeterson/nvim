@@ -18,15 +18,15 @@ require('mason-lspconfig').setup({
     ensure_installed = {
         'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer',
         'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
-        -- Include additional servers here
     },
 })
 
--- LSP servers setup with specific configurations for certain servers
-local servers = {
-    'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer',
-    'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
-}
+-- Function to set up LSP servers
+local function setup_servers()
+    local servers = {
+        'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer',
+        'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
+    }
 
 -- Special configurations for specific LSP servers
 local special_configurations = {
