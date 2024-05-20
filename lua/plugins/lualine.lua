@@ -4,26 +4,25 @@
 ]]
 
 return {
-    -- lualine configuration
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-        },
-        event = 'bufreadpre',
-        config = function()
-            require('lualine').setup {
-            }
-        end
+  -- lualine configuration
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'kyazdani42/nvim-web-devicons',
     },
+    event = 'bufreadpre',
+    config = function()
+      require('lualine').setup {}
+    end,
+  },
 
-    -- copilot lualine
-    {
-        'AndreM222/copilot-lualine',
-    },
+  -- copilot lualine
+  {
+    'AndreM222/copilot-lualine',
+  },
 
-    -- harpoonline
-    {
-        "abeldekat/harpoonline",
-    },
+  -- harpoonline
+  {
+    'abeldekat/harpoonline',
+  },
 }
