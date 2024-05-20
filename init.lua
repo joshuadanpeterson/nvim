@@ -8,7 +8,8 @@ require('config.settings') -- For basic Neovim settings
 
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+local stat, _, _ = vim.loop.fs_stat(lazypath)
+if not stat then
   vim.fn.system {
     'git',
     'clone',
@@ -22,22 +23,33 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ configure plugins ]]
 require('lazy').setup({
+  -- Your plugin setup goes here
 
-  -- legendary.nvim
-  {
-    'mrjones2014/legendary.nvim',
-    -- since legendary.nvim handles all your keymaps/commands,
-    -- its recommended to load legendary.nvim before other plugins
-    priority = 10000,
-    lazy = false,
-    -- sqlite is only needed if you want to use frecency sorting
-    dependencies = { 'kkharji/sqlite.lua' }
-  },
+	-- legendary.nvim
+	{
+	  'mrjones2014/legendary.nvim',
+	  -- since legendary.nvim handles all your keymaps/commands,
+	  -- its recommended to load legendary.nvim before other plugins
+	  priority = 10000,
+	  lazy = false,
+	  -- sqlite is only needed if you want to use frecency sorting
+	  dependencies = { 'kkharji/sqlite.lua' }
+	},
 
-  -- import custom plugins
-  { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
-  { import = 'plugins' },    -- load plugins
+	-- import custom plugins
+	{ import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
+	{ import = 'plugins' },    -- load plugins
+
+	-- lazy.nvim
+	{
+	  'folke/lazy.nvim',
+	  -- Since lazy.nvim is a lazy-loaded plugin,
+	  -- we set `lazy = true` to defer loading until it's needed.
+	  lazy = true,
+	  -- Add any other configurations specific to lazy.nvim here
+	},
 })
+
 
 -- initialize configurations
 require('config')
