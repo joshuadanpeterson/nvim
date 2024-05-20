@@ -1,0 +1,68 @@
+# selene.toml
+
+[configuration]
+# Specifies the types of issues to report.
+severity = "warning"  # Options: "error", "warning", "information"
+
+# Defines the paths to include/exclude in the analysis.
+include_paths = ["src", "lib"]
+exclude_paths = ["tests", "vendor"]
+
+# Lua version for the project.
+lua_version = "5.1"  # Options: "5.1", "5.2", "5.3", "5.4", "luajit"
+
+# Configures specific rules and their settings.
+[rules]
+# Disallows trailing whitespace at the end of lines.
+trailing_whitespace = "error"
+
+# Sets a maximum line length to encourage readable code.
+max_line_length = 120
+
+# Allows the use of global variables. Set to false to disallow.
+allow_global_variables = true
+
+# Ensures all variables are local if this is set to false.
+allow_unused_variables = false
+
+# Disallows the use of `goto` statements.
+no_goto = true
+
+# Disallows the use of `continue` statements.
+no_continue = true
+
+# Enforces a consistent style for function calls without parentheses.
+prefer_parentheses = true
+
+# Ensures that table constructors are properly formatted.
+table_constructor_format = "multiline"  # Options: "multiline", "singleline"
+
+# Ensures consistent use of single quotes for strings.
+quote_style = "single"  # Options: "single", "double"
+
+# Enforces consistent use of indentation (spaces or tabs).
+indent_style = "space"  # Options: "space", "tab"
+
+# Number of spaces per indentation level.
+indent_size = 2
+
+# Ensures that `else` statements are on the same line as the closing brace.
+else_on_newline = false
+
+# Ensures that `end` statements are aligned with their corresponding blocks.
+align_end = true
+
+# Disallows mixed spaces and tabs for indentation.
+no_mixed_spaces_and_tabs = true
+
+# Ensures consistent use of line breaks.
+line_break_style = "unix"  # Options: "unix", "windows"
+
+# Controls the enforcement of camelCase naming conventions.
+camel_case = false
+
+# Disallows the use of deprecated APIs.
+no_deprecated_apis = true
+
+# Ensures that the use of `self` is consistent.
+self_consistency = true
