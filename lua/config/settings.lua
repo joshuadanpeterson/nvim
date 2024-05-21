@@ -22,6 +22,10 @@ vim.cmd [[
   autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]]
 
+-- Suppress provider warnings in checkhealth
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+
 -- Optional: Configure vim-dadbod
 vim.g.db_ui_auto_execute_table_helpers = 1
 
