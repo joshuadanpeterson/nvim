@@ -127,14 +127,13 @@ augroup END
 ]]
 
 -- set legendary's floating window transparent
-vim.cmd([[
+vim.cmd [[
 augroup TransparentFloatingWindows
     autocmd!
     autocmd VimEnter * hi NormalFloat guibg=NONE
     autocmd VimEnter * hi FloatBorder guibg=NONE
 augroup END
-]])
-
+]]
 
 -- Add LSP debugging
 vim.lsp.set_log_level("debug") -- settings.lua
