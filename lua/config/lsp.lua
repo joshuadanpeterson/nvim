@@ -1,232 +1,207 @@
--- config/lsp.lua
 -- LSP configurations
 
-local lspconfig = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local typescript = require('typescript')
-local null_ls = require('null-ls')
+local lsp_zero = require 'lsp-zero'
+lsp_zero.extend_lspconfig()
+
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps { buffer = bufnr }
+
+  -- Custom keybindings for diagnostics
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>db', '<cmd>lua require("telescope.builtin").diagnostics({ bufnr = 0 })<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>dh', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "cursor" })<CR>', opts) -- Expand diagnostics on hover
+end)
 
 -- Enhanced capabilities from nvim-cmp for LSP
-local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- For emmet-ls
-local capabiliteez = vim.lsp.protocol.make_client_capabilities()
-capabiliteez.textDocument.completion.completionItem.snippetSupport = true
+local emmet_capabilities = vim.lsp.protocol.make_client_capabilities()
+emmet_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Setup mason to manage LSP installations
 require('mason').setup()
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer',
-        'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
-    },
-})
-
--- Function to set up LSP servers
-local function setup_servers()
-    local servers = {
-        'lua_ls', 'tsserver', 'pyright', 'html', 'cssls', 'bashls', 'rust_analyzer',
-        'gopls', 'phpactor', 'solargraph', 'jsonls', 'yamlls', 'sqls', 'dockerls', 'vimls',
-    }
-
-    local special_configurations = {
-        lua_ls = {
-            settings = {
-                Lua = {
-                    workspace = {
-                        checkThirdParty = false,
-                        library = vim.api.nvim_get_runtime_file("", true),
-                    },
-                    telemetry = { enable = false },
-                },
-            },
-            on_init = function(client)
-                client.config.settings = vim.tbl_deep_extend('force', client.config.settings or {}, {
-                    Lua = {
-                        runtime = { version = 'LuaJIT' },
-                        diagnostics = { globals = { 'vim' } },
-                    },
-                })
-                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-                return true
-            end,
-        },
-    }
-
-    for _, server in ipairs(servers) do
-        local config = special_configurations[server] or {}
-        config.capabilities = capabilities
-        lspconfig[server].setup(config)
-    end
-end
-
--- Configure LSP servers
-setup_servers()
-
--- Configure TypeScript server with typescript.nvim
-typescript.setup({
-    disable_commands = false,
-    debug = false,
-    server = {
+require('mason-lspconfig').setup {
+  ensure_installed = {
+    'lua_ls',
+    'tsserver',
+    'pyright',
+    'html',
+    'cssls',
+    'bashls',
+    'rust_analyzer',
+    'gopls',
+    'phpactor',
+    'emmet_ls',
+    'solargraph',
+    'jsonls',
+    'yamlls',
+    'sqls',
+    'dockerls',
+    'vimls',
+  },
+  handlers = {
+    -- Default handler
+    function(server_name)
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities,
+      }
+    end,
+    -- Custom handler for lua_ls
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+    -- Custom handler for tsserver
+    tsserver = function()
+      require('lspconfig').tsserver.setup {
         on_attach = function(client, bufnr)
-            local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-            local opts = { noremap = true, silent = true }
-            buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-            buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-            buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-            buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-            buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-            buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-            buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-            buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+          local function buf_set_keymap(...)
+            vim.api.nvim_buf_set_keymap(bufnr, ...)
+          end
+          local opts = { noremap = true, silent = true }
+          buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+          buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+          buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+          buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+          buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+          buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+          buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+          buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+          buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         end,
         capabilities = capabilities,
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
         settings = {
-            typescript = {
-                inlayHints = {
-                    includeInlayParameterNameHints = "all",
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = true,
-                    includeInlayPropertyDeclarationTypeHints = true,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayEnumMemberValueHints = true,
-                },
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
             },
+          },
         },
         init_options = {
-            hostInfo = "neovim",
-            preferences = {
-                quotePreference = "single",
-                allowIncompleteCompletions = false,
-            },
+          hostInfo = 'neovim',
+          preferences = {
+            quotePreference = 'single',
+            allowIncompleteCompletions = false,
+          },
         },
-    },
-})
-
--- Configure other LSP servers
-lspconfig.html.setup({
-    cmd = { "/System/Volumes/Data/Users/joshpeterson/.nvm/versions/node/v18.12.1/bin/html-languageserver", "--stdio" },
-    filetypes = { 'html', 'htmldjango', 'handlebars', 'typescriptreact', 'javascriptreact' },
-    init_options = {
-        configurationSection = { "html", "css", "javascript" },
-        embeddedLanguages = {
-            css = true,
-            javascript = true
-        },
-        provideFormatter = true
-    },
-    capabilities = capabilities,
-})
-
-lspconfig.cssls.setup({
-    capabilities = capabilities,
-})
-
-lspconfig.pyright.setup({
-    capabilities = capabilities,
-})
-
-lspconfig.emmet_ls.setup({
-    capabilities = capabiliteez,
-    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript' },
-    init_options = {
-        html = {
-            options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ["bem.enabled"] = true,
-            },
-        },
-    },
-})
-
--- Configure null-ls
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-        null_ls.builtins.diagnostics.flake8,
-        null_ls.builtins.formatting.stylua,
-    },
-    on_attach = function(client, bufnr)
-        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-        local opts = { noremap = true, silent = true }
-        buf_set_keymap('n', 'gd', ':Lspsaga peek_definition<CR>', opts)
-        buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
-        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        -- Add more keybindings as needed
+        disableSuggestions = true,
+      }
     end,
-})
+    -- Custom handler for html
+    html = function()
+      require('lspconfig').html.setup {
+        cmd = { '/System/Volumes/Data/Users/joshpeterson/.nvm/versions/node/v18.12.1/bin/html-languageserver', '--stdio' },
+        filetypes = { 'html', 'htmldjango', 'handlebars', 'javascript', 'typescriptreact', 'javascriptreact' },
+        init_options = {
+          configurationSection = { 'html', 'css', 'javascript' },
+          embeddedLanguages = {
+            css = true,
+            javascript = true,
+          },
+          provideFormatter = true,
+        },
+        capabilities = capabilities,
+      }
+    end,
+    -- Custom handler for emmet_ls
+    emmet_ls = function()
+      require('lspconfig').emmet_ls.setup {
+        capabilities = emmet_capabilities,
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript' },
+        init_options = {
+          html = {
+            options = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+              ['bem.enabled'] = true,
+            },
+          },
+        },
+      }
+    end,
+  },
+}
 
--- Configure nvim-cmp for auto-completion
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-require('luasnip.loaders.from_vscode').lazy_load()
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
+-- Configure TypeScript server with typescript.nvim
+require('typescript').setup {
+  disable_commands = false,
+  debug = false,
+  server = {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+      end
+      local opts = { noremap = true, silent = true }
+      buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+      buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+      buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+      buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+      buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+      buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+      buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    end,
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
     },
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
+    init_options = {
+      hostInfo = 'neovim',
+      preferences = {
+        quotePreference = 'single',
+        allowIncompleteCompletions = false,
+      },
     },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end,
-    }),
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
-    },
-})
+  },
+}
 
--- Cmdline setup for '/' and ':'
-cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    },
-})
+-- Finalize the LSP setup
+lsp_zero.setup()
 
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    }),
-})
+-- Customizing diagnostic display
+vim.diagnostic.config {
+  virtual_text = false, -- Enable inline diagnostics
+  signs = true, -- Show signs in the sign column
+  underline = true, -- Underline diagnostics
+  update_in_insert = false, -- Update diagnostics in insert mode
+  severity_sort = true, -- Sort diagnostics by severity
+  float = {
+    source = 'always', -- Show the source of the diagnostic
+    border = 'rounded', -- Rounded border for floating windows
+  },
+}
 
--- Integrates autopairs into Autocompletion
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+-- Keybindings to show diagnostics in a floating window
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>qd', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
+
+-- Set up nvim-lint to integrate with the LSP diagnostics
+vim.cmd [[
+  augroup NvimLint
+    autocmd!
+    autocmd BufWritePost,BufReadPost,InsertLeave * lua require('lint').try_lint()
+  augroup END
+]]
