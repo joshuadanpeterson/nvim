@@ -1,53 +1,82 @@
 -- linter configuration
 -- config/linter.lua
 
-Lint = require('lint');
+Lint = require 'lint'
 
 -- Function to set custom eslint configuration for Google Apps Script
 local function set_custom_eslint()
-    Lint.linters.eslint = {
-        cmd = 'eslint',
-        args = {
-            '--stdin',
-            '--stdin-filename',
-            '%filepath',
-            '--config',
-            '~/.config/nvim/lua/linter_configs/google_apps_script_eslintrc.json' -- Specify your ESLint config path
-        },
-        stdin = true
-    }
+  Lint.linters.eslint = {
+    cmd = 'eslint',
+    args = {
+      '--stdin',
+      '--stdin-filename',
+      '%filepath',
+      '--config',
+      '~/.config/nvim/lua/linter_configs/google_apps_script_eslintrc.json', -- Specify your ESLint config path
+    },
+    stdin = true,
+  }
 end
+
+Lint.linters.eslint_d = Lint.linters.eslint_d
+  or {
+    cmd = 'eslint_d',
+    stdin = true,
+    args = {
+      '--stdin',
+      '--stdin-filename',
+      '%filepath',
+      '--format',
+      'json',
+    },
+    parser = Lint.linters.eslint_d.parser,
+  }
+
+Lint.linters.eslint_google_apps_script = {
+  name = 'eslint_google_apps_script',
+  cmd = 'eslint',
+  args = {
+    '--stdin',
+    '--stdin-filename',
+    '%filepath',
+    '--config',
+    '~/.config/nvim/lua/linter_configs/google_apps_script_eslintrc.json',
+    '--format',
+    'json',
+  },
+  stdin = true,
+  parser = Lint.linters.eslint.parser,
+}
 
 -- Configure 'nvim-lint'
 Lint.linters_by_ft = {
-    lua = { 'luacheck' },
-    javascript = {
-        function()
-            if vim.fn.bufname():match('script.google.com') then
-                -- Use custom ESLint configuration for Google Apps Script
-                set_custom_eslint()
-            else
-                -- Default to eslint_d for other JavaScript files
-                return 'eslint_d'
-            end
-        end,
-    },
-    typescript = { 'eslint_d' }, -- Add similar condition if TypeScript is used in Apps Script
-    javascriptreact = { 'eslint_d' },
-    typescriptreact = { 'eslint_d' },
-    python = { 'flake8', 'pylint', 'mypy' },
-    html = { 'htmlhint' },
-    css = { 'stylelint' },
-    sh = { 'shellcheck' },
-    rust = { 'clippy' },
-    go = { 'golangci-lint' },
-    php = { 'phpcs', 'phpstan' },
-    ruby = { 'rubocop' },
-    json = { 'jsonlint' },
-    yaml = { 'yamllint' },
-    sql = { 'sqlfluff' },
-    dockerfile = { 'hadolint' },
-    vim = { 'vint' },
+  lua = { 'luacheck' },
+  javascript = {
+    function(bufnr)
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if bufname:match 'script.google.com' then
+        return 'eslint_google_apps_script'
+      else
+        return 'eslint_d'
+      end
+    end,
+  },
+  typescript = { 'eslint_d' }, -- Add similar condition if TypeScript is used in Apps Script
+  javascriptreact = { 'eslint_d' },
+  typescriptreact = { 'eslint_d' },
+  python = { 'flake8', 'pylint', 'mypy' },
+  html = { 'htmlhint' },
+  css = { 'stylelint' },
+  sh = { 'shellcheck' },
+  rust = { 'clippy' },
+  go = { 'golangci-lint' },
+  php = { 'phpcs', 'phpstan' },
+  ruby = { 'rubocop' },
+  json = { 'jsonlint' },
+  yaml = { 'yamllint' },
+  sql = { 'sqlfluff' },
+  dockerfile = { 'hadolint' },
+  vim = { 'vint' },
 }
 
 -- Automatically run the linter on buffer read and write
@@ -59,22 +88,13 @@ vim.cmd [[
   augroup END
 ]]
 
--- Debugging key type in Lint.lua (add this part in Lint.lua file in nvim-lint)
--- local function lookup_linter(ft)
---     print('Looking up linter for filetype:', ft)
---     local key = Lint.linters_by_ft[ft]
---     print('Key type:', type(key))
---     if type(key) == 'function' then
---         print('Key is a function:', key)
---     else
---         print('Key value:', key)
---     end
---     if key == nil then
---         print('No linter found for filetype:', ft)
---     end
---     return key
--- end
-
--- -- Example usage
--- local ft = 'javascript' -- Replace with actual filetype during testing
--- lookup_linter(ft)
+-- Using Lua autocmds
+vim.cmd(
+  [[
+  augroup Linting
+    autocmd!
+    autocmd BufWritePost * lua require('lint').try_lint()
+  augroup END
+]],
+  false
+)
