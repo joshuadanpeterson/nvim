@@ -31,7 +31,7 @@ vim.g.db_ui_auto_execute_table_helpers = 1
 
 -- linter setup
 vim.g.ale_linters = {
-    html = { 'htmlhint' },
+  html = { 'htmlhint' },
 }
 
 -- Set highlight on search
@@ -90,11 +90,11 @@ vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link = 'CmpItemKindKeyword' })
 vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link = 'CmpItemKindKeyword' })
 
 -- After writing the whole buffer to a file
-vim.api.nvim_create_autocmd({ "bufwritepost" }, {
-    pattern = { "*.lua" },
-    callback = function()
-        require('lint').try_lint()
-    end,
+vim.api.nvim_create_autocmd({ 'bufwritepost' }, {
+  pattern = { '*.lua' },
+  callback = function()
+    require('lint').try_lint()
+  end,
 })
 
 -- [[ highlight on yank ]]
