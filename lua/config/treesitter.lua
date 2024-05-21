@@ -98,3 +98,7 @@ end, 0)
 
 -- Setup ts_context_commentstring
 require('ts_context_commentstring').setup {}
+
+-- Get Treesitter to support embeded languages
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.tsx.used_by = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" }
