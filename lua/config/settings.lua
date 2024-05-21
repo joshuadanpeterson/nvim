@@ -136,7 +136,7 @@ augroup END
 ]]
 
 -- Add LSP debugging
-vim.lsp.set_log_level("debug") -- settings.lua
+vim.lsp.set_log_level 'debug' -- settings.lua
 -- Basic Neovim settings
 
 -- Basic settings
