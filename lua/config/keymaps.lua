@@ -389,7 +389,7 @@ wk.register(rnvimrMappings, { prefix = '<leader>r', mode = 'n' })
 wk.register(legendaryMappings, { prefix = '<leader>M', mode = 'n' })
 
 -- Registering legendary.nvim mappings
-wk.register(liveServerMappings, { prefix = '<leader>S', mode = 'n' })
+-- wk.register(liveServerMappings, { prefix = '<leader>S', mode = 'n' })
 
 -- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
 wk.register(tmuxTelescopeMappings, { prefix = '<leader>T', mode = 'n' })
