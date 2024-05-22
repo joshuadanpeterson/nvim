@@ -3,7 +3,7 @@
 --  It sets up lazy.nvim, legendary.nvim, and other plugins for a seamless development experience.
 
 -- Custom configs
-require('config.settings') -- For basic Neovim settings
+require 'config.settings' -- For basic Neovim settings
 -- require("config.vim")      -- For vim config
 
 -- lazy.nvim setup
@@ -22,43 +22,42 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ configure plugins ]]
-require('lazy').setup({
+require('lazy').setup {
   -- Your plugin setup goes here
 
-	-- legendary.nvim
-	{
-	  'mrjones2014/legendary.nvim',
-	  -- since legendary.nvim handles all your keymaps/commands,
-	  -- its recommended to load legendary.nvim before other plugins
-	  priority = 10000,
-	  lazy = false,
-	  -- sqlite is only needed if you want to use frecency sorting
-	  dependencies = { 'kkharji/sqlite.lua' }
-	},
+  -- legendary.nvim
+  {
+    'mrjones2014/legendary.nvim',
+    -- since legendary.nvim handles all your keymaps/commands,
+    -- its recommended to load legendary.nvim before other plugins
+    priority = 10000,
+    lazy = false,
+    -- sqlite is only needed if you want to use frecency sorting
+    dependencies = { 'kkharji/sqlite.lua' },
+  },
 
-	-- import custom plugins
-	{ import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
-	{ import = 'plugins' },    -- load plugins
+  -- import custom plugins
+  { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
+  { import = 'plugins' }, -- load plugins
 
-	-- lazy.nvim
-	{
-	  'folke/lazy.nvim',
-	  -- Since lazy.nvim is a lazy-loaded plugin,
-	  -- we set `lazy = true` to defer loading until it's needed.
-	  lazy = true,
-	  -- Add any other configurations specific to lazy.nvim here
-	},
-})
-
+  -- lazy.nvim
+  {
+    'folke/lazy.nvim',
+    -- Since lazy.nvim is a lazy-loaded plugin,
+    -- we set `lazy = true` to defer loading until it's needed.
+    lazy = true,
+    -- Add any other configurations specific to lazy.nvim here
+  },
+}
 
 -- initialize configurations
-require('config')
+require 'config'
 
 -- Plugin Manager Setup
 
 -- Setup legendary.nvim
 -- Automatically loads keymaps
-require('legendary').setup({
+require('legendary').setup {
   -- Initial keymaps to bind, can also be a function that returns the list
   keymaps = {},
   -- Initial commands to bind, can also be a function that returns the list
@@ -116,21 +115,21 @@ require('legendary').setup({
   -- `require('telescope.sorters').fuzzy_with_index_bias({})` when
   -- triggered via `legendary.nvim`. Example config for `dressing.nvim`:
   --
-  require('dressing').setup({
+  require('dressing').setup {
     select = {
       get_config = function(opts)
         if opts.kind == 'legendary.nvim' then
           return {
             telescope = {
-              sorter = require('telescope.sorters').fuzzy_with_index_bias({})
-            }
+              sorter = require('telescope.sorters').fuzzy_with_index_bias {},
+            },
           }
         else
           return {}
         end
-      end
-    }
-  }),
+      end,
+    },
+  },
   sort = {
     -- put most recently selected item first, this works
     -- both within global and item group lists
@@ -148,7 +147,7 @@ require('legendary').setup({
     -- NOTE: THIS TAKES PRECEDENCE OVER OTHER SORT OPTIONS!
     frecency = {
       -- the directory to store the database in
-      db_root = string.format('%s/legendary/', vim.fn.stdpath('data')),
+      db_root = string.format('%s/legendary/', vim.fn.stdpath 'data'),
       -- the maximum number of timestamps for a single item
       -- to store in the database
       max_timestamps = 10,
@@ -184,7 +183,7 @@ require('legendary').setup({
       -- matching your which-key.nvim groups; if false, all keymaps
       -- are added at toplevel instead of in a group.
       use_groups = true,
-    }
+    },
   },
   scratchpad = {
     -- How to open the scratchpad buffer,
@@ -200,20 +199,20 @@ require('legendary').setup({
     keep_contents = true,
   },
   -- Directory used for caches
-  cache_path = string.format('%s/legendary/', vim.fn.stdpath('cache')),
+  cache_path = string.format('%s/legendary/', vim.fn.stdpath 'cache'),
   -- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
   log_level = 'info',
-})
+}
 
 -- Setup neodev config for nvim-dap-ui
-require("neodev").setup({
+require('neodev').setup {
   library = {
     plugins = {
-      "nvim-dap-ui"
+      'nvim-dap-ui',
     },
-    types = true
+    types = true,
   },
-})
+}
 
 -- multicursors.nvim Status Line module
 require('multicursors').setup {
@@ -221,8 +220,8 @@ require('multicursors').setup {
 }
 
 -- CODESTATS_API_KEY
-local codestats_api_key = os.getenv("CODESTATS_API_KEY")
-assert(codestats_api_key ~= nil, "CODESTATS_API_KEY is not set")
-require('codestats-nvim').setup({
-  token = codestats_api_key
-})
+local codestats_api_key = os.getenv 'CODESTATS_API_KEY'
+assert(codestats_api_key ~= nil, 'CODESTATS_API_KEY is not set')
+require('codestats-nvim').setup {
+  token = codestats_api_key,
+}
