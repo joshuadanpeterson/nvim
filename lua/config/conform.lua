@@ -4,6 +4,16 @@ require('conform').setup {
   formatters_by_ft = {
     lua = { 'stylua' },
     javascript = { 'prettier' }, -- Assuming this covers TypeScript, JSON, YAML, HTML, CSS as well
+    typescript = { 'prettier' },
+    javascriptreact = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    svelte = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
+    graphql = { 'prettier' },
     python = function(bufnr)
       -- Using a function to dynamically select the formatter, but keeping it simple for now
       return { 'black' }
