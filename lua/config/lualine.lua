@@ -9,6 +9,7 @@ local icon = icons.get 'git-branch'
 local nonicons_extention = require 'nvim-nonicons.extentions.lualine'
 local nonicons = nonicons_extention.mode
 
+-- hydra
 local function is_active()
   local ok, hydra = pcall(require, 'hydra.statusline')
   return ok and hydra.is_active()
@@ -22,6 +23,7 @@ local function get_name()
   return ''
 end
 
+-- variables
 local branch = { 'branch', icon = '' }
 local mode = { 'mode', icon = '󰡛' }
 local diagnostics = { 'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ' }, colored = false }
@@ -61,6 +63,7 @@ local copilot = {
   show_loading = true,
 }
 
+-- Harpoon
 local Harpoonline = require 'harpoonline'
 Harpoonline.setup {
   on_update = function()
