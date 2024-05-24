@@ -108,7 +108,7 @@ return {
     'terryma/vim-multiple-cursors',
   },
 
-  -- lazy.nvim:
+  -- multicursors.nvim:
   {
     'smoka7/multicursors.nvim',
     event = 'VeryLazy',
