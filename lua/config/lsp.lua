@@ -1,5 +1,14 @@
 -- LSP configurations
 
+-- Ensure that the correct filetype is set for your init.lua
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = 'init.lua',
+  callback = function()
+    vim.bo.filetype = 'lua'
+    -- print 'LSP Filetype set to lua for init.lua'
+  end,
+})
+
 local lsp_zero = require 'lsp-zero'
 lsp_zero.extend_lspconfig()
 
@@ -61,11 +70,32 @@ require('mason-lspconfig').setup {
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
       }
+      -- print('LSP server ' .. server_name .. ' configured with nvim-cmp capabilities')
     end,
     -- Custom handler for lua_ls
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
+      lua_opts.capabilities = capabilities
+      lua_opts.settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+            path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+            globals = { 'vim' },
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file('', true),
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      }
       require('lspconfig').lua_ls.setup(lua_opts)
+      -- print 'Lua LSP configured with nvim-cmp capabilities'
     end,
     -- Custom handler for tsserver
     tsserver = function()
@@ -198,8 +228,9 @@ vim.diagnostic.config {
   update_in_insert = false, -- Update diagnostics in insert mode
   severity_sort = true, -- Sort diagnostics by severity
   float = {
-    source = 'always', -- Show the source of the diagnostic
+    source = true, -- Show the source of the diagnostic
     border = 'rounded', -- Rounded border for floating windows
+    focusable = true,
   },
 }
 
