@@ -10,6 +10,9 @@ local lspkind = require 'lspkind'
 local tailwindcss_colorizer_cmp = require 'tailwindcss-colorizer-cmp'
 require('luasnip.loaders.from_vscode').lazy_load()
 
+-- Custom Telescope source
+-- require('cmp').register_source('custom_telescope', require('custom.custom_cmp_telescope').new())
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -147,3 +150,10 @@ cmp.setup.filetype('javascript', {
     { name = 'path' },
   },
 })
+-- Set CMP source for prompt buffer type
+-- cmp.setup.filetype('prompt', {
+--   sources = {
+--     { name = 'custom_telescope' },
+--   },
+-- })
+
