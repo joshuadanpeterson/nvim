@@ -76,7 +76,7 @@ end
 vim.cmd [[
 augroup TransparentWhichKeyWindows
     autocmd!
-    autocmd VimEnter * hi WhichKeyFloat guibg=NONE ctermbg=NONE
+    " autocmd VimEnter * hi WhichKeyFloat guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKey guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeyGroup guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeyDesc guibg=NONE ctermbg=NONE
