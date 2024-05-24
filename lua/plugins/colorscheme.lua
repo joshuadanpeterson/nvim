@@ -4,35 +4,33 @@
 ]]
 return {
 
-        -- nord theme
-        -- Transparent Nord Theme
-        {
-                'shaunsingh/nord.nvim',
-                config = function()
-                        -- load the theme
-                        vim.cmd('colorscheme nord')
-                        require('nord').set({
-                                transparent = true,
-                                styles = {
-                                        sidebars = "transparent",
-                                        floats = "transparent",
-                                },
-
-                        })
-                end
+  -- nord theme
+  -- Transparent Nord Theme
+  {
+    'shaunsingh/nord.nvim',
+    config = function()
+      -- load the theme
+      vim.cmd 'colorscheme nord'
+      require('nord').set {
+        transparent = true,
+        styles = {
+          sidebars = 'transparent',
+          floats = 'transparent',
         },
+      }
+    end,
+  },
 
-        -- Transparent Background
-        {
-                "tribela/vim-transparent"
-        },
+  -- Transparent Background
+  {
+    'tribela/vim-transparent',
+  },
 
-        -- NightFox theme
-        -- A highly customizable theme for vim and neovim with support for lsp, treesitter and a variety of plugins.
-        {
-                "EdenEast/nightfox.nvim"
-        },
-
+  -- NightFox theme
+  -- A highly customizable theme for vim and neovim with support for lsp, treesitter and a variety of plugins.
+  {
+    'EdenEast/nightfox.nvim',
+  },
 
   -- Nordic theme
   -- Darker Nord theme
