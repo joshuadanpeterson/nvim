@@ -37,9 +37,11 @@ require('lazy').setup {
       dependencies = { 'kkharji/sqlite.lua' },
     },
 
-  -- import custom plugins
-  { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
-  { import = 'plugins' }, -- load plugins
+    -- import custom plugins
+    { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
+    { import = 'plugins' }, -- load plugins
+    -- load autocomplete
+    { import = 'plugins.autocomplete' },
 
   -- lazy.nvim
   {
