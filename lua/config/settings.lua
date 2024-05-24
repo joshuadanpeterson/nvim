@@ -93,6 +93,7 @@ augroup TransparentFloatingWindows
 augroup END
 ]]
 
+-- Firenvim config
 if vim.g.started_by_firenvim then
   vim.o.guifont = 'FiraCode Nerd Font:h18'
   vim.cmd [[set linespace=0]]
