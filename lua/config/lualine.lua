@@ -63,6 +63,12 @@ local copilot = {
   show_loading = true,
 }
 
+local pluginUpdates = {
+  require('lazy.status').updates,
+  cond = require('lazy.status').has_updates,
+  color = { fg = '#ff9e64' },
+}
+
 -- Harpoon
 local Harpoonline = require 'harpoonline'
 Harpoonline.setup {
@@ -93,7 +99,7 @@ local config = {
     lualine_c = { harpoonline, searchcount },
     lualine_x = { 'encoding', filetype, copilot },
     lualine_y = { 'progress', 'location' },
-    lualine_z = { icon, datetime },
+    lualine_z = { pluginUpdates, icon, datetime },
   },
   inactive_sections = {
     lualine_a = { { 'filename', file_status = true, path = 1 }, 'diagnostics', 'diff' },
