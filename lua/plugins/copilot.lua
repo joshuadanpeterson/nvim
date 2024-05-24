@@ -55,4 +55,10 @@ return {
     end,
   },
 
+    -- require('copilot.panel').accept(),
+    -- require('copilot.panel').jump_next(),
+    -- require('copilot.panel').jump_prev(),
+    -- require('copilot.panel').open { position, ratio },
+    -- require('copilot.panel').refresh(),
+  },
 }
