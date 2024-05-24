@@ -3,7 +3,6 @@
   kickstart.plugins.autoformat: Enables automatic code formatting in Neovim, potentially integrating with formatters like Prettier, Black, or clang-format. This configuration specifies formatting rules, sets up file type associations, and might define keybindings for manually triggering formatting.
 ]]
 
-
 return {
 
   -- nvim-ts-autotag
@@ -19,13 +18,15 @@ return {
   -- autopairs: Automatically pairs brackets, quotes, etc.
   {
     'windwp/nvim-autopairs',
-    config = function() require('nvim-autopairs').setup({}) end,
+    config = function()
+      require('nvim-autopairs').setup {}
+    end,
   },
 
   -- vim-commentary
   -- Efficient commenting in Vim, toggle comments easily.
   {
-    'tpope/vim-commentary'
+    'tpope/vim-commentary',
   },
 
   -- vim-sleuth
@@ -37,6 +38,7 @@ return {
   -- conform.nvim: format plugin
   {
     'stevearc/conform.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
 
@@ -45,7 +47,7 @@ return {
   {
     'numtostr/Comment.nvim',
     config = function()
-      require('Comment').setup({
+      require('Comment').setup {
         -- optional configuration here
         padding = true,
         sticky = true,
@@ -56,17 +58,17 @@ return {
           extended = false,
         },
         toggler = {
-          line = 'gcc',  -- toggle line comment
+          line = 'gcc', -- toggle line comment
           block = 'gbc', -- toggle block comment
         },
         opleader = {
-          line = 'gc',  -- line comment operation
+          line = 'gc', -- line comment operation
           block = 'gb', -- block comment operation
         },
         pre_hook = function(ctx)
           -- Only calculate commentstring for tsx filetypes
           if vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'javascriptreact' then
-            local U = require('Comment.utils')
+            local U = require 'Comment.utils'
 
             -- Determine whether to use linewise or blockwise commentstring
             local type = ctx.ctype == U.ctype.linewise and '__default' or '__multiline'
@@ -79,26 +81,26 @@ return {
               location = require('ts_context_commentstring.utils').get_visual_start_location()
             end
 
-            return require('ts_context_commentstring.internal').calculate_commentstring({
+            return require('ts_context_commentstring.internal').calculate_commentstring {
               key = type,
               location = location,
-            })
+            }
           end
         end,
-      })
+      }
     end,
   },
 
   -- nvim-surround: surround selections
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
     config = function()
-      require("nvim-surround").setup({
+      require('nvim-surround').setup {
         -- Configuration here, or leave empty to use defaults
-      })
-    end
+      }
+    end,
   },
 
   -- For JSX syntax highlighting and indentation
@@ -110,7 +112,6 @@ return {
   -- To help Neovim recognize JS and JSX inside of HTMl files
   {
     'jonsmithers/vim-html-template-literals',
-    'pangloss/vim-javascript'
+    'pangloss/vim-javascript',
   },
-
 }
