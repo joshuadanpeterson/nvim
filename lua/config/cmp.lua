@@ -157,3 +157,19 @@ cmp.setup.filetype('javascript', {
 --   },
 -- })
 
+-- Ensure that the correct filetype is set for your init.lua
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = 'init.lua',
+  callback = function()
+    vim.bo.filetype = 'lua'
+    -- print 'Cmp Filetype set to lua for init.lua'
+  end,
+})
+
+-- Set Autocompletion for init.lua
+vim.cmd [[
+  augroup initLuaAutoComplete
+    autocmd!
+    autocmd BufEnter * lua require('cmp').setup.buffer()
+  augroup END
+]]
