@@ -1,6 +1,9 @@
 -- config/cmp.lua
 -- Configures Neovim for enhanced editing capabilities with autocomplete, LSP, and linting.
 
+-- Debug statement: Check $HOME/.cache/nvim/lsp.log
+-- vim.lsp.set_log_level 'debug'
+
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 local lspkind = require 'lspkind'
