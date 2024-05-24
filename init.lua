@@ -25,17 +25,17 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ configure plugins ]]
 require('lazy').setup {
   -- Your plugin setup goes here
-
-  -- legendary.nvim
   {
-    'mrjones2014/legendary.nvim',
-    -- since legendary.nvim handles all your keymaps/commands,
-    -- its recommended to load legendary.nvim before other plugins
-    priority = 10000,
-    lazy = false,
-    -- sqlite is only needed if you want to use frecency sorting
-    dependencies = { 'kkharji/sqlite.lua' },
-  },
+    -- legendary.nvim
+    {
+      'mrjones2014/legendary.nvim',
+      -- since legendary.nvim handles all your keymaps/commands,
+      -- its recommended to load legendary.nvim before other plugins
+      priority = 10000,
+      lazy = false,
+      -- sqlite is only needed if you want to use frecency sorting
+      dependencies = { 'kkharji/sqlite.lua' },
+    },
 
   -- import custom plugins
   { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
