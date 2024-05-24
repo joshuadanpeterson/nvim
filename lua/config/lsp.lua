@@ -203,6 +203,9 @@ vim.diagnostic.config {
   },
 }
 
+-- Set border for LspInfo
+require('lspconfig.ui.windows').default_options.border = 'single'
+
 -- Keybindings to show diagnostics in a floating window
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
