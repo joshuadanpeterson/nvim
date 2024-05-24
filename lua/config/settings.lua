@@ -81,7 +81,7 @@ augroup TransparentWhichKeyWindows
     autocmd VimEnter * hi WhichKeyGroup guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeyDesc guibg=NONE ctermbg=NONE
     autocmd VimEnter * hi WhichKeySeperator guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKeyBorder guibg=#87CEEB ctermbg=NONE
+    autocmd VimEnter * hi WhichKeyBorder guibg=#FFFFFF ctermbg=NONE
 augroup END
 ]]
 
