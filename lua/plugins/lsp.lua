@@ -14,7 +14,16 @@ return {
   },
 
   -- Mason for managing LSP servers, linters, and formatters
-  { 'williamboman/mason.nvim' },
+  {
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup {
+        ui = {
+          border = 'single', -- Set border style
+        },
+      }
+    end,
+  },
 
   -- Mason-LSPConfig to bridge Mason and nvim-lspconfig
   { 'williamboman/mason-lspconfig.nvim' },
