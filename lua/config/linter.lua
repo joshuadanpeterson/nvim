@@ -79,15 +79,6 @@ Lint.linters_by_ft = {
   vim = { 'vint' },
 }
 
--- Automatically run the linter on buffer read and write
-vim.cmd [[
-  augroup LintOnSave
-    autocmd!
-    autocmd BufWritePost * lua Lint.try_lint()
-    autocmd BufReadPost * lua Lint.try_lint()
-  augroup END
-]]
-
 -- Using Lua autocmds
 vim.cmd(
   [[
