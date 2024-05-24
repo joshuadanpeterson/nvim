@@ -19,6 +19,17 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  -- enable autocompletion in Telescope prompts
+  -- commenting out until can figure out how to get it to work
+  -- enabled = {
+  --   function()
+  --     local buftype = vim.api.nvim_buf_get_option_value(0, 'buftype')
+  --     if buftype == 'prompt' then
+  --       return true
+  --     end
+  --     return true
+  --   end,
+  -- },
   completion = {
     completeopt = 'menu,menuone,noinsert',
   },
@@ -56,12 +67,19 @@ cmp.setup {
     end,
   },
   sources = cmp.config.sources {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'buffer-lines' },
-    { name = 'path' },
-    { name = 'emoji' },
+    { name = 'copilot', group_index = 2 },
+    { name = 'nvim_lsp', max_item_count = 5 },
+    { name = 'luasnip', max_item_count = 5 },
+    { name = 'buffer', max_item_count = 5 },
+    { name = 'buffer-lines', max_item_count = 5 },
+    { name = 'path', max_item_count = 5 },
+    { name = 'nvim_lua', max_item_count = 5 },
+    { name = 'emoji', max_item_count = 5 },
+    { name = 'sql', max_item_count = 5 },
+    { name = 'rg', max_item_count = 5, keyword_length = 3 },
+    { name = 'npm', max_item_count = 5, keyword_length = 4 },
+    { name = 'tmux', max_item_count = 5 },
+    { name = 'calc', max_item_count = 5 },
   },
   formatting = {
     format = function(entry, vim_item)
@@ -73,17 +91,27 @@ cmp.setup {
         mode = 'symbol_text',
         maxwidth = 50,
         ellipsis_char = '...',
+        symbol_map = { Copilot = '' },
       }(entry, vim_item)
 
-      -- Set the menu field
-      vim_item.menu = ({
-        buffer = '[Buffer]',
-        nvim_lsp = '[LSP]',
-        luasnip = '[LuaSnip]',
-        path = '[Path]',
-        nvim_lua = '[Lua]',
-        latex_symbols = '[LaTeX]',
-      })[entry.source.name]
+      -- Specific logic for html-css source
+      if entry.source.name == 'html-css' then
+        vim_item.menu = entry.completion_item.menu
+      else
+        -- Set the menu field for other sources
+        vim_item.menu = ({
+          copilot = '[Copilot]',
+          buffer = '[Buffer]',
+          nvim_lsp = '[LSP]',
+          luasnip = '[LuaSnip]',
+          path = '[Filesystem]',
+          nvim_lua = '[Lua]',
+          latex_symbols = '[LaTeX]',
+          ['html-css'] = '[HTML-CSS]',
+          treesitter = '[TS]',
+          sql = '[SQL]',
+        })[entry.source.name]
+      end
 
       return vim_item
     end,
@@ -91,10 +119,11 @@ cmp.setup {
 }
 
 -- Cmdline setup for '/' and ':'
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' },
+    { name = 'buffer-lines' },
   },
 })
 
@@ -114,13 +143,18 @@ cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('html', {
   sources = cmp.config.sources({
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'html-css' },
     { name = 'buffer-lines' },
   }, {
     { name = 'buffer' },
   }, {
     { name = 'path' },
+    { name = 'treesitter' },
+    { name = 'emoji' },
+    { name = 'calc' },
   }),
 })
 
@@ -130,12 +164,15 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     require('cmp').setup.buffer {
       sources = {
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
+        { name = 'html-css' },
         { name = 'buffer-lines' },
         { name = 'path' },
         { name = 'emoji' },
+        { name = 'calc' },
       },
     }
   end,
@@ -144,12 +181,31 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Additional configuration for specific filetypes (optional)
 cmp.setup.filetype('javascript', {
   sources = cmp.config.sources {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'treesitter' },
+    { name = 'calc' },
+    { name = 'emoji' },
   },
 })
+
+cmp.setup.filetype('lua', {
+  sources = cmp.config.sources {
+    { name = 'copilot' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'nvim_lua' },
+    { name = 'calc' },
+    { name = 'emoji' },
+  },
+  -- print 'Cmp sources for Lua filetype set',
+})
+
 -- Set CMP source for prompt buffer type
 -- cmp.setup.filetype('prompt', {
 --   sources = {
