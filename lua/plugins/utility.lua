@@ -314,4 +314,69 @@ return {
       { 'tpope/vim-dadbod' },
     },
   },
+
+  -- hardtime: establish good vim habits
+  -- {
+  --   'm4xshen/hardtime.nvim',
+  --   event = 'VeryLazy',
+  --   opts = {
+  --     max_count = 5,
+  --     timeout = 2000,
+  --     keys = {
+  --       ['h'] = 'move',
+  --       ['j'] = 'move',
+  --       ['k'] = 'move',
+  --       ['l'] = 'move',
+  --       ['-'] = 'move',
+  --       ['+'] = 'move',
+  --       ['gj'] = 'move',
+  --       ['gk'] = 'move',
+  --       ['<CR>'] = 'move',
+  --       ['<BS>'] = 'delete',
+  --       ['x'] = 'delete',
+  --       ['X'] = 'delete',
+  --       ['s'] = 'delete',
+  --       ['S'] = 'delete',
+  --       ['i'] = 'insert',
+  --       ['I'] = 'insert',
+  --       ['a'] = 'insert',
+  --       ['A'] = 'insert',
+  --       ['o'] = 'insert',
+  --       ['O'] = 'insert',
+  --     },
+  --     disabled_filetypes = {
+  --       'help',
+  --       'terminal',
+  --       'dashboard',
+  --       'packer',
+  --       'NvimTree',
+  --       'TelescopePrompt',
+  --       'TelescopeResults',
+  --     },
+  --     disabled_modes = {
+  --       'v', -- Visual mode
+  --       'V', -- Visual Line mode
+  --       '<C-v>', -- Visual Block mode
+  --     },
+  --     disabled_keys = {
+  --       ['<Up>'] = {},
+  --       ['<Down>'] = {},
+  --     },
+  --     hints = {
+  --       ['k%^'] = {
+  --         message = function()
+  --           return 'Use - instead of k^' -- return the hint message you want to display
+  --         end,
+  --         length = 2, -- the length of actual key strokes that matches this pattern
+  --       },
+  --       ['d[tTfF].i'] = { -- this matches d + {t/T/f/F} + {any character} + i
+  --         message = function(keys) -- keys is a string of key strokes that matches the pattern
+  --           return 'Use ' .. 'c' .. keys:sub(2, 3) .. ' instead of ' .. keys
+  --           -- example: Use ct( instead of dt(i
+  --         end,
+  --         length = 4,
+  --       },
+  --     },
+  --   },
+  -- },
 }
