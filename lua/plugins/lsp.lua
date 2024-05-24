@@ -29,7 +29,7 @@ return {
   { 'williamboman/mason-lspconfig.nvim' },
 
   -- Neodev for Lua development with Neovim API support
-  { 'folke/neodev.nvim' },
+  { 'folke/neodev.nvim', opts = {} },
 
   -- Trouble.nvim for an enhanced diagnostic list
   {
