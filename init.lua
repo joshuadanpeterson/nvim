@@ -7,6 +7,7 @@ require 'config.settings' -- For basic Neovim settings
 -- require("config.vim")      -- For vim config
 
 -- lazy.nvim setup
+-- lazy.nvim is a lazy-loading plugin manager for Neovim.
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 local stat, _, _ = vim.loop.fs_stat(lazypath)
 if not stat then
@@ -202,16 +203,6 @@ require('legendary').setup {
   cache_path = string.format('%s/legendary/', vim.fn.stdpath 'cache'),
   -- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
   log_level = 'info',
-}
-
--- Setup neodev config for nvim-dap-ui
-require('neodev').setup {
-  library = {
-    plugins = {
-      'nvim-dap-ui',
-    },
-    types = true,
-  },
 }
 
 -- multicursors.nvim Status Line module

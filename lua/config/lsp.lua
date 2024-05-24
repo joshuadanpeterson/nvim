@@ -23,6 +23,17 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local emmet_capabilities = vim.lsp.protocol.make_client_capabilities()
 emmet_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- neodev.nvim setup ahead of LSP config
+require('neodev').setup {
+  ui = {
+    border = 'rounded',
+  },
+  library = {
+    plugins = { 'nvim-dap-ui' },
+    types = true,
+  },
+}
+
 -- Setup mason to manage LSP installations
 require('mason').setup()
 require('mason-lspconfig').setup {
