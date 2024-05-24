@@ -93,6 +93,77 @@ augroup TransparentFloatingWindows
 augroup END
 ]]
 
+-- nvim-lint config
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.lua',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.js', '*.jsx', '.ts', '.tsx' },
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.py',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.html',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.css',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.sql',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.md',
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.sh', '*.zsh' },
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.yaml', '*.yml' },
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = { '*.toml' },
+  callback = function()
+    require('lint').try_lint()
+  end,
+})
+
 -- Firenvim config
 if vim.g.started_by_firenvim then
   vim.o.guifont = 'FiraCode Nerd Font:h18'
