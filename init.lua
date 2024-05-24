@@ -43,13 +43,20 @@ require('lazy').setup {
     -- load autocomplete
     { import = 'plugins.autocomplete' },
 
-  -- lazy.nvim
-  {
-    'folke/lazy.nvim',
-    -- Since lazy.nvim is a lazy-loaded plugin,
-    -- we set `lazy = true` to defer loading until it's needed.
-    lazy = true,
-    -- Add any other configurations specific to lazy.nvim here
+    -- lazy.nvim
+    {
+      'folke/lazy.nvim',
+      -- Since lazy.nvim is a lazy-loaded plugin,
+      -- we set `lazy = true` to defer loading until it's needed.
+      lazy = true,
+      -- Add any other configurations specific to lazy.nvim here
+      opts = {
+        ui = {
+          border = 'rounded', -- Set border style
+          backdrop = 25, -- Set backdrop transparency
+        },
+      },
+    },
   },
 }
 
@@ -119,6 +126,9 @@ require('legendary').setup {
   -- triggered via `legendary.nvim`. Example config for `dressing.nvim`:
   --
   require('dressing').setup {
+    input = {
+      border = 'rounded',
+    },
     select = {
       get_config = function(opts)
         if opts.kind == 'legendary.nvim' then
