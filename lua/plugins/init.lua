@@ -12,12 +12,13 @@ local git = require 'plugins.git'
 local ui = require 'plugins.ui'
 local utility = require 'plugins.utility'
 local lsp = require 'plugins.lsp'
-local lint_and_autocomplete = require 'plugins.lint_and_autocomplete'
 local obsidian = require 'plugins.obsidian'
 local noice = require 'plugins.noice'
 local autoformat = require 'plugins.autoformat'
 local debug = require 'plugins.debug'
 local which_key = require 'plugins.which-key'
+local linters = require 'plugins.linters'
+local autocomplete = require 'plugins.autocomplete'
 
 return {
   colorscheme,
@@ -29,10 +30,11 @@ return {
   ui, -- Ensure ui is loaded before utility
   utility,
   lsp,
-  lint_and_autocomplete,
   obsidian,
   noice,
   autoformat,
   debug,
   which_key,
+  linters,
+  autocomplete,
 }
