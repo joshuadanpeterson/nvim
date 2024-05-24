@@ -97,6 +97,12 @@ local diagnosticMappings = {
   ['o'] = { ':Lspsaga outline<CR>', 'Outline Doc' },
   ['n'] = { ':FuzzyNoice<CR>', 'Search Noice Messages' },
   ['N'] = { '<cmd>Telescope notify<CR>', 'Search Notify Messages' },
+  ['m'] = { ':messages<CR>', 'Get Messages' },
+  ['l'] = { ':LspInfo<CR>', 'Get LspInfo' },
+  ['c'] = { ':CmpStatus<CR>', 'Get CmpStatus' },
+  ['C'] = { ':ConformInfo<CR>', 'Get ConformInfo' },
+  ['t'] = { ':Trouble<CR>', 'Get Trouble' },
+  ['L'] = { require('telescope.builtin').quickfix(), 'Search Quickfix List' },
 }
 -- Telescope Keymaps
 local telescopeMappings = {
