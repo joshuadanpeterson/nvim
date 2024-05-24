@@ -104,6 +104,12 @@ local diagnosticMappings = {
   ['t'] = { ':Trouble<CR>', 'Get Trouble' },
   ['L'] = { require('telescope.builtin').quickfix(), 'Search Quickfix List' },
 }
+
+-- Trouble Mappings
+local troubleMappings = {
+  name = 'Trouble Mappings',
+}
+
 -- Telescope Keymaps
 local telescopeMappings = {
   name = 'Telescope Keymaps',
@@ -385,6 +391,9 @@ wk.register(lspMappings, { prefix = '<leader>L', mode = 'n' })
 -- Registering LSP mappings
 wk.register(diagnosticMappings, { prefix = '<leader>D', mode = 'n' })
 
+-- Registering Trouble mappings
+wk.register(troubleMappings, { prefix = '<leader>x', mode = 'n' })
+
 -- Registering Telescope mappings under the 'n' (normal) mode leader key
 wk.register(telescopeMappings, { prefix = '<leader>t', mode = 'n' })
 
@@ -472,7 +481,7 @@ wk.register {
   ['<leader>u'] = 'Toggle Keymaps',
   ['<leader>q'] = 'Quit',
   ['<leader>w'] = 'Window Managment',
-  ['<leader>x'] = 'Lists',
+  ['<leader>x'] = 'Trouble',
   ['<leader><Tab>'] = 'Tab Managment',
   ['<leader>['] = 'Previous',
   ['<leader>]'] = 'Next',
