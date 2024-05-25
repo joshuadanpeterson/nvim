@@ -133,6 +133,8 @@ local diagnosticMappings = {
   ['I'] = { ':Inspect<CR>', 'Inspect' },
   ['T'] = { ':InspectTree<CR>', 'Inspect Tree' },
   ['S'] = { ':Telescope treesitter<CR>', 'Search Treesitter' },
+  ['x'] = { ':TodoTelescope<CR>', 'Search TODOs in Telescope' },
+  ['X'] = { ':TodoTrouble<CR>', 'Search TODOs in Trouble' },
 }
 
 -- Trouble Mappings
