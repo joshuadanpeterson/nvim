@@ -114,7 +114,7 @@
   "true-zen.nvim": { "branch": "main", "commit": "2b9e210e0d1a735e1fa85ec22190115dffd963aa" },
   "twilight.nvim": { "branch": "main", "commit": "8b7b50c0cb2dc781b2f4262a5ddd57571556d1e4" },
   "typescript.nvim": { "branch": "main", "commit": "4de85ef699d7e6010528dcfbddc2ed4c2c421467" },
-  "typewriter": { "branch": "main", "commit": "283dc96c780c34591d9939f38a5705d345191568" },
+  "typewriter": { "branch": "main", "commit": "def8aefc3d59a2132d11245da9dc722b52a12327" },
   "vim-commentary": { "branch": "master", "commit": "c4b8f52cbb7142ec239494e5a2c4a512f92c4d07" },
   "vim-dadbod": { "branch": "master", "commit": "fb30422b7bee7e2fa4205a4d226f01477f4fc593" },
   "vim-dadbod-completion": { "branch": "master", "commit": "5d5ad196fcde223509d7dabbade0148f7884c5e3" },
