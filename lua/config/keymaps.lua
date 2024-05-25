@@ -161,7 +161,7 @@ local uiMappings = {
   ['m'] = { ':TZMinimalist<CR>', 'Toggle True Zen: Minimalist Mode' },
   ['n'] = { ':TZNarrow<CR>', 'Toggle True Zen: Narrow Mode' },
   ['f'] = { ':TZFocus<CR>', 'Toggle True Zen: Focus Mode' },
-  ['T'] = { ':TWToggle', 'Toggle Typewriter' },
+  ['T'] = { ':TWToggle<CR>', 'Toggle Typewriter' },
 }
 
 -- Telescope Keymaps
