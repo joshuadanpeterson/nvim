@@ -109,6 +109,7 @@
   "tldr.nvim": { "branch": "master", "commit": "48e462c045c198d0fb916a0f51e0ee7c5d9828bb" },
   "tmuxjump.vim": { "branch": "main", "commit": "17a0bda4264c9a69810193e0625e06180dba9339" },
   "tmuxline.vim": { "branch": "master", "commit": "4119c553923212cc67f4e135e6f946dc3ec0a4d6" },
+  "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
   "transparent.nvim": { "branch": "main", "commit": "fd35a46f4b7c1b244249266bdcb2da3814f01724" },
   "trouble.nvim": { "branch": "dev", "commit": "e2185bf6e63ef9bd75f1819f43846e2b0f10953b" },
   "true-zen.nvim": { "branch": "main", "commit": "2b9e210e0d1a735e1fa85ec22190115dffd963aa" },
