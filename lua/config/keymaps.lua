@@ -21,6 +21,29 @@ local function refresh_lualine()
   setup_lualine()
 end
 
+-- Configure Telescope Harpoon
+-- import telescope modules
+local conf = require('telescope.config').values
+local harpoon = require('harpoon').setup {}
+
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require('telescope.pickers')
+    .new({}, {
+      prompt_title = 'harpoon',
+      finder = require('telescope.finders').new_table {
+        results = file_paths,
+      },
+      previewer = conf.file_previewer {},
+      sorter = conf.generic_sorter {},
+    })
+    :find()
+end
+
 -- General and Basic Keymaps
 local generalMappings = {
   name = 'General and Basic Keymaps',
@@ -102,12 +125,43 @@ local diagnosticMappings = {
   ['c'] = { ':CmpStatus<CR>', 'Get CmpStatus' },
   ['C'] = { ':ConformInfo<CR>', 'Get ConformInfo' },
   ['t'] = { ':Trouble<CR>', 'Get Trouble' },
-  ['L'] = { require('telescope.builtin').quickfix(), 'Search Quickfix List' },
+  ['q'] = { require('telescope.builtin').quickfix(), 'Search Quickfix List' },
+  ['s'] = { ':NoiceStats<CR>', 'Noice Stats' },
+  ['e'] = { ':NoiceErrors<CR>', 'Noice Errors' },
+  ['a'] = { ':NoiceAll<CR>', 'Noice All' },
+  ['b'] = { ':NoiceDebug<CR>', 'Noice Debug' },
+  ['I'] = { ':Inspect<CR>', 'Inspect' },
+  ['T'] = { ':InspectTree<CR>', 'Inspect Tree' },
+  ['S'] = { ':Telescope treesitter<CR>', 'Search Treesitter' },
 }
 
 -- Trouble Mappings
 local troubleMappings = {
   name = 'Trouble Mappings',
+}
+
+-- Plugin Mappings
+local pluginMappings = {
+  name = 'Plugin Mappings',
+  ['m'] = { ':Mason<CR>', 'Search Mason' },
+  ['l'] = { '<cmd>Telescope lazy<CR>', 'Search Lazy for Plugins' },
+  ['L'] = { ':Lazy<CR>', 'Open Lazy' },
+  ['e'] = { ':LazyExtras<CR>', 'Open LazyExtras' },
+}
+
+-- UI Mappings
+local uiMappings = {
+  name = 'UI Mappings',
+  ['c'] = { ':Telescope colorscheme<CR>', 'Search Colorschemes' },
+  ['e'] = { ':Telescope emoji<CR>', 'Search Emojis' },
+  ['E'] = { ':InsertEmojiByGroup<CR>', 'Search Emojis by Group' },
+  ['z'] = { ':ZenMode<CR>', 'Toggle ZenMode' },
+  ['t'] = { ':Twilight<CR>', 'Enable Twlight' },
+  ['a'] = { ':TZAtaraxis<CR>', 'Toggle True Zen: Ataraxis Mode' },
+  ['m'] = { ':TZMinimalist<CR>', 'Toggle True Zen: Minimalist Mode' },
+  ['n'] = { ':TZNarrow<CR>', 'Toggle True Zen: Narrow Mode' },
+  ['f'] = { ':TZFocus<CR>', 'Toggle True Zen: Focus Mode' },
+  -- ['C'] = { require('stay-centered').toggle, 'Toggle Stay Centered' },
 }
 
 -- Telescope Keymaps
@@ -137,13 +191,11 @@ local telescopeMappings = {
   ['D'] = { ':Dash<CR>', 'Search Dash' },
   ['W'] = { ':DashWord<CR>', 'Search Dash by word' },
   ['t'] = { '<cmd>Telescope themes<CR>', 'Search Themes' },
-  ['e'] = { '<cmd>Telescope emoji<CR>', 'Search Emojis' },
   ['?'] = { require('telescope.builtin').oldfiles, '[?] Find recently opened files' },
   ['S'] = { '<cmd>Telescope uniswapfiles telescope_swap_files<CR>', 'Search Swap Files' },
   ['o'] = { '<cmd>Telescope oldfiles<cr>', 'Recent Files' },
   ['B'] = { '<cmd>Telescope buffers<cr>', 'List Buffers' },
   ['z'] = { '<cmd>Telescope zoxide list<CR>', 'Zoxide List' },
-  ['l'] = { '<cmd>Telescope lazy<CR>', 'Search Lazy for Plugins' },
   ['T'] = { '<cmd>Tldr<CR>', 'Search tldr pages' },
   ['j'] = {
     function()
@@ -223,6 +275,12 @@ local harpoonMappings = {
     end,
     'Next Harpoon File',
   },
+  ['e'] = {
+    function()
+      toggle_telescope(harpoon:list())
+    end,
+    'Open Harpoon Window',
+  },
 }
 
 -- Obsidian Keymaps
@@ -269,9 +327,7 @@ local obsidianMappings = {
 -- Lazy Keymaps
 local lazyMappings = {
   name = 'Lazy Keymaps',
-  ['z'] = { ':Lazy<CR>', 'Open Lazy' },
   ['r'] = { ':LazyRoot<CR>', 'Open LazyRoot' },
-  ['e'] = { ':LazyExtras<CR>', 'Open LazyExtras' },
   ['f'] = { ':LazyFormat<CR>', 'Open LazyFormat' },
   ['h'] = { ':LazyHealth<CR>', 'Open LazyHealth' },
   ['i'] = { ':LazyFormatInfo<CR>', 'Open LazyFormatInfo' },
@@ -394,6 +450,12 @@ wk.register(diagnosticMappings, { prefix = '<leader>D', mode = 'n' })
 -- Registering Trouble mappings
 wk.register(troubleMappings, { prefix = '<leader>x', mode = 'n' })
 
+-- Registering Trouble mappings
+wk.register(uiMappings, { prefix = '<leader>U', mode = 'n' })
+
+-- Registering Trouble mappings
+wk.register(pluginMappings, { prefix = '<leader>p', mode = 'n' })
+
 -- Registering Telescope mappings under the 'n' (normal) mode leader key
 wk.register(telescopeMappings, { prefix = '<leader>t', mode = 'n' })
 
@@ -402,9 +464,6 @@ wk.register(rnvimrMappings, { prefix = '<leader>r', mode = 'n' })
 
 -- Registering legendary.nvim mappings
 wk.register(legendaryMappings, { prefix = '<leader>M', mode = 'n' })
-
--- Registering legendary.nvim mappings
--- wk.register(liveServerMappings, { prefix = '<leader>S', mode = 'n' })
 
 -- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
 wk.register(tmuxTelescopeMappings, { prefix = '<leader>T', mode = 'n' })
@@ -488,3 +547,16 @@ wk.register {
   ['<leader>g'] = 'Git & Misc.',
   ['<leader>z'] = 'Fold Managment',
 }
+
+-- Noice LSP Hoever Doc Scrolling Keymaps
+vim.keymap.set({ 'n', 'i', 's' }, '<c-f>', function()
+  if not require('noice.lsp').scroll(4) then
+    return '<c-f>'
+  end
+end, { silent = true, expr = true })
+
+vim.keymap.set({ 'n', 'i', 's' }, '<c-b>', function()
+  if not require('noice.lsp').scroll(-4) then
+    return '<c-b>'
+  end
+end, { silent = true, expr = true })
