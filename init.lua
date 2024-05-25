@@ -125,7 +125,6 @@ require('legendary').setup {
   -- do their own sorting. For elescope.nvim, you can set it to use
   -- `require('telescope.sorters').fuzzy_with_index_bias({})` when
   -- triggered via `legendary.nvim`. Example config for `dressing.nvim`:
-  -- TODO: update this example to use the new `legendary.nvim` config
 
   require('dressing').setup {
     input = {
@@ -160,8 +159,6 @@ require('legendary').setup {
     -- this feature requires sqlite.lua (https://github.com/kkharji/sqlite.lua)
     -- and will be automatically disabled if sqlite is not available.
     -- NOTE: THIS TAKES PRECEDENCE OVER OTHER SORT OPTIONS!
-    -- FIX: this is a test
-    -- HACK: This is a test
     frecency = {
       -- the directory to store the database in
       db_root = string.format('%s/legendary/', vim.fn.stdpath 'data'),
