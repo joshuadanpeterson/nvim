@@ -57,6 +57,7 @@ local generalMappings = {
   ['d'] = { ':NoiceDismiss<CR>', 'Dismiss Noice Message' },
   ['L'] = { ':SearchLogFiles<CR>', 'Search Log Files' },
   ['C'] = { ':SearchChangelogFiles<CR>', 'Search Changelog Files' },
+  ['o'] = { ':Oil<CR>', 'Modify Filetree in Buffer' },
 }
 
 -- Vim Dadbod (SQL) Keymaps
