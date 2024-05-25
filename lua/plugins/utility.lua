@@ -28,7 +28,7 @@ return {
   {
     'LazyVim/LazyVim',
     opts = {
-      colorscheme = 'nordic',
+      colorscheme = 'github_dark_dimmed',
     },
   },
 
@@ -407,5 +407,13 @@ return {
       --     NextParagraph = { text = "}", prio = 1 },
       -- },
     },
+  },
+
+  -- oil.nvim: A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 }
