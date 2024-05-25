@@ -8,7 +8,12 @@ local icons = require 'nvim-nonicons'
 local actions = require 'telescope.actions'
 local action_state = require 'telescope.actions.state'
 local sorters = require 'telescope.sorters'
-local conf = require('telescope.config').values
+
+-- Set up Trouble
+local open_with_trouble = require('trouble.sources.telescope').open
+
+-- Use this to add more results without clearing the trouble list
+local add_to_trouble = require('trouble.sources.telescope').add
 
 -- Useful for easily creating commands
 local z_utils = require 'telescope._extensions.zoxide.utils'
@@ -45,7 +50,12 @@ require('telescope').setup {
             end,
           }
         end,
+
+        -- Open Telescope with Trouble
+        ['<c-t>'] = open_with_trouble,
+        ['<c-x>'] = add_to_trouble,
       },
+
       n = {
         ['<c-s>'] = function(prompt_bufnr)
           require('flash').jump {
@@ -65,6 +75,10 @@ require('telescope').setup {
             end,
           }
         end,
+
+        -- Open Telescope with Trouble
+        ['<c-t>'] = open_with_trouble,
+        ['<c-x>'] = add_to_trouble,
       },
     },
     previewer = true,
@@ -158,6 +172,7 @@ require('telescope').setup {
       tldr_command = 'tldr',
       tldr_args = '--color always',
     },
+    ft = 'mason', -- for mason
     lazy = {
       show_icon = true,
       mappings = {
@@ -222,31 +237,6 @@ local function live_grep_git_root()
 end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
-
--- Configure Telescope Harpoon
-local harpoon = require('harpoon').setup {}
-
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require('telescope.pickers')
-    .new({}, {
-      prompt_title = 'harpoon',
-      finder = require('telescope.finders').new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
-
-vim.keymap.set('n', '<leader>he', function()
-  toggle_telescope(harpoon:list())
-end, { desc = 'Open Harpoon Window' })
 
 -- Load extensions for noice, emoji.nvim, telescope-swap-files, ui-select, themes, fzy native search
 require('telescope').load_extension 'noice'
