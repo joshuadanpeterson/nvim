@@ -1,6 +1,6 @@
 -- clean_lsp_log.lua
 local log_file_path = '/Users/joshpeterson/.local/state/nvim/lsp.log'
-local days_to_keep = 7
+local days_to_keep = 1
 
 -- Function to parse the date from the log entry
 local function parse_date(log_entry)
