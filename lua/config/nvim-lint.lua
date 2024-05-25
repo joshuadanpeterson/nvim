@@ -1,60 +1,122 @@
 -- config/nvim-lint.lua
 
-local M = {}
+local lint = require 'lint'
 
-M.setup = function(opts)
-  local lint = require 'lint'
-  for name, linter in pairs(opts.linters) do
-    if type(linter) == 'table' and type(lint.linters[name]) == 'table' then
-      lint.linters[name] = vim.tbl_deep_extend('force', lint.linters[name], linter)
-    else
-      lint.linters[name] = linter
-    end
-  end
-  lint.linters_by_ft = opts.linters_by_ft
+lint.linters_by_ft = {
+  python = { 'flake8' },
+  javascript = { 'eslint' },
+  typescript = { 'eslint' },
+  lua = { 'luacheck' },
+  css = { 'stylelint' },
+  html = { 'htmlhint' },
+  markdown = { 'markdownlint' },
+}
 
-  function M.debounce(ms, fn)
-    local timer = vim.uv.new_timer()
-    return function(...)
-      local argv = { ... }
-      timer:start(ms, 0, function()
-        timer:stop()
-        vim.schedule_wrap(fn)(unpack(argv))
-      end)
-    end
-  end
-
-  function M.lint()
-    local names = lint._resolve_linter_by_ft(vim.bo.filetype)
-    names = vim.list_extend({}, names)
-    if #names == 0 then
-      vim.list_extend(names, lint.linters_by_ft['_'] or {})
-    end
-    vim.list_extend(names, lint.linters_by_ft['*'] or {})
-
-    local ctx = { filename = vim.api.nvim_buf_get_name(0) }
-    ctx.dirname = vim.fn.fnamemodify(ctx.filename, ':h')
-
-    names = vim.tbl_filter(function(name)
-      if type(name) == 'function' then
-        name = name(0) -- Call the function to get the actual linter name
+lint.linters = {
+  flake8 = {
+    cmd = 'flake8',
+    args = { '--format', 'default', '-' },
+    stdin = true,
+    stream = 'stderr',
+    ignore_exitcode = true,
+    parser = require('lint.parser').from_errorformat('%f:%l:%c: %t%n%n%n,%-G%.%#', {
+      source = 'flake8',
+      severity = vim.diagnostic.severity.INFO,
+    }),
+  },
+  eslint = {
+    cmd = 'eslint',
+    args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+    stdin = true,
+    stream = 'stdout',
+    ignore_exitcode = true,
+    parser = function(output, bufnr)
+      local decode = require('json').decode
+      local messages = {}
+      for _, diagnostic in ipairs(decode(output)) do
+        for _, msg in ipairs(diagnostic.messages) do
+          table.insert(messages, {
+            lnum = msg.line - 1,
+            col = msg.column - 1,
+            end_lnum = msg.endLine - 1,
+            end_col = msg.endColumn - 1,
+            severity = require('lint').severity[msg.severity] or require('lint').severity.ERROR,
+            source = 'eslint',
+            message = msg.message,
+          })
+        end
       end
-      local linter = lint.linters[name]
-      if not linter then
-        vim.notify(('Linter not found: %s'):format(name), vim.log.levels.WARN, { title = 'nvim-lint' })
+      return messages
+    end,
+  },
+  luacheck = {
+    cmd = 'luacheck',
+    args = { '--formatter', 'plain', '--codes', '--ranges', '--filename', '%filepath', '-' },
+    stdin = true,
+    stream = 'stdout',
+    ignore_exitcode = true,
+    parser = require('lint.parser').from_errorformat('%f:%l:%c: %t%n%n%n,%-G%.%#', {
+      source = 'luacheck',
+      severity = vim.diagnostic.severity.INFO,
+    }),
+  },
+  stylelint = {
+    cmd = 'stylelint',
+    args = { '--formatter', 'json', '--stdin-filename', '%filepath' },
+    stdin = true,
+    stream = 'stdout',
+    ignore_exitcode = true,
+    parser = function(output, bufnr)
+      local decode = require('json').decode
+      local messages = {}
+      for _, file in ipairs(decode(output).files) do
+        for _, msg in ipairs(file.warnings) do
+          table.insert(messages, {
+            lnum = msg.line - 1,
+            col = msg.column - 1,
+            severity = require('lint').severity[msg.severity] or require('lint').severity.ERROR,
+            source = 'stylelint',
+            message = msg.text,
+          })
+        end
       end
-      return linter and not (type(linter) == 'table' and linter.condition and not linter.condition(ctx))
-    end, names)
+      return messages
+    end,
+  },
+  htmlhint = {
+    cmd = 'htmlhint',
+    args = { '--format', 'json', '%filepath' },
+    stdin = false,
+    stream = 'stdout',
+    ignore_exitcode = true,
+    parser = function(output, bufnr)
+      local decode = require('json').decode
+      local messages = {}
+      for _, file in ipairs(decode(output)) do
+        for _, msg in ipairs(file.messages) do
+          table.insert(messages, {
+            lnum = msg.line - 1,
+            col = msg.column - 1,
+            severity = require('lint').severity[msg.severity] or require('lint').severity.ERROR,
+            source = 'htmlhint',
+            message = msg.message,
+          })
+        end
+      end
+      return messages
+    end,
+  },
+  markdownlint = {
+    cmd = 'markdownlint',
+    args = { '--stdin' },
+    stdin = true,
+    stream = 'stdout',
+    ignore_exitcode = true,
+    parser = require('lint.parser').from_errorformat('%f:%l %m,%f:%l %m', {
+      source = 'markdownlint',
+      severity = vim.diagnostic.severity.WARN,
+    }),
+  },
+}
 
-    if #names > 0 then
-      lint.try_lint(names)
-    end
-  end
-
-  vim.api.nvim_create_autocmd(opts.events, {
-    group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
-    callback = M.debounce(100, M.lint),
-  })
-end
-
-return M
+return lint
