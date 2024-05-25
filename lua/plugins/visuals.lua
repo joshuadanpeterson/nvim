@@ -93,7 +93,7 @@ return {
             options = { -- options to be disabled when entering Minimalist mode
               number = false,
               relativenumber = true,
-              showtabline = 1,
+              -- showtabline = 1,
               signcolumn = 'no',
               statusline = '',
               cmdheight = 1,
