@@ -23,7 +23,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ configure plugins ]]
-require('lazy').setup {
+local lazy = require 'lazy'
+lazy.setup {
   -- Your plugin setup goes here
   {
     -- legendary.nvim
