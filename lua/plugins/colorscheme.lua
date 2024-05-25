@@ -13,10 +13,10 @@ return {
       vim.cmd 'colorscheme nord'
       require('nord').set {
         transparent = true,
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
+        -- styles = {
+        --   sidebars = 'transparent',
+        --   floats = 'transparent',
+        -- },
       }
     end,
   },
@@ -40,6 +40,34 @@ return {
     priority = 1000,
     config = function()
       require('nordic').load()
+      -- vim.cmd 'colorscheme nordic'
+    end,
+  },
+
+  -- Material theme
+  -- A port of the Material color scheme for Neovim
+  {
+    'marko-cerovac/material.nvim',
+    -- config = function()
+    --   require('material').setup {
+    --     vim.cmd 'colorscheme material',
+    --   }
+    -- end,
+  },
+
+  -- GitHub theme
+  {
+    'projekt0n/github-nvim-theme',
+    config = function()
+      require('github-theme').setup {
+        darken = {
+          floats = true,
+        },
+        modules = {
+          'which-key',
+        },
+        vim.cmd 'colorscheme github_dark_dimmed',
+      }
     end,
   },
 }
