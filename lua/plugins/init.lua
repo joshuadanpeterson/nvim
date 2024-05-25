@@ -19,6 +19,7 @@ local debug = require 'plugins.debug'
 local which_key = require 'plugins.which-key'
 local linters = require 'plugins.linters'
 local autocomplete = require 'plugins.autocomplete'
+local visuals = require 'plugins.visuals'
 
 return {
   colorscheme,
@@ -37,4 +38,5 @@ return {
   which_key,
   linters,
   autocomplete,
+  visuals,
 }
