@@ -56,7 +56,7 @@ chat.setup {
   model = 'gpt-4', -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
   temperature = 0.1, -- GPT temperature
 
-  question_header = '## User ', -- Header to use for user questions
+  question_header = '## Josh ', -- Header to use for user questions
   answer_header = '## Copilot ', -- Header to use for AI answers
   error_header = '## Error ', -- Header to use for errors
   separator = '---', -- Separator to use in chat
@@ -117,7 +117,7 @@ chat.setup {
 
   -- default window options
   window = {
-    layout = 'vertical', -- 'vertical', 'horizontal', 'float', 'replace'
+    layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace'
     width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
     height = 0.5, -- fractional height of parent, or absolute height in rows when > 1
     -- Options below only apply to floating windows
