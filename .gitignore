@@ -3,3 +3,8 @@ test.sh
 .luarc.json
 nvim
 -P
+package-lock.json
+package.json
+
+# Folders
+node_modules/
