@@ -138,6 +138,27 @@ local diagnosticMappings = {
   ['X'] = { ':TodoTrouble<CR>', 'Search TODOs in Trouble' },
 }
 
+-- GitHub Copilot Chat Mappings
+local copilotMappings = {
+  name = 'GitHub Copilot Chat Mappings',
+  ['x'] = { ':CopilotChatToggle<CR>', 'Toggle Copilot Chat' },
+  ['s'] = { ':CopilotChatStop<CR>', 'Stop Current Copilot Output' },
+  ['r'] = { ':CopilotChatReset<CR>', 'Reset Chat Window' },
+  ['e'] = { ':CopilotChatExplain<CR>', 'Explain Selection' },
+  ['R'] = { ':CopilotChatReview<CR>', 'Review Selection' },
+  ['f'] = { ':CopilotChatFix<CR>', 'Fix Bug' },
+  ['o'] = { ':CopilotChatOptimize<CR>', 'Optimize Selection' },
+  ['d'] = { ':CopilotChatDocs<CR>', 'Add Docs for Selection' },
+  ['t'] = { ':CopilotChatTests<CR>', 'Generate Tests' },
+  ['D'] = { ':CopilotChatFixDiagnostic<CR>', 'Assist with Diagnostic' },
+  ['c'] = { ':CopilotChatCommit<CR>', 'Write Commit Message' },
+  ['S'] = { ':CopilotChatCommitStaged<CR>', 'Write Commit Message for Staged Change' },
+  ['i'] = { ':CopilotChatDebugInfo<CR>', 'Show Debug Info' },
+  -- TODO: Work out how to add inputs to commands
+  -- ['S'] = { 'CopilotChatSave <name>?', 'Save Chat History to File' },
+  -- ['L'] = { 'CopilotChatLoad <name>?', 'Load Chat History from File' },
+}
+
 -- Trouble Mappings
 local troubleMappings = {
   name = 'Trouble Mappings',
@@ -452,6 +473,9 @@ wk.register(diagnosticMappings, { prefix = '<leader>D', mode = 'n' })
 
 -- Registering Trouble mappings
 wk.register(troubleMappings, { prefix = '<leader>x', mode = 'n' })
+
+-- Registering GitHub Copilot Chat mappings
+wk.register(copilotMappings, { prefix = '<leader>G', mode = 'n' })
 
 -- Registering Trouble mappings
 wk.register(uiMappings, { prefix = '<leader>U', mode = 'n' })
