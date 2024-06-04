@@ -209,7 +209,7 @@ if vim.g.started_by_firenvim then
       vim.b.ale_python_pylint_options = '--rcfile=~/.config/nvim/lua/linter_configs/.pylintrc_leetcode'
     else
       vim.b.ale_linters = { 'pylint' }
-      vim.b.ale_python_pylint_options = '--rcfile=/path/to/your/.pylintrc_leetcode'
+      vim.b.ale_python_pylint_options = '--rcfile=/.config/nvim/lua/linter_configs/.pylintrc_leetcode'
     end
   end
 
