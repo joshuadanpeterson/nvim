@@ -250,3 +250,11 @@ vim.cmd [[
     autocmd BufWritePost,BufReadPost,InsertLeave * lua require('lint').try_lint()
   augroup END
 ]]
+
+-- Set filetype for Google Apps Script files as JavaScript
+vim.api.nvim_exec(
+  [[
+  autocmd BufRead,BufNewFile *script.google.com_*.txt set filetype=javascript
+]],
+  false
+)
