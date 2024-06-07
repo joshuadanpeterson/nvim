@@ -47,13 +47,11 @@ lazy.setup {
     -- lazy.nvim
     {
       'folke/lazy.nvim',
-      -- Since lazy.nvim is a lazy-loaded plugin,
-      -- we set `lazy = true` to defer loading until it's needed.
-      lazy = true,
-      -- Add any other configurations specific to lazy.nvim here
+      lazy = true, -- Lazy load the plugin
+      cmd = 'Lazy', -- Load the plugin when the Lazy command is used
       opts = {
         ui = {
-          border = 'rounded', -- Set border style
+          border = 'rounded', -- Set border style to rounded
           backdrop = 25, -- Set backdrop transparency
         },
       },
