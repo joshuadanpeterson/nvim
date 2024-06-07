@@ -10,69 +10,57 @@
 ]]
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   -- nvim-dap-ui
   {
-    "rcarriga/nvim-dap-ui",
+    'rcarriga/nvim-dap-ui',
     dependencies = {
-      "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio"
-    }
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+    },
+    lazy = true,
+    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue' },
+    config = function()
+      require('dapui').setup()
+    end,
   },
-  -- nvim-dap
-    {
-    'mfussenegger/nvim-dap',
-    -- NOTE: And you can specify dependencies as well
-    dependencies = {
-      -- Creates a beautiful debugger UI
-      'rcarriga/nvim-dap-ui',
 
-      -- Installs the debug adapters for you
+  -- nvim-dap
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
       'williamboman/mason.nvim',
       'jay-babu/mason-nvim-dap.nvim',
-
-      -- Add your own debuggers here
       'leoluz/nvim-dap-go',
     },
+    lazy = true,
+    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue' },
     config = function()
-      local dap = require('dap')
-      local dapui = require('dapui')
+      local dap = require 'dap'
+      local dapui = require 'dapui'
 
       -- Go debugger
       require('dap-go').setup()
 
       require('mason-nvim-dap').setup {
-        -- Makes a best effort to setup the various debuggers with
-        -- reasonable debug configurations
         automatic_setup = true,
-
-        -- You can provide additional configuration to the handlers,
-        -- see mason-nvim-dap README for more information
         handlers = {},
-
-        -- You'll need to check that you have the required things installed
-        -- online, please don't ask me how to install them :)
         ensure_installed = {
-          -- Update this to ensure that you have the debuggers for the langs you want
-          'delve',                 -- Debugger for Go
-          'debugpy',               -- Debugger for Python
-          'bash-debug-adapter',    -- For debugging shell scripts
-          'chrome-debug-adapter',  -- If you work with JavaScript and want to debug in the Chrome browser
-          'codeLLdb',              -- For languages that compile to native code, like Rust and C/C++
-          'firefox-debug-adapter', -- To debug JavaScript in firefox
-          'go-debug-adapter',      -- For Go language development
-          'js-debug-adapter',      -- For JavaScript/Node.js development
-          'node-debug2-adapter',   -- An alternative or additional DAP for Node.js
-          'php-debug',             -- For PHP development
+          'delve',
+          'debugpy',
+          'bash-debug-adapter',
+          'chrome-debug-adapter',
+          'codeLLdb',
+          'firefox-debug-adapter',
+          'go-debug-adapter',
+          'js-debug-adapter',
+          'node-debug2-adapter',
+          'php-debug',
         },
       }
 
       -- Dap UI setup
-      -- For more information, see |:help nvim-dap-ui|
       dapui.setup {
-        -- Set icons to characters that are more likely to work in every terminal.
-        --    Feel free to remove or use ones that you like more! :)
-        --    Don't feel like these are good choices.
         icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
         controls = {
           icons = {
