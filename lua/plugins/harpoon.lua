@@ -4,19 +4,21 @@
 ]]
 
 return {
-    -- Define the plugin source
-    -- Using harpoon2
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-ui-select.nvim",
-        },
-        config = function()
-            local harpoon = require('harpoon')
-            harpoon:setup({})
-        end
+  -- Define the plugin source
+  -- Using harpoon2
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-project.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
     },
+    lazy = true,
+    cmd = { 'Harpoon', 'HarpoonAddFile', 'HarpoonToggleQuickMenu' },
+    config = function()
+      local harpoon = require 'harpoon'
+      harpoon.setup {}
+    end,
+  },
 }
