@@ -14,7 +14,12 @@ vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
 vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
+vim.opt.cursorline = true
 
+-- Customize the CursorLine highlight group
+vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#D3D3D3' })
+
+-- Vim-Dadbod config
 vim.cmd [[
   autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]]
@@ -243,3 +248,14 @@ if vim.g.started_by_firenvim then
 end
 
 vim.lsp.set_log_level 'debug'
+
+-- Set custom highlights for autocomplete menu after colorscheme is loaded
+vim.cmd [[
+  augroup CustomColors
+    autocmd!
+    " Set the background of the popup menu to light grey
+    autocmd ColorScheme * highlight Pmenu guibg=#D3D3D3
+    " Set the background of the selected item in the popup menu to a slightly darker grey
+    autocmd ColorScheme * highlight PmenuSel guibg=#C0C0C0 guifg=NONE
+  augroup END
+]]
