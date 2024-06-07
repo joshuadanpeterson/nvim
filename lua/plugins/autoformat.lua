@@ -5,50 +5,49 @@
 
 return {
 
-  -- nvim-ts-autotag
-  -- Automatically closes and renames HTML tags
+  -- nvim-ts-autotag: Automatically closes and renames HTML tags
   {
     'windwp/nvim-ts-autotag',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('nvim-ts-autotag').setup()
     end,
   },
 
-  -- nvim-autopairs
-  -- autopairs: Automatically pairs brackets, quotes, etc.
+  -- nvim-autopairs: Automatically pairs brackets, quotes, etc.
   {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     config = function()
       require('nvim-autopairs').setup {}
     end,
   },
 
-  -- vim-commentary
-  -- Efficient commenting in Vim, toggle comments easily.
+  -- vim-commentary: Efficient commenting in Vim, toggle comments easily.
   {
     'tpope/vim-commentary',
+    event = 'VeryLazy',
   },
 
-  -- vim-sleuth
-  -- Automatically detects tabstop and shiftwidth settings.
+  -- vim-sleuth: Automatically detects tabstop and shiftwidth settings.
   {
     'tpope/vim-sleuth',
+    event = 'BufReadPre',
   },
 
-  -- conform.nvim: format plugin
+  -- conform.nvim: Format plugin
   {
     'stevearc/conform.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
 
-  -- Comment.nvim
-  -- Smart and powerful comment plugin for neovim that supports toggling, motions, operators, and more.
+  -- Comment.nvim: Smart and powerful comment plugin for Neovim
   {
     'numtostr/Comment.nvim',
+    event = 'BufReadPre',
     config = function()
       require('Comment').setup {
-        -- optional configuration here
         padding = true,
         sticky = true,
         ignore = '^$',
@@ -58,29 +57,23 @@ return {
           extended = false,
         },
         toggler = {
-          line = 'gcc', -- toggle line comment
-          block = 'gbc', -- toggle block comment
+          line = 'gcc',
+          block = 'gbc',
         },
         opleader = {
-          line = 'gc', -- line comment operation
-          block = 'gb', -- block comment operation
+          line = 'gc',
+          block = 'gb',
         },
         pre_hook = function(ctx)
-          -- Only calculate commentstring for tsx filetypes
           if vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'javascriptreact' then
             local U = require 'Comment.utils'
-
-            -- Determine whether to use linewise or blockwise commentstring
             local type = ctx.ctype == U.ctype.linewise and '__default' or '__multiline'
-
-            -- Determine the location where to calculate commentstring from
             local location = nil
             if ctx.ctype == U.ctype.blockwise then
               location = require('ts_context_commentstring.utils').get_cursor_location()
             elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
               location = require('ts_context_commentstring.utils').get_visual_start_location()
             end
-
             return require('ts_context_commentstring.internal').calculate_commentstring {
               key = type,
               location = location,
@@ -91,10 +84,10 @@ return {
     end,
   },
 
-  -- nvim-surround: surround selections
+  -- nvim-surround: Surround selections
   {
     'kylechui/nvim-surround',
-    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    version = '*',
     event = 'VeryLazy',
     config = function()
       require('nvim-surround').setup {
@@ -109,9 +102,14 @@ return {
     ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
   },
 
-  -- To help Neovim recognize JS and JSX inside of HTMl files
+  -- To help Neovim recognize JS and JSX inside of HTML files
   {
     'jonsmithers/vim-html-template-literals',
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
+
+  {
     'pangloss/vim-javascript',
+    event = { 'BufReadPre', 'BufNewFile' },
   },
 }
