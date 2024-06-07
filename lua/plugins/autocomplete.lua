@@ -3,7 +3,6 @@
 
 return {
 
-  -- Autocompletion plugin for Neovim that uses a modern architecture
   {
     'hrsh7th/nvim-cmp',
     lazy = false,
@@ -23,36 +22,33 @@ return {
     end,
   },
 
-  -- LuaSnip: A snippet engine for Neovim written in Lua
   {
     'L3MON4D3/LuaSnip',
+    event = 'InsertEnter',
     dependencies = {
-      'saadparwaiz1/cmp_luasnip', -- luasnip completion source for nvim-cmp
-      'rafamadriz/friendly-snippets', -- A collection of snippets for various programming languages
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
     },
-    version = 'v2.*', -- Follow latest release
+    version = 'v2.*',
     build = 'make install_jsregexp',
   },
 
-  -- nvim-cmp source for Neovim's built-in LSP
   {
     'hrsh7th/cmp-nvim-lsp',
-    dependencies = {
-      'hrsh7th/nvim-cmp',
-    },
+    after = 'nvim-cmp',
   },
 
-  -- nvim-cmp-buffer-lines for buffer autocomplete
   {
     'amarakon/nvim-cmp-buffer-lines',
+    event = 'InsertEnter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
   },
 
-  -- nvim-cmp/cmp-buffer
   {
     'hrsh7th/cmp-buffer',
+    after = 'nvim-cmp',
     config = function()
       require('cmp').setup {
         sources = {
@@ -62,9 +58,9 @@ return {
     end,
   },
 
-  -- nvim-cmp/cmp-path
   {
     'hrsh7th/cmp-path',
+    after = 'nvim-cmp',
     config = function()
       require('cmp').setup {
         sources = {
@@ -74,7 +70,6 @@ return {
     end,
   },
 
-  -- Adds VSCode-like pictograms
   {
     'onsails/lspkind-nvim',
     after = 'nvim-cmp',
@@ -83,7 +78,6 @@ return {
     end,
   },
 
-  -- copilot-cmp for GitHub Copilot completions
   {
     'zbirenbaum/copilot-cmp',
     after = 'nvim-cmp',
@@ -92,13 +86,12 @@ return {
     end,
   },
 
-  -- cmp-cmdline for command line completion
   {
     'hrsh7th/cmp-cmdline',
+    event = 'CmdlineEnter',
     after = 'nvim-cmp',
   },
 
-  -- Tailwind Colorizer
   {
     'roobert/tailwindcss-colorizer-cmp.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -107,61 +100,47 @@ return {
     },
   },
 
-  -- cmp-npm for package autocomplete
   {
     'David-Kunz/cmp-npm',
-    dependencies = { 'nvim-lua/plenary.nvim' },
     ft = 'json',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('cmp-npm').setup {}
     end,
   },
 
-  -- ripgrep source for completion
   {
     'lukas-reineke/cmp-rg',
+    event = 'InsertEnter',
   },
 
-  -- nvim-cmp source for neovim Lua API
   {
     'hrsh7th/cmp-nvim-lua',
+    event = 'InsertEnter',
   },
 
-  -- nvim-cmp source for emojis
   {
     'hrsh7th/cmp-emoji',
+    event = 'InsertEnter',
   },
 
-  -- Tmux completion source for nvim-cmp-buffer-lines
   {
     'andersevenrud/cmp-tmux',
+    event = 'InsertEnter',
   },
 
-  -- nvim-cmp source for math calculation
   {
     'hrsh7th/cmp-calc',
+    event = 'InsertEnter',
   },
 
-  -- -- Neovim CSS Intellisense for HTML
-  -- {
-  --   'Jezda1337/nvim-html-css',
-  --   event = { 'BufReadPre', 'BufNewFile' },
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'nvim-lua/plenary.nvim',
-  --   },
-  --   config = function()
-  --     require('html-css'):setup()
-  --   end,
-  -- },
-
-  -- nvim-cmp source for sql keywords
   {
     'ray-x/cmp-sql',
+    event = 'InsertEnter',
   },
 
-  -- nvim-cmp source for treesitter nodes
   {
     'ray-x/cmp-treesitter',
+    event = 'InsertEnter',
   },
 }
