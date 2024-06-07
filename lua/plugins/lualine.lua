@@ -10,7 +10,7 @@ return {
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     },
-    event = 'bufreadpre',
+    event = 'BufReadPre',
     config = function()
       require('lualine').setup {}
     end,
@@ -19,10 +19,12 @@ return {
   -- copilot lualine
   {
     'AndreM222/copilot-lualine',
+    event = 'BufReadPre',
   },
 
   -- harpoonline
   {
     'abeldekat/harpoonline',
+    event = 'BufReadPre',
   },
 }
