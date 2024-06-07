@@ -7,6 +7,7 @@ return {
   -- nvim-lspconfig for configuring language servers
   {
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -16,27 +17,34 @@ return {
   -- Mason for managing LSP servers, linters, and formatters
   {
     'williamboman/mason.nvim',
+    cmd = 'Mason',
     config = function()
       require('mason').setup {
         ui = {
-          border = 'single', -- Set border style
+          border = 'single',
         },
       }
     end,
   },
 
   -- Mason-LSPConfig to bridge Mason and nvim-lspconfig
-  { 'williamboman/mason-lspconfig.nvim' },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    after = 'mason.nvim',
+  },
 
   -- Neodev for Lua development with Neovim API support
-  { 'folke/neodev.nvim', opts = {} },
+  {
+    'folke/neodev.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
+  },
 
   -- Trouble.nvim for an enhanced diagnostic list
   {
     'folke/trouble.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
-    branch = 'dev', -- IMPORTANT! V3 Beta
-
+    branch = 'dev',
     keys = {
       {
         '<leader>xx',
@@ -85,12 +93,13 @@ return {
           },
         },
       },
-    }, -- for default options, refer to the configuration section for custom setup.
+    },
   },
 
   -- nvim-emmet | for integration with emmet-language-server
   {
     'olrtg/nvim-emmet',
+    ft = { 'html', 'css', 'javascript', 'typescript', 'vue', 'svelte', 'jsx', 'tsx' },
     config = function()
       vim.keymap.set({ 'n', 'v' }, '<leader>de', require('nvim-emmet').wrap_with_abbreviation)
     end,
@@ -99,35 +108,45 @@ return {
   -- lspsaga.nvim for beautiful UIs for various LSP-related features
   {
     'nvimdev/lspsaga.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('lspsaga').setup {}
     end,
     dependencies = {
-      'nvim-treesitter/nvim-treesitter', -- optional
-      'kyazdani42/nvim-web-devicons', -- optional
+      'nvim-treesitter/nvim-treesitter',
+      'kyazdani42/nvim-web-devicons',
     },
   },
 
   -- For using glow for LSP hover
-  {
-    'JASONews/glow-hover',
-    config = function()
-      require('glow-hover').setup {
-        -- The followings are the default values
-        max_width = 50,
-        padding = 10,
-        border = 'shadow',
-        glow_path = 'glow',
-      }
-    end,
-  },
+  -- {
+  --   'JASONews/glow-hover',
+  --   event = 'LspAttach',
+  --   config = function()
+  --     require('glow-hover').setup {
+  --       max_width = 50,
+  --       padding = 10,
+  --       border = 'shadow',
+  --       glow_path = 'glow',
+  --     }
+  --   end,
+  -- },
 
   -- typescript.nvim for JSX autocompletion
-  'jose-elias-alvarez/typescript.nvim',
+  {
+    'jose-elias-alvarez/typescript.nvim',
+    ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
+  },
 
   -- emmet-ls
-  'aca/emmet-ls',
+  {
+    'aca/emmet-ls',
+    ft = { 'html', 'css', 'javascript', 'typescript', 'vue', 'svelte', 'jsx', 'tsx' },
+  },
 
   -- lsp-zero for simplified LSP setup
-  'VonHeikemen/lsp-zero.nvim',
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
 }
