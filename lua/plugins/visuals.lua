@@ -1,21 +1,22 @@
 -- visuals.lua
 
 return {
-  -- Install plugin information here
-
   -- vim-surround: easily manage pairs like brackets, quotes in your text.
   {
     'tpope/vim-surround',
+    event = 'BufReadPre',
   },
 
   -- indentline: display vertical lines at each indentation level.
   {
     'yggdroot/indentline',
+    event = 'BufReadPre',
   },
 
   -- Treesitter-based rainbow parentheses for Neovim, enhancing the readability of nested parentheses.
   {
     'hiphish/nvim-ts-rainbow2',
+    event = 'BufReadPre',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
@@ -24,64 +25,67 @@ return {
   -- transparent plugin
   {
     'xiyaowong/transparent.nvim',
-    -- transparent plugin panels
-    extra_groups = {
-      'NormalFloat', -- plugins which have float panel such as Lazy, Mason, LspInfo
-    },
+    event = 'BufReadPre',
+    config = function()
+      require('transparent').setup {
+        extra_groups = {
+          'NormalFloat', -- plugins which have float panel such as Lazy, Mason, LspInfo
+        },
+      }
+    end,
   },
 
   -- Makes the background of the editor transparent.
   {
     'tribela/vim-transparent',
+    event = 'BufReadPre',
   },
 
   -- Twilight, for text dimming
   {
     'folke/twilight.nvim',
+    cmd = 'Twilight',
     opts = {
       dimming = {
         alpha = 100, -- amount of dimming
-        -- we try to get the foreground from the highlight groups or fallback color
         color = { 'Normal', '#ffffff' },
-        term_bg = '#FFFFFF', -- if guibg=NONE, this will be used to calculate text color
-        inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+        term_bg = '#FFFFFF',
+        inactive = false,
       },
-      context = 10, -- amount of lines we will try to show around the current line
-      treesitter = true, -- use treesitter when available for the filetype
-      -- treesitter is used to automatically expand the visible text,
-      -- but you can further control the types of nodes that should always be fully expanded
-      expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
+      context = 10,
+      treesitter = true,
+      expand = {
         'function',
         'method',
         'table',
         'if_statement',
       },
-      exclude = {}, -- exclude these filetypes
+      exclude = {},
     },
   },
 
   -- true-zen
   {
     'Pocco81/true-zen.nvim',
+    cmd = { 'TZAtaraxis', 'TZMinimalist', 'TZFocus', 'TZBottom' },
     config = function()
       require('true-zen').setup {
-        -- your config goes here
-        modes = { -- configurations per mode
+        modes = {
           ataraxis = {
-            shade = 'dark', -- if `dark` then dim the padding windows, otherwise if it's `light` it'll brighten said windows
-            backdrop = 0, -- percentage by which padding windows should be dimmed/brightened. Must be a number between 0 and 1. Set to 0 to keep the same background color
-            minimum_writing_area = { -- minimum size of main window
+            shade = 'dark',
+            backdrop = 0,
+            minimum_writing_area = {
               width = 70,
               height = 44,
             },
-            quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
-            padding = { -- padding windows
+            quit_untoggles = true,
+            padding = {
               left = 52,
               right = 52,
               top = 0,
               bottom = 0,
             },
-            callbacks = { -- run functions when opening/closing Ataraxis mode
+            callbacks = {
               open_pre = nil,
               open_pos = nil,
               close_pre = nil,
@@ -89,21 +93,17 @@ return {
             },
           },
           minimalist = {
-            ignored_buf_types = { 'nofile' }, -- save current options from any window except ones displaying these kinds of buffers
-            options = { -- options to be disabled when entering Minimalist mode
+            ignored_buf_types = { 'nofile' },
+            options = {
               number = false,
               relativenumber = true,
-              -- showtabline = 1,
               signcolumn = 'no',
               statusline = '',
-              -- cmdheight = 1,
               laststatus = 0,
               showcmd = false,
-              -- showmode = false,
-              -- ruler = false,
               numberwidth = 1,
             },
-            callbacks = { -- run functions when opening/closing Minimalist mode
+            callbacks = {
               open_pre = nil,
               open_pos = nil,
               close_pre = nil,
@@ -111,13 +111,9 @@ return {
             },
           },
           narrow = {
-            --- change the style of the fold lines. Set it to:
-            --- `informative`: to get nice pre-baked folds
-            --- `invisible`: hide them
-            --- function() end: pass a custom func with your fold lines. See :h foldtext
             folds_style = 'informative',
-            run_ataraxis = true, -- display narrowed text in a Ataraxis session
-            callbacks = { -- run functions when opening/closing Narrow mode
+            run_ataraxis = true,
+            callbacks = {
               open_pre = nil,
               open_pos = nil,
               close_pre = nil,
@@ -125,7 +121,7 @@ return {
             },
           },
           focus = {
-            callbacks = { -- run functions when opening/closing Focus mode
+            callbacks = {
               open_pre = nil,
               open_pos = nil,
               close_pre = nil,
@@ -134,13 +130,13 @@ return {
           },
         },
         integrations = {
-          tmux = false, -- hide tmux status bar in (minimalist, ataraxis)
-          kitty = { -- increment font size in Kitty. Note: you must set `allow_remote_control socket-only` and `listen_on unix:/tmp/kitty` in your personal config (ataraxis)
+          tmux = false,
+          kitty = {
             enabled = false,
             font = '+3',
           },
-          twilight = true, -- enable twilight (ataraxis)
-          lualine = true, -- hide nvim-lualine (ataraxis)
+          twilight = true,
+          lualine = true,
         },
       }
     end,
@@ -149,67 +145,38 @@ return {
   -- Zen Mode, distraction-free coding
   {
     'folke/zen-mode.nvim',
+    cmd = 'ZenMode',
     opts = {
       window = {
-        backdrop = 0.10, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-        -- height and width can be:
-        -- * an absolute number of cells when > 1
-        -- * a percentage of the width / height of the editor when <= 1
-        -- * a function that returns the width or the height
-        width = 120, -- width of the Zen window
-        height = 0.90, -- height of the Zen window
-        -- by default, no options are changed for the Zen window
-        -- uncomment any of the options below, or add other vim.wo options you want to apply
-        options = {
-          -- signcolumn = "no", -- disable signcolumn
-          -- number = false, -- disable number column
-          -- relativenumber = false, -- disable relative numbers
-          -- cursorline = false, -- disable cursorline
-          -- cursorcolumn = false, -- disable cursor column
-          -- foldcolumn = "0", -- disable fold column
-          -- list = false, -- disable whitespace characters
-        },
+        backdrop = 0.10,
+        width = 120,
+        height = 0.90,
+        options = {},
       },
       plugins = {
-        -- disable some global vim options (vim.o...)
-        -- comment the lines to not apply the options
         options = {
           enabled = true,
-          ruler = false, -- disables the ruler text in the cmd line area
-          showcmd = false, -- disables the command in the last line of the screen
-          -- you may turn on/off statusline in zen mode by setting 'laststatus'
-          -- statusline will be shown only if 'laststatus' == 3
-          laststatus = 0, -- turn off the statusline in zen mode
+          ruler = false,
+          showcmd = false,
+          laststatus = 0,
         },
-        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-        gitsigns = { enabled = false }, -- disables git signs
-        tmux = { enabled = false }, -- disables the tmux statusline
-        -- this will change the font size on kitty when in zen mode
-        -- to make this work, you need to set the following kitty options:
-        -- - allow_remote_control socket-only
-        -- - listen_on unix:/tmp/kitty
+        twilight = { enabled = true },
+        gitsigns = { enabled = false },
+        tmux = { enabled = false },
         kitty = {
           enabled = false,
-          font = '+4', -- font size increment
+          font = '+4',
         },
-        -- this will change the font size on alacritty when in zen mode
-        -- requires  Alacritty Version 0.10.0 or higher
-        -- uses `alacritty msg` subcommand to change font size
         alacritty = {
           enabled = false,
-          font = '14', -- font size
+          font = '14',
         },
-        -- this will change the font size on wezterm when in zen mode
-        -- See alse also the Plugins/Wezterm section in this projects README
         wezterm = {
           enabled = false,
-          -- can be either an absolute font size or the number of incremental steps
-          font = '+4', -- (10% increase per step)
+          font = '+4',
         },
       },
-      -- callback where you can add custom code when the Zen window opens
       on_open = function(win) end,
-      -- callback where you can add custom code when the Zen window closes
       on_close = function() end,
     },
   },
@@ -217,8 +184,71 @@ return {
   -- typewriter (test): enable typewriter-like scrolling
   {
     'joshuadanpeterson/typewriter',
+    event = 'BufReadPre',
     config = function()
       require('typewriter').setup()
+    end,
+  },
+
+  -- nvim-highlight-colors: highlight colors in your buffer
+  {
+    'brenoprata10/nvim-highlight-colors',
+    event = 'BufReadPre',
+    config = function()
+      require('nvim-highlight-colors').setup {
+        ---Render style
+        ---@usage 'background'|'foreground'|'virtual'
+        render = 'background',
+
+        ---Set virtual symbol (requires render to be set to 'virtual')
+        virtual_symbol = '■',
+
+        ---Set virtual symbol suffix (defaults to '')
+        virtual_symbol_prefix = '',
+
+        ---Set virtual symbol suffix (defaults to ' ')
+        virtual_symbol_suffix = ' ',
+
+        ---Set virtual symbol position()
+        ---@usage 'inline'|'eol'|'eow'
+        ---inline mimics VS Code style
+        ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
+        ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
+        virtual_symbol_position = 'inline',
+
+        ---Highlight hex colors, e.g. '#FFFFFF'
+        enable_hex = true,
+
+        ---Highlight short hex colors e.g. '#fff'
+        enable_short_hex = true,
+
+        ---Highlight rgb colors, e.g. 'rgb(0 0 0)'
+        enable_rgb = true,
+
+        ---Highlight hsl colors, e.g. 'hsl(150deg 30% 40%)'
+        enable_hsl = true,
+
+        ---Highlight CSS variables, e.g. 'var(--testing-color)'
+        enable_var_usage = true,
+
+        ---Highlight named colors, e.g. 'green'
+        enable_named_colors = true,
+
+        ---Highlight tailwind colors, e.g. 'bg-blue-500'
+        enable_tailwind = true,
+
+        ---Set custom colors
+        ---Label must be properly escaped with '%' to adhere to `string.gmatch`
+        --- :help string.gmatch
+        custom_colors = {
+          { label = '%-%-theme%-primary%-color', color = '#0f1219' },
+          { label = '%-%-theme%-secondary%-color', color = '#5a5d64' },
+        },
+
+        -- Exclude filetypes or buftypes from highlighting e.g. 'exclude_buftypes = {'text'}'
+        exclude_filetypes = {},
+        exclude_buftypes = {},
+      }
     end,
   },
 }
