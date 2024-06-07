@@ -78,11 +78,14 @@ Harpoonline.setup {
 }
 local harpoonline = { Harpoonline.format, 'filename' }
 
+-- Set up theme
+local nord = require 'lualine.themes.nord'
+
 -- Define the lualine setup configuration
 local config = {
   options = {
     icons_enabled = true,
-    theme = 'nord',
+    theme = nord,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
   },
