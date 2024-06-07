@@ -1,5 +1,6 @@
 -- useful plugin to show you pending keybinds.
 -- Shows a popup with possible keybindings of the command you started typing.
+
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
