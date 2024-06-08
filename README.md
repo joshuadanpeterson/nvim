@@ -1,5 +1,9 @@
 # README for Neovim Configuration
 
+<a href="https://dotfyle.com/joshuadanpeterson/nvim"><img src="https://dotfyle.com/joshuadanpeterson/nvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/joshuadanpeterson/nvim"><img src="https://dotfyle.com/joshuadanpeterson/nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/joshuadanpeterson/nvim"><img src="https://dotfyle.com/joshuadanpeterson/nvim/badges/plugin-manager?style=flat" /></a>
+
 ## Neovim Configuration Overview
 
 This repository hosts an advanced `init.lua` configuration for Neovim, crafted to enhance the development workflow with a wide array of functionalities and plugins. It draws inspiration from the kickstart.nvim template and integrates additional customizations for a personalized coding environment. Here's an integrated overview of the features, plugins, and setup instructions.
@@ -28,8 +32,15 @@ This repository hosts an advanced `init.lua` configuration for Neovim, crafted t
 
 ## Installation
 
+> Install requires Neovim 0.9+. Always review the code before installing a configuration.
+
 1. Install Neovim if you haven't already.
 2. Clone this repository to your Neovim configuration directory (`~/.config/nvim/`).
+
+```sh
+git clone git@github.com:joshuadanpeterson/nvim ~/.config/joshuadanpeterson/nvim
+```
+
 3. Launch Neovim; the plugins will automatically install on the first run.
 4. A restart of Neovim might be necessary once all plugins are installed.
 
@@ -39,7 +50,7 @@ The configuration is designed for easy customization. You're encouraged to modif
 
 ## Contribution
 
-Contributions are warmly welcomed. Feel free to fork the repository, make your changes, and submit a pull request to enhance this configuration further.
+Feel free to fork the repository and make your changes.
 
 ## Acknowledgements
 
