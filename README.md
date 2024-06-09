@@ -38,7 +38,7 @@ This repository hosts an advanced `init.lua` configuration for Neovim, crafted t
 2. Clone this repository to your Neovim configuration directory (`~/.config/nvim/`).
 
 ```sh
-git clone git@github.com:joshuadanpeterson/nvim ~/.config/joshuadanpeterson/nvim
+git clone https://github.com/joshuadanpeterson/nvim.git ~/.config/nvim
 ```
 
 3. Launch Neovim; the plugins will automatically install on the first run.
