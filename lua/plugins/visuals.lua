@@ -86,10 +86,17 @@ return {
               bottom = 0,
             },
             callbacks = {
-              open_pre = nil,
+              open_pre = function()
+                -- vim.cmd 'TWEnable'
+              end,
               open_pos = nil,
               close_pre = nil,
-              close_pos = nil,
+              close_pos = function()
+                vim.cmd 'TWDisable'
+              end,
+            },
+            options = {
+              showtabline = 0, -- Ensure showtabline is set to a numeric value
             },
           },
           minimalist = {
@@ -102,6 +109,7 @@ return {
               laststatus = 0,
               showcmd = false,
               numberwidth = 1,
+              showtabline = 0,
             },
             callbacks = {
               open_pre = nil,
@@ -119,6 +127,9 @@ return {
               close_pre = nil,
               close_pos = nil,
             },
+            options = {
+              showtabline = 0, -- Ensure showtabline is set to a numeric value
+            },
           },
           focus = {
             callbacks = {
@@ -126,6 +137,9 @@ return {
               open_pos = nil,
               close_pre = nil,
               close_pos = nil,
+            },
+            options = {
+              showtabline = 0, -- Ensure showtabline is set to a numeric value
             },
           },
         },
@@ -176,8 +190,12 @@ return {
           font = '+4',
         },
       },
-      on_open = function(win) end,
-      on_close = function() end,
+      on_open = function(win)
+        vim.cmd 'TWEnable'
+      end,
+      on_close = function()
+        vim.cmd 'TWDisable'
+      end,
     },
   },
 
@@ -186,7 +204,10 @@ return {
     'joshuadanpeterson/typewriter',
     event = 'BufReadPre',
     config = function()
-      require('typewriter').setup()
+      require('typewriter').setup {
+        enable_with_zen_mode = true,
+        enable_with_true_zen = true,
+      }
     end,
   },
 
