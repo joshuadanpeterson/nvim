@@ -201,7 +201,7 @@ return {
 
   -- typewriter (test): enable typewriter-like scrolling
   {
-    'joshuadanpeterson/typewriter',
+    'joshuadanpeterson/typewriter.nvim',
     event = 'BufReadPre',
     config = function()
       require('typewriter').setup {
@@ -270,6 +270,14 @@ return {
         exclude_filetypes = {},
         exclude_buftypes = {},
       }
+    end,
+  },
+
+  -- auto-cursorline.nvim: For a highlighted cursorline
+  {
+    'delphinus/auto-cursorline.nvim',
+    config = function()
+      require('auto-cursorline').setup {}
     end,
   },
 }
