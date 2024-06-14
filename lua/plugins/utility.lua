@@ -28,7 +28,7 @@ return {
   {
     'LazyVim/LazyVim',
     opts = {
-      colorscheme = 'github_dark_dimmed',
+      colorscheme = 'nord',
     },
   },
 
@@ -389,7 +389,18 @@ return {
   -- oil.nvim: A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
   {
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      float = {
+        -- Padding around the floating window
+        padding = 2,
+        max_width = 90,
+        max_height = 30,
+        border = 'rounded',
+        win_options = {
+          winblend = 0,
+        },
+      },
+    },
     -- Optional dependencies
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
@@ -461,6 +472,20 @@ return {
         pattern = [[\b(KEYWORDS):]], -- ripgrep regex
         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
       },
+    },
+  },
+
+  -- CodeSnap: Snapshot plugin with rich features that can make pretty code snapshots for Neovim
+  {
+    'mistricky/codesnap.nvim',
+    build = 'make',
+    opts = {
+      save_path = '~/Dropbox/programming/codesnap',
+      parsed = '~/Dropbox/programming/codesnap/CodeSnap_y-m-d_at_h:m:s.png',
+      code_font_family = 'Fira Code Nerd Font',
+      bg_theme = 'summer',
+      breadcrumbs_separator = ' > ',
+      has_breadcrumbs = true,
     },
   },
 }
