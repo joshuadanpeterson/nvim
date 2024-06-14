@@ -14,10 +14,10 @@ vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
 vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
 -- Customize the CursorLine highlight group
-vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#D3D3D3' })
+-- vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#D3D3D3' })
 
 -- Vim-Dadbod config
 vim.cmd [[
@@ -258,4 +258,18 @@ vim.cmd [[
     " Set the background of the selected item in the popup menu to a slightly darker grey
     autocmd ColorScheme * highlight PmenuSel guibg=#C0C0C0 guifg=NONE
   augroup END
+]]
+
+-- Update highlight groups for transparency
+vim.cmd [[
+  hi Normal guibg=NONE ctermbg=NONE
+  hi LineNr guibg=NONE ctermbg=NONE
+  hi Folded guibg=NONE ctermbg=NONE
+  hi NonText guibg=NONE ctermbg=NONE
+  hi SpecialKey guibg=NONE ctermbg=NONE
+  hi VertSplit guibg=NONE ctermbg=NONE
+  hi SignColumn guibg=NONE ctermbg=NONE
+  hi EndOfBuffer guibg=NONE ctermbg=NONE
+  hi StatusLine guibg=#2E3440 guifg=#D8DEE9
+  hi StatusLineNC guibg=#2E3440 guifg=#D8DEE9
 ]]
