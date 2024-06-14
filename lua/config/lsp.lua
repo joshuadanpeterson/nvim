@@ -14,16 +14,6 @@ lsp_zero.extend_lspconfig()
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps { buffer = bufnr }
-
-  -- Custom keybindings for diagnostics
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>db', '<cmd>lua require("telescope.builtin").diagnostics({ bufnr = 0 })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>dh', '<cmd>lua vim.diagnostic.open_float(nil, { scope = "cursor" })<CR>', opts) -- Expand diagnostics on hover
 end)
 
 -- Enhanced capabilities from nvim-cmp for LSP
@@ -100,21 +90,6 @@ require('mason-lspconfig').setup {
     -- Custom handler for tsserver
     tsserver = function()
       require('lspconfig').tsserver.setup {
-        on_attach = function(client, bufnr)
-          local function buf_set_keymap(...)
-            vim.api.nvim_buf_set_keymap(bufnr, ...)
-          end
-          local opts = { noremap = true, silent = true }
-          buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-          buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-          buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-          buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-          buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-          buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-          buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-          buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-        end,
         capabilities = capabilities,
         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
         settings = {
@@ -179,21 +154,6 @@ require('typescript').setup {
   debug = false,
   server = {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-      end
-      local opts = { noremap = true, silent = true }
-      buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-      buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-      buf_set_keymap('n', '<space>rm', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-      buf_set_keymap('n', '<space>rr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-      buf_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-      buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-      buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-      buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    end,
     filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
     settings = {
       typescript = {
@@ -217,6 +177,12 @@ require('typescript').setup {
   },
 }
 
+-- Customize LSP status messages
+-- vim.lsp.handlers['$/progress'] = function() end
+-- vim.lsp.handlers['window/showMessageRequest'] = function(_, result, _)
+--   -- Do something with the message request or ignore it
+-- end
+
 -- Finalize the LSP setup
 lsp_zero.setup()
 
@@ -228,7 +194,7 @@ vim.diagnostic.config {
   update_in_insert = false, -- Update diagnostics in insert mode
   severity_sort = true, -- Sort diagnostics by severity
   float = {
-    source = true, -- Show the source of the diagnostic
+    source = 'always', -- Show the source of the diagnostic
     border = 'rounded', -- Rounded border for floating windows
     focusable = true,
   },
@@ -236,12 +202,6 @@ vim.diagnostic.config {
 
 -- Set border for LspInfo
 require('lspconfig.ui.windows').default_options.border = 'single'
-
--- Keybindings to show diagnostics in a floating window
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>qd', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
 -- Set up nvim-lint to integrate with the LSP diagnostics
 vim.cmd [[
@@ -252,7 +212,7 @@ vim.cmd [[
 ]]
 
 -- Set filetype for Google Apps Script files as JavaScript
-vim.api.nvim_exec(
+vim.cmd(
   [[
   autocmd BufRead,BufNewFile *script.google.com_*.txt set filetype=javascript
 ]],
