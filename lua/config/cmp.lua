@@ -206,6 +206,29 @@ cmp.setup.filetype('lua', {
   -- print 'Cmp sources for Lua filetype set',
 })
 
+cmp.setup.filetype('sql', {
+  sources = cmp.config.sources {
+    { name = 'copilot' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'sql' },
+  },
+  -- print 'Cmp sources for sql filetype set',
+})
+
+cmp.setup.filetype({ 'txt', 'md', 'tape', 'vhs' }, {
+  sources = cmp.config.sources {
+    { name = 'copilot' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+  -- print 'Cmp sources for sql filetype set',
+})
+
 -- Set CMP source for prompt buffer type
 -- cmp.setup.filetype('prompt', {
 --   sources = {
