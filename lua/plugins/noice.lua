@@ -54,7 +54,7 @@ return {
       },
       commands = {
         history = {
-          view = 'split',
+          view = 'popup',
           opts = { enter = true, format = 'details' },
           filter = {
             any = {
