@@ -5,57 +5,63 @@
 
 return {
   -- Sonokai theme
-  {
-    'sainnhe/sonokai',
-    lazy = false,
-    priority = 1000, -- Ensure it loads first
-    config = function()
-      -- You can set some Sonokai specific options here if needed
-      vim.g.sonokai_style = 'andromeda' -- or other styles: 'default', 'andromeda', 'atlantis', 'shusia', 'maia'
-      vim.g.sonokai_enable_italic = 1
-      vim.g.sonokai_disable_italic_comment = 0
-      vim.g.sonokai_cursor = 'auto'
-      vim.g.sonokai_transparent_background = 0
-      vim.g.sonokai_show_eob = 1
-      vim.g.sonokai_diagnostic_text_highlight = 1
-      vim.g.sonokai_diagnostic_line_highlight = 1
-      vim.g.sonokai_diagnostic_virtual_text = 'colored'
+  -- {
+  --   'sainnhe/sonokai',
+  --   lazy = false,
+  --   priority = 1000, -- Ensure it loads first
+  --   config = function()
+  --     -- You can set some Sonokai specific options here if needed
+  --     vim.g.sonokai_style = 'andromeda' -- or other styles: 'default', 'andromeda', 'atlantis', 'shusia', 'maia'
+  --     vim.g.sonokai_enable_italic = 1
+  --     vim.g.sonokai_disable_italic_comment = 0
+  --     vim.g.sonokai_cursor = 'auto'
+  --     vim.g.sonokai_transparent_background = 0
+  --     vim.g.sonokai_show_eob = 1
+  --     vim.g.sonokai_diagnostic_text_highlight = 1
+  --     vim.g.sonokai_diagnostic_line_highlight = 1
+  --     vim.g.sonokai_diagnostic_virtual_text = 'colored'
 
-      -- Set the colorscheme
-      vim.cmd 'colorscheme sonokai'
+  --     -- Set the colorscheme
+  --     -- vim.cmd 'colorscheme sonokai'
 
-      -- Set custom highlights for autocomplete menu after colorscheme is loaded
-      vim.cmd [[
-        highlight Pmenu guibg=#D3D3D3
-        highlight PmenuSel guibg=#C0C0C0 guifg=NONE
-        highlight CursorLine guibg=#D3D3D3
-      ]]
-    end,
-  },
+  --     -- Set custom highlights for autocomplete menu after colorscheme is loaded
+  --     vim.cmd [[
+  --         highlight Pmenu guibg=#D3D3D3
+  --         highlight PmenuSel guibg=#C0C0C0 guifg=NONE
+  --         highlight CursorLine guibg=#D3D3D3
+  --       ]]
+  --   end,
+  -- },
 
   -- GitHub theme
-  {
-    'projekt0n/github-nvim-theme',
-    lazy = true,
-    config = function()
-      require('github-theme').setup {
-        darken = {
-          floats = true,
-        },
-        modules = {
-          'which-key',
-        },
-      }
-    end,
-  },
+  -- {
+  --   'projekt0n/github-nvim-theme',
+  --   lazy = true,
+  --   config = function()
+  --     require('github-theme').setup {
+  --       darken = {
+  --         floats = true,
+  --       },
+  --       modules = {
+  --         'which-key',
+  --       },
+  --     }
+  --   end,
+  -- },
 
-  -- Nord theme
+  -- nord theme
+  -- Transparent Nord Theme
   {
     'shaunsingh/nord.nvim',
-    event = 'VimEnter',
     config = function()
+      -- load the theme
+      vim.cmd 'colorscheme nord'
       require('nord').set {
-        transparent = true,
+        transparent = true, -- Set to false to disable transparency globally
+        styles = {
+          sidebars = 'transparent',
+          floats = 'transparent',
+        },
       }
     end,
   },
