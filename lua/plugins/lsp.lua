@@ -1,6 +1,6 @@
 -- plugins/lsp.lua
 --[[
-        custom.plugins.lsp: Configures the Language Server Protocol (LSP) support in Neovim, enabling features like auto-completion, go-to definition, and inline errors, Treesitter for enhanced syntax highlighting and language features. This includes setting up language servers, customizing LSP-related keybindings, and integrating with completion plugins.
+        lua.plugins.lsp: Configures the Language Server Protocol (LSP) support in Neovim, enabling features like auto-completion, go-to definition, and inline errors, Treesitter for enhanced syntax highlighting and language features. This includes setting up language servers, customizing LSP-related keybindings, and integrating with completion plugins.
 ]]
 
 return {
@@ -116,20 +116,6 @@ return {
       'kyazdani42/nvim-web-devicons',
     },
   },
-
-  -- For using glow for LSP hover
-  -- {
-  --   'JASONews/glow-hover',
-  --   event = 'LspAttach',
-  --   config = function()
-  --     require('glow-hover').setup {
-  --       max_width = 50,
-  --       padding = 10,
-  --       border = 'shadow',
-  --       glow_path = 'glow',
-  --     }
-  --   end,
-  -- },
 
   -- typescript.nvim for JSX autocompletion
   {
