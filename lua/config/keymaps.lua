@@ -57,7 +57,7 @@ local generalMappings = {
   ['d'] = { ':NoiceDismiss<CR>', 'Dismiss Noice Message' },
   ['L'] = { ':SearchLogFiles<CR>', 'Search Log Files' },
   ['C'] = { ':SearchChangelogFiles<CR>', 'Search Changelog Files' },
-  ['o'] = { ':Oil<CR>', 'Modify Filetree in Buffer' },
+  ['o'] = { ':Oil --float<CR>', 'Modify Filetree in Buffer' },
 }
 
 -- Vim Dadbod (SQL) Keymaps
@@ -186,6 +186,10 @@ local uiMappings = {
   ['n'] = { ':TZNarrow<CR>', 'Toggle True Zen: Narrow Mode' },
   ['f'] = { ':TZFocus<CR>', 'Toggle True Zen: Focus Mode' },
   ['T'] = { ':TWToggle<CR>', 'Toggle Typewriter' },
+  ['s'] = { ':CodeSnap<CR>', 'CodeSnap' },
+  ['S'] = { ':CodeSnapSave<CR>', 'Save CodeSnap' },
+  ['h'] = { ':CodeSnapHighlight<CR>', 'CodeSnap Highlight' },
+  ['H'] = { ':CodeSnapSaveHighlight<CR>', 'CodeSnap Save Highlight' },
 }
 
 -- Telescope Keymaps
