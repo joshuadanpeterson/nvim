@@ -27,4 +27,10 @@ return {
     'abeldekat/harpoonline',
     event = 'BufReadPre',
   },
+
+  -- lualine-lsp-progress
+  {
+    'arkav/lualine-lsp-progress',
+    event = 'BufReadPre',
+  },
 }
