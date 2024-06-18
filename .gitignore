@@ -1,3 +1,4 @@
+# Files
 tags
 test.sh
 .luarc.json
@@ -5,6 +6,9 @@ nvim
 -P
 package-lock.json
 package.json
+lua/custom/center_block.lua
+lua/custom/center_block_config.lua
+lua/custom/init.lua
 
 # Folders
 node_modules/
