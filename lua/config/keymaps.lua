@@ -132,10 +132,10 @@ local diagnosticMappings = {
   ['a'] = { ':NoiceAll<CR>', 'Noice All' },
   ['b'] = { ':NoiceDebug<CR>', 'Noice Debug' },
   ['I'] = { ':Inspect<CR>', 'Inspect' },
-  ['T'] = { ':InspectTree<CR>', 'Inspect Tree' },
   ['S'] = { ':Telescope treesitter<CR>', 'Search Treesitter' },
   ['x'] = { ':TodoTelescope<CR>', 'Search TODOs in Telescope' },
   ['X'] = { ':TodoTrouble<CR>', 'Search TODOs in Trouble' },
+  ['p'] = { ':TSPlaygroundToggle<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>', 'Open Treesitter Playground' },
 }
 
 -- GitHub Copilot Chat Mappings
@@ -176,6 +176,7 @@ local pluginMappings = {
 -- UI Mappings
 local uiMappings = {
   name = 'UI Mappings',
+  ['b'] = { ':TWCenter<CR>', 'Center Code Block' },
   ['c'] = { ':Telescope colorscheme<CR>', 'Search Colorschemes' },
   ['e'] = { ':Telescope emoji<CR>', 'Search Emojis' },
   ['E'] = { ':InsertEmojiByGroup<CR>', 'Search Emojis by Group' },
