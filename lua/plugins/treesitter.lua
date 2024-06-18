@@ -21,6 +21,27 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        playground = {
+          enable = true,
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          persist_queries = false, -- Whether the query persists across vim sessions
+          keybindings = {
+            toggle_query_editor = 'o', -- Open the query editor
+            toggle_hl_groups = 'i', -- Toggle highlight groups
+            toggle_injected_languages = 't', -- Toggle injected languages
+            toggle_anonymous_nodes = 'a', -- Toggle anonymous nodes
+            toggle_language_display = 'I', -- Toggle language display
+            focus_language = 'f', -- Focus on the language under the cursor
+            unfocus_language = 'F', -- Unfocus the language
+            update = 'R', -- Update the Playground view
+            goto_node = '<cr>', -- Go to the node in the source code
+            show_help = '?', -- Show help menu
+          },
+        },
+      }
+    end,
   },
 
   -- nvim-treesitter-textobjects
