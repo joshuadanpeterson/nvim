@@ -87,7 +87,7 @@ return {
             },
             callbacks = {
               open_pre = function()
-                -- vim.cmd 'TWEnable'
+                vim.cmd 'TWEnable'
               end,
               open_pos = nil,
               close_pre = nil,
@@ -109,7 +109,7 @@ return {
               laststatus = 0,
               showcmd = false,
               numberwidth = 1,
-              showtabline = 0,
+              showtabline = 0, -- Ensure showtabline is set to a numeric value
             },
             callbacks = {
               open_pre = nil,
@@ -199,7 +199,7 @@ return {
     },
   },
 
-  -- typewriter (test): enable typewriter-like scrolling
+  -- typewriter: enable typewriter-like scrolling
   {
     'joshuadanpeterson/typewriter.nvim',
     event = 'BufReadPre',
@@ -210,6 +210,19 @@ return {
       }
     end,
   },
+
+  -- typewriter test
+  -- {
+  --   dir = '~/.config/nvim/lua/custom/center_block',
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   config = function()
+  --     require('custom.center_block').setup {
+  --       -- Your configuration options here
+  --     }
+  --   end,
+  -- },
 
   -- nvim-highlight-colors: highlight colors in your buffer
   {
