@@ -92,6 +92,8 @@ return {
       'Lilja/telescope-swap-files',
       'tsakirist/telescope-lazy.nvim',
       'Myzel394/jsonfly.nvim',
+      'nvim-lua/popup.nvim',
+      'nvim-telescope/telescope-media-files.nvim',
     },
     cmd = 'Telescope',
   },
