@@ -224,7 +224,7 @@ local telescopeMappings = {
   ['o'] = { '<cmd>Telescope oldfiles<cr>', 'Recent Files' },
   ['B'] = { '<cmd>Telescope buffers<cr>', 'List Buffers' },
   ['z'] = { '<cmd>Telescope zoxide list<CR>', 'Zoxide List' },
-  ['T'] = { '<cmd>Tldr<CR>', 'Search tldr pages' },
+  ['p'] = { '<cmd>Tldr<CR>', 'Search tldr pages' },
   ['j'] = {
     function()
       if vim.bo.filetype == 'json' then
@@ -372,7 +372,7 @@ local flashMappings = {
     'Flash',
     mode = { 'n', 'x', 'o' },
   },
-  ['S'] = {
+  ['t'] = {
     function()
       require('flash').treesitter()
     end,
@@ -393,7 +393,7 @@ local flashMappings = {
     'Treesitter Search',
     mode = { 'o', 'x' },
   },
-  ['t'] = {
+  ['T'] = {
     function()
       require('flash').toggle()
     end,
@@ -405,18 +405,17 @@ local flashMappings = {
 -- Git Keymaps
 local gitMappings = {
   name = 'Git Keymaps',
-  ['f'] = { require('telescope.builtin').git_files, 'Search Git Files' },
-  ['d'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", 'Grep in Git Directory' },
+  ['r'] = { require('telescope.builtin').git_files, 'Search Git Files' },
+  ['D'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", 'Grep in Git Directory' },
   ['s'] = { require('telescope.builtin').git_stash, 'Search Git Stash' },
   ['S'] = { require('telescope.builtin').git_status, 'Search Git Status' },
   ['C'] = { '<cmd>Telescope git_bcommits<CR>', 'Search Git Buffer Commits' },
-  ['c'] = { require('telescope.builtin').git_commits, 'Search Git Directory Commits' },
+  ['d'] = { require('telescope.builtin').git_commits, 'Search Git Directory Commits' },
   ['b'] = { require('telescope.builtin').git_branches, 'Search Git Branches' },
   ['p'] = { '<cmd>Telescope git_signs<CR>', 'Search Preview Hunks' },
-  ['B'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
-  ['D'] = { ':Gdiffsplit<CR>', 'Toggle Git Diff Split' },
-  ['G'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
-  ['l'] = { '<cmd>FloatermNew lazygit<CR>', 'Open Lazygit' },
+  ['T'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
+  ['t'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
+  ['c'] = { ':LazyGitConfig<CR>', 'Open Lazygit Config' },
 }
 
 -- ChatGPT Keymaps
@@ -576,7 +575,6 @@ wk.register {
   ['<leader><Tab>'] = 'Tab Managment',
   ['<leader>['] = 'Previous',
   ['<leader>]'] = 'Next',
-  ['<leader>g'] = 'Git & Misc.',
   ['<leader>z'] = 'Fold Managment',
 }
 
