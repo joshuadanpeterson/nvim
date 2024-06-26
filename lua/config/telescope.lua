@@ -203,6 +203,13 @@ require('telescope').setup {
         width = 0.5,
         height = 0.5,
       },
+      media_files = {
+        -- filetypes whitelist
+        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+        filetypes = { 'png', 'webp', 'jpg', 'jpeg' },
+        -- find command (defaults to `fd`)
+        find_cmd = 'rg',
+      },
     },
   },
 }
@@ -252,6 +259,7 @@ require('telescope').load_extension 'helpgrep'
 require('telescope').load_extension 'gpt'
 require('telescope').load_extension 'lazy'
 require('telescope').load_extension 'jsonfly'
+require('telescope').load_extension 'media_files'
 
 -- Set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()
