@@ -1,5 +1,4 @@
 -- LSP configurations
-
 -- Ensure that the correct filetype is set for your init.lua
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = 'init.lua',
@@ -11,13 +10,24 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
 local lsp_zero = require 'lsp-zero'
 lsp_zero.extend_lspconfig()
+lsp_zero.preset 'recommended' -- firenvim addition
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps { buffer = bufnr }
 end)
 
+local lspconfig = require 'lspconfig' -- firenvim addition
+local cmp = require 'cmp' -- firenvim addition
+
+lsp_zero.set_preferences { -- firenvim addition
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = true,
+}
+
 -- Enhanced capabilities from nvim-cmp for LSP
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true -- firenvim addition
 -- For emmet-ls
 local emmet_capabilities = vim.lsp.protocol.make_client_capabilities()
 emmet_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -90,6 +100,10 @@ require('mason-lspconfig').setup {
     -- Custom handler for tsserver
     tsserver = function()
       require('lspconfig').tsserver.setup {
+        -- on_attach = function(client, bufnr)
+        --   client.resolved_capabilities.document_formatting = false
+        -- end,
+        -- cmd = { 'typescript-language-server', '--stdio' },
         capabilities = capabilities,
         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
         settings = {
@@ -102,6 +116,7 @@ require('mason-lspconfig').setup {
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
             },
+            -- documentFormatting = false,
           },
         },
         init_options = {
@@ -173,6 +188,20 @@ require('typescript').setup {
         quotePreference = 'single',
         allowIncompleteCompletions = false,
       },
+    },
+    on_attach = function(client, bufnr)
+      print('Attaching to', bufnr)
+    end,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    handlers = {
+      ['window/logMessage'] = function(err, method, params, client_id)
+        print(method, vim.inspect(params))
+      end,
+      ['window/showMessage'] = function(err, method, params, client_id)
+        print(method, vim.inspect(params))
+      end,
     },
   },
 }
