@@ -1,0 +1,35 @@
+name: Create Release
+on:
+  push:
+    tags:
+      - "v*.*.*" # This will trigger on version tags like v0.0.1, v0.1.0, v1.0.0, etc.
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            ## Changes
+            - Added new `:TWCenter` command to center the view around the current code block or function using Tree-sitter.
+            - Introduced Tree-sitter as a dependency for intelligent code block detection.
+            - Updated installation instructions to include Tree-sitter setup.
+            - Moved `center_block_config.lua` to the `utils` folder for better organization.
+            - Enhanced README with information about the `:TWCenter` command and Tree-sitter dependency.
+
+            ## Previous Features
+            - Keeps the cursor centered on the screen while typing or navigating.
+            - Simple commands to enable, disable, and toggle the typewriter mode.
+            - Integrates with ZenMode and True Zen for a seamless distraction-free environment.
+          draft: false
+          prerelease: false
