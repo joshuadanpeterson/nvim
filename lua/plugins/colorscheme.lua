@@ -66,6 +66,14 @@ return {
     end,
   },
 
+  -- tokyonight theme
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+
   -- Transparent Background
   {
     'tribela/vim-transparent',
