@@ -200,29 +200,31 @@ return {
   },
 
   -- typewriter: enable typewriter-like scrolling
+  -- {
+  --   'joshuadanpeterson/typewriter.nvim',
+  --   event = 'BufReadPre',
+  --   config = function()
+  --     require('typewriter').setup {
+  --       enable_with_zen_mode = true,
+  --       enable_with_true_zen = true,
+  --     }
+  --   end,
+  -- },
+
+  -- typewriter test
   {
-    'joshuadanpeterson/typewriter.nvim',
-    event = 'BufReadPre',
+    dir = '~/.config/nvim/lua/custom/typewriter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     config = function()
-      require('typewriter').setup {
+      require('custom.typewriter').setup {
+        -- Your configuration options here
         enable_with_zen_mode = true,
         enable_with_true_zen = true,
       }
     end,
   },
-
-  -- typewriter test
-  -- {
-  --   dir = '~/.config/nvim/lua/custom/center_block',
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --   },
-  --   config = function()
-  --     require('custom.center_block').setup {
-  --       -- Your configuration options here
-  --     }
-  --   end,
-  -- },
 
   -- nvim-highlight-colors: highlight colors in your buffer
   {
