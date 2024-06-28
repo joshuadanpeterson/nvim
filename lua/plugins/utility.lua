@@ -25,12 +25,12 @@ return {
 
   -- LazyVim
   -- A configuration framework for Neovim aimed at simplicity and minimalism.
-  {
-    'LazyVim/LazyVim',
-    opts = {
-      colorscheme = 'nord',
-    },
-  },
+  -- {
+    -- 'LazyVim/LazyVim',
+    -- opts = {
+      -- colorscheme = 'nord',
+    -- },
+  -- },
 
   -- ripgrep config: Utilizes ripgrep for searching in files.
   {
