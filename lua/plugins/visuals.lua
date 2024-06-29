@@ -207,21 +207,24 @@ return {
   --     require('typewriter').setup {
   --       enable_with_zen_mode = true,
   --       enable_with_true_zen = true,
+  --       keep_cursor_position = true,
+
   --     }
   --   end,
   -- },
 
   -- typewriter test
   {
-    dir = '~/.config/nvim/lua/custom/typewriter',
+    dir = '~/Dropbox/programming/neovim/plugin-development/typewriter/',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
     config = function()
-      require('custom.typewriter').setup {
+      require('typewriter').setup {
         -- Your configuration options here
         enable_with_zen_mode = true,
         enable_with_true_zen = true,
+        keep_cursor_position = true,
       }
     end,
   },
