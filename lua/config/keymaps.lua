@@ -175,10 +175,19 @@ local pluginMappings = {
 -- UI Mappings
 local uiMappings = {
   name = 'UI Mappings',
-  ['b'] = { ':TWCenter<CR>', 'Center Code Block' },
   ['c'] = { ':Telescope colorscheme<CR>', 'Search Colorschemes' },
   ['e'] = { ':Telescope emoji<CR>', 'Search Emojis' },
   ['E'] = { ':InsertEmojiByGroup<CR>', 'Search Emojis by Group' },
+  ['s'] = { ':CodeSnap<CR>', 'CodeSnap' },
+  ['S'] = { ':CodeSnapSave<CR>', 'Save CodeSnap' },
+  ['h'] = { ':CodeSnapHighlight<CR>', 'CodeSnap Highlight' },
+  ['H'] = { ':CodeSnapSaveHighlight<CR>', 'CodeSnap Save Highlight' },
+}
+
+-- view mappings
+local viewMappings = {
+  name = 'View Mappings',
+  ['M'] = { ':TWCenter<CR>', 'Center Code Block' },
   ['z'] = { ':ZenMode<CR>', 'Toggle ZenMode' },
   ['t'] = { ':Twilight<CR>', 'Enable Twlight' },
   ['a'] = { ':TZAtaraxis<CR>', 'Toggle True Zen: Ataraxis Mode' },
@@ -186,10 +195,8 @@ local uiMappings = {
   ['n'] = { ':TZNarrow<CR>', 'Toggle True Zen: Narrow Mode' },
   ['f'] = { ':TZFocus<CR>', 'Toggle True Zen: Focus Mode' },
   ['T'] = { ':TWToggle<CR>', 'Toggle Typewriter' },
-  ['s'] = { ':CodeSnap<CR>', 'CodeSnap' },
-  ['S'] = { ':CodeSnapSave<CR>', 'Save CodeSnap' },
-  ['h'] = { ':CodeSnapHighlight<CR>', 'CodeSnap Highlight' },
-  ['H'] = { ':CodeSnapSaveHighlight<CR>', 'CodeSnap Save Highlight' },
+  ['H'] = { ':TWTop<CR>', 'Move Code Block to Top of Screen' },
+  ['L'] = { ':TWBottom<CR>', 'Move Code Block to Bottom of Screen' },
 }
 
 -- Telescope Keymaps
@@ -481,8 +488,11 @@ wk.register(troubleMappings, { prefix = '<leader>x', mode = 'n' })
 -- Registering GitHub Copilot Chat mappings
 wk.register(copilotMappings, { prefix = '<leader>G', mode = 'n' })
 
--- Registering Trouble mappings
+-- Registering UI mappings
 wk.register(uiMappings, { prefix = '<leader>U', mode = 'n' })
+
+-- Registering View mappings
+wk.register(viewMappings, { prefix = '<leader>v', mode = 'n' })
 
 -- Registering Trouble mappings
 wk.register(pluginMappings, { prefix = '<leader>p', mode = 'n' })
