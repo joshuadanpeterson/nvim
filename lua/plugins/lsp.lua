@@ -135,4 +135,14 @@ return {
     'VonHeikemen/lsp-zero.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
   },
+
+  -- lsp inlay-hints
+  {
+    'MysticalDevil/inlay-hints.nvim',
+    event = 'LspAttach',
+    dependencies = { 'neovim/nvim-lspconfig' },
+    config = function()
+      require('inlay-hints').setup()
+    end,
+  },
 }
