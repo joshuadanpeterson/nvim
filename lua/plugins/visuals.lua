@@ -66,7 +66,8 @@ return {
 
   -- true-zen
   {
-    'Pocco81/true-zen.nvim',
+    -- 'Pocco81/true-zen.nvim',
+    dir = '~/Dropbox/programming/projects/contributions/true-zen.nvim', -- true-zen test
     cmd = { 'TZAtaraxis', 'TZMinimalist', 'TZFocus', 'TZBottom' },
     config = function()
       require('true-zen').setup {
@@ -93,6 +94,7 @@ return {
               close_pre = nil,
               close_pos = function()
                 vim.cmd 'TWDisable'
+                vim.cmd 'Twilight'
               end,
             },
             options = {
@@ -100,18 +102,21 @@ return {
             },
           },
           minimalist = {
-            ignored_buf_types = { 'nofile' },
-            options = {
+            ignored_buf_types = { 'nofile' }, -- save current options from any window except ones displaying these kinds of buffers
+            options = { -- options to be disabled when entering Minimalist mode
               number = false,
               relativenumber = true,
+              showtabline = 0,
               signcolumn = 'no',
               statusline = '',
+              cmdheight = 1,
               laststatus = 0,
               showcmd = false,
+              showmode = false,
+              ruler = false,
               numberwidth = 1,
-              showtabline = 0, -- Ensure showtabline is set to a numeric value
             },
-            callbacks = {
+            callbacks = { -- run functions when opening/closing Minimalist mode
               open_pre = nil,
               open_pos = nil,
               close_pre = nil,
@@ -144,7 +149,7 @@ return {
           },
         },
         integrations = {
-          tmux = false,
+          tmux = true,
           kitty = {
             enabled = false,
             font = '+3',
@@ -200,31 +205,19 @@ return {
   },
 
   -- typewriter: enable typewriter-like scrolling
-  -- {
-  --   'joshuadanpeterson/typewriter.nvim',
-  --   event = 'BufReadPre',
-  --   config = function()
-  --     require('typewriter').setup {
-  --       enable_with_zen_mode = true,
-  --       enable_with_true_zen = true,
-  --       keep_cursor_position = true,
-
-  --     }
-  --   end,
-  -- },
-
-  -- typewriter test
   {
-    dir = '~/Dropbox/programming/neovim/plugin-development/typewriter/',
+    'joshuadanpeterson/typewriter.nvim',
+    -- dir = '~/Dropbox/programming/neovim/plugin-development/typewriter', -- typewriter test
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
+    event = 'BufReadPre',
     config = function()
       require('typewriter').setup {
-        -- Your configuration options here
         enable_with_zen_mode = true,
         enable_with_true_zen = true,
         keep_cursor_position = true,
+        enable_notifications = true,
       }
     end,
   },
