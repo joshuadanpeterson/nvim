@@ -155,6 +155,7 @@ ins_left {
   separators = {
     component = ' ',
     progress = ' | ',
+    -- message = { pre = '(', post = ')' },
     percentage = { pre = '', post = '%% ' },
     title = { pre = '', post = ': ' },
     lsp_client_name = { pre = '[', post = ']' },
