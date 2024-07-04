@@ -49,7 +49,7 @@ require('mason-lspconfig').setup {
   ensure_installed = {
     'lua_ls',
     'tsserver',
-    'pyright',
+    'basedpyright',
     'html',
     'cssls',
     'bashls',
@@ -92,6 +92,9 @@ require('mason-lspconfig').setup {
           telemetry = {
             enable = false,
           },
+          hint = {
+            enable = true, -- necessary
+          },
         },
       }
       require('lspconfig').lua_ls.setup(lua_opts)
@@ -115,6 +118,18 @@ require('mason-lspconfig').setup {
               includeInlayPropertyDeclarationTypeHints = true,
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
             },
             -- documentFormatting = false,
           },
