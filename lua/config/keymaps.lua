@@ -44,6 +44,12 @@ local function toggle_telescope(harpoon_files)
     :find()
 end
 
+-- Function to toggle inlay hints
+local function toggle_inlay_hints()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
+end
+
 -- General and Basic Keymaps
 local generalMappings = {
   name = 'General and Basic Keymaps',
@@ -197,6 +203,7 @@ local viewMappings = {
   ['T'] = { ':TWToggle<CR>', 'Toggle Typewriter' },
   ['H'] = { ':TWTop<CR>', 'Move Code Block to Top of Screen' },
   ['L'] = { ':TWBottom<CR>', 'Move Code Block to Bottom of Screen' },
+  ['h'] = { toggle_inlay_hints, 'Toggle Inlay Hints' },
 }
 
 -- Telescope Keymaps
@@ -423,6 +430,7 @@ local gitMappings = {
   ['T'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
   ['t'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
   ['c'] = { ':LazyGitConfig<CR>', 'Open Lazygit Config' },
+  ['g'] = { ':LazyGit<CR>', 'Open LazyGit' },
 }
 
 -- ChatGPT Keymaps
