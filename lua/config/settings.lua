@@ -273,3 +273,35 @@ vim.cmd [[
   hi StatusLine guibg=#2E3440 guifg=#D8DEE9
   hi StatusLineNC guibg=#2E3440 guifg=#D8DEE9
 ]]
+
+--[[ Functions to configure precognition.nvim to track with horizontal scrolling ]]
+
+-- Function to update virtual text position
+local function update_virtual_text(bufnr, ns_id, extmarks)
+  for _, extmark in ipairs(extmarks) do
+    local id, lnum, col, opts = unpack(extmark)
+    -- Calculate new column position based on current window view
+    local new_col = col - vim.fn.winsaveview().leftcol
+    if new_col >= 0 then
+      -- Update virtual text position
+      vim.api.nvim_buf_set_extmark(bufnr, ns_id, lnum, new_col, opts)
+    end
+  end
+end
+
+-- Function to track horizontal scrolling
+local function track_horizontal_scroll()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local ns_id = vim.api.nvim_create_namespace 'precognition'
+  local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns_id, 0, -1, { details = true })
+
+  -- Update virtual text on BufWinEnter and WinScrolled events
+  vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinScrolled' }, {
+    callback = function()
+      update_virtual_text(bufnr, ns_id, extmarks)
+    end,
+  })
+end
+
+-- Call the function to start tracking
+track_horizontal_scroll()
