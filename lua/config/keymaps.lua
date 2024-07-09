@@ -204,6 +204,7 @@ local viewMappings = {
   ['H'] = { ':TWTop<CR>', 'Move Code Block to Top of Screen' },
   ['L'] = { ':TWBottom<CR>', 'Move Code Block to Bottom of Screen' },
   ['h'] = { toggle_inlay_hints, 'Toggle Inlay Hints' },
+  ['p'] = { ':MarkdownPreviewToggle<CR>', 'Markdown Preview' },
 }
 
 -- Telescope Keymaps
