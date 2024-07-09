@@ -26,10 +26,10 @@ return {
   -- LazyVim
   -- A configuration framework for Neovim aimed at simplicity and minimalism.
   -- {
-    -- 'LazyVim/LazyVim',
-    -- opts = {
-      -- colorscheme = 'nord',
-    -- },
+  -- 'LazyVim/LazyVim',
+  -- opts = {
+  -- colorscheme = 'nord',
+  -- },
   -- },
 
   -- ripgrep config: Utilizes ripgrep for searching in files.
@@ -513,5 +513,15 @@ return {
       breadcrumbs_separator = ' > ',
       has_breadcrumbs = true,
     },
+  },
+
+  -- mini.nvim: lua modules
+
+  {
+    'echasnovski/mini.nvim',
+    branch = 'stable',
+    config = function()
+      require('mini.doc').setup() -- help doc generation
+    end,
   },
 }
