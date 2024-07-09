@@ -178,6 +178,19 @@ require('mason-lspconfig').setup {
   },
 }
 
+-- Configure Pyton LSP
+require('lspconfig').basedpyright.setup {
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+}
+
 -- Configure TypeScript server with typescript.nvim
 require('typescript').setup {
   disable_commands = false,
