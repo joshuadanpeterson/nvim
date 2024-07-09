@@ -96,6 +96,20 @@ return {
     end,
   },
 
+  --surround-ui: Helper plugin for nvim-surround
+  {
+    'roobert/surround-ui.nvim',
+    dependencies = {
+      'kylechui/nvim-surround',
+      'folke/which-key.nvim',
+    },
+    config = function()
+      require('surround-ui').setup {
+        root_key = 'S',
+      }
+    end,
+  },
+
   -- For JSX syntax highlighting and indentation
   {
     'maxmellon/vim-jsx-pretty',
