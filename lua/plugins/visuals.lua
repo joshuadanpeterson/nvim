@@ -207,7 +207,7 @@ return {
   -- typewriter: enable typewriter-like scrolling
   {
     'joshuadanpeterson/typewriter.nvim',
-    -- dir = '~/Dropbox/programming/neovim/plugin-development/typewriter', -- typewriter test
+    -- dir = '~/Dropbox/programming/neovim/plugin-development/typewriter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
@@ -218,6 +218,7 @@ return {
         enable_with_true_zen = true,
         keep_cursor_position = true,
         enable_notifications = true,
+        enable_horizontal_scroll = true,
       }
     end,
   },
@@ -290,5 +291,18 @@ return {
     config = function()
       require('auto-cursorline').setup {}
     end,
+  },
+
+  -- typewriter.vim: Typewriter sounds for Vim
+  -- Currently working on developing PR for Neovim adaptation
+  {
+    -- 'AndrewRadev/typewriter.vim',
+    dir = '~/Dropbox/programming/projects/contributions/typewriter.vim', -- typewriter.vim test
+  },
+
+  -- vim-keysound: Typewriter sounds for Vim
+  {
+    -- 'skywind3000/vim-keysound',
+    dir = '~/Dropbox/programming/projects/contributions/vim-keysound', -- vim-keysound test
   },
 }
