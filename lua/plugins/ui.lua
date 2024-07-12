@@ -99,8 +99,6 @@ return {
   -- tmuxline
   {
     'edkolev/tmuxline.vim',
-    event = 'VimEnter',
-  },
 
   -- emoji.nvim
   {
@@ -121,5 +119,6 @@ return {
     'ellisonleao/glow.nvim',
     config = true,
     cmd = 'Glow',
+    event = { 'VimEnter', 'BufReadPre' },
   },
 }
