@@ -49,6 +49,11 @@ return {
   --   end,
   -- },
 
+  -- Winter is Coming colorscheme
+  {
+    "atmosuwiryo/vim-winteriscoming",
+  },
+
   -- nord theme
   -- Transparent Nord Theme
   {
