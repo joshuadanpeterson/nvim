@@ -289,6 +289,7 @@ return {
   {
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
+    event = "VeryLazy",
     config = function()
       require('modes').setup {
         colors = {
@@ -338,6 +339,7 @@ return {
   -- This plugin attempts to add image support to Neovim.
   {
     '3rd/image.nvim',
+    event = "VeryLazy",
     config = function()
       -- ...
     end,
@@ -374,11 +376,10 @@ return {
               sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
               click = "v:lua.ScSa"
             },
-          }
+          },
         }
       )
     end
-
   },
 
   -- nvim-ufo: better fold management
