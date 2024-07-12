@@ -52,18 +52,8 @@ return {
   -- nord theme
   -- Transparent Nord Theme
   {
+    -- 'arcticicestudio/nord-vim',
     'shaunsingh/nord.nvim',
-    config = function()
-      -- load the theme
-      vim.cmd 'colorscheme nord'
-      require('nord').set {
-        transparent = true, -- Set to false to disable transparency globally
-        styles = {
-          sidebars = 'transparent',
-          floats = 'transparent',
-        },
-      }
-    end,
   },
 
   -- tokyonight theme
@@ -86,14 +76,14 @@ return {
     event = 'VimEnter',
   },
 
-  -- Nordic theme
-  {
-    'AlexvZyl/nordic.nvim',
-    event = 'VimEnter',
-    config = function()
-      require('nordic').load()
-    end,
-  },
+  -- -- Nordic theme
+  -- {
+  --   'AlexvZyl/nordic.nvim',
+  --   event = 'VimEnter',
+  --   config = function()
+  --     require('nordic').load()
+  --   end,
+  -- },
 
   -- Material theme
   {
