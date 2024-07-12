@@ -12,6 +12,7 @@ local fidget = require 'config.fidget' -- For fidget configurations
 local noice = require 'config.noice'
 local lualine = require 'config.lualine'
 local nvim_lint = require 'config.nvim-lint'
+local markdown = require 'config.markdown'
 
 return {
   keymaps,
@@ -25,4 +26,5 @@ return {
   noice,
   lualine,
   nvim_lint,
+  markdown,
 }

@@ -20,6 +20,7 @@ local which_key = require 'plugins.which-key'
 local linters = require 'plugins.linters'
 local autocomplete = require 'plugins.autocomplete'
 local visuals = require 'plugins.visuals'
+local markdown = require 'plugins.markdown'
 
 return {
   colorscheme,
