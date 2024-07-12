@@ -39,14 +39,14 @@ lazy.setup {
 
   -- import custom plugins
   { import = 'plugins.ui' }, -- load ui file so nvim-nonicons module loads properly
-  { import = 'plugins' }, -- load plugins
+  { import = 'plugins' },    -- load plugins
   -- load autocomplete
   { import = 'plugins.autocomplete' },
 
   -- lazy.nvim
   {
     'folke/lazy.nvim',
-    lazy = true, -- Lazy load the plugin
+    lazy = true,  -- Lazy load the plugin
     cmd = 'Lazy', -- Load the plugin when the Lazy command is used
     opts = {
       ui = {
@@ -55,7 +55,7 @@ lazy.setup {
         -- a number <1 is a percentage., >1 is a fixed size
         size = { width = 0.8, height = 0.8 },
         wrap = true, -- wrap the lines in the ui
-        backdrop = 100,
+        backdrop = 60,
         title = nil, ---@type string only works when border is not "none"
         title_pos = 'center', ---@type "center" | "left" | "right"
         -- Show pills on top of the Lazy window
