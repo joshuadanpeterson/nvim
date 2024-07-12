@@ -103,7 +103,7 @@ return {
           },
           minimalist = {
             ignored_buf_types = { 'nofile' }, -- save current options from any window except ones displaying these kinds of buffers
-            options = { -- options to be disabled when entering Minimalist mode
+            options = {                       -- options to be disabled when entering Minimalist mode
               number = false,
               relativenumber = true,
               showtabline = 0,
@@ -274,7 +274,7 @@ return {
         ---Label must be properly escaped with '%' to adhere to `string.gmatch`
         --- :help string.gmatch
         custom_colors = {
-          { label = '%-%-theme%-primary%-color', color = '#0f1219' },
+          { label = '%-%-theme%-primary%-color',   color = '#0f1219' },
           { label = '%-%-theme%-secondary%-color', color = '#5a5d64' },
         },
 
