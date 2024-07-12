@@ -361,6 +361,48 @@ return {
     },
   },
 
+  -- statuscol
+  {
+    "luukvbaal/statuscol.nvim",
+    event = "BufReadPost",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup(
+        {
+          relculright = true,
+          segments = {
+            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+            { text = { "%s" },                  click = "v:lua.ScSa" },
+            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+            {
+              sign = { namespace = { "diagnostic/signs" }, maxwidth = 2, auto = true },
+              click = "v:lua.ScSa"
+            },
+            {
+              sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+              click = "v:lua.ScSa"
+            },
+          }
+        }
+      )
+    end
+
+  },
+
+  -- nvim-ufo: better fold management
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    event = "BufReadPost",
+    config = function()
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return { 'treesitter', 'indent' }
+        end
+      })
+    end
+  },
+
   --[[ Testing plugins ]]
   -- typewriter.vim: Typewriter sounds for Vim
   -- Currently working on developing PR for Neovim adaptation
