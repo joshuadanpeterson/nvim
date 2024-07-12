@@ -285,14 +285,6 @@ return {
     end,
   },
 
-  -- auto-cursorline.nvim: For a highlighted cursorline
-  -- {
-  --   'delphinus/auto-cursorline.nvim',
-  --   config = function()
-  --     require('auto-cursorline').setup {}
-  --   end,
-  -- },
-
   -- mode: cursor highlighting/coloring
   {
     'mvllow/modes.nvim',
