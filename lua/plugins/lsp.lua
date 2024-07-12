@@ -36,11 +36,11 @@ return {
 
   -- mason-lock.nvim for managing LSP server versions
   {
-  "zapling/mason-lock.nvim",
+    "zapling/mason-lock.nvim",
 
     after = 'mason.nvim',
     config = function()
-    require("mason-lock").setup({
+      require("mason-lock").setup({
         lockfile_path = vim.fn.stdpath("config") .. "/mason-lock.json" -- (default)
       })
     end
@@ -122,7 +122,11 @@ return {
     'nvimdev/lspsaga.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      require('lspsaga').setup {}
+      require('lspsaga').setup({
+        code_action = {
+          extend_gitsigns = true,
+        },
+      })
     end,
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
