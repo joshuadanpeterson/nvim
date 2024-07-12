@@ -34,6 +34,18 @@ return {
     after = 'mason.nvim',
   },
 
+  -- mason-lock.nvim for managing LSP server versions
+  {
+  "zapling/mason-lock.nvim",
+
+    after = 'mason.nvim',
+    config = function()
+    require("mason-lock").setup({
+        lockfile_path = vim.fn.stdpath("config") .. "/mason-lock.json" -- (default)
+      })
+    end
+  },
+
   -- Neodev for Lua development with Neovim API support
   {
     'folke/neodev.nvim',
