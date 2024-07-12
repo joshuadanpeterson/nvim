@@ -64,24 +64,22 @@ if vim.fn.exists '+termguicolors' == 1 then
 end
 
 vim.cmd [[
-augroup TransparentWhichKeyWindows
-    autocmd!
-    " autocmd VimEnter * hi WhichKeyFloat guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKey guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKeyGroup guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKeyDesc guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKeySeperator guibg=NONE ctermbg=NONE
-    autocmd VimEnter * hi WhichKeyBorder guibg=#FFFFFF ctermbg=NONE
-augroup END
-]]
-
-vim.cmd [[
 augroup TransparentFloatingWindows
     autocmd!
     autocmd VimEnter * hi NormalFloat guibg=NONE
     autocmd VimEnter * hi FloatBorder guibg=NONE
 augroup END
 ]]
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "WhichKeyBorder", { link = "FloatBorder" })
+    vim.api.nvim_set_hl(0, "LazyNormal", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "LazyButtonActive", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "LazyProgressTodo", { link = "Todo" })
+  end,
+})
 
 -- nvim-lint config
 vim.api.nvim_create_autocmd('BufWritePost', {
@@ -297,3 +295,16 @@ end
 
 -- Call the function to start tracking
 track_horizontal_scroll()
+
+-- Set Neovim server for tmux filetype
+if vim.fn.has('nvim') == 1 then
+  vim.fn.serverstart()
+end
+
+-- Auto-update tmux statusline
+vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+  pattern = "*",
+  callback = function()
+    vim.fn.system("tmux refresh-client -S")
+  end
+})
