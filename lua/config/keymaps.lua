@@ -433,9 +433,9 @@ local gitMappings = {
   ['t'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
   ['c'] = { ':LazyGitConfig<CR>', 'Open Lazygit Config' },
   ['g'] = { ':LazyGit<CR>', 'Open LazyGit' },
-  ['h'] = { ':Gitsigns preview_hunk_inline', 'Inline Hunk Preview' },
-  ['D'] = { ':Gitsigns diffthis', 'Show Diff' },
-  ['P'] = { ':Gitsigns preview_hunk', 'Show Hunk Preview Hover' },
+  ['h'] = { ':Gitsigns preview_hunk_inline<CR>', 'Inline Hunk Preview' },
+  ['D'] = { ':Gitsigns diffthis<CR>', 'Show Git Diffs' },
+  ['P'] = { ':Gitsigns preview_hunk<CR>', 'Show Hunk Preview' },
 }
 
 -- ChatGPT Keymaps
