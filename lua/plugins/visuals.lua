@@ -342,6 +342,26 @@ return {
       end
     end,
   },
+
+  -- This plugin attempts to add image support to Neovim.
+  {
+    '3rd/image.nvim',
+    config = function()
+      -- ...
+    end,
+  },
+
+  -- img-clip.nvim: Effortlessly embed images into any markup language, like LaTeX, Markdown or Typst.
+  {
+    'HakonHarnes/img-clip.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- add options here
+      -- or leave it empty to use the default settings
+    },
+  },
+
+  --[[ Testing plugins ]]
   -- typewriter.vim: Typewriter sounds for Vim
   -- Currently working on developing PR for Neovim adaptation
   {
