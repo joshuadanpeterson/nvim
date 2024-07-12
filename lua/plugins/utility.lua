@@ -64,16 +64,6 @@ return {
     config = function() end,
   },
 
-  -- Markdown Preview
-  {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    ft = { 'markdown' },
-    build = function()
-      vim.fn['mkdp#util#install']()
-    end,
-  },
-
   -- Vim Pencil
   -- Provides a better writing experience in Vim.
   {
