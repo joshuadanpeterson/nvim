@@ -64,6 +64,7 @@ local generalMappings = {
   ['L'] = { ':SearchLogFiles<CR>', 'Search Log Files' },
   ['C'] = { ':SearchChangelogFiles<CR>', 'Search Changelog Files' },
   ['o'] = { ':Oil --float<CR>', 'Modify Filetree in Buffer' },
+  ['p'] = { ':PasteImage<CR>', 'Paste Image to Markdown' },
 }
 
 -- Vim Dadbod (SQL) Keymaps
@@ -204,7 +205,8 @@ local viewMappings = {
   ['H'] = { ':TWTop<CR>', 'Move Code Block to Top of Screen' },
   ['L'] = { ':TWBottom<CR>', 'Move Code Block to Bottom of Screen' },
   ['h'] = { toggle_inlay_hints, 'Toggle Inlay Hints' },
-  ['p'] = { ':MarkdownPreviewToggle<CR>', 'Markdown Preview' },
+  ['p'] = { ':MarkdownPreview<CR>', 'Markdown Preview' },
+  ['r'] = { ':RenderMarkdownToggle<CR>', 'Render Markdown' },
 }
 
 -- Telescope Keymaps
