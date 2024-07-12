@@ -109,7 +109,7 @@ local config = {
       diagnostics,
       branch,
       'diff',
-      { get_name, cond = is_active },
+      { get_name,   cond = is_active },
       -- 'grapple',
     },
     lualine_c = { harpoonline, searchcount },
