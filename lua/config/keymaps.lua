@@ -460,12 +460,12 @@ local chatgptMappings = {
 -- CLI App Keymaps
 local cliMappings = {
   name = 'CLI App Mappings',
-  ['t'] = { ':Lspsaga term_toggle<CR>', 'Launch Terminal' }, -- Launch Terminal
+  ['t'] = { ':Lspsaga term_toggle<CR>', 'Launch Terminal' },          -- Launch Terminal
   ['d'] = { '<cmd>FloatermNew lazydocker<CR>', 'Launch Lazydocker' }, -- Launch Lazydocker: docker
-  ['p'] = { '<cmd>FloatermNew python<CR>', 'Launch Python3 REPL' }, -- Launch Python3 REPL: python
-  ['n'] = { '<cmd>FloatermNew node<CR>', 'Launch Node REPL' }, -- Launch Node REPL: javascript
-  ['h'] = { '<cmd>FloatermNew htop<CR>', 'Launch htop' }, -- Launch htop: resource management
-  ['b'] = { '<cmd>FloatermNew bpytop<CR>', 'Launch Bpytop' }, -- Launch bpytop: resource management
+  ['p'] = { '<cmd>FloatermNew python<CR>', 'Launch Python3 REPL' },   -- Launch Python3 REPL: python
+  ['n'] = { '<cmd>FloatermNew node<CR>', 'Launch Node REPL' },        -- Launch Node REPL: javascript
+  ['h'] = { '<cmd>FloatermNew htop<CR>', 'Launch htop' },             -- Launch htop: resource management
+  ['b'] = { '<cmd>FloatermNew bpytop<CR>', 'Launch Bpytop' },         -- Launch bpytop: resource management
 }
 
 -- DAP Plugin Keymaps
@@ -613,4 +613,3 @@ vim.keymap.set({ 'n', 'i', 's' }, '<c-b>', function()
     return '<c-b>'
   end
 end, { silent = true, expr = true })
-
