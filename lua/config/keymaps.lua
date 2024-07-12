@@ -33,15 +33,15 @@ local function toggle_telescope(harpoon_files)
   end
 
   require('telescope.pickers')
-    .new({}, {
-      prompt_title = 'harpoon',
-      finder = require('telescope.finders').new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
+      .new({}, {
+        prompt_title = 'harpoon',
+        finder = require('telescope.finders').new_table {
+          results = file_paths,
+        },
+        previewer = conf.file_previewer {},
+        sorter = conf.generic_sorter {},
+      })
+      :find()
 end
 
 -- Function to toggle inlay hints
@@ -423,7 +423,6 @@ local flashMappings = {
 local gitMappings = {
   name = 'Git Keymaps',
   ['r'] = { require('telescope.builtin').git_files, 'Search Git Files' },
-  ['D'] = { "<cmd>Telescope live_grep search_dirs={'$(git rev-parse --show-toplevel)'}<CR>", 'Grep in Git Directory' },
   ['s'] = { require('telescope.builtin').git_stash, 'Search Git Stash' },
   ['S'] = { require('telescope.builtin').git_status, 'Search Git Status' },
   ['C'] = { '<cmd>Telescope git_bcommits<CR>', 'Search Git Buffer Commits' },
@@ -434,6 +433,9 @@ local gitMappings = {
   ['t'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
   ['c'] = { ':LazyGitConfig<CR>', 'Open Lazygit Config' },
   ['g'] = { ':LazyGit<CR>', 'Open LazyGit' },
+  ['h'] = { ':Gitsigns preview_hunk_inline', 'Inline Hunk Preview' },
+  ['D'] = { ':Gitsigns diffthis', 'Show Diff' },
+  ['P'] = { ':Gitsigns preview_hunk', 'Show Hunk Preview Hover' },
 }
 
 -- ChatGPT Keymaps
@@ -611,3 +613,4 @@ vim.keymap.set({ 'n', 'i', 's' }, '<c-b>', function()
     return '<c-b>'
   end
 end, { silent = true, expr = true })
+
