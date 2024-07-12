@@ -99,26 +99,6 @@ return {
   -- tmuxline
   {
     'edkolev/tmuxline.vim',
-
-  -- emoji.nvim
-  {
-    'allaman/emoji.nvim',
-    version = '1.0.0',
-    ft = 'markdown',
-    dependencies = {
-      'hrsh7th/nvim-cmp',
-      'nvim-telescope/telescope.nvim',
-    },
-    opts = {
-      enable_cmp_integration = true,
-    },
-  },
-
-  -- glow: markdown preview
-  {
-    'ellisonleao/glow.nvim',
-    config = true,
-    cmd = 'Glow',
     event = { 'VimEnter', 'BufReadPre' },
   },
 }
