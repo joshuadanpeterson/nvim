@@ -47,11 +47,18 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.tpipeline_restore = 1
 
 -- Fold management
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "BufWinEnter" }, {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.foldcolumn = "1"
+    vim.opt_local.foldenable = true
+    vim.o.foldlevel = 99          -- Using ufo provider need a large value, feel free to decrease the value
+    vim.o.foldlevelstart = 99
+    vim.opt.foldmethod = "indent" -- or another method like "expr", "marker", etc.
+    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+  end
+})
 
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#808080' })
 vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#569CD6' })
