@@ -50,6 +50,9 @@ local function toggle_inlay_hints()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
 end
 
+-- Set up kulala
+local kulala = require 'kulala'
+
 -- General and Basic Keymaps
 local generalMappings = {
   name = 'General and Basic Keymaps',
@@ -65,6 +68,22 @@ local generalMappings = {
   ['C'] = { ':SearchChangelogFiles<CR>', 'Search Changelog Files' },
   ['o'] = { ':Oil --float<CR>', 'Modify Filetree in Buffer' },
   ['p'] = { ':PasteImage<CR>', 'Paste Image to Markdown' },
+}
+
+-- HTTP Keymaps
+local httpMappings = {
+  name = "HTTP Keymaps",
+  ['p'] = { ":lua require('kulala').jump_prev()<CR>", "Previous HTTP Request" },
+  ['n'] = { ":lua require('kulala').jump_next()<CR>", "Next HTTP Request" },
+  ['r'] = { ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", "Send HTTP Request" },
+  ['t'] = { ":lua require('kulala').toggle_view()<CR>", "Toggle HTTP View" },
+  ['h'] = { ':Hyper<CR>', 'Open Hyper' },
+  ['R'] = { ':Rest run<CR>', 'Run HTTP Request' },
+  ['l'] = { ':Rest log<CR>', 'Rest logs' },
+  ['L'] = { ':Rest run last<CR>', 'Re-run last HTTP Request' },
+  ['e'] = { ':Telescope rest select_env<CR>', 'Select .env file' },
+  ['P'] = { ':Rest result prev<CR>', 'Cycle Previous Result' },
+  ['N'] = { ':Rest result next<CR>', 'Cycle Next Result' },
 }
 
 -- Vim Dadbod (SQL) Keymaps
@@ -485,6 +504,9 @@ wk.setup {}
 
 -- Registering mappings
 wk.register(generalMappings, { prefix = '<leader>b', mode = 'n' })
+
+-- Registering HTTP mappings
+wk.register(httpMappings, { prefix = '<leader>H', mode = 'n' })
 
 -- Registering DBUI mappings
 wk.register(vimDadbodMappings, { prefix = '<leader>s', mode = 'n' })

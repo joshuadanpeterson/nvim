@@ -513,4 +513,5 @@ return {
       require('mini.doc').setup() -- help doc generation
     end,
   },
+
 }

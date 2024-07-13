@@ -322,3 +322,13 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
     vim.fn.system("tmux refresh-client -S")
   end
 })
+
+-- Set http filetype
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
+
+-- Set Comment color
+vim.cmd [[highlight Comment guifg=#808080 ctermfg=244]]
