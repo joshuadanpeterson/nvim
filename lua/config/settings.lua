@@ -310,19 +310,6 @@ end
 -- Call the function to start tracking
 track_horizontal_scroll()
 
--- Set Neovim server for tmux filetype
-if vim.fn.has('nvim') == 1 then
-  vim.fn.serverstart()
-end
-
--- Auto-update tmux statusline
-vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-  pattern = "*",
-  callback = function()
-    vim.fn.system("tmux refresh-client -S")
-  end
-})
-
 -- Set http filetype
 vim.filetype.add({
   extension = {
