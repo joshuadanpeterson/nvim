@@ -1,6 +1,77 @@
 -- config/markdown.lua
 
-require('render-markdown').setup {
+require('render-markdown').setup({
+  -- Whether Markdown should be rendered by default or not
+  enabled = true,
+  -- Maximum file size (in MB) that this plugin will attempt to render
+  -- Any file larger than this will effectively be ignored
+  max_file_size = 1.5,
+  -- Capture groups that get pulled from markdown
+  markdown_query = [[
+        (atx_heading [
+            (atx_h1_marker)
+            (atx_h2_marker)
+            (atx_h3_marker)
+            (atx_h4_marker)
+            (atx_h5_marker)
+            (atx_h6_marker)
+        ] @heading)
+
+        (thematic_break) @dash
+
+        (fenced_code_block) @code
+        (fenced_code_block (info_string (language) @language))
+
+        [
+            (list_marker_plus)
+            (list_marker_minus)
+            (list_marker_star)
+        ] @list_marker
+
+        (task_list_marker_unchecked) @checkbox_unchecked
+        (task_list_marker_checked) @checkbox_checked
+
+        (block_quote) @quote
+
+        (pipe_table) @table
+    ]],
+  -- Capture groups that get pulled from quote nodes
+  markdown_quote_query = [[
+        [
+            (block_quote_marker)
+            (block_continuation)
+        ] @quote_marker
+    ]],
+  -- Capture groups that get pulled from inline markdown
+  inline_query = [[
+        (code_span) @code
+
+        (shortcut_link) @callout
+
+        [(inline_link) (image)] @link
+    ]],
+  -- Query to be able to identify links in nodes
+  inline_link_query = '[(inline_link) (image)] @link',
+  -- The level of logs to write to file: vim.fn.stdpath('state') .. '/render-markdown.log'
+  -- Only intended to be used for plugin development / debugging
+  log_level = 'error',
+  -- Filetypes this plugin will run on
+  file_types = { 'markdown' },
+  -- Vim modes that will show a rendered view of the markdown file
+  -- All other modes will be uneffected by this plugin
+  render_modes = { 'n', 'c' },
+  exclude = {
+    -- Buftypes ignored by this plugin, see :h 'buftype'
+    buftypes = {},
+  },
+  latex = {
+    -- Whether LaTeX should be rendered, mainly used for health check
+    enabled = true,
+    -- Executable used to convert latex formula to rendered unicode
+    converter = 'latex2text',
+    -- Highlight for LaTeX blocks
+    highlight = '@markup.math',
+  },
   heading = {
     -- Turn on / off heading icon & background rendering
     enabled = true,
@@ -107,15 +178,15 @@ require('render-markdown').setup {
     --  raw: replaces only the '|' characters in each row, leaving the cells unmodified
     --  padded: raw + cells are padded with inline extmarks to make up for any concealed text
     cell = 'padded',
-        -- Characters used to replace table border
-        -- Correspond to top(3), delimiter(3), bottom(3), vertical, & horizontal
-        -- stylua: ignore
-        border = {
-            '┌', '┬', '┐',
-            '├', '┼', '┤',
-            '└', '┴', '┘',
-            '│', '─',
-        },
+    -- Characters used to replace table border
+    -- Correspond to top(3), delimiter(3), bottom(3), vertical, & horizontal
+    -- stylua: ignore
+    border = {
+      '┌', '┬', '┐',
+      '├', '┼', '┤',
+      '└', '┴', '┘',
+      '│', '─',
+    },
     -- Highlight for table heading, delimiter, and the line above
     head = '@markup.heading',
     -- Highlight for everything else, main table rows and the line below
@@ -156,4 +227,24 @@ require('render-markdown').setup {
     -- Applies to the inlined icon
     highlight = '@markup.link.label.markdown_inline',
   },
-}
+  -- Window options to use that change between rendered and raw view
+  win_options = {
+    -- See :h 'conceallevel'
+    conceallevel = {
+      -- Used when not being rendered, get user setting
+      default = vim.api.nvim_get_option_value('conceallevel', {}),
+      -- Used when being rendered, concealed text is completely hidden
+      rendered = 3,
+    },
+    -- See :h 'concealcursor'
+    concealcursor = {
+      -- Used when not being rendered, get user setting
+      default = vim.api.nvim_get_option_value('concealcursor', {}),
+      -- Used when being rendered, conceal text in all modes
+      rendered = 'nvic',
+    },
+  },
+  -- Mapping from treesitter language to user defined handlers
+  -- See 'Custom Handlers' document for more info
+  custom_handlers = {},
+})
