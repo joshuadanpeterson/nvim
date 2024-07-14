@@ -319,3 +319,11 @@ vim.filetype.add({
 
 -- Set Comment color
 vim.cmd [[highlight Comment guifg=#808080 ctermfg=244]]
+
+-- Enable highlights
+vim.cmd([[
+  augroup TreesitterHighlight
+    autocmd!
+    autocmd VimEnter * TSEnable highlight
+  augroup END
+]])
