@@ -45,12 +45,25 @@ return {
                                                 end
                                         end,
                                 },
+                                daily_notes = {
+                                        -- Optional, if you keep daily notes in a separate directory.
+                                        folder = "journal",
+                                        -- Optional, if you want to change the date format for the ID of daily notes.
+                                        date_format = "%Y-%m-%d",
+                                        -- Optional, if you want to change the date format of the default alias of daily notes.
+                                        alias_format = "%B %-d, %Y",
+                                        -- Optional, default tags to add to each new daily note created.
+                                        default_tags = { "daily-notes" },
+                                        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+                                        template = nil
+                                },
 
 
                                 -- Default location for creating new notes
-                                new_notes_location = "current_dir",
+                                notes_subdir = "notes",
+                                new_notes_location = "notes_subdir",
                                 -- Use wikilinks style for note linking
-                                preferred_link_style = "wikilinks",
+                                preferred_link_style = "wiki",
 
                                 -- Optional, customize how names/IDs for new notes are created.
                                 note_id_func = function(title)
@@ -130,6 +143,8 @@ return {
 
                                 -- YAML parser option: Use the native Lua parser for frontmatter
                                 yaml_parser = "native",
+                                -- Disable server communication or any remote features
+                                disable_server = true,
                         })
                 end,
         },
