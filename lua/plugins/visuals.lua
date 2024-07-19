@@ -206,11 +206,8 @@ return {
 
   -- typewriter: enable typewriter-like scrolling
   {
-    'joshuadanpeterson/typewriter.nvim',
-    -- dir = '~/Dropbox/programming/neovim/plugin-development/typewriter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
+    -- 'joshuadanpeterson/typewriter.nvim',
+    dir = '~/Dropbox/programming/neovim/plugin-development/typewriter',
     event = 'BufReadPre',
     config = function()
       require('typewriter').setup {
@@ -388,10 +385,87 @@ return {
     dependencies = 'kevinhwang91/promise-async',
     event = "BufReadPost",
     config = function()
+      local ts_utils = require('nvim-treesitter.ts_utils')
+      local parsers = require('nvim-treesitter.parsers')
+
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
           return { 'treesitter', 'indent' }
-        end
+        end,
+        open_fold_hl_timeout = 400,
+        close_fold_kinds_for_ft = {
+          default = {}
+        },
+        fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+          local newVirtText = {}
+          local suffix = (' ... %d lines '):format(endLnum - lnum) -- Use '...' as the fold icon
+          local sufWidth = vim.fn.strdisplaywidth(suffix)
+          local targetWidth = width - sufWidth
+          local curWidth = 0
+          local ts_summary = ''
+
+          -- Use Tree-sitter to get relevant information for the fold
+          local bufnr = vim.api.nvim_get_current_buf()
+          local lang = parsers.get_buf_lang(bufnr)
+          if not lang then return virtText end
+
+          local query_string = [[
+          (function_declaration
+            name: (identifier) @function.name)
+        ]]
+          local parsed_query = vim.treesitter.query.parse(lang, query_string)
+          local parser = parsers.get_parser(bufnr)
+          local tree = parser:parse()[1]
+          local root = tree:root()
+
+          for id, node in parsed_query:iter_captures(root, bufnr, lnum, endLnum) do
+            if parsed_query.captures[id] == 'function.name' then
+              ts_summary = ts_summary .. vim.treesitter.get_node_text(node, bufnr) .. ' '
+            end
+          end
+
+          for _, chunk in ipairs(virtText) do
+            local chunkText = chunk[1]
+            local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            if targetWidth > curWidth + chunkWidth then
+              table.insert(newVirtText, chunk)
+            else
+              chunkText = truncate(chunkText, targetWidth - curWidth)
+              local hlGroup = chunk[2]
+              table.insert(newVirtText, { chunkText, hlGroup })
+              chunkWidth = vim.fn.strdisplaywidth(chunkText)
+              if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+              end
+              break
+            end
+            curWidth = curWidth + chunkWidth
+          end
+
+          if ts_summary ~= '' then
+            ts_summary = ' ... ' .. ts_summary
+          end
+
+          table.insert(newVirtText, { ts_summary .. suffix, 'MoreMsg' })
+          return newVirtText
+        end,
+        enable_get_fold_virt_text = false,
+        preview = {
+          win_config = {
+            border = 'rounded',
+            winblend = 12,
+            winhighlight = 'Normal:Normal',
+            maxheight = 20,
+          },
+          mappings = {
+            scrollU = '<C-u>',
+            scrollD = '<C-d>',
+            jumpTop = 'gg',
+            jumpBot = 'G',
+            toggleFold = 'za',
+            toggleAllFolds = 'zA',
+          },
+        }
       })
     end
   },
