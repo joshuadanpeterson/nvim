@@ -5,19 +5,28 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
     config = function()
       local which_key = require 'which-key'
 
-      -- Define plugin options
       local opts = {
+        preset = "modern",
+        delay = function(ctx)
+          return ctx.plugin and 0 or 200
+        end,
+        spec = {},
+        notify = true,
+        modes = {
+          n = true, -- Normal mode
+          i = true, -- Insert mode
+          x = true, -- Visual mode
+          s = true, -- Select mode
+          o = true, -- Operator pending mode
+          t = true, -- Terminal mode
+          c = true, -- Command mode
+        },
         plugins = {
-          marks = true,     -- shows a list of your marks on ' and `
-          registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-          -- Add other plugin configurations here...
+          marks = true,
+          registers = true,
           spelling = {
             enabled = true,
             suggestions = 20,
@@ -32,79 +41,93 @@ return {
             g = true,
           },
         },
-
-        -- add operators that will trigger motion and text object completion
-        -- to enable all native operators, set the preset / operators plugin above
-        operators = { gc = 'Comments' },
-        key_labels = {
-          -- override the label used to display some keys. It doesn't effect WK in any other way.
-          -- For example:
-          -- ["<space>"] = "SPC",
-          -- ["<cr>"] = "RET",
-          -- ["<tab>"] = "TAB",
-        },
-        motions = {
-          count = true,
-        },
-        icons = {
-          breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
-          separator = '➜', -- symbol used between a key and it's label
-          group = '+', -- symbol prepended to a group
-        },
-        popup_mappings = {
-          scroll_down = '<c-d>', -- binding to scroll down inside the popup
-          scroll_up = '<c-u>',   -- binding to scroll up inside the popup
-        },
-        window = {
-          border = 'single',        -- none, single, double, shadow
-          position = 'bottom',      -- bottom, top
-          margin = { 1, 1, 1, 1 },  -- extra window margin [top, right, bottom, left]
-          padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-          winblend = 0,             -- value between 0-100 0 for fully opaque and 100 for fully transparent
-          zindex = 1000,            -- positive value to position WhichKey above other floating windows.
+        win = {
+          no_overlap = true,
+          border = 'rounded',
+          padding = { 1, 2 },
+          title = true,
+          title_pos = "center",
+          zindex = 1000,
+          wo = {
+            -- winblend = 80,
+          },
         },
         layout = {
-          height = { min = 4, max = 25 },                                                 -- min and max height of the columns
-          width = { min = 20, max = 50 },                                                 -- min and max width of the columns
-          spacing = 3,                                                                    -- spacing between columns
-          align = 'left',                                                                 -- align columns left, center or right
+          width = { min = 20 },
+          spacing = 3,
+          align = "left",
         },
-        ignore_missing = false,                                                           -- enable this to hide mappings for which you didn't specify a label
-        hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', '^:', '^ ', '^call ', '^lua ' }, -- hide mapping boilerplate
-        show_help = true,                                                                 -- show a help message in the command line for using WhichKey
-        show_keys = true,                                                                 -- show the currently pressed key and its label as a message in the command line
-        triggers = 'auto',                                                                -- automatically setup triggers
-        -- triggers = {"<leader>"} -- or specifiy a list manually
-        -- list of triggers, where WhichKey should not wait for timeoutlen and show immediately
-        triggers_nowait = {
-          -- marks
-          '`',
-          "'",
-          'g`',
-          "g'",
-          -- registers
-          '"',
-          '<c-r>',
-          -- spelling
-          'z=',
+        keys = {
+          scroll_down = "<c-d>",
+          scroll_up = "<c-u>",
         },
-        triggers_blacklist = {
-          -- list of mode / prefixes that should never be hooked by WhichKey
-          -- this is mostly relevant for keymaps that start with a native binding
-          i = { 'j', 'k' },
-          v = { 'j', 'k' },
+        sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase" },
+        expand = 1,
+        replace = {
+          key = {
+            function(key)
+              return require("which-key.view").format(key)
+            end,
+          },
+          desc = {
+            { "<Plug>%((.*)%)", "%1" },
+            { "^%+",            "" },
+            { "<[cC]md>",       "" },
+            { "<[cC][rR]>",     "" },
+            { "<[sS]ilent>",    "" },
+            { "^lua%s+",        "" },
+            { "^call%s+",       "" },
+            { "^:%s*",          "" },
+          },
         },
-        -- disable the WhichKey popup for certain buf types and file types.
-        -- Disabled by default for Telescope
+        icons = {
+          breadcrumb = "»",
+          separator = "➜",
+          group = "+",
+          ellipsis = "…",
+          colors = true,
+          keys = {
+            Up = " ",
+            Down = " ",
+            Left = " ",
+            Right = " ",
+            C = "󰘴 ",
+            M = "󰘵 ",
+            S = "󰘶 ",
+            CR = "󰌑 ",
+            Esc = "󱊷 ",
+            ScrollWheelDown = "󱕐 ",
+            ScrollWheelUp = "󱕑 ",
+            NL = "󰌑 ",
+            BS = "⌫",
+            Space = "󱁐 ",
+            Tab = "󰌒 ",
+          },
+        },
+        show_help = true,
+        show_keys = true,
+        triggers = true,
         disable = {
-          buftypes = {},
-          filetypes = {},
+          ft = {},
+          bt = {},
+          trigger = function(ctx)
+            return false
+          end,
         },
+        debug = false,
       }
 
-      -- Apply the configuration options
       which_key.setup(opts)
     end,
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
   },
 
   -- Hawtkey: a nvim plugin for finding and suggesting memorable and easy-to-press keys for your nvim shortcuts

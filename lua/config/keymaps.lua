@@ -7,6 +7,8 @@ local harpoon = require 'harpoon'
 local dap = require 'dap'
 local dapui = require 'dapui'
 local tmux = require 'config.tmux'
+local jumper = require("telescope").extensions.jumper
+
 
 -- set up lualine function
 local function setup_lualine()
@@ -24,7 +26,7 @@ end
 -- Configure Telescope Harpoon
 -- import telescope modules
 local conf = require('telescope.config').values
-local harpoon = require('harpoon').setup {}
+harpoon:setup()
 
 local function toggle_telescope(harpoon_files)
   local file_paths = {}
@@ -53,527 +55,416 @@ end
 -- Set up kulala
 local kulala = require 'kulala'
 
--- General and Basic Keymaps
-local generalMappings = {
-  name = 'General and Basic Keymaps',
-  -- ['<Space>'] = { '<Nop>', "No Operation" },
-  ['k'] = { "v:count == 0 ? 'gk' : 'k'", 'Move up (respecting display lines)', expr = true },
-  ['j'] = { "v:count == 0 ? 'gj' : 'j'", 'Move down (respecting display lines)', expr = true },
-  ['c'] = { ":lua require('Comment.api').toggle_current_linewise()<CR>", 'Toggle comment for current line', mode = { 'n', 'v' } },
-  ['<Esc>'] = { "<ESC>:noh<CR>:require('notify').dismiss()<CR>", 'Clear search highlight and notifications' },
-  ['l'] = { refresh_lualine, 'Refresh status line' },
-  ['n'] = { '<cmd>Noice<cr>', 'Noice' },
-  ['d'] = { ':NoiceDismiss<CR>', 'Dismiss Noice Message' },
-  ['L'] = { ':SearchLogFiles<CR>', 'Search Log Files' },
-  ['C'] = { ':SearchChangelogFiles<CR>', 'Search Changelog Files' },
-  ['o'] = { ':Oil --float<CR>', 'Modify Filetree in Buffer' },
-  ['p'] = { ':PasteImage<CR>', 'Paste Image to Markdown' },
-}
+-- Register keymaps
+wk.add({
+  -- General and Basic Keymaps
+  { "<leader>b",      group = "General and Basic Keymaps" },
+  { "<leader>bk",     "v:count == 0 ? 'gk' : 'k'",                                              desc = "Move up (respecting display lines)",      expr = true },
+  { "<leader>bj",     "v:count == 0 ? 'gj' : 'j'",                                              desc = "Move down (respecting display lines)",    expr = true },
+  { "<leader>bc",     ":lua require('Comment.api').toggle_current_linewise()<CR>",              desc = "Toggle comment for current line",         mode = { 'n', 'v' } },
+  { "<leader>b<Esc>", "<ESC>:noh<CR>:require('notify').dismiss()<CR>",                          desc = "Clear search highlight and notifications" },
+  { "<leader>bl",     refresh_lualine,                                                          desc = "Refresh status line" },
+  { "<leader>bn",     "<cmd>Noice<cr>",                                                         desc = "Noice" },
+  { "<leader>bd",     ":NoiceDismiss<CR>",                                                      desc = "Dismiss Noice Message" },
+  { "<leader>bL",     ":SearchLogFiles<CR>",                                                    desc = "Search Log Files" },
+  { "<leader>bC",     ":SearchChangelogFiles<CR>",                                              desc = "Search Changelog Files" },
+  { "<leader>bo",     ":Oil --float<CR>",                                                       desc = "Modify Filetree in Buffer" },
+  { "<leader>bp",     ":PasteImage<CR>",                                                        desc = "Paste Image to Markdown" },
 
--- HTTP Keymaps
-local httpMappings = {
-  name = "HTTP Keymaps",
-  ['p'] = { ":lua require('kulala').jump_prev()<CR>", "Previous HTTP Request" },
-  ['n'] = { ":lua require('kulala').jump_next()<CR>", "Next HTTP Request" },
-  ['r'] = { ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", "Send HTTP Request" },
-  ['t'] = { ":lua require('kulala').toggle_view()<CR>", "Toggle HTTP View" },
-  ['h'] = { ':Hyper<CR>', 'Open Hyper' },
-  ['R'] = { ':Rest run<CR>', 'Run HTTP Request' },
-  ['l'] = { ':Rest log<CR>', 'Rest logs' },
-  ['L'] = { ':Rest run last<CR>', 'Re-run last HTTP Request' },
-  ['e'] = { ':Telescope rest select_env<CR>', 'Select .env file' },
-  ['P'] = { ':Rest result prev<CR>', 'Cycle Previous Result' },
-  ['N'] = { ':Rest result next<CR>', 'Cycle Next Result' },
-}
+  -- HTTP Keymaps
+  { "<leader>H",      group = "HTTP Keymaps" },
+  { "<leader>Hp",     ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
+  { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
+  { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
+  { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
+  { "<leader>Hh",     ':Hyper<CR>',                                                             desc = "Open Hyper" },
+  { "<leader>HR",     ':Rest run<CR>',                                                          desc = "Run HTTP Request" },
+  { "<leader>Hl",     ':Rest log<CR>',                                                          desc = "Rest logs" },
+  { "<leader>HL",     ':Rest run last<CR>',                                                     desc = "Re-run last HTTP Request" },
+  { "<leader>He",     ':Telescope rest select_env<CR>',                                         desc = "Select .env file" },
+  { "<leader>HP",     ':Rest result prev<CR>',                                                  desc = "Cycle Previous Result" },
+  { "<leader>HN",     ':Rest result next<CR>',                                                  desc = "Cycle Next Result" },
 
--- Vim Dadbod (SQL) Keymaps
-local vimDadbodMappings = {
-  name = 'Vim Dadbod (SQL) Keymaps',
-  ['b'] = { ':DBUI<CR>', 'DBUI' },
-  ['t'] = { ':DBUIToggle<CR>', 'DBUIToggle' },
-  ['f'] = { ':DBUIFindBuffer<CR>', 'DBUIFindBuffer' },
-  ['a'] = { ':DBUIAddConnection<CR>', 'DBUIAddConnection' },
-  ['l'] = { ':DBLastQueryInfo<CR>', 'DBLastQueryInfo' },
-  ['c'] = { ':DBUIClose<CR>', 'DBUIClose' },
-  ['C'] = { ':DBCompletionClearCache<CR>', 'DBCompletionClearCache' },
-  ['h'] = { ':DBUIHideNotifications<CR>', 'Hide Notifications ' },
-}
+  -- Vim Dadbod (SQL) Keymaps
+  { "<leader>s",      group = "Vim Dadbod (SQL) Keymaps" },
+  { "<leader>sb",     ':DBUI<CR>',                                                              desc = 'DBUI' },
+  { "<leader>st",     ':DBUIToggle<CR>',                                                        desc = 'DBUIToggle' },
+  { "<leader>sf",     ':DBUIFindBuffer<CR>',                                                    desc = 'DBUIFindBuffer' },
+  { "<leader>sa",     ':DBUIAddConnection<CR>',                                                 desc = 'DBUIAddConnection' },
+  { "<leader>sl",     ':DBLastQueryInfo<CR>',                                                   desc = 'DBLastQueryInfo' },
+  { "<leader>sc",     ':DBUIClose<CR>',                                                         desc = 'DBUIClose' },
+  { "<leader>sC",     ':DBCompletionClearCache<CR>',                                            desc = 'DBCompletionClearCache' },
+  { "<leader>sh",     ':DBUIHideNotifications<CR>',                                             desc = 'Hide Notifications' },
 
--- LSP Keymaps
-local lspMappings = {
-  name = 'LSP Keymaps',
-  ['r'] = { ':Lspsaga rename<CR>', 'Rename' },
-  ['c'] = { ':Lspsaga code_action<CR>', 'Code Action' },
-  ['d'] = { ':Lspsaga peek_definition<CR>', 'Peek Definition' },
-  ['R'] = { require('telescope.builtin').lsp_references, 'Goto References' },
-  ['i'] = { ':Lspsaga finder<CR>', 'Show References and Implementations' },
-  ['t'] = { ':Lspsaga peek_type_definition<CR>', 'Peek Type Definition' },
-  ['s'] = { require('telescope.builtin').lsp_document_symbols, 'Document Symbols' },
-  ['w'] = { require('telescope.builtin').lsp_workspace_symbols, 'Workspace Symbols' },
-  ['H'] = { ':Lspsaga hover_doc<CR>', 'Hover Documentation' },
-  ['S'] = { vim.lsp.buf.signature_help, 'Signature Help' },
-  ['g'] = { vim.lsp.buf.declaration, 'Goto Declaration' },
-  ['a'] = { vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder' },
-  ['x'] = { vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder' },
-  ['l'] = {
+  -- LSP Keymaps
+  { "<leader>l",      group = "LSP Keymaps" },
+  { "<leader>lr",     ':Lspsaga rename<CR>',                                                    desc = 'Rename' },
+  { "<leader>lc",     ':Lspsaga code_action<CR>',                                               desc = 'Code Action' },
+  { "<leader>ld",     ':Lspsaga peek_definition<CR>',                                           desc = 'Peek Definition' },
+  { "<leader>lR",     require('telescope.builtin').lsp_references,                              desc = 'Goto References' },
+  { "<leader>li",     ':Lspsaga finder<CR>',                                                    desc = 'Show References and Implementations' },
+  { "<leader>lt",     ':Lspsaga peek_type_definition<CR>',                                      desc = 'Peek Type Definition' },
+  { "<leader>ls",     require('telescope.builtin').lsp_document_symbols,                        desc = 'Document Symbols' },
+  { "<leader>lw",     require('telescope.builtin').lsp_workspace_symbols,                       desc = 'Workspace Symbols' },
+  { "<leader>lH",     ':Lspsaga hover_doc<CR>',                                                 desc = 'Hover Documentation' },
+  { "<leader>lS",     vim.lsp.buf.signature_help,                                               desc = 'Signature Help' },
+  { "<leader>lg",     vim.lsp.buf.declaration,                                                  desc = 'Goto Declaration' },
+  { "<leader>la",     vim.lsp.buf.add_workspace_folder,                                         desc = 'Add Workspace Folder' },
+  { "<leader>lx",     vim.lsp.buf.remove_workspace_folder,                                      desc = 'Remove Workspace Folder' },
+  {
+    "<leader>ll",
     function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end,
-    'List Workspace Folders',
+    desc = 'List Workspace Folders'
   },
-}
 
--- Diagnostic Mappings
-local diagnosticMappings = {
-  name = 'Diagnostic Mappings',
-  ['h'] = { vim.diagnostic.open_float, 'Show Diagnostic Hover' },
-  ['i'] = { require('telescope.builtin').diagnostics, 'Search Workspace Diagnostics' },
-  ['d'] = {
+  -- Diagnostic Mappings
+  { "<leader>d",  group = "Diagnostic Mappings" },
+  { "<leader>dh", vim.diagnostic.open_float,                desc = 'Show Diagnostic Hover' },
+  { "<leader>di", require('telescope.builtin').diagnostics, desc = 'Search Workspace Diagnostics' },
+  {
+    "<leader>dd",
     function()
       require('telescope.builtin').diagnostics { bufnr = 0 }
     end,
-    'Search Buffer Diagnostics',
+    desc = 'Search Buffer Diagnostics'
   },
-  ['D'] = { ':Lspsaga show_buf_diagnostics<CR>', 'Show Buffer Diagnostics' },
-  ['W'] = { ':Lspsaga show_workspace_diagnostics<CR>', 'Show Workspace Diagnostics' },
-  [']'] = { ':Lspsaga diagnostic_jump_prev<CR>', 'Previous Diagnostic' },
-  ['['] = { ':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic' },
-  ['f'] = {
+  { "<leader>dD", ':Lspsaga show_buf_diagnostics<CR>',      desc = 'Show Buffer Diagnostics' },
+  { "<leader>dW", ':Lspsaga show_workspace_diagnostic<CR>', desc = 'Show Workspace Diagnostics' },
+  { "<leader>d]", ':Lspsaga diagnostic_jump_prev<CR>',      desc = 'Previous Diagnostic' },
+  { "<leader>d[", ':Lspsaga diagnostic_jump_next<CR>',      desc = 'Next Diagnostic' },
+  {
+    "<leader>df",
     function()
       vim.lsp.buf.format { async = true }
     end,
-    'Format Document',
+    desc = 'Format Document'
   },
-  ['o'] = { ':Lspsaga outline<CR>', 'Outline Doc' },
-  ['n'] = { ':FuzzyNoice<CR>', 'Search Noice Messages' },
-  ['N'] = { '<cmd>Telescope notify<CR>', 'Search Notify Messages' },
-  ['m'] = { ':messages<CR>', 'Get Messages' },
-  ['l'] = { ':LspInfo<CR>', 'Get LspInfo' },
-  ['c'] = { ':CmpStatus<CR>', 'Get CmpStatus' },
-  ['C'] = { ':ConformInfo<CR>', 'Get ConformInfo' },
-  ['t'] = { ':Trouble<CR>', 'Get Trouble' },
-  ['q'] = { require('telescope.builtin').quickfix(), 'Search Quickfix List' },
-  ['s'] = { ':NoiceStats<CR>', 'Noice Stats' },
-  ['e'] = { ':NoiceErrors<CR>', 'Noice Errors' },
-  ['a'] = { ':NoiceAll<CR>', 'Noice All' },
-  ['b'] = { ':NoiceDebug<CR>', 'Noice Debug' },
-  ['I'] = { ':Inspect<CR>', 'Inspect' },
-  ['x'] = { ':TodoTelescope<CR>', 'Search TODOs in Telescope' },
-  ['X'] = { ':TodoTrouble<CR>', 'Search TODOs in Trouble' },
-  ['p'] = { ':TSPlaygroundToggle<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>', 'Open Treesitter Playground' },
-}
+  { "<leader>do", ':Lsaga outline<CR>',                                                                   desc = 'Outline Doc' },
+  { "<leader>dn", ':FuzzyNoice<CR>',                                                                      desc = 'Search Noice Messages' },
+  { "<leader>dN", '<cmd>Telescope notify<CR>',                                                            desc = 'Search Notify Messages' },
+  { "<leader>dm", ':messages<CR>',                                                                        desc = 'Get Messages' },
+  { "<leader>dl", ':LspInfo<CR>',                                                                         desc = 'Get LspInfo' },
+  { "<leader>dc", ':CmpStatus<CR>',                                                                       desc = 'Get CmpStatus' },
+  { "<leader>dC", ':ConformInfo<CR>',                                                                     desc = 'Get ConformInfo' },
+  { "<leader>dq", require('telescope.builtin').quickfix(),                                                desc = 'Search Quickfix List' },
+  { "<leader>ds", ':NoiceStats<CR>',                                                                      desc = 'Noice Stats' },
+  { "<leader>de", ':NoiceErrors<CR>',                                                                     desc = 'Noice Errors' },
+  { "<leader>da", ':NoiceAll<CR>',                                                                        desc = 'Noice All' },
+  { "<leader>dB", ':NoiceDebug<CR>',                                                                      desc = 'Noice Debug' },
+  { "<leader>dI", ':Inspect<CR>',                                                                         desc = 'Inspect' },
+  { "<leader>dx", ':TodoTelescope<CR>',                                                                   desc = 'Search TODOs in Telescope' },
+  { "<leader>dp", ':TSPlaygroundToggle<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>', desc = 'Open Treesitter Playground' },
 
--- GitHub Copilot Chat Mappings
-local copilotMappings = {
-  name = 'GitHub Copilot Chat Mappings',
-  ['x'] = { ':CopilotChatToggle<CR>', 'Toggle Copilot Chat' },
-  ['s'] = { ':CopilotChatStop<CR>', 'Stop Current Copilot Output' },
-  ['r'] = { ':CopilotChatReset<CR>', 'Reset Chat Window' },
-  ['e'] = { ':CopilotChatExplain<CR>', 'Explain Selection' },
-  ['R'] = { ':CopilotChatReview<CR>', 'Review Selection' },
-  ['f'] = { ':CopilotChatFix<CR>', 'Fix Bug' },
-  ['o'] = { ':CopilotChatOptimize<CR>', 'Optimize Selection' },
-  ['d'] = { ':CopilotChatDocs<CR>', 'Add Docs for Selection' },
-  ['t'] = { ':CopilotChatTests<CR>', 'Generate Tests' },
-  ['D'] = { ':CopilotChatFixDiagnostic<CR>', 'Assist with Diagnostic' },
-  ['c'] = { ':CopilotChatCommit<CR>', 'Write Commit Message' },
-  ['S'] = { ':CopilotChatCommitStaged<CR>', 'Write Commit Message for Staged Change' },
-  ['i'] = { ':CopilotChatDebugInfo<CR>', 'Show Debug Info' },
-  -- TODO: Work out how to add inputs to commands
-  -- ['S'] = { 'CopilotChatSave <name>?', 'Save Chat History to File' },
-  -- ['L'] = { 'CopilotChatLoad <name>?', 'Load Chat History from File' },
-}
+  -- GitHub Copilot Chat Mappings
+  { "<leader>G",  group = "GitHub Copilot Chat Mappings" },
+  { "<leader>Gx", ':CopilotChatToggle<CR>',                                                               desc = 'Toggle Copilot Chat' },
+  { "<leader>Gs", ':CopilotChatStop<CR>',                                                                 desc = 'Stop Current Copilot Output' },
+  { "<leader>Gr", ':CopilotChatReset<CR>',                                                                desc = 'Reset Chat Window' },
+  { "<leader>Ge", ':CopilotChatExplain<CR>',                                                              desc = 'Explain Selection' },
+  { "<leader>GR", ':CopilotChatReview<CR>',                                                               desc = 'Review Selection' },
+  { "<leader>Gf", ':CopilotChatFix<CR>',                                                                  desc = 'Fix Bug' },
+  { "<leader>Go", ':CopilotChatOptimize<CR>',                                                             desc = 'Optimize Selection' },
+  { "<leader>Gd", ':CopilotChatDocs<CR>',                                                                 desc = 'Add Docs for Selection' },
+  { "<leader>Gt", ':CopilotChatTests<CR>',                                                                desc = 'Generate Tests' },
+  { "<leader>GD", ':CopilotChatFixDiagnostic<CR>',                                                        desc = 'Assist with Diagnostic' },
+  { "<leader>Gc", ':CopilotChatCommit<CR>',                                                               desc = 'Write Commit Message' },
+  { "<leader>GS", ':CopilotChatCommitStaged<CR>',                                                         desc = 'Write Commit Message for Staged Change' },
+  { "<leader>Gi", ':CopilotChatDebugInfo<CR>',                                                            desc = 'Show Debug Info' },
+  -- TODO: Additional future mappings
+  -- { "<leader>GS", 'CopilotChatSave <name>?', desc = 'Save Chat History to File' },
+  -- { "<leader>GL", 'CopilotChatLoad <name>?', desc = 'Load Chat History from File' },
 
--- Trouble Mappings
-local troubleMappings = {
-  name = 'Trouble Mappings',
-}
+  -- Trouble Mappings
+  { "<leader>T",  group = "Trouble Mappings" },
+  { "<leader>Tt", ':Trouble<CR>',                                                                         desc = 'Toggle Trouble' },
+  { "<leader>Td", ':Trouble lsp_document_diagnostics<CR>',                                                desc = 'Document Diagnostics' },
+  { "<leader>Tw", ':Trouble lsp_workspace_diagnostics<CR>',                                               desc = 'Workspace Diagnostics' },
+  { "<leader>Tr", ':Trouble lsp_references<CR>',                                                          desc = 'LSP References' },
+  { "<leader>Tf", ':Trouble lsp_definitions<CR>',                                                         desc = 'LSP Definitions' },
+  { "<leader>TT", ':Trouble lsp_type_definitions<CR>',                                                    desc = 'LSP Type Definitions' },
+  { "<leader>Ti", ':Trouble lsp_implementations<CR>',                                                     desc = 'LSP Implementations' },
+  { "<leader>Ts", ':Trouble lsp_document_symbols<CR>',                                                    desc = 'Document Symbols' },
+  { "<leader>Tc", ':Trouble lsp_incoming_calls<CR>',                                                      desc = 'LSP Incoming Calls' },
+  { "<leader>To", ':Trouble lsp_outgoing_calls<CR>',                                                      desc = 'LSP Outgoing Calls' },
+  { "<leader>Tq", ':Trouble quickfix<CR>',                                                                desc = 'Quickfix' },
+  { "<leader>Tl", ':Trouble loclist<CR>',                                                                 desc = 'Location List' },
+  { "<leader>Tx", ':TodoTrouble<CR>',                                                                     desc = 'Search TODOs in Trouble' },
 
--- Plugin Mappings
-local pluginMappings = {
-  name = 'Plugin Mappings',
-  ['m'] = { ':Mason<CR>', 'Search Mason' },
-  ['l'] = { '<cmd>Telescope lazy<CR>', 'Search Lazy for Plugins' },
-  ['L'] = { ':Lazy<CR>', 'Open Lazy' },
-  ['e'] = { ':LazyExtras<CR>', 'Open LazyExtras' },
-}
+  -- Plugin Mappings
+  { "<leader>p",  group = "Plugin Mappings" },
+  { "<leader>pm", ':Mason<CR>',                                                                           desc = 'Search Mason' },
+  { "<leader>pl", '<cmd>Telescope lazy<CR>',                                                              desc = 'Search Lazy for Plugins' },
+  { "<leader>pL", ':Lazy<CR>',                                                                            desc = 'Open Lazy' },
+  { "<leader>pe", ':LazyExtras<CR>',                                                                      desc = 'Open LazyExtras' },
 
--- UI Mappings
-local uiMappings = {
-  name = 'UI Mappings',
-  ['c'] = { ':Telescope colorscheme<CR>', 'Search Colorschemes' },
-  ['e'] = { ':Telescope emoji<CR>', 'Search Emojis' },
-  ['E'] = { ':InsertEmojiByGroup<CR>', 'Search Emojis by Group' },
-  ['s'] = { ':CodeSnap<CR>', 'CodeSnap' },
-  ['S'] = { ':CodeSnapSave<CR>', 'Save CodeSnap' },
-  ['h'] = { ':CodeSnapHighlight<CR>', 'CodeSnap Highlight' },
-  ['H'] = { ':CodeSnapSaveHighlight<CR>', 'CodeSnap Save Highlight' },
-}
+  -- UI Mappings
+  { "<leader>u",  group = "UI Mappings" },
+  { "<leader>uc", ':Telescope colorscheme<CR>',                                                           desc = 'Search Colorschemes' },
+  { "<leader>ue", ':Telescope emoji<CR>',                                                                 desc = 'Search Emojis' },
+  { "<leader>uE", ':InsertEmojiByGroup<CR>',                                                              desc = 'Search Emojis by Group' },
+  { "<leader>us", ':CodeSnap<CR>',                                                                        desc = 'CodeSnap' },
+  { "<leader>uS", ':CodeSnapSave<CR>',                                                                    desc = 'Save CodeSnap' },
+  { "<leader>uh", ':CodeSnapHighlight<CR>',                                                               desc = 'CodeSnap Highlight' },
+  { "<leader>uH", ':CodeSnapSaveHighlight<CR>',                                                           desc = 'CodeSnap Save Highlight' },
 
--- view mappings
-local viewMappings = {
-  name = 'View Mappings',
-  ['M'] = { ':TWCenter<CR>', 'Center Code Block' },
-  ['z'] = { ':ZenMode<CR>', 'Toggle ZenMode' },
-  ['t'] = { ':Twilight<CR>', 'Enable Twlight' },
-  ['a'] = { ':TZAtaraxis<CR>', 'Toggle True Zen: Ataraxis Mode' },
-  ['m'] = { ':TZMinimalist<CR>', 'Toggle True Zen: Minimalist Mode' },
-  ['n'] = { ':TZNarrow<CR>', 'Toggle True Zen: Narrow Mode' },
-  ['f'] = { ':TZFocus<CR>', 'Toggle True Zen: Focus Mode' },
-  ['T'] = { ':TWToggle<CR>', 'Toggle Typewriter' },
-  ['H'] = { ':TWTop<CR>', 'Move Code Block to Top of Screen' },
-  ['L'] = { ':TWBottom<CR>', 'Move Code Block to Bottom of Screen' },
-  ['h'] = { toggle_inlay_hints, 'Toggle Inlay Hints' },
-  ['p'] = { ':MarkdownPreview<CR>', 'Markdown Preview' },
-  ['r'] = { ':RenderMarkdownToggle<CR>', 'Render Markdown' },
-}
+  -- view mappings
+  { "<leader>v",  group = "View Mappings" },
+  { "<leader>vM", ':TWCenter<CR>',                                                                        desc = 'Center Code Block' },
+  { "<leader>vz", ':ZenMode<CR>',                                                                         desc = 'Toggle ZenMode' },
+  { "<leader>vt", ':Twilight<CR>',                                                                        desc = 'Enable Twilight' },
+  { "<leader>va", ':TZAtaraxis<CR>',                                                                      desc = 'Toggle True Zen: Ataraxis Mode' },
+  { "<leader>vm", ':TZMinimalist<CR>',                                                                    desc = 'Toggle True Zen: Minimalist Mode' },
+  { "<leader>vn", ':TZNarrow<CR>',                                                                        desc = 'Toggle True Zen: Narrow Mode' },
+  { "<leader>vf", ':TZFocus<CR>',                                                                         desc = 'Toggle True Zen: Focus Mode' },
+  { "<leader>vT", ':TWToggle<CR>',                                                                        desc = 'Toggle Typewriter' },
+  { "<leader>vH", ':TWTop<CR>',                                                                           desc = 'Move Code Block to Top of Screen' },
+  { "<leader>vL", ':TWBottom<CR>',                                                                        desc = 'Move Code Block to Bottom of Screen' },
+  { "<leader>vh", toggle_inlay_hints,                                                                     desc = 'Toggle Inlay Hints' },
+  { "<leader>vp", ':MarkdownPreview<CR>',                                                                 desc = 'Markdown Preview' },
+  { "<leader>vr", ':RenderMarkdownToggle<CR>',                                                            desc = 'Render Markdown' },
 
--- Telescope Keymaps
-local telescopeMappings = {
-  name = 'Telescope Keymaps',
-  ['f'] = {
+  -- Telescope Keymaps
+  { "<leader>t",  group = "Telescope Keymaps" },
+  {
+    "<leader>tf",
     function()
       require('telescope.builtin').find_files {
-        find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' },
+        find_command = { 'fd', '--type', 'f', '--hidden', '--exclude', '.git' }
       }
     end,
-    'Search Files',
+    desc = 'Search Files'
   },
-  ['R'] = { '<cmd>Telescope registers<CR>', 'Search Registers' },
-  ['b'] = { require('telescope.builtin').current_buffer_fuzzy_find, 'Search Current Buffer' },
-  ['h'] = { ':FuzzyHelp<CR>', 'Search Help' },
-  ['w'] = { require('telescope.builtin').grep_string, 'Search Current Word' },
-  ['g'] = { require('telescope.builtin').live_grep, 'Search by Grep' },
-  ['G'] = { '<cmd>Telescope helpgrep<CR>', 'Search Grep Help' },
-  ['r'] = { require('telescope.builtin').resume, 'Resume Last Search' },
-  ['c'] = { require('telescope.builtin').commands, 'Search Telescope Commands' },
-  ['C'] = { require('telescope.builtin').command_history, 'Search Command History' },
-  ['H'] = { require('telescope.builtin').search_history, 'Search History' },
-  ['M'] = { ':FuzzyMan<CR>', 'Search Man Pages' },
-  ['m'] = { require('telescope.builtin').keymaps, 'Search Keymaps' },
-  ['s'] = { require('telescope.builtin').spell_suggest, 'Search Spelling Suggestions' },
-  ['D'] = { ':Dash<CR>', 'Search Dash' },
-  ['W'] = { ':DashWord<CR>', 'Search Dash by word' },
-  ['t'] = { '<cmd>Telescope themes<CR>', 'Search Themes' },
-  ['?'] = { require('telescope.builtin').oldfiles, '[?] Find recently opened files' },
-  ['S'] = { '<cmd>Telescope uniswapfiles telescope_swap_files<CR>', 'Search Swap Files' },
-  ['o'] = { '<cmd>Telescope oldfiles<cr>', 'Recent Files' },
-  ['B'] = { '<cmd>Telescope buffers<cr>', 'List Buffers' },
-  ['z'] = { '<cmd>Telescope zoxide list<CR>', 'Zoxide List' },
-  ['p'] = { '<cmd>Tldr<CR>', 'Search tldr pages' },
-  ['j'] = {
+  { "<leader>tR", '<cmd>Telescope registers<CR>',                         desc = 'Search Registers' },
+  { "<leader>tb", require('telescope.builtin').current_buffer_fuzzy_find, desc = 'Search Current Buffer' },
+  { "<leader>th", ':FuzzyHelp<CR>',                                       desc = 'Search Help' },
+  { "<leader>tw", require('telescope.builtin').grep_string,               desc = 'Search Current Word' },
+  { "<leader>tg", require('telescope.builtin').live_grep,                 desc = 'Search by Grep' },
+  { "<leader>tG", '<cmd>Telescope helpgrep<CR>',                          desc = 'Search Grep Help' },
+  { "<leader>tr", require('telescope.builtin').resume,                    desc = 'Resume Last Search' },
+  { "<leader>tc", require('telescope.builtin').commands,                  desc = 'Search Telescope Commands' },
+  { "<leader>tC", require('telescope.builtin').command_history,           desc = 'Search Command History' },
+  { "<leader>tH", require('telescope.builtin').search_history,            desc = 'Search History' },
+  { "<leader>tM", ':FuzzyMan<CR>',                                        desc = 'Search Man Pages' },
+  { "<leader>tk", require('telescope.builtin').keymaps,                   desc = 'Search Keymaps' },
+  { "<leader>ts", require('telescope.builtin').spell_suggest,             desc = 'Search Spelling Suggestions' },
+  { "<leader>tD", ':Dash<CR>',                                            desc = 'Search Dash' },
+  { "<leader>tW", ':DashWord<CR>',                                        desc = 'Search Dash by word' },
+  { "<leader>tt", '<cmd>Telescope themes<CR>',                            desc = 'Search Themes' },
+  { "<leader>t?", require('telescope.builtin').oldfiles,                  desc = 'Find recently opened files' },
+  { "<leader>tS", '<cmd>Telescope uniswapfiles telescope_swap_files<CR>', desc = 'Search Swap Files' },
+  { "<leader>to", '<cmd>Telescope oldfiles<cr>',                          desc = 'Recent Files' },
+  { "<leader>tB", '<cmd>Telescope buffers<cr>',                           desc = 'List Buffers' },
+  { "<leader>tz", '<cmd>Telescope zoxide list<CR>',                       desc = 'Zoxide List' },
+  { "<leader>tp", '<cmd>Tldr<CR>',                                        desc = 'Search tldr pages' },
+  {
+    "<leader>tj",
     function()
       if vim.bo.filetype == 'json' then
-        -- Add a debug print before calling Telescope
         print('Calling Telescope jsonfly with filetype: ' .. vim.bo.filetype)
         vim.cmd 'Telescope jsonfly'
       else
         print('This command is only available for JSON files. Current filetype: ' .. vim.bo.filetype)
       end
     end,
-    'Search JSON with jsonfly',
+    desc = 'Search JSON with jsonfly'
   },
-  ['T'] = { ':Telescope treesitter<CR>', 'Search Treesitter' },
-}
+  { "<leader>tT", ':Telescope treesitter<CR>',            desc = 'Search Treesitter' },
+  { "<leader>tl", ':Telescope lsp_document_symbols<CR>',  desc = 'Telescope LSP Document Symbols' },
+  { "<leader>te", ':Telescope lsp_workspace_symbols<CR>', desc = 'Telescope LSP Workspace Symbols' },
+  { "<leader>tx", ':Telescope commands<CR>',              desc = 'Telescope Commands' },
+  { "<leader>td", jumper.jump_to_directory,               desc = 'Jump to Directory' },
+  { "<leader>tF", jumper.find_in_files,                   desc = 'Find in Files' },
+  { "<leader>tj", jumper.jump_to_file,                    desc = 'Jump to File' },
 
--- Rnvimr and Ranger Keymaps
-local rnvimrMappings = {
-  name = 'Rnvimr and Ranger Keymaps',
-  ['t'] = { ':RnvimrToggleeCR>', 'Toggle Rnvimr' },
-  ['r'] = { ':RnvimrResize<CR>', 'Resize Rnvimr' },
-  ['n'] = {
+  -- Rnvimr and Ranger Keymaps
+  { "<leader>r",  group = "Rnvimr and Ranger Keymaps" },
+  { "<leader>rt", ':RnvimrToggle<CR>',                    desc = 'Toggle Rnvimr' },
+  { "<leader>rr", ':RnvimrResize<CR>',                    desc = 'Resize Rnvimr' },
+  {
+    "<leader>rn",
     function()
       require('ranger-nvim').open(true)
     end,
-    'Open Ranger',
+    desc = 'Open Ranger'
   },
-}
 
--- legendary.nvim Keymaps
-local legendaryMappings = {
-  name = 'Legendary Keymaps',
-  ['g'] = { ':Legendary<CR>', 'Search Legendary' },
-  ['k'] = { ':Legendary keymaps<CR>', 'Search Legendary Keymaps' },
-  ['c'] = { ':Legendary commands<CR>', 'Search Legendary Commands' },
-  ['f'] = { ':Legendary functions<CR>', 'Search Legendary Functions' },
-  ['a'] = { ':Legendary autocmds<CR>', 'Search Legendary Autocmds' },
-  ['r'] = { ':LegendaryRepeat<CR>', 'Repeat Last Item Executed' },
-  ['!'] = { ':LegendaryRepeat!eCR>', 'Repeat Last Item Executed, no filters' },
-  ['s'] = { ':LegendaryScratch<CR>', 'Launch Scratch Pad' },
-}
+  -- legendary.nvim Keymaps
+  { "<leader>X",  group = "Legendary Keymaps" },
+  { "<leader>Xg", ':Legendary<CR>',                desc = 'Search Legendary' },
+  { "<leader>Xk", ':Legendary keymaps<CR>',        desc = 'Search Legendary Keymaps' },
+  { "<leader>Xc", ':Legendary commands<CR>',       desc = 'Search Legendary Commands' },
+  { "<leader>Xf", ':Legendary functions<CR>',      desc = 'Search Legendary Functions' },
+  { "<leader>Xa", ':Legendary autocmds<CR>',       desc = 'Search Legendary Autocmds' },
+  { "<leader>Xr", ':LegendaryRepeat<CR>',          desc = 'Repeat Last Item Executed' },
+  { "<leader>X!", ':LegendaryRepeat!<CR>',         desc = 'Repeat Last Item Executed, no filters' },
+  { "<leader>Xs", ':LegendaryScratch<CR>',         desc = 'Launch Scratch Pad' },
 
--- Tmux Telescope Plugin Keymaps
-local tmuxTelescopeMappings = {
-  name = 'tmux Telescope Keymaps',
-  ['t'] = { ':TmuxJumpFile<CR>', 'Jump to File in Tmux Pane' },
-  [';'] = { ':TmuxJumpFirst<CR>', 'Jump to First Tmux Pane' },
-  ['s'] = { tmux.switch_to_tmux_session, 'Switch Tmux Session', { noremap = true, silent = true } },
-  ['w'] = { tmux.switch_tmux_window, 'Switch Tmux Window', { noremap = true, silent = true } },
-  ['p'] = { tmux.switch_tmux_pane, 'Switch Tmux Pane', { noremap = true, silent = true } },
-  ['m'] = { tmux.tmux_menu_picker, 'Tmux Menu Picker', { noremap = true, silent = true } },
-}
+  -- Tmux Telescope Plugin Keymaps
+  { "<leader>x",  group = "tmux Telescope Keymaps" },
+  { "<leader>xt", ':TmuxJumpFile<CR>',             desc = 'Jump to File in Tmux Pane' },
+  { "<leader>x;", ':TmuxJumpFirst<CR>',            desc = 'Jump to First Tmux Pane' },
+  { "<leader>xs", tmux.switch_to_tmux_session,     desc = 'Switch Tmux Session',                  noremap = true, silent = true },
+  { "<leader>xw", tmux.switch_tmux_window,         desc = 'Switch Tmux Window',                   noremap = true, silent = true },
+  { "<leader>xp", tmux.switch_tmux_pane,           desc = 'Switch Tmux Pane',                     noremap = true, silent = true },
+  { "<leader>xm", tmux.tmux_menu_picker,           desc = 'Tmux Menu Picker',                     noremap = true, silent = true },
 
--- Harpoon Keymaps
-local harpoonMappings = {
-  name = 'Harpoon Keymaps',
-  ['a'] = {
-    function()
-      harpoon:list():add()
-    end,
-    'Add File to Harpoon Menu',
+  -- Harpoon Keymaps
+  { "<leader>h",  group = "Harpoon Keymaps" },
+  {
+    "<leader>ha",
+    function() harpoon:list():add() end,
+    desc = 'Add File to Harpoon Menu'
   },
-  ['r'] = {
+  {
+    "<leader>hr",
     function()
       harpoon:list():remove()
     end,
-    'Remove File from Harpoon Menu',
+    desc = 'Remove File from Harpoon Menu'
   },
-  ['p'] = {
+  {
+    "<leader>hp",
     function()
-      harpoon.nav.prev()
+      harpoon:list():prev()
     end,
-    'Previous Harpoon File',
+    desc = 'Previous Harpoon File'
   },
-  ['n'] = {
+  {
+    "<leader>hn",
     function()
-      harpoon.nav.next()
+      harpoon:list():next()
     end,
-    'Next Harpoon File',
+    desc = 'Next Harpoon File'
   },
-  ['e'] = {
-    function()
-      toggle_telescope(harpoon:list())
-    end,
-    'Open Harpoon Window',
+  {
+    "<leader>he",
+    function() toggle_telescope(harpoon:list()) end,
+    desc = 'Open Harpoon Window'
   },
-}
 
--- Obsidian Keymaps
-local obsidianMappings = {
-  name = 'Obsidian Keymaps',
-  ['n'] = {
+  -- Obsidian Keymaps
+  { "<leader>o",      group = "Obsidian Keymaps" },
+  {
+    "<leader>on",
     function()
       return require('obsidian').util.gf_passthrough()
     end,
-    'Go to Note Under Cursor',
-    opts = { noremap = false, expr = true, buffer = true },
+    desc = 'Go to Note Under Cursor',
+    noremap = false,
+    expr = true,
+    buffer = true
   },
-  ['c'] = {
+  {
+    "<leader>oc",
     function()
       return require('obsidian').util.toggle_checkbox()
     end,
-    'Toggle Checkboxes',
-    opts = { buffer = true },
+    desc = 'Toggle Checkboxes',
+    buffer = true
   },
-  ['p'] = { ':SearchObsidianProgramming<CR>', 'Search Obsidian Programming Vault' },
+  { "<leader>op",     ':SearchObsidianProgramming<CR>',                desc = 'Search Obsidian Programming Vault' },
+  { "<leader>oo",     '<cmd>ObsidianOpen<CR>',                         desc = 'Open Note in Obsidian' },
+  { "<leader>oN",     '<cmd>ObsidianNew<CR>',                          desc = 'Create New Note' },
+  { "<leader>oq",     '<cmd>ObsidianQuickSwitch<CR>',                  desc = 'Quick Switch Note' },
+  { "<leader>of",     '<cmd>ObsidianFollowLink<CR>',                   desc = 'Follow Note Link' },
+  { "<leader>ob",     '<cmd>ObsidianBacklinks<CR>',                    desc = 'Show Backlinks' },
+  { "<leader>ot",     '<cmd>ObsidianTags<CR>',                         desc = 'Show Tags' },
+  { "<leader>od",     '<cmd>ObsidianToday<CR>',                        desc = "Open Today's Note" },
+  { "<leader>oy",     '<cmd>ObsidianYesterday<CR>',                    desc = "Open Yesterday's Note" },
+  { "<leader>om",     '<cmd>ObsidianTomorrow<CR>',                     desc = "Open Tomorrow's Note" },
+  { "<leader>oD",     '<cmd>ObsidianDailies<CR>',                      desc = 'List Daily Notes' },
+  { "<leader>oT",     '<cmd>ObsidianTemplate<CR>',                     desc = 'Insert Template' },
+  { "<leader>os",     '<cmd>ObsidianSearch<CR>',                       desc = 'Search Notes' },
+  { "<leader>ol",     '<cmd>ObsidianLink<CR>',                         desc = 'Link Note' },
+  { "<leader>oL",     '<cmd>ObsidianLinkNew<CR>',                      desc = 'Link to New Note' },
+  { "<leader>oS",     '<cmd>ObsidianLinks<CR>',                        desc = 'List Links' },
+  { "<leader>oE",     '<cmd>ObsidianExtractNote<CR>',                  desc = 'Extract Note' },
+  { "<leader>ow",     '<cmd>ObsidianWorkspace<CR>',                    desc = 'Switch Workspace' },
+  { "<leader>oi",     '<cmd>ObsidianPasteImg<CR>',                     desc = 'Paste Image' },
+  { "<leader>oR",     '<cmd>ObsidianRename<CR>',                       desc = 'Rename Note' },
 
-  -- Adding new mappings for Obsidian commands
-  ['o'] = { '<cmd>ObsidianOpen<CR>', 'Open Note in Obsidian' },
-  ['N'] = { '<cmd>ObsidianNew<CR>', 'Create New Note' },
-  ['q'] = { '<cmd>ObsidianQuickSwitch<CR>', 'Quick Switch Note' },
-  ['f'] = { '<cmd>ObsidianFollowLink<CR>', 'Follow Note Link' },
-  ['b'] = { '<cmd>ObsidianBacklinks<CR>', 'Show Backlinks' },
-  ['t'] = { '<cmd>ObsidianTags<CR>', 'Show Tags' },
-  ['d'] = { '<cmd>ObsidianToday<CR>', "Open Today's Note" },
-  ['y'] = { '<cmd>ObsidianYesterday<CR>', "Open Yesterday's Note" },
-  ['m'] = { '<cmd>ObsidianTomorrow<CR>', "Open Tomorrow's Note" },
-  ['D'] = { '<cmd>ObsidianDailies<CR>', 'List Daily Notes' },
-  ['T'] = { '<cmd>ObsidianTemplate<CR>', 'Insert Template' },
-  ['s'] = { '<cmd>ObsidianSearch<CR>', 'Search Notes' },
-  ['l'] = { '<cmd>ObsidianLink<CR>', 'Link Note' },
-  ['L'] = { '<cmd>ObsidianLinkNew<CR>', 'Link to New Note' },
-  ['S'] = { '<cmd>ObsidianLinks<CR>', 'List Links' },
-  ['E'] = { '<cmd>ObsidianExtractNote<CR>', 'Extract Note' },
-  ['w'] = { '<cmd>ObsidianWorkspace<CR>', 'Switch Workspace' },
-  ['i'] = { '<cmd>ObsidianPasteImg<CR>', 'Paste Image' },
-  ['R'] = { '<cmd>ObsidianRename<CR>', 'Rename Note' },
-}
+  -- Lazy Keymaps
+  { "<leader>L",      group = "Lazy Keymaps" },
+  { "<leader>Lr",     ':LazyRoot<CR>',                                 desc = 'Open LazyRoot' },
+  { "<leader>Lf",     ':LazyFormat<CR>',                               desc = 'Open LazyFormat' },
+  { "<leader>Lh",     ':LazyHealth<CR>',                               desc = 'Open LazyHealth' },
+  { "<leader>Li",     ':LazyFormatInfo<CR>',                           desc = 'Open LazyFormatInfo' },
 
--- Lazy Keymaps
-local lazyMappings = {
-  name = 'Lazy Keymaps',
-  ['r'] = { ':LazyRoot<CR>', 'Open LazyRoot' },
-  ['f'] = { ':LazyFormat<CR>', 'Open LazyFormat' },
-  ['h'] = { ':LazyHealth<CR>', 'Open LazyHealth' },
-  ['i'] = { ':LazyFormatInfo<CR>', 'Open LazyFormatInfo' },
-}
+  -- Flash Keymaps
+  { "<leader>F",      group = "Flash Keymaps" },
+  { "<leader>Fs",     mode = { "n", "x", "o" },                        function() require("flash").jump() end,              desc = "Flash" },
+  { "<leader>FS",     mode = { "n", "x", "o" },                        function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+  { "<leader>Fr",     mode = { "n", "o" },                             function() require("flash").remote() end,            desc = "Remote Flash" },
+  { "<leader>FR",     mode = { "n", "o", "x" },                        function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+  { "<leader>F<c-s>", mode = { "n", "c" },                             function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
 
--- Flash Keymaps
-local flashMappings = {
-  name = 'Flash Keymaps',
-  ['s'] = {
+  -- Git Keymaps
+  { "<leader>g",      group = "Git Keymaps" },
+  { "<leader>gr",     require('telescope.builtin').git_files,          desc = 'Search Git Files' },
+  { "<leader>gs",     require('telescope.builtin').git_stash,          desc = 'Search Git Stash' },
+  { "<leader>gS",     require('telescope.builtin').git_status,         desc = 'Search Git Status' },
+  { "<leader>gC",     '<cmd>Telescope git_bcommits<CR>',               desc = 'Search Git Buffer Commits' },
+  { "<leader>gd",     require('telescope.builtin').git_commits,        desc = 'Search Git Directory Commits' },
+  { "<leader>gb",     require('telescope.builtin').git_branches,       desc = 'Search Git Branches' },
+  { "<leader>gp",     '<cmd>Telescope git_signs<CR>',                  desc = 'Search Preview Hunks' },
+  { "<leader>gT",     ':Gitsigns toggle_current_line_blame<CR>',       desc = 'Toggle Git Blame' },
+  { "<leader>gt",     '<cmd>Telescope repo list<CR>',                  desc = 'Search Git Repos' },
+  { "<leader>gc",     ':LazyGitConfig<CR>',                            desc = 'Open Lazygit Config' },
+  { "<leader>gg",     ':LazyGit<CR>',                                  desc = 'Open LazyGit' },
+  { "<leader>gh",     ':Gitsigns preview_hunk_inline<CR>',             desc = 'Inline Hunk Preview' },
+  { "<leader>gD",     ':Gitsigns diffthis<CR>',                        desc = 'Show Git Diffs' },
+  { "<leader>gP",     ':Gitsigns preview_hunk<CR>',                    desc = 'Show Hunk Preview' },
+
+  -- ChatGPT Keymaps
+  { "<leader>c",      group = "ChatGPT Keymaps" },
+  { "<leader>cc",     '<cmd>ChatGPT<CR>',                              desc = 'ChatGPT' },
+  { "<leader>cC",     '<cmd>Telescope gpt<CR>',                        desc = 'Telescope GPT' },
+  { "<leader>ce",     '<cmd>ChatGPTEditWithInstruction<CR>',           desc = 'Edit with instruction',                      mode = { 'n', 'v' } },
+  { "<leader>cg",     '<cmd>ChatGPTRun grammar_correction<CR>',        desc = 'Grammar Correction',                         mode = { 'n', 'v' } },
+  { "<leader>ct",     '<cmd>ChatGPTRun translate<CR>',                 desc = 'Translate',                                  mode = { 'n', 'v' } },
+  { "<leader>ck",     '<cmd>ChatGPTRun keywords<CR>',                  desc = 'Keywords',                                   mode = { 'n', 'v' } },
+  { "<leader>cd",     '<cmd>ChatGPTRun docstring<CR>',                 desc = 'Docstring',                                  mode = { 'n', 'v' } },
+  { "<leader>ca",     '<cmd>ChatGPTRun add_tests<CR>',                 desc = 'Add Tests',                                  mode = { 'n', 'v' } },
+  { "<leader>co",     '<cmd>ChatGPTRun optimize_code<CR>',             desc = 'Optimize Code',                              mode = { 'n', 'v' } },
+  { "<leader>cs",     '<cmd>ChatGPTRun summarize<CR>',                 desc = 'Summarize',                                  mode = { 'n', 'v' } },
+  { "<leader>cf",     '<cmd>ChatGPTRun fix_bugs<CR>',                  desc = 'Fix Bugs',                                   mode = { 'n', 'v' } },
+  { "<leader>cx",     '<cmd>ChatGPTRun explain_code<CR>',              desc = 'Explain Code',                               mode = { 'n', 'v' } },
+  { "<leader>cr",     '<cmd>ChatGPTRun roxygen_edit<CR>',              desc = 'Roxygen Edit',                               mode = { 'n', 'v' } },
+  { "<leader>cl",     '<cmd>ChatGPTRun code_readability_analysis<CR>', desc = 'Code Readability Analysis',                  mode = { 'n', 'v' } },
+
+  -- CLI App Keymaps
+  { "<leader>C",      group = "CLI App Mappings" },
+  { "<leader>Ct",     ':Lspsaga term_toggle<CR>',                      desc = 'Launch Terminal' },
+  { "<leader>Cd",     '<cmd>FloatermNew lazydocker<CR>',               desc = 'Launch Lazydocker' },   -- Launch Lazydocker: docker
+  { "<leader>Cp",     '<cmd>FloatermNew python<CR>',                   desc = 'Launch Python3 REPL' }, -- Launch Python3 REPL: python
+  { "<leader>Cn",     '<cmd>FloatermNew node<CR>',                     desc = 'Launch Node REPL' },    -- Launch Node REPL: javascript
+  { "<leader>Ch",     '<cmd>FloatermNew htop<CR>',                     desc = 'Launch htop' },         -- Launch htop: resource management
+  { "<leader>Cb",     '<cmd>FloatermNew bpytop<CR>',                   desc = 'Launch Bpytop' },
+
+  -- DAP Plugin Keymaps
+  { "<leader>D",      group = "DAP Plugin Keymaps" },
+  { "<leader>Db",     dap.toggle_breakpoint,                           desc = 'Debug: Toggle Breakpoint' },
+  {
+    "<leader>DB",
     function()
-      require('flash').jump()
+      dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
     end,
-    'Flash',
-    mode = { 'n', 'x', 'o' },
+    desc = 'Debug: Set Breakpoint'
   },
-  ['t'] = {
-    function()
-      require('flash').treesitter()
-    end,
-    'Flash Treesitter',
-    mode = { 'n', 'x', 'o' },
-  },
-  ['r'] = {
-    function()
-      require('flash').remote()
-    end,
-    'Remote Flash',
-    mode = 'o',
-  },
-  ['R'] = {
-    function()
-      require('flash').treesitter_search()
-    end,
-    'Treesitter Search',
-    mode = { 'o', 'x' },
-  },
-  ['T'] = {
-    function()
-      require('flash').toggle()
-    end,
-    'Toggle Flash Search',
-    mode = 'c',
-  },
-}
 
--- Git Keymaps
-local gitMappings = {
-  name = 'Git Keymaps',
-  ['r'] = { require('telescope.builtin').git_files, 'Search Git Files' },
-  ['s'] = { require('telescope.builtin').git_stash, 'Search Git Stash' },
-  ['S'] = { require('telescope.builtin').git_status, 'Search Git Status' },
-  ['C'] = { '<cmd>Telescope git_bcommits<CR>', 'Search Git Buffer Commits' },
-  ['d'] = { require('telescope.builtin').git_commits, 'Search Git Directory Commits' },
-  ['b'] = { require('telescope.builtin').git_branches, 'Search Git Branches' },
-  ['p'] = { '<cmd>Telescope git_signs<CR>', 'Search Preview Hunks' },
-  ['T'] = { ':Gitsigns toggle_current_line_blame<CR>', 'Toggle Git Blame' },
-  ['t'] = { '<cmd>Telescope repo list<CR>', 'Search Git Repos' },
-  ['c'] = { ':LazyGitConfig<CR>', 'Open Lazygit Config' },
-  ['g'] = { ':LazyGit<CR>', 'Open LazyGit' },
-  ['h'] = { ':Gitsigns preview_hunk_inline<CR>', 'Inline Hunk Preview' },
-  ['D'] = { ':Gitsigns diffthis<CR>', 'Show Git Diffs' },
-  ['P'] = { ':Gitsigns preview_hunk<CR>', 'Show Hunk Preview' },
-}
-
--- ChatGPT Keymaps
-local chatgptMappings = {
-  name = 'ChatGPT Keymaps',
-  ['c'] = { '<cmd>ChatGPT<CR>', 'ChatGPT' },
-  ['C'] = { '<cmd>Telescope gpt<CR>', 'Telescope GPT' },
-  ['e'] = { '<cmd>ChatGPTEditWithInstruction<CR>', 'Edit with instruction', mode = { 'n', 'v' } },
-  ['g'] = { '<cmd>ChatGPTRun grammar_correction<CR>', 'Grammar Correction', mode = { 'n', 'v' } },
-  ['t'] = { '<cmd>ChatGPTRun translate<CR>', 'Translate', mode = { 'n', 'v' } },
-  ['k'] = { '<cmd>ChatGPTRun keywords<CR>', 'Keywords', mode = { 'n', 'v' } },
-  ['d'] = { '<cmd>ChatGPTRun docstring<CR>', 'Docstring', mode = { 'n', 'v' } },
-  ['a'] = { '<cmd>ChatGPTRun add_tests<CR>', 'Add Tests', mode = { 'n', 'v' } },
-  ['o'] = { '<cmd>ChatGPTRun optimize_code<CR>', 'Optimize Code', mode = { 'n', 'v' } },
-  ['s'] = { '<cmd>ChatGPTRun summarize<CR>', 'Summarize', mode = { 'n', 'v' } },
-  ['f'] = { '<cmd>ChatGPTRun fix_bugs<CR>', 'Fix Bugs', mode = { 'n', 'v' } },
-  ['x'] = { '<cmd>ChatGPTRun explain_code<CR>', 'Explain Code', mode = { 'n', 'v' } },
-  ['r'] = { '<cmd>ChatGPTRun roxygen_edit<CR>', 'Roxygen Edit', mode = { 'n', 'v' } },
-  ['l'] = { '<cmd>ChatGPTRun code_readability_analysis<CR>', 'Code Readability Analysis', mode = { 'n', 'v' } },
-}
-
--- CLI App Keymaps
-local cliMappings = {
-  name = 'CLI App Mappings',
-  ['t'] = { ':Lspsaga term_toggle<CR>', 'Launch Terminal' },          -- Launch Terminal
-  ['d'] = { '<cmd>FloatermNew lazydocker<CR>', 'Launch Lazydocker' }, -- Launch Lazydocker: docker
-  ['p'] = { '<cmd>FloatermNew python<CR>', 'Launch Python3 REPL' },   -- Launch Python3 REPL: python
-  ['n'] = { '<cmd>FloatermNew node<CR>', 'Launch Node REPL' },        -- Launch Node REPL: javascript
-  ['h'] = { '<cmd>FloatermNew htop<CR>', 'Launch htop' },             -- Launch htop: resource management
-  ['b'] = { '<cmd>FloatermNew bpytop<CR>', 'Launch Bpytop' },         -- Launch bpytop: resource management
-}
-
--- DAP Plugin Keymaps
-local dapMappings = {
-  name = 'DAP Plugin Keymaps',
-  ['b'] = { dap.toggle_breakpoint, 'Debug: Toggle Breakpoint' },
-  ['B'] = {
-    function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end,
-    'Debug: Set Breakpoint',
-  },
-}
-
+  -- Default Keymaps
+  { "<leader><Tab>", desc = "Tab Managment" },
+  { "<leader>[",     desc = "Previous" },
+  { "<leader>]",     desc = "Next" },
+  { "<leader>f",     desc = "File Keymaps" },
+  { "<leader>q",     desc = "Quit" },
+  { "<leader>w",     desc = "Window Managment" },
+  { "<leader>z",     desc = "Fold Managment" },
+})
 -- Setup with default options
 wk.setup {}
-
--- Registering mappings
-wk.register(generalMappings, { prefix = '<leader>b', mode = 'n' })
-
--- Registering HTTP mappings
-wk.register(httpMappings, { prefix = '<leader>H', mode = 'n' })
-
--- Registering DBUI mappings
-wk.register(vimDadbodMappings, { prefix = '<leader>s', mode = 'n' })
-
--- Registering LSP mappings
-wk.register(lspMappings, { prefix = '<leader>L', mode = 'n' })
-
--- Registering LSP mappings
-wk.register(diagnosticMappings, { prefix = '<leader>D', mode = 'n' })
-
--- Registering Trouble mappings
-wk.register(troubleMappings, { prefix = '<leader>x', mode = 'n' })
-
--- Registering GitHub Copilot Chat mappings
-wk.register(copilotMappings, { prefix = '<leader>G', mode = 'n' })
-
--- Registering UI mappings
-wk.register(uiMappings, { prefix = '<leader>U', mode = 'n' })
-
--- Registering View mappings
-wk.register(viewMappings, { prefix = '<leader>v', mode = 'n' })
-
--- Registering Trouble mappings
-wk.register(pluginMappings, { prefix = '<leader>p', mode = 'n' })
-
--- Registering Telescope mappings under the 'n' (normal) mode leader key
-wk.register(telescopeMappings, { prefix = '<leader>t', mode = 'n' })
-
--- Registering Rnvimr mappings
-wk.register(rnvimrMappings, { prefix = '<leader>r', mode = 'n' })
-
--- Registering legendary.nvim mappings
-wk.register(legendaryMappings, { prefix = '<leader>M', mode = 'n' })
-
--- Registering Tmux Telescope mappings under the 'n' (normal) mode leader key
-wk.register(tmuxTelescopeMappings, { prefix = '<leader>T', mode = 'n' })
-
--- Registering ChatGPT Keymaps
-wk.register(chatgptMappings, { prefix = '<leader>c' })
-
--- Registering DAP mappings under the 'n' (normal) mode leader key
--- Note: F-keys are registered globally, not under a leader key.
-wk.register(dapMappings, { prefix = 'd', mode = 'n' })
-
--- For F-keys which are not under the leader key, you can register them separately
-wk.register({
-  ['<F1>'] = { dap.step_into, 'Debug: Step Into' },
-  ['<F2>'] = { dap.step_over, 'Debug: Step Over' },
-  ['<F3>'] = { dap.step_out, 'Debug: Step Out' },
-  ['<F5>'] = { dap.continue, 'Debug: Start/Continue' },
-  ['<F7>'] = { dapui.toggle, 'Debug: See last session result.' },
-}, { mode = 'n', prefix = '' })
-
--- Registering Harpoon mappings under the 'n' (normal) mode leader key
-wk.register(harpoonMappings, { prefix = '<leader>h', mode = 'n' })
-
--- Registering numeric mappings for selecting Harpoon files
-for i = 1, 9 do
-  local desc = 'Harpoon to File ' .. i
-  local action = function()
-    harpoon:list():select(i)
-  end
-
-  wk.register({
-    [tostring(i)] = { action, desc },
-  }, { prefix = '<leader>h', mode = 'n' })
-end
 
 -- Registering Obsidian mappings under the 'n' (normal) mode leader key
 -- Invoke only if Obsidian is loaded
@@ -589,40 +480,6 @@ if isInObsidianVault() then
   end
 end
 
--- Registering Lazy mappings under the 'n' (normal) mode leader key
-wk.register(lazyMappings, { prefix = '<leader>l', mode = 'n' })
-
--- Registering Flash mappings with which-key
-for key, mapping in pairs(flashMappings) do
-  local mode = mapping.mode or 'n' -- default to normal mode if mode not provided
-  if type(mode) == 'table' then
-    for _, m in ipairs(mode) do
-      wk.register({ [key] = mapping }, { prefix = '<leader>F', mode = m })
-    end
-  else
-    wk.register({ [key] = mapping }, { prefix = '<leader>F', mode = mode })
-  end
-end
-
--- Registering Git mappings under the 'n' (normal) mode leader key
-wk.register(gitMappings, { prefix = '<leader>g', mode = 'n' })
-
--- Registering CLI mappings under the 'n' (normal) mode leader key
-wk.register(cliMappings, { prefix = '<leader>C', mode = 'n' })
-
--- Registering Default Keymaps Names
-wk.register {
-  ['<leader>f'] = 'File Keymaps',
-  ['<leader>u'] = 'Toggle Keymaps',
-  ['<leader>q'] = 'Quit',
-  ['<leader>w'] = 'Window Managment',
-  ['<leader>x'] = 'Trouble',
-  ['<leader><Tab>'] = 'Tab Managment',
-  ['<leader>['] = 'Previous',
-  ['<leader>]'] = 'Next',
-  ['<leader>z'] = 'Fold Managment',
-}
-
 -- Noice LSP Hoever Doc Scrolling Keymaps
 vim.keymap.set({ 'n', 'i', 's' }, '<c-f>', function()
   if not require('noice.lsp').scroll(4) then
@@ -635,3 +492,25 @@ vim.keymap.set({ 'n', 'i', 's' }, '<c-b>', function()
     return '<c-b>'
   end
 end, { silent = true, expr = true })
+
+-- For F-keys which are not under the leader key, you can register them separately
+wk.add({
+  { "<F1>", dap.step_into, desc = 'Debug: Step Into' },
+  { "<F2>", dap.step_over, desc = 'Debug: Step Over' },
+  { "<F3>", dap.step_out,  desc = 'Debug: Step Out' },
+  { "<F5>", dap.continue,  desc = 'Debug: Start/Continue' },
+  { "<F7>", dapui.toggle,  desc = 'Debug: See last session result.' },
+}, { mode = 'n' })
+
+-- Registering numeric mappings for selecting Harpoon files
+for i = 1, 9 do
+  wk.add({
+    {
+      "<leader>h" .. i,
+      function()
+        harpoon:list():select(i)
+      end,
+      desc = 'Harpoon to File ' .. i
+    }
+  })
+end
