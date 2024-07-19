@@ -262,6 +262,7 @@ require('telescope').load_extension 'jsonfly'
 require('telescope').load_extension 'media_files'
 require('telescope').load_extension 'lazygit'
 require('telescope').load_extension 'rest'
+require('telescope').load_extension 'jumper'
 
 -- Set up help page fuzzy search with a command
 vim.api.nvim_create_user_command('FuzzyHelp', function()

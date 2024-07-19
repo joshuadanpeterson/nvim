@@ -506,7 +506,6 @@ return {
   },
 
   -- mini.nvim: lua modules
-
   {
     'echasnovski/mini.nvim',
     branch = 'stable',
@@ -515,4 +514,14 @@ return {
     end,
   },
 
+  -- jumper: navigate to most visted files and directories
+  {
+    "homerours/jumper.nvim",
+    dependencies = {
+      'nvim-telescope/telescope.nvim', -- for Telescope backend
+      'ibhagwan/fzf-lua'               -- alternatively, for fzf-lua backend
+    },
+    config = function()
+    end
+  },
 }
