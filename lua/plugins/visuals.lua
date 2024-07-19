@@ -206,8 +206,8 @@ return {
 
   -- typewriter: enable typewriter-like scrolling
   {
-    -- 'joshuadanpeterson/typewriter.nvim',
-    dir = '~/Dropbox/programming/neovim/plugin-development/typewriter',
+    'joshuadanpeterson/typewriter.nvim',
+    -- dir = '~/Dropbox/programming/neovim/plugin-development/typewriter',
     event = 'BufReadPre',
     config = function()
       require('typewriter').setup {
