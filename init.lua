@@ -48,14 +48,14 @@ lazy.setup {
     'folke/lazy.nvim',
     lazy = true,  -- Lazy load the plugin
     cmd = 'Lazy', -- Load the plugin when the Lazy command is used
-    opts = {
+    opts = ({
       ui = {
         border = 'rounded', -- Set border style to rounded
 
         -- a number <1 is a percentage., >1 is a fixed size
         size = { width = 0.8, height = 0.8 },
         wrap = true, -- wrap the lines in the ui
-        backdrop = 60,
+        backdrop = 0,
         title = nil, ---@type string only works when border is not "none"
         title_pos = 'center', ---@type "center" | "left" | "right"
         -- Show pills on top of the Lazy window
@@ -86,7 +86,7 @@ lazy.setup {
           },
         },
       },
-    },
+    }),
   },
 }
 
