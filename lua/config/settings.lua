@@ -327,3 +327,9 @@ vim.cmd([[
     autocmd VimEnter * TSEnable highlight
   augroup END
 ]])
+
+-- Set .zsh to bash filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.zsh",
+  command = "set filetype=sh"
+})
