@@ -416,6 +416,8 @@ wk.add({
   { "<leader>gH",     ':Gitsigns preview_hunk_inline<CR>',             desc = 'Inline Hunk Preview' },
   { "<leader>gD",     ':Gitsigns diffthis<CR>',                        desc = 'Show Git Diffs' },
   { "<leader>gP",     ':Gitsigns preview_hunk<CR>',                    desc = 'Show Hunk Preview' },
+  { "<leader>gf",     ':Flog<CR>',                                     desc = 'Open Git Branch Viewer' },
+  { "<leader>gF",     ':Flogsplit<CR>',                                desc = 'Open Git Branch Viewer Split' },
   -- GitHub Keymaps
   { "<leader>ghc",    group = "+Commits", },
   { "<leader>ghcc",   '<cmd>GHCloseCommit<cr>',                        desc = 'Close Commit' },
