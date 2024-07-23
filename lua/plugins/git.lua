@@ -167,6 +167,16 @@ return {
         }
       })
     end,
-  }
+  },
+
+  -- vim-flog: a fast, beautiful, and powerful git branch viewer for Vim
+  {
+    'rbong/vim-flog',
+    lazy = true,
+    cmd = { 'Flog', 'Flogsplit', 'Floggit' },
+    dependencies = {
+      'tpope/vim-fugitive',
+    },
+  },
 
 }

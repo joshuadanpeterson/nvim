@@ -147,6 +147,7 @@
   "vim-dadbod-completion": { "branch": "master", "commit": "c3a56c652af9367c5a7b658ed7ed4dc494f430b0" },
   "vim-dadbod-ui": { "branch": "master", "commit": "954877c3396ad4bf5624fcbe7b5673ac43cd0928" },
   "vim-floaterm": { "branch": "master", "commit": "4e28c8dd0271e10a5f55142fb6fe9b1599ee6160" },
+  "vim-flog": { "branch": "master", "commit": "36c60cbdb69c169ee44c085ce8d3f2f035a8658e" },
   "vim-fugitive": { "branch": "master", "commit": "0444df68cd1cdabc7453d6bd84099458327e5513" },
   "vim-html-template-literals": { "branch": "master", "commit": "e6f3f8ffaae9c2f9deea2bbb596b64468041616c" },
   "vim-javascript": { "branch": "master", "commit": "c470ce1399a544fe587eab950f571c83cccfbbdc" },
