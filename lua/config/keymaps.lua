@@ -259,7 +259,7 @@ wk.add({
   { "<leader>tz", '<cmd>Telescope zoxide list<CR>',                       desc = 'Zoxide List' },
   { "<leader>tp", '<cmd>Tldr<CR>',                                        desc = 'Search tldr pages' },
   {
-    "<leader>tj",
+    "<leader>tJ",
     function()
       if vim.bo.filetype == 'json' then
         print('Calling Telescope jsonfly with filetype: ' .. vim.bo.filetype)
