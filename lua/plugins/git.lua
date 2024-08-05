@@ -179,4 +179,58 @@ return {
     },
   },
 
+  -- gitgraph.nvim: Git Graph plugin for neovim
+  {
+    'isakbm/gitgraph.nvim',
+    dependencies = { 'sindrets/diffview.nvim' },
+    ---@type I.GGConfig
+    opts = {
+      symbols = {
+        -- Standard symbols
+        merge_commit = '', -- Symbol for merge commit
+        commit = '', -- Symbol for commit
+        merge_commit_end = '', -- Symbol for end of merge commit
+        commit_end = '', -- Symbol for end of commit
+
+        -- Advanced symbols
+        GVER = '│', -- Vertical graph line
+        GHOR = '─', -- Horizontal graph line
+        GCLD = '└', -- Connector left-down
+        GCRD = '┌', -- Connector right-down
+        GCLU = '┘', -- Connector left-up
+        GCRU = '┐', -- Connector right-up
+        GLRU = '┤', -- Graph line right-up
+        GLRD = '├', -- Graph line right-down
+        GLUD = '┼', -- Graph line up-down
+        GRUD = '┼', -- Graph right-up-down
+        GFORKU = '┬', -- Fork upwards
+        GFORKD = '┴', -- Fork downwards
+        GRUDCD = '┼', -- Graph right-up-down-connector down (redundant symbol simplified)
+        GRUDCU = '┼', -- Graph right-up-down-connector up (redundant symbol simplified)
+        GLUDCD = '┼', -- Graph line up-down-connector down (redundant symbol simplified)
+        GLUDCU = '┼', -- Graph line up-down-connector up (redundant symbol simplified)
+        GLRDCL = '├', -- Graph line right-down-connector left (redundant symbol simplified)
+        GLRDCR = '┤', -- Graph line right-down-connector right
+        GLRUCL = '┤', -- Graph line right-up-connector left (redundant symbol simplified)
+        GLRUCR = '┤', -- Graph line right-up-connector right (redundant symbol simplified)
+      },
+      format = {
+        timestamp = '%H:%M:%S %d-%m-%Y',
+        fields = { 'hash', 'timestamp', 'author', 'branch_name', 'tag' },
+      },
+      hooks = {
+        -- Check diff of a commit
+        on_select_commit = function(commit)
+          vim.notify('DiffviewOpen ' .. commit.hash .. '^!')
+          vim.cmd(':DiffviewOpen ' .. commit.hash .. '^!')
+        end,
+        -- Check diff from commit a -> commit b
+        on_select_range_commit = function(from, to)
+          vim.notify('DiffviewOpen ' .. from.hash .. '~1..' .. to.hash)
+          vim.cmd(':DiffviewOpen ' .. from.hash .. '~1..' .. to.hash)
+        end,
+      },
+    },
+  },
+
 }
