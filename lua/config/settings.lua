@@ -15,6 +15,7 @@ vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
 vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
 -- vim.opt.cursorline = true
+vim.opt.wrap = true
 
 -- Customize the CursorLine highlight group
 -- vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#D3D3D3' })
