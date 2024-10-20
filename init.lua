@@ -258,3 +258,6 @@ assert(codestats_api_key ~= nil, 'CODESTATS_API_KEY is not set')
 require('codestats-nvim').setup {
   token = codestats_api_key,
 }
+
+-- Pieces for Neovim
+require("pieces.config").host = "http://localhost:1000"

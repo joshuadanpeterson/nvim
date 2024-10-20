@@ -199,6 +199,30 @@ wk.add({
   { "<leader>pL", ':Lazy<CR>',                                                                            desc = 'Open Lazy' },
   { "<leader>pe", ':LazyExtras<CR>',                                                                      desc = 'Open LazyExtras' },
 
+
+  -- Plugin Mappings for Pieces
+  { "<leader>P",  group = "Pieces Mappings" },
+
+  -- Pieces General Commands
+  { "<leader>Pp", ':PiecesHealth<CR>',                                                                    desc = 'Check Pieces Health' },
+  { "<leader>Pv", ':PiecesOSVersion<CR>',                                                                 desc = 'Display Pieces OS Version' },
+  { "<leader>Pg", ':PiecesPluginVersion<CR>',                                                             desc = 'Display Pieces Plugin Version' },
+
+  -- Pieces Copilot Commands
+  { "<leader>Pc", ':PiecesCopilot<CR>',                                                                   desc = 'Open Pieces Copilot' },
+  { "<leader>Pn", ':PiecesConversations<CR>',                                                             desc = 'Open Pieces Copilot Conversations' },
+
+  -- Pieces Asset Management Commands
+  { "<leader>Ps", ':PiecesSnippets<CR>',                                                                  desc = 'List All Snippets' },
+  { "<leader>Pd", ':PiecesCreateSnippet<CR>',                                                             desc = 'Create Snippet from Selection' },
+
+  -- Pieces Auth Commands
+  { "<leader>Pa", ':PiecesAccount<CR>',                                                                   desc = 'Show Pieces Account Info' },
+  { "<leader>Pi", ':PiecesLogin<CR>',                                                                     desc = 'Login to Pieces Account' },
+  { "<leader>Po", ':PiecesLogout<CR>',                                                                    desc = 'Logout from Pieces Account' },
+  { "<leader>Pc", ':PiecesConnectCloud<CR>',                                                              desc = 'Connect to Pieces Cloud' },
+  { "<leader>Px", ':PiecesDisconnectCloud<CR>',                                                           desc = 'Disconnect from Pieces Cloud' },
+
   -- UI Mappings
   { "<leader>u",  group = "UI Mappings" },
   { "<leader>uc", ':Telescope colorscheme<CR>',                                                           desc = 'Search Colorschemes' },
