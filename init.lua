@@ -261,3 +261,8 @@ require('codestats-nvim').setup {
 
 -- Pieces for Neovim
 require("pieces.config").host = "http://localhost:1000"
+
+-- Delete temporary files
+vim.cmd [[
+  autocmd VimLeave * call delete(glob("~/.local/state/nvim/shada/*.tmp*"))
+]]
