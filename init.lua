@@ -263,6 +263,12 @@ require('codestats-nvim').setup {
 require("pieces.config").host = "http://localhost:1000"
 
 -- Delete temporary files
-vim.cmd [[
-  autocmd VimLeave * call delete(glob("~/.local/state/nvim/shada/*.tmp*"))
-]]
+vim.api.nvim_create_autocmd("VimLeave", {
+  pattern = "*",
+  callback = function()
+    local tmp_files = vim.fn.glob("~/.local/state/nvim/shada/*.tmp*", true, true)
+    for _, file in ipairs(tmp_files) do
+      vim.fn.delete(file)
+    end
+  end,
+})
