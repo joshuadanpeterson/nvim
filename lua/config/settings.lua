@@ -186,7 +186,7 @@ if vim.g.started_by_firenvim then
       vim.bo.filetype = 'javascript'
       vim.cmd 'syntax enable'
       vim.cmd 'set syntax=javascript'
-      vim.b.ale_linters = { 'eslint', 'jshint', 'tsserver' }
+      vim.b.ale_linters = { 'eslint', 'jshint', 'ts_ls' }
       if vim.bo.filetype == 'javascript' then
         require('lint').try_lint()
       end
