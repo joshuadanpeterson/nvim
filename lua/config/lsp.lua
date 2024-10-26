@@ -126,54 +126,37 @@ lspconfig.basedpyright.setup {
   },
 }
 
--- Configure TypeScript server with typescript.nvim
-require('typescript').setup {
-  disable_commands = false,
-  debug = false,
-  server = {
-    capabilities = capabilities,
-    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
-    settings = {
-      typescript = {
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+-- Optional: Setup typescript.nvim plugin with filetype-based loading
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  callback = function()
+    require('typescript').setup {
+      disable_commands = false,
+      debug = false,
+      server = {
+        capabilities = capabilities,
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
         },
+        init_options = {
+          hostInfo = 'neovim',
+          preferences = { quotePreference = 'single', allowIncompleteCompletions = false },
+        },
+        flags = { debounce_text_changes = 150 },
       },
-    },
-    init_options = {
-      hostInfo = 'neovim',
-      preferences = {
-        quotePreference = 'single',
-        allowIncompleteCompletions = false,
-      },
-    },
-    on_attach = function(client, bufnr)
-      print('Attaching to', bufnr)
-    end,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    handlers = {
-      ['window/logMessage'] = function(err, method, params, client_id)
-        print(method, vim.inspect(params))
-      end,
-      ['window/showMessage'] = function(err, method, params, client_id)
-        print(method, vim.inspect(params))
-      end,
-    },
-  },
-}
-
--- Customize LSP status messages
--- vim.lsp.handlers['$/progress'] = function() end
--- vim.lsp.handlers['window/showMessageRequest'] = function(_, result, _)
---   -- Do something with the message request or ignore it
--- end
+    }
+  end,
+})
 
 -- Finalize LSP setup
 lsp_zero.setup()
