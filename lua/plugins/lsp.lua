@@ -137,6 +137,7 @@ return {
   -- typescript.nvim for JSX autocompletion
   {
     'jose-elias-alvarez/typescript.nvim',
+    dependencies = { 'neovim/nvim-lspconfig' },
     ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
   },
 
