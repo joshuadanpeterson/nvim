@@ -261,7 +261,7 @@ require('telescope').load_extension 'lazy'
 require('telescope').load_extension 'jsonfly'
 require('telescope').load_extension 'media_files'
 require('telescope').load_extension 'lazygit'
-require('telescope').load_extension 'rest'
+-- require('telescope').load_extension 'rest'
 require('telescope').load_extension 'jumper'
 require('telescope').load_extension 'lazygit'
 
