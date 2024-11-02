@@ -43,7 +43,7 @@ require('neodev').setup {
 require('mason').setup()
 require('mason-lspconfig').setup {
   ensure_installed = {
-    'lua_ls', 'ts_ls', 'basedpyright', 'html', 'cssls',
+    'lua_ls', 'ts_ls', 'pyright', 'html', 'cssls',
     'bashls', 'rust_analyzer', 'gopls', 'phpactor',
     'emmet_ls', 'solargraph', 'jsonls', 'yamlls',
     'sqls', 'dockerls', 'vimls'
@@ -91,14 +91,11 @@ require('mason-lspconfig').setup {
     end,
     html = function()
       lspconfig.html.setup {
-        cmd = { '/path/to/html-languageserver', '--stdio' },
-        filetypes = { 'html', 'htmldjango', 'handlebars', 'javascript', 'typescriptreact', 'javascriptreact' },
-        capabilities = capabilities,
-        init_options = {
-          configurationSection = { 'html', 'css', 'javascript' },
-          embeddedLanguages = { css = true, javascript = true },
-          provideFormatter = true,
-        },
+        cmd = { "vscode-html-languageserver", "--stdio" },
+        on_attach = function(client, bufnr)
+          lsp_zero.default_keymaps { buffer = bufnr }
+        end,
+        capabilities = capabilities
       }
     end,
     emmet_ls = function()
@@ -114,9 +111,9 @@ require('mason-lspconfig').setup {
 }
 
 -- Additional custom LSP configurations
-lspconfig.basedpyright.setup {
+lspconfig.pyright.setup {
   settings = {
-    basedpyright = {
+    python = {
       analysis = {
         autoSearchPaths = true,
         diagnosticMode = 'openFilesOnly',
