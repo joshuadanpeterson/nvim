@@ -52,8 +52,14 @@ local function toggle_inlay_hints()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
 end
 
--- Set up kulala
+-- Set up kulala (commented out - plugin not currently loaded)
 -- local kulala = require 'kulala'
+
+-- Check if kulala is available
+local function is_kulala_available()
+  local status, _ = pcall(require, 'kulala')
+  return status
+end
 
 -- Register keymaps
 wk.add({
@@ -73,10 +79,11 @@ wk.add({
 
   -- HTTP Keymaps
   { "<leader>H",      group = "HTTP Keymaps" },
-  { "<leader>Hp",     ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
-  { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
-  { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
-  { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
+  -- Kulala keymaps (commented out - plugin not currently loaded)
+  -- { "<leader>Hp",     ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
+  -- { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
+  -- { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
+  -- { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
   { "<leader>Hh",     ':Hyper<CR>',                                                             desc = "Open Hyper" },
   { "<leader>HR",     ':Rest run<CR>',                                                          desc = "Run HTTP Request" },
   { "<leader>Hl",     ':Rest log<CR>',                                                          desc = "Rest logs" },
@@ -527,6 +534,17 @@ wk.add({
   { "<leader>w",     desc = "Window Managment" },
   { "<leader>z",     desc = "Fold Managment" },
 })
+
+-- Conditionally register kulala keymaps if the plugin is available
+if is_kulala_available() then
+  wk.add({
+    { "<leader>Hp",     ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
+    { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
+    { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
+    { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
+  })
+end
+
 -- Setup with default options
 wk.setup {}
 
