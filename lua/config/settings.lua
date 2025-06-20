@@ -334,3 +334,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.zsh",
   command = "set filetype=sh"
 })
+
+-- Set JSON filetype format
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.json",
+  command = "%!jq ."
+})

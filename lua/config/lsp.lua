@@ -124,36 +124,36 @@ lspconfig.pyright.setup {
 }
 
 -- Optional: Setup typescript.nvim plugin with filetype-based loading
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-  callback = function()
-    require('typescript').setup {
-      disable_commands = false,
-      debug = false,
-      server = {
-        capabilities = capabilities,
-        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
-        settings = {
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = 'all',
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-        },
-        init_options = {
-          hostInfo = 'neovim',
-          preferences = { quotePreference = 'single', allowIncompleteCompletions = false },
-        },
-        flags = { debounce_text_changes = 150 },
-      },
-    }
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+--   callback = function()
+--     require('typescript').setup {
+--       disable_commands = false,
+--       debug = false,
+--       server = {
+--         capabilities = capabilities,
+--         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
+--         settings = {
+--           typescript = {
+--             inlayHints = {
+--               includeInlayParameterNameHints = 'all',
+--               includeInlayFunctionParameterTypeHints = true,
+--               includeInlayVariableTypeHints = true,
+--               includeInlayPropertyDeclarationTypeHints = true,
+--               includeInlayFunctionLikeReturnTypeHints = true,
+--               includeInlayEnumMemberValueHints = true,
+--             },
+--           },
+--         },
+--         init_options = {
+--           hostInfo = 'neovim',
+--           preferences = { quotePreference = 'single', allowIncompleteCompletions = false },
+--         },
+--         flags = { debounce_text_changes = 150 },
+--       },
+--     }
+--   end,
+-- })
 
 -- Finalize LSP setup
 lsp_zero.setup()

@@ -53,7 +53,7 @@ local function toggle_inlay_hints()
 end
 
 -- Set up kulala
-local kulala = require 'kulala'
+-- local kulala = require 'kulala'
 
 -- Register keymaps
 wk.add({
