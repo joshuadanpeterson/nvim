@@ -13,7 +13,7 @@ wk.add({
   {
     "<leader>Tq",
     function()
-      require('quick_test')
+      require('test.quick_test')
     end,
     desc = "Quick Config Test"
   },
@@ -22,7 +22,7 @@ wk.add({
   {
     "<leader>Tf",
     function()
-      require('test_config').run_all_tests()
+      require('test.test_config').run_all_tests()
     end,
     desc = "Full Test Suite"
   },
@@ -31,7 +31,7 @@ wk.add({
   {
     "<leader>Tp",
     function()
-      require('test_config').test_plugin_loading()
+      require('test.test_config').test_plugin_loading()
     end,
     desc = "Test Plugin Loading"
   },
@@ -39,7 +39,7 @@ wk.add({
   {
     "<leader>Tl",
     function()
-      require('test_config').test_lsp_functionality()
+      require('test.test_config').test_lsp_functionality()
     end,
     desc = "Test LSP Functionality"
   },
@@ -47,7 +47,7 @@ wk.add({
   {
     "<leader>Tt",
     function()
-      require('test_config').test_telescope_functionality()
+      require('test.test_config').test_telescope_functionality()
     end,
     desc = "Test Telescope"
   },
@@ -55,7 +55,7 @@ wk.add({
   {
     "<leader>Tk",
     function()
-      require('test_config').test_keymap_integrity()
+      require('test.test_config').test_keymap_integrity()
     end,
     desc = "Test Keymaps"
   },
@@ -63,7 +63,7 @@ wk.add({
   {
     "<leader>Ts",
     function()
-      require('test_config').test_treesitter()
+      require('test.test_config').test_treesitter()
     end,
     desc = "Test Treesitter"
   },
@@ -71,7 +71,7 @@ wk.add({
   {
     "<leader>Th",
     function()
-      require('test_config').check_health()
+      require('test.test_config').check_health()
     end,
     desc = "Check Health"
   },
@@ -79,7 +79,7 @@ wk.add({
   {
     "<leader>TL",
     function()
-      require('test_config').check_log_files()
+      require('test.test_config').check_log_files()
     end,
     desc = "Check Log Files"
   },
@@ -87,7 +87,7 @@ wk.add({
   {
     "<leader>TP",
     function()
-      require('test_config').run_performance_test()
+      require('test.test_config').run_performance_test()
     end,
     desc = "Performance Test"
   },
@@ -98,14 +98,14 @@ wk.add({
 
 --[[
 vim.keymap.set('n', '<leader>tt', function()
-    require('test_config').run_all_tests()
+    require('test.test_config').run_all_tests()
 end, { desc = 'Run full config tests' })
 
 vim.keymap.set('n', '<leader>tq', function()
-    require('quick_test')
+    require('test.quick_test')
 end, { desc = 'Quick config test' })
 
 vim.keymap.set('n', '<leader>tp', function()
-    require('test_config').test_plugin_loading()
+    require('test.test_config').test_plugin_loading()
 end, { desc = 'Test plugin loading' })
 --]]

@@ -22,12 +22,12 @@ The main test script that performs thorough validation of your Neovim configurat
 **Usage:**
 ```lua
 -- From within Neovim
-:lua require('test_config').run_all_tests()
+:lua require('test.test_config').run_all_tests()
 
 -- Run individual test modules
-:lua require('test_config').test_plugin_loading()
-:lua require('test_config').test_lsp_functionality()
-:lua require('test_config').test_telescope_functionality()
+:lua require('test.test_config').test_plugin_loading()
+:lua require('test.test_config').test_lsp_functionality()
+:lua require('test.test_config').test_telescope_functionality()
 ```
 
 ### 2. `quick_test.lua` - Fast Validation
@@ -37,10 +37,10 @@ A lightweight test script for quick validation of essential functionality.
 **Usage:**
 ```lua
 -- From within Neovim
-:lua require('quick_test')
+:lua require('test.quick_test')
 
 -- Or using the dofile command
-:lua dofile(vim.fn.stdpath('config') .. '/quick_test.lua')
+:lua dofile(vim.fn.stdpath('config') .. '/test/quick_test.lua')
 ```
 
 ### 3. `run_tests.lua` - Test Runner
@@ -50,7 +50,7 @@ A convenient wrapper script for running the full test suite.
 **Usage:**
 ```lua
 -- From within Neovim
-:lua require('run_tests')
+:lua require('test.run_tests')
 ```
 
 ## Running Tests
@@ -60,17 +60,17 @@ A convenient wrapper script for running the full test suite.
 1. Open Neovim
 2. Run one of these commands:
    ```vim
-   :lua require('test_config').run_all_tests()
-   :lua require('quick_test')
-   :lua require('run_tests')
+   :lua require('test.test_config').run_all_tests()
+   :lua require('test.quick_test')
+   :lua require('test.run_tests')
    ```
 
 ### Method 2: From Terminal (using nvim -l)
 
 ```bash
 cd ~/.config/nvim
-nvim -l quick_test.lua
-nvim -l run_tests.lua
+nvim -l test/quick_test.lua
+nvim -l test/run_tests.lua
 ```
 
 ### Method 3: As a Neovim Command
@@ -80,11 +80,11 @@ You can add these to your keymaps for easy access:
 ```lua
 -- Add to your keymaps.lua
 vim.keymap.set('n', '<leader>tt', function()
-    require('test_config').run_all_tests()
+    require('test.test_config').run_all_tests()
 end, { desc = 'Run config tests' })
 
 vim.keymap.set('n', '<leader>tq', function()
-    require('quick_test')
+    require('test.quick_test')
 end, { desc = 'Quick config test' })
 ```
 
@@ -199,7 +199,7 @@ The test suite expects these critical plugins to be available:
 
 ## Customization
 
-You can customize the test suite by modifying the `TEST_CONFIG` table in `test_config.lua`:
+You can customize the test suite by modifying the `TEST_CONFIG` table in `test/test_config.lua`:
 
 ```lua
 local TEST_CONFIG = {

@@ -67,7 +67,7 @@ local function quick_test()
         print("\27[32mYour Neovim configuration appears to be working correctly.\27[0m")
     else
         print("\27[31m❌ Some tests failed! (" .. passed .. "/" .. #results .. " passed)\27[0m")
-        print("\27[33mRun the full test suite for detailed diagnostics: :lua require('test_config').run_all_tests()\27[0m")
+        print("\27[33mRun the full test suite for detailed diagnostics: :lua require('test.test_config').run_all_tests()\27[0m")
     end
     
     return passed == #results

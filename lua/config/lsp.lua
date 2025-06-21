@@ -6,112 +6,114 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
--- Load lsp-zero and apply preset
-local lsp_zero = require 'lsp-zero'
-lsp_zero.extend_lspconfig()
-lsp_zero.preset 'recommended'
-
--- Attach default keymaps using lsp-zero
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps { buffer = bufnr }
-end)
-
 -- Load required plugins
-local lspconfig = require 'lspconfig'
-local cmp = require 'cmp'
-
--- Set lsp-zero preferences
-lsp_zero.set_preferences {
-  set_lsp_keymaps = true,
-  manage_nvim_cmp = true,
-  suggest_lsp_servers = true,
-}
+local lspconfig = require('lspconfig')
 
 -- Enhanced capabilities for nvim-cmp
-local capabilities = require('cmp_nvim_lsp').default_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Setup neodev.nvim for better Lua LSP support
 require('neodev').setup {
-  ui = { border = 'rounded' },
   library = { plugins = { 'nvim-dap-ui' }, types = true },
 }
 
--- Configure mason for LSP installations
-require('mason').setup()
-require('mason-lspconfig').setup {
-  ensure_installed = {
-    'lua_ls', 'ts_ls', 'pyright', 'html', 'cssls',
-    'bashls', 'rust_analyzer', 'gopls', 'phpactor',
-    'emmet_ls', 'solargraph', 'jsonls', 'yamlls',
-    'sqls', 'dockerls', 'vimls'
+-- Setup mason
+require('mason').setup({
+  ui = {
+    border = 'rounded',
   },
-  handlers = {
-    function(server_name)
-      lspconfig[server_name].setup { capabilities = capabilities }
-    end,
-    lua_ls = function()
-      local lua_opts = lsp_zero.nvim_lua_ls()
-      lua_opts.capabilities = capabilities
-      lua_opts.settings = {
-        Lua = {
-          runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-          diagnostics = { globals = { 'vim' } },
-          workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
-          telemetry = { enable = false },
-          hint = { enable = true },
-        },
-      }
-      lspconfig.lua_ls.setup(lua_opts)
-    end,
-    ts_ls = function()
-      lspconfig.ts_ls.setup {
-        capabilities = capabilities,
-        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' },
-        settings = {
-          typescript = {
-            inlayHints = {
-              includeInlayParameterNameHints = 'all',
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-        },
-        init_options = {
-          hostInfo = 'neovim',
-          preferences = { quotePreference = 'single', allowIncompleteCompletions = false },
-        },
-        disableSuggestions = true,
-      }
-    end,
-    html = function()
-      lspconfig.html.setup {
-        cmd = { "vscode-html-languageserver", "--stdio" },
-        on_attach = function(client, bufnr)
-          lsp_zero.default_keymaps { buffer = bufnr }
-        end,
-        capabilities = capabilities
-      }
-    end,
-    emmet_ls = function()
-      lspconfig.emmet_ls.setup {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript' },
-        init_options = {
-          html = { options = { ['bem.enabled'] = true } },
-        },
-      }
-    end,
-  },
-}
+})
 
--- Additional custom LSP configurations
-lspconfig.pyright.setup {
+-- Note: mason-lspconfig setup temporarily disabled due to version compatibility issues
+-- Install LSP servers manually through :Mason command
+-- require('mason-lspconfig').setup({
+--   ensure_installed = {
+--     'lua_ls', 'ts_ls', 'pyright', 'html', 'cssls',
+--     'bashls', 'rust_analyzer', 'gopls', 'phpactor',
+--     'emmet_ls', 'solargraph', 'jsonls', 'yamlls',
+--     'sqls', 'dockerls', 'vimls'
+--   }
+-- })
+
+-- Common on_attach function for LSP servers
+local on_attach = function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
+  
+  vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
+  vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+end
+
+-- Setup LSP keymaps for all LSP servers
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    on_attach(nil, ev.buf)
+  end,
+})
+
+-- Manual LSP server configurations to avoid automatic_enable issues
+-- Lua LSP
+lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
+      },
+      telemetry = { enable = false },
+      hint = { enable = true },
+    },
+  },
+})
+
+-- TypeScript/JavaScript LSP
+lspconfig.ts_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  settings = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  },
+})
+
+-- HTML LSP
+lspconfig.html.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { 'html' },
+})
+
+-- CSS LSP
+lspconfig.cssls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- Python LSP
+lspconfig.pyright.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     python = {
       analysis = {
@@ -121,7 +123,21 @@ lspconfig.pyright.setup {
       },
     },
   },
-}
+})
+
+-- Emmet LSP
+lspconfig.emmet_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+  init_options = {
+    html = {
+      options = {
+        ['bem.enabled'] = true,
+      },
+    },
+  },
+})
 
 -- Optional: Setup typescript.nvim plugin with filetype-based loading
 -- vim.api.nvim_create_autocmd("FileType", {
@@ -154,9 +170,6 @@ lspconfig.pyright.setup {
 --     }
 --   end,
 -- })
-
--- Finalize LSP setup
-lsp_zero.setup()
 
 -- Diagnostic customization
 vim.diagnostic.config {

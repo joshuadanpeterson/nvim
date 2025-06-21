@@ -32,7 +32,7 @@ Before making any configuration changes, establish a baseline:
 ### 2. Run Full Test Suite
 ```lua
 -- Run comprehensive test suite
-:lua require('test_config').run_all_tests()
+:lua require('test.test_config').run_all_tests()
 ```
 
 ### 3. Test Critical Workflows
@@ -49,7 +49,7 @@ Before making any configuration changes, establish a baseline:
 #### 1. Quick Load Check
 ```lua
 -- Quick validation - should complete without errors
-:lua require('quick_test')
+:lua require('test.quick_test')
 ```
 
 #### 2. Manual Load Verification
@@ -70,7 +70,7 @@ nvim -V1 your_file.txt
 :lua local lazy = require('lazy'); print(vim.inspect(lazy.stats()))
 
 -- Check for failed plugins
-:lua require('test_config').test_plugin_loading()
+:lua require('test.test_config').test_plugin_loading()
 ```
 
 #### 4. Critical Component Verification
@@ -115,7 +115,7 @@ nvim -V1 your_file.txt
 ##### LSP Health
 ```lua
 -- Check LSP functionality
-:lua require('test_config').test_lsp_functionality()
+:lua require('test.test_config').test_lsp_functionality()
 
 -- Manual LSP checks
 :LspInfo
@@ -126,7 +126,7 @@ nvim -V1 your_file.txt
 ##### Telescope Health
 ```lua
 -- Test Telescope functionality
-:lua require('test_config').test_telescope_functionality()
+:lua require('test.test_config').test_telescope_functionality()
 
 -- Manual Telescope checks
 :Telescope builtin
@@ -136,7 +136,7 @@ nvim -V1 your_file.txt
 ##### Treesitter Health
 ```lua
 -- Test Treesitter
-:lua require('test_config').test_treesitter()
+:lua require('test.test_config').test_treesitter()
 
 -- Manual checks
 :TSUpdate
@@ -146,7 +146,7 @@ nvim -V1 your_file.txt
 #### 3. Performance Validation
 ```lua
 -- Run performance tests
-:lua require('test_config').run_performance_test()
+:lua require('test.test_config').run_performance_test()
 
 -- Profile plugin loading
 :Lazy profile
@@ -178,10 +178,10 @@ nvim -V1 your_file.txt
 #### 1. Automated Keymap Testing
 ```lua
 -- Test keymap integrity
-:lua require('test_config').test_keymap_integrity()
+:lua require('test.test_config').test_keymap_integrity()
 
 -- Run keymap-specific tests
-:lua require('test_keymaps')
+:lua require('test.test_keymaps')
 ```
 
 #### 2. Manual Keymap Validation
@@ -257,13 +257,13 @@ nvim  # Normal startup
 ### 2. Run Full Test Suite
 ```lua
 -- Comprehensive testing
-:lua require('test_config').run_all_tests()
+:lua require('test.test_config').run_all_tests()
 
 -- Individual component tests
-:lua require('test_config').test_plugin_loading()
-:lua require('test_config').test_lsp_functionality()
-:lua require('test_config').test_telescope_functionality()
-:lua require('test_config').test_keymap_integrity()
+:lua require('test.test_config').test_plugin_loading()
+:lua require('test.test_config').test_lsp_functionality()
+:lua require('test.test_config').test_telescope_functionality()
+:lua require('test.test_config').test_keymap_integrity()
 ```
 
 ### 3. Compare Before/After State
@@ -288,7 +288,7 @@ diff /tmp/health-before.txt <(:checkhealth)
 :messages
 
 -- Run diagnostic tests
-:lua require('test_config').run_all_tests()
+:lua require('test.test_config').run_all_tests()
 :checkhealth
 ```
 
@@ -329,7 +329,7 @@ git diff HEAD~1
 ##### Step 3: Gather Information
 ```lua
 -- Collect diagnostic information
-:lua require('test_config').check_log_files()
+:lua require('test.test_config').check_log_files()
 :checkhealth
 :LspInfo
 :Lazy
@@ -339,7 +339,7 @@ git diff HEAD~1
 ```bash
 # Make fixes
 # Test fixes
-nvim -c ":lua require('test_config').run_all_tests()" -c "qa"
+nvim -c ":lua require('test.test_config').run_all_tests()" -c "qa"
 
 # Commit fixes
 git add .
@@ -448,7 +448,7 @@ git commit -m "fix: resolve configuration issues"
 :Lazy profile
 
 -- Check loading times
-:lua require('test_config').run_performance_test()
+:lua require('test.test_config').run_performance_test()
 ```
 
 ### Getting Help
@@ -479,10 +479,10 @@ git reset --hard <known-good-commit>
 
 This manual workflow complements the automated testing infrastructure:
 
-- **Quick Test**: `lua require('quick_test')` for rapid validation
-- **Full Test Suite**: `lua require('test_config').run_all_tests()` for comprehensive testing
-- **Shell Script**: `./test_nvim_config.sh` for external testing
-- **Keymap Tests**: See `test_keymaps.lua` for keymap-specific testing
+- **Quick Test**: `lua require('test.quick_test')` for rapid validation
+- **Full Test Suite**: `lua require('test.test_config').run_all_tests()` for comprehensive testing
+- **Shell Script**: `./test/test_nvim_config.sh` for external testing
+- **Keymap Tests**: See `test/test_keymaps.lua` for keymap-specific testing
 
 ## Maintenance Schedule
 

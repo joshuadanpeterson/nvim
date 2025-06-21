@@ -13,6 +13,8 @@ local noice = require 'config.noice'
 local lualine = require 'config.lualine'
 local nvim_lint = require 'config.nvim-lint'
 local markdown = require 'config.markdown'
+local logging = require 'config.logging'
+local logging_utils = require 'config.logging-utils'
 
 return {
   keymaps,

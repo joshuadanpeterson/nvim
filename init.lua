@@ -244,7 +244,7 @@ require('legendary').setup {
   -- Directory used for caches
   cache_path = string.format('%s/legendary/', vim.fn.stdpath 'cache'),
   -- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
-  log_level = 'info',
+  log_level = 'debug',
 }
 
 -- multicursors.nvim Status Line module
@@ -272,3 +272,17 @@ vim.api.nvim_create_autocmd("VimLeave", {
     end
   end,
 })
+
+-- Initialize logging system
+-- Set up comprehensive logging with debug level for core plugins
+local logging = require('config.logging')
+local logging_utils = require('config.logging-utils')
+
+-- Setup logging with debug mode enabled for testing
+logging.setup({
+  core_plugins_debug = true,
+  default_log_level = 'debug'
+})
+
+-- Setup logging utilities (commands and keymaps)
+logging_utils.setup()

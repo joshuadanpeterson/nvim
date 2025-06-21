@@ -252,7 +252,7 @@ if vim.g.started_by_firenvim then
   vim.g.firenvim_logfile = vim.fn.stdpath 'cache' .. '/firenvim/firenvim.log'
 end
 
-vim.lsp.set_log_level 'debug'
+-- LSP log level is now managed by the logging system
 
 -- Set custom highlights for autocomplete menu after colorscheme is loaded
 vim.cmd [[
@@ -335,8 +335,35 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "set filetype=sh"
 })
 
--- Set JSON filetype format
+-- Set JSON filetype format with error handling
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.json",
-  command = "%!jq ."
+  callback = function()
+    -- Save current cursor position
+    local cursor_pos = vim.fn.getcurpos()
+    
+    -- Get current buffer content
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local content = table.concat(lines, "\n")
+    
+    -- Only proceed if content is not empty
+    if content:match("^%s*$") then
+      return
+    end
+    
+    -- Test if jq can parse the content
+    local handle = io.popen("echo '" .. content:gsub("'", "'\"'\"'") .. "' | jq . 2>/dev/null")
+    local result = handle:read("*a")
+    local exit_code = handle:close()
+    
+    -- Only format if jq succeeded
+    if exit_code then
+      vim.cmd("%!jq .")
+      -- Restore cursor position
+      vim.fn.setpos('.', cursor_pos)
+    else
+      -- Show warning but don't break the file
+      vim.notify("JSON formatting skipped: Invalid JSON syntax", vim.log.levels.WARN)
+    end
+  end
 })

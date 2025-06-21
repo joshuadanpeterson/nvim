@@ -23,7 +23,7 @@ run_quick_test() {
     echo "Running quick validation test..."
     nvim --headless -c "
         lua local success, result = pcall(function() 
-            local test = dofile('$SCRIPT_DIR/quick_test.lua')
+            local test = dofile(vim.fn.stdpath('config') .. '/test/quick_test.lua')
             return test
         end)
         if success then
@@ -40,7 +40,7 @@ run_full_test() {
     echo "Running comprehensive test suite..."
     nvim --headless -c "
         lua local success, result = pcall(function() 
-            local test_config = require('test_config')
+            local test_config = require('test.test_config')
             return test_config.run_all_tests()
         end)
         if success then
@@ -84,5 +84,5 @@ echo ""
 echo "✅ Test execution completed!"
 echo ""
 echo "💡 You can also run tests from within Neovim:"
-echo "   :lua require('quick_test')                    -- Quick test"
-echo "   :lua require('test_config').run_all_tests()   -- Full test"
+echo "   :lua require('test.quick_test')                    -- Quick test"
+echo "   :lua require('test.test_config').run_all_tests()   -- Full test"

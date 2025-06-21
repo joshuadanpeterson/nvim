@@ -2,7 +2,7 @@
 -- Simple test runner for Neovim configuration validation
 
 -- Load the test module
-local test_config = require('test_config')
+local test_config = require('test.test_config')
 
 -- Check if we're running from command line or within Neovim
 local function is_running_in_nvim()
@@ -19,6 +19,6 @@ else
     print("Error: This script must be run from within Neovim")
     print("Usage:")
     print("  nvim -l run_tests.lua")
-    print("  OR from within Neovim: :lua require('run_tests')")
+    print("  OR from within Neovim: :lua require('test.run_tests')")
     os.exit(1)
 end

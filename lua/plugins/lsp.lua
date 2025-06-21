@@ -134,12 +134,17 @@ return {
     },
   },
 
-  -- typescript.nvim for JSX autocompletion
-  -- {
-  --   'jose-elias-alvarez/typescript.nvim',
-  --   dependencies = { 'neovim/nvim-lspconfig' },
-  --   ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
-  -- },
+  -- typescript-tools.nvim for enhanced TypeScript/JavaScript support
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    ft = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
+    config = function()
+      require('typescript-tools').setup {
+        -- Add any specific TypeScript tools configuration here if needed
+      }
+    end,
+  },
 
   -- emmet-ls
   {
