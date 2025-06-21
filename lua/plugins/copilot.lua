@@ -27,7 +27,8 @@ return {
   },
 
   -- Pieces for Neovim
-  {
-    'pieces-app/plugin_neovim',
-  },
+  -- Disabled due to PydanticUndefinedAnnotation error with pieces_os_client
+  -- {
+  --   'pieces-app/plugin_neovim',
+  -- },
 }
