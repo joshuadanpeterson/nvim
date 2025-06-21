@@ -22,10 +22,10 @@ return {
     },
   },
 
-  -- transparent plugin
+  -- transparent plugin (avoid lazy loading as per plugin documentation)
   {
     'xiyaowong/transparent.nvim',
-    event = 'BufReadPre',
+    priority = 1000, -- load early to ensure proper initialization
     config = function()
       require('transparent').setup({
         groups = { -- table: default groups
