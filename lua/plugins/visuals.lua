@@ -36,9 +36,9 @@ return {
           'EndOfBuffer',
         },
         extra_groups = {
-          'NormalFloat', -- plugins which have float panel such as Lazy, Mason, LspInfo
+          'NormalFloat',           -- plugins which have float panel such as Lazy, Mason, LspInfo
         },
-        exclude_groups = {}, -- table: groups you don't want to clear
+        exclude_groups = {},       -- table: groups you don't want to clear
         on_clear = function() end, -- function: code to be executed after highlight groups are cleared
       })
     end,
@@ -225,6 +225,8 @@ return {
         keep_cursor_position = true,
         enable_notifications = true,
         enable_horizontal_scroll = false,
+        start_enabled = true,
+        always_center = true,
       }
     end,
   },
