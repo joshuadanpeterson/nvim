@@ -65,17 +65,17 @@ end
 wk.add({
   -- General and Basic Keymaps
   { "<leader>b",      group = "General and Basic Keymaps" },
-  { "<leader>bk",     "v:count == 0 ? 'gk' : 'k'",                                              desc = "Move up (respecting display lines)",      expr = true },
-  { "<leader>bj",     "v:count == 0 ? 'gj' : 'j'",                                              desc = "Move down (respecting display lines)",    expr = true },
-  { "<leader>bc",     ":lua require('Comment.api').toggle_current_linewise()<CR>",              desc = "Toggle comment for current line",         mode = { 'n', 'v' } },
-  { "<leader>b<Esc>", "<ESC>:noh<CR>:require('notify').dismiss()<CR>",                          desc = "Clear search highlight and notifications" },
-  { "<leader>bl",     refresh_lualine,                                                          desc = "Refresh status line" },
-  { "<leader>bn",     "<cmd>Noice<cr>",                                                         desc = "Noice" },
-  { "<leader>bd",     ":NoiceDismiss<CR>",                                                      desc = "Dismiss Noice Message" },
-  { "<leader>bL",     ":SearchLogFiles<CR>",                                                    desc = "Search Log Files" },
-  { "<leader>bC",     ":SearchChangelogFiles<CR>",                                              desc = "Search Changelog Files" },
-  { "<leader>bo",     ":Oil --float<CR>",                                                       desc = "Modify Filetree in Buffer" },
-  { "<leader>bp",     ":PasteImage<CR>",                                                        desc = "Paste Image to Markdown" },
+  { "<leader>bk",     "v:count == 0 ? 'gk' : 'k'",                                 desc = "Move up (respecting display lines)",      expr = true },
+  { "<leader>bj",     "v:count == 0 ? 'gj' : 'j'",                                 desc = "Move down (respecting display lines)",    expr = true },
+  { "<leader>bc",     ":lua require('Comment.api').toggle_current_linewise()<CR>", desc = "Toggle comment for current line",         mode = { 'n', 'v' } },
+  { "<leader>b<Esc>", "<ESC>:noh<CR>:require('notify').dismiss()<CR>",             desc = "Clear search highlight and notifications" },
+  { "<leader>bl",     refresh_lualine,                                             desc = "Refresh status line" },
+  { "<leader>bn",     "<cmd>Noice<cr>",                                            desc = "Noice" },
+  { "<leader>bd",     ":NoiceDismiss<CR>",                                         desc = "Dismiss Noice Message" },
+  { "<leader>bL",     ":SearchLogFiles<CR>",                                       desc = "Search Log Files" },
+  { "<leader>bC",     ":SearchChangelogFiles<CR>",                                 desc = "Search Changelog Files" },
+  { "<leader>bo",     ":Oil --float<CR>",                                          desc = "Modify Filetree in Buffer" },
+  { "<leader>bp",     ":PasteImage<CR>",                                           desc = "Paste Image to Markdown" },
 
   -- HTTP Keymaps
   { "<leader>H",      group = "HTTP Keymaps" },
@@ -84,40 +84,40 @@ wk.add({
   -- { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
   -- { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
   -- { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
-  { "<leader>Hh",     ':Hyper<CR>',                                                             desc = "Open Hyper" },
-  { "<leader>HR",     ':Rest run<CR>',                                                          desc = "Run HTTP Request" },
-  { "<leader>Hl",     ':Rest log<CR>',                                                          desc = "Rest logs" },
-  { "<leader>HL",     ':Rest run last<CR>',                                                     desc = "Re-run last HTTP Request" },
-  { "<leader>He",     ':Telescope rest select_env<CR>',                                         desc = "Select .env file" },
-  { "<leader>HP",     ':Rest result prev<CR>',                                                  desc = "Cycle Previous Result" },
-  { "<leader>HN",     ':Rest result next<CR>',                                                  desc = "Cycle Next Result" },
+  { "<leader>Hh",     ':Hyper<CR>',                                                desc = "Open Hyper" },
+  { "<leader>HR",     ':Rest run<CR>',                                             desc = "Run HTTP Request" },
+  { "<leader>Hl",     ':Rest log<CR>',                                             desc = "Rest logs" },
+  { "<leader>HL",     ':Rest run last<CR>',                                        desc = "Re-run last HTTP Request" },
+  { "<leader>He",     ':Telescope rest select_env<CR>',                            desc = "Select .env file" },
+  { "<leader>HP",     ':Rest result prev<CR>',                                     desc = "Cycle Previous Result" },
+  { "<leader>HN",     ':Rest result next<CR>',                                     desc = "Cycle Next Result" },
 
   -- Vim Dadbod (SQL) Keymaps
   { "<leader>s",      group = "Vim Dadbod (SQL) Keymaps" },
-  { "<leader>sb",     ':DBUI<CR>',                                                              desc = 'DBUI' },
-  { "<leader>st",     ':DBUIToggle<CR>',                                                        desc = 'DBUIToggle' },
-  { "<leader>sf",     ':DBUIFindBuffer<CR>',                                                    desc = 'DBUIFindBuffer' },
-  { "<leader>sa",     ':DBUIAddConnection<CR>',                                                 desc = 'DBUIAddConnection' },
-  { "<leader>sl",     ':DBLastQueryInfo<CR>',                                                   desc = 'DBLastQueryInfo' },
-  { "<leader>sc",     ':DBUIClose<CR>',                                                         desc = 'DBUIClose' },
-  { "<leader>sC",     ':DBCompletionClearCache<CR>',                                            desc = 'DBCompletionClearCache' },
-  { "<leader>sh",     ':DBUIHideNotifications<CR>',                                             desc = 'Hide Notifications' },
+  { "<leader>sb",     ':DBUI<CR>',                                                 desc = 'DBUI' },
+  { "<leader>st",     ':DBUIToggle<CR>',                                           desc = 'DBUIToggle' },
+  { "<leader>sf",     ':DBUIFindBuffer<CR>',                                       desc = 'DBUIFindBuffer' },
+  { "<leader>sa",     ':DBUIAddConnection<CR>',                                    desc = 'DBUIAddConnection' },
+  { "<leader>sl",     ':DBLastQueryInfo<CR>',                                      desc = 'DBLastQueryInfo' },
+  { "<leader>sc",     ':DBUIClose<CR>',                                            desc = 'DBUIClose' },
+  { "<leader>sC",     ':DBCompletionClearCache<CR>',                               desc = 'DBCompletionClearCache' },
+  { "<leader>sh",     ':DBUIHideNotifications<CR>',                                desc = 'Hide Notifications' },
 
   -- LSP Keymaps
   { "<leader>l",      group = "LSP Keymaps" },
-  { "<leader>lr",     ':Lspsaga rename<CR>',                                                    desc = 'Rename' },
-  { "<leader>lc",     ':Lspsaga code_action<CR>',                                               desc = 'Code Action' },
-  { "<leader>ld",     ':Lspsaga peek_definition<CR>',                                           desc = 'Peek Definition' },
-  { "<leader>lR",     require('telescope.builtin').lsp_references,                              desc = 'Goto References' },
-  { "<leader>li",     ':Lspsaga finder<CR>',                                                    desc = 'Show References and Implementations' },
-  { "<leader>lt",     ':Lspsaga peek_type_definition<CR>',                                      desc = 'Peek Type Definition' },
-  { "<leader>ls",     require('telescope.builtin').lsp_document_symbols,                        desc = 'Document Symbols' },
-  { "<leader>lw",     require('telescope.builtin').lsp_workspace_symbols,                       desc = 'Workspace Symbols' },
-  { "<leader>lH",     ':Lspsaga hover_doc<CR>',                                                 desc = 'Hover Documentation' },
-  { "<leader>lS",     vim.lsp.buf.signature_help,                                               desc = 'Signature Help' },
-  { "<leader>lg",     vim.lsp.buf.declaration,                                                  desc = 'Goto Declaration' },
-  { "<leader>la",     vim.lsp.buf.add_workspace_folder,                                         desc = 'Add Workspace Folder' },
-  { "<leader>lx",     vim.lsp.buf.remove_workspace_folder,                                      desc = 'Remove Workspace Folder' },
+  { "<leader>lr",     ':Lspsaga rename<CR>',                                       desc = 'Rename' },
+  { "<leader>lc",     ':Lspsaga code_action<CR>',                                  desc = 'Code Action' },
+  { "<leader>ld",     ':Lspsaga peek_definition<CR>',                              desc = 'Peek Definition' },
+  { "<leader>lR",     require('telescope.builtin').lsp_references,                 desc = 'Goto References' },
+  { "<leader>li",     ':Lspsaga finder<CR>',                                       desc = 'Show References and Implementations' },
+  { "<leader>lt",     ':Lspsaga peek_type_definition<CR>',                         desc = 'Peek Type Definition' },
+  { "<leader>ls",     require('telescope.builtin').lsp_document_symbols,           desc = 'Document Symbols' },
+  { "<leader>lw",     require('telescope.builtin').lsp_workspace_symbols,          desc = 'Workspace Symbols' },
+  { "<leader>lH",     ':Lspsaga hover_doc<CR>',                                    desc = 'Hover Documentation' },
+  { "<leader>lS",     vim.lsp.buf.signature_help,                                  desc = 'Signature Help' },
+  { "<leader>lg",     vim.lsp.buf.declaration,                                     desc = 'Goto Declaration' },
+  { "<leader>la",     vim.lsp.buf.add_workspace_folder,                            desc = 'Add Workspace Folder' },
+  { "<leader>lx",     vim.lsp.buf.remove_workspace_folder,                         desc = 'Remove Workspace Folder' },
   {
     "<leader>ll",
     function()
@@ -209,27 +209,27 @@ wk.add({
 
   -- Plugin Mappings for Pieces
   -- Disabled due to PydanticUndefinedAnnotation error with pieces_os_client
-  -- { "<leader>P",  group = "Pieces Mappings" },
-  --
+  { "<leader>P",  group = "Pieces Mappings" },
+
   -- -- Pieces General Commands
-  -- { "<leader>Pp", ':PiecesHealth<CR>',                                                                    desc = 'Check Pieces Health' },
-  -- { "<leader>Pv", ':PiecesOSVersion<CR>',                                                                 desc = 'Display Pieces OS Version' },
-  -- { "<leader>Pg", ':PiecesPluginVersion<CR>',                                                             desc = 'Display Pieces Plugin Version' },
-  --
+  { "<leader>Pp", ':PiecesHealth<CR>',                                                                    desc = 'Check Pieces Health' },
+  { "<leader>Pv", ':PiecesOSVersion<CR>',                                                                 desc = 'Display Pieces OS Version' },
+  { "<leader>Pg", ':PiecesPluginVersion<CR>',                                                             desc = 'Display Pieces Plugin Version' },
+
   -- -- Pieces Copilot Commands
-  -- { "<leader>Pc", ':PiecesCopilot<CR>',                                                                   desc = 'Open Pieces Copilot' },
-  -- { "<leader>Pn", ':PiecesConversations<CR>',                                                             desc = 'Open Pieces Copilot Conversations' },
-  --
+  { "<leader>Pc", ':PiecesCopilot<CR>',                                                                   desc = 'Open Pieces Copilot' },
+  { "<leader>Pn", ':PiecesConversations<CR>',                                                             desc = 'Open Pieces Copilot Conversations' },
+
   -- -- Pieces Asset Management Commands
-  -- { "<leader>Ps", ':PiecesSnippets<CR>',                                                                  desc = 'List All Snippets' },
-  -- { "<leader>Pd", ':PiecesCreateSnippet<CR>',                                                             desc = 'Create Snippet from Selection' },
-  --
+  { "<leader>Ps", ':PiecesSnippets<CR>',                                                                  desc = 'List All Snippets' },
+  { "<leader>Pd", ':PiecesCreateSnippet<CR>',                                                             desc = 'Create Snippet from Selection' },
+
   -- -- Pieces Auth Commands
-  -- { "<leader>Pa", ':PiecesAccount<CR>',                                                                   desc = 'Show Pieces Account Info' },
-  -- { "<leader>Pi", ':PiecesLogin<CR>',                                                                     desc = 'Login to Pieces Account' },
-  -- { "<leader>Po", ':PiecesLogout<CR>',                                                                    desc = 'Logout from Pieces Account' },
-  -- { "<leader>Pc", ':PiecesConnectCloud<CR>',                                                              desc = 'Connect to Pieces Cloud' },
-  -- { "<leader>Px", ':PiecesDisconnectCloud<CR>',                                                           desc = 'Disconnect from Pieces Cloud' },
+  { "<leader>Pa", ':PiecesAccount<CR>',                                                                   desc = 'Show Pieces Account Info' },
+  { "<leader>Pi", ':PiecesLogin<CR>',                                                                     desc = 'Login to Pieces Account' },
+  { "<leader>Po", ':PiecesLogout<CR>',                                                                    desc = 'Logout from Pieces Account' },
+  { "<leader>Pc", ':PiecesConnectCloud<CR>',                                                              desc = 'Connect to Pieces Cloud' },
+  { "<leader>Px", ':PiecesDisconnectCloud<CR>',                                                           desc = 'Disconnect from Pieces Cloud' },
 
   -- UI Mappings
   { "<leader>u",  group = "UI Mappings" },
@@ -539,10 +539,10 @@ wk.add({
 -- Conditionally register kulala keymaps if the plugin is available
 if is_kulala_available() then
   wk.add({
-    { "<leader>Hp",     ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
-    { "<leader>Hn",     ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
-    { "<leader>Hr",     ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
-    { "<leader>Ht",     ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
+    { "<leader>Hp", ":lua require('kulala').jump_prev()<CR>",                                 desc = "Previous HTTP Request" },
+    { "<leader>Hn", ":lua require('kulala').jump_next()<CR>",                                 desc = "Next HTTP Request" },
+    { "<leader>Hr", ":vsplit | wincmd l | enew | lua require('kulala').run()<CR> | wincmd p", desc = "Send HTTP Request" },
+    { "<leader>Ht", ":lua require('kulala').toggle_view()<CR>",                               desc = "Toggle HTTP View" },
   })
 end
 

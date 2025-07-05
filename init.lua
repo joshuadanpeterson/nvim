@@ -260,8 +260,7 @@ require('codestats-nvim').setup {
 }
 
 -- Pieces for Neovim
--- Temporarily disabled due to PydanticUndefinedAnnotation error
--- require("pieces.config").host = "http://localhost:1000"
+require("pieces.config").host = "http://localhost:1000"
 
 -- Delete temporary files
 vim.api.nvim_create_autocmd("VimLeave", {
