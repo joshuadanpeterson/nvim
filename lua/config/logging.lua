@@ -77,14 +77,14 @@ local function log_to_file(level, message, log_file, context)
     file:close()
   end
   
-  -- Also output to vim's internal logging
-  if level == 'error' then
-    vim.notify(message, vim.log.levels.ERROR)
-  elseif level == 'warn' then
-    vim.notify(message, vim.log.levels.WARN)
-  elseif level == 'debug' and config.core_plugins_debug then
-    vim.notify(message, vim.log.levels.DEBUG)
-  end
+  -- Also output to vim's internal logging (commented out to prevent recursion)
+  -- if level == 'error' then
+  --   vim.notify(message, vim.log.levels.ERROR)
+  -- elseif level == 'warn' then
+  --   vim.notify(message, vim.log.levels.WARN)
+  -- elseif level == 'debug' and config.core_plugins_debug then
+  --   vim.notify(message, vim.log.levels.DEBUG)
+  -- end
 end
 
 -- Public logging functions

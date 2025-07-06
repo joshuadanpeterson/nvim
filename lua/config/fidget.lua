@@ -1,5 +1,4 @@
 -- fidget.nvim
-require 'plugins.debug'
 require('fidget').setup {
   -- Options related to LSP progress subsystem
   progress = {
