@@ -121,7 +121,7 @@ wk.add({
   {
     "<leader>ll",
     function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      vim.inspect(vim.lsp.buf.list_workspace_folders())
     end,
     desc = 'List Workspace Folders'
   },
@@ -294,10 +294,9 @@ wk.add({
     "<leader>tJ",
     function()
       if vim.bo.filetype == 'json' then
-        print('Calling Telescope jsonfly with filetype: ' .. vim.bo.filetype)
         vim.cmd 'Telescope jsonfly'
       else
-        print('This command is only available for JSON files. Current filetype: ' .. vim.bo.filetype)
+        vim.notify('This command is only available for JSON files. Current filetype: ' .. vim.bo.filetype, vim.log.levels.WARN)
       end
     end,
     desc = 'Search JSON with jsonfly'
