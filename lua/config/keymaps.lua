@@ -121,7 +121,7 @@ wk.add({
   {
     "<leader>ll",
     function()
-      vim.inspect(vim.lsp.buf.list_workspace_folders())
+      vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()), vim.log.levels.INFO)
     end,
     desc = 'List Workspace Folders'
   },
