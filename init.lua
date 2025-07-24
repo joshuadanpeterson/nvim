@@ -27,7 +27,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ configure plugins ]]
 local lazy = require 'lazy'
-lazy.setup {
+lazy.setup({
   -- Your plugin setup goes here
   -- legendary.nvim
   {
@@ -91,7 +91,29 @@ lazy.setup {
       },
     }),
   },
-}
+}, {
+  performance = {
+    cache = {
+      enabled = true, -- Enable byte-compilation cache for faster startup
+    },
+    reset_packpath = true, -- Reset packpath to improve startup time
+    rtp = {
+      reset = true, -- Reset runtime path for better performance
+      paths = {}, -- Add custom paths here if needed
+      disabled_plugins = {
+        -- Disable some built-in plugins for faster startup
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})
 
 -- Plugin Manager Setup
 

@@ -10,7 +10,7 @@ return {
   -- nvim-notify: Configure notify before Noice to resolve conflicts
   {
     'rcarriga/nvim-notify',
-    priority = 1100, -- Higher priority than Noice
+    priority = 1001,
     config = function()
       require("notify").setup({ stages = "fade", timeout = 3000 })
       vim.notify = require("notify")

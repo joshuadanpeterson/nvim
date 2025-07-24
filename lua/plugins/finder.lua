@@ -75,7 +75,6 @@ return {
     'HPRIOR/telescope-gpt',
     dependencies = {
       'nvim-telescope/telescope.nvim',
-      'jackMort/ChatGPT.nvim',
     },
     lazy = true,
   },

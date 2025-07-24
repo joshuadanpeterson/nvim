@@ -20,12 +20,7 @@ return {
     end,
   },
 
-  -- Standalone UI for Neovim LSP progress
-  {
-    'j-hui/fidget.nvim',
-    -- tag = 'v1.0.0',
-    event = 'BufReadPre',
-  },
+  -- fidget.nvim configuration moved to fidget.lua
 
   -- dressing.nvim - improves UI
   {
