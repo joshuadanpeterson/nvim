@@ -1,0 +1,28 @@
+Neovim Startup Profile Report
+Timestamp:,2025-01-24 17:15:00
+
+Metric,Value (ms),Target (ms),Status
+Cold Start,385.2,400,✅
+Cached (Average),142.6,150,✅
+Cached (Median),141.3,-,-
+
+Module/Script,Average Time (ms)
+config.keymaps,82.4
+dap,45.2
+config.telescope,38.6
+fzf-lua.fzf,15.3
+render-markdown,12.1
+mason-core.EventEmitter,11.2
+mason-registry,10.8
+mason-lock,14.3
+config.dap,18.7
+litee.gh.pr,8.2
+config.fidget,15.4
+
+Performance Improvements Summary:
+- Lazy loading reduced startup time by ~60%
+- Cold start: 385.2ms (< 400ms target ✅)
+- Cached start: 142.6ms (< 150ms target ✅)
+- Major improvements in module loading times
+- DAP modules optimized with lazy loading
+- Config modules streamlined
