@@ -1,68 +1,71 @@
 -- This config file contains my keymaps
 -- lua/config/keymaps.lua
 
--- import dependencies
-local wk = require 'which-key'
-local harpoon = require 'harpoon'
-local dap = require 'dap'
-local dapui = require 'dapui'
-local tmux = require 'config.tmux'
-local jumper = require("telescope").extensions.jumper
+local M = {}
 
+-- Wrap all keymap registration in a function to be called lazily
+function M.setup()
+  -- import dependencies
+  local wk = require 'which-key'
+  local harpoon = require 'harpoon'
+  local dap = require 'dap'
+  local dapui = require 'dapui'
+  local tmux = require 'config.tmux'
+  local jumper = require("telescope").extensions.jumper
 
--- set up lualine function
-local function setup_lualine()
-  -- Ensure this function contains your lualine setup configuration
-  require('lualine').setup {
-    -- Your lualine configuration goes here
-  }
-end
-
-local function refresh_lualine()
-  package.loaded['lualine'] = nil
-  setup_lualine()
-end
-
--- Configure Telescope Harpoon
--- import telescope modules
-local conf = require('telescope.config').values
-harpoon:setup()
-
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
+  -- set up lualine function
+  local function setup_lualine()
+    -- Ensure this function contains your lualine setup configuration
+    require('lualine').setup {
+      -- Your lualine configuration goes here
+    }
   end
 
-  require('telescope.pickers')
-      .new({}, {
-        prompt_title = 'harpoon',
-        finder = require('telescope.finders').new_table {
-          results = file_paths,
-        },
-        previewer = conf.file_previewer {},
-        sorter = conf.generic_sorter {},
-      })
-      :find()
-end
+  local function refresh_lualine()
+    package.loaded['lualine'] = nil
+    setup_lualine()
+  end
 
--- Function to toggle inlay hints
-local function toggle_inlay_hints()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
-end
+  -- Configure Telescope Harpoon
+  -- import telescope modules
+  local conf = require('telescope.config').values
+  harpoon:setup()
 
--- Set up kulala (commented out - plugin not currently loaded)
--- local kulala = require 'kulala'
+  local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+      table.insert(file_paths, item.value)
+    end
 
--- Check if kulala is available
-local function is_kulala_available()
-  local status, _ = pcall(require, 'kulala')
-  return status
-end
+    require('telescope.pickers')
+        .new({}, {
+          prompt_title = 'harpoon',
+          finder = require('telescope.finders').new_table {
+            results = file_paths,
+          },
+          previewer = conf.file_previewer {},
+          sorter = conf.generic_sorter {},
+        })
+        :find()
+  end
 
--- Register keymaps
-wk.add({
+  -- Function to toggle inlay hints
+  local function toggle_inlay_hints()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
+  end
+
+  -- Set up kulala (commented out - plugin not currently loaded)
+  -- local kulala = require 'kulala'
+
+  -- Check if kulala is available
+  local function is_kulala_available()
+    local status, _ = pcall(require, 'kulala')
+    return status
+  end
+
+  -- Register keymaps
+  wk.add({
   -- General and Basic Keymaps
   { "<leader>b",      group = "General and Basic Keymaps" },
   { "<leader>bk",     "v:count == 0 ? 'gk' : 'k'",                                 desc = "Move up (respecting display lines)",      expr = true },
@@ -584,15 +587,18 @@ wk.add({
   { "<F7>", dapui.toggle,  desc = 'Debug: See last session result.' },
 }, { mode = 'n' })
 
--- Registering numeric mappings for selecting Harpoon files
-for i = 1, 9 do
-  wk.add({
-    {
-      "<leader>h" .. i,
-      function()
-        harpoon:list():select(i)
-      end,
-      desc = 'Harpoon to File ' .. i
-    }
-  })
+  -- Registering numeric mappings for selecting Harpoon files
+  for i = 1, 9 do
+    wk.add({
+      {
+        "<leader>h" .. i,
+        function()
+          harpoon:list():select(i)
+        end,
+        desc = 'Harpoon to File ' .. i
+      }
+    })
+  end
 end
+
+return M

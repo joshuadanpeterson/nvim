@@ -1,0 +1,284 @@
+timestamp,item,time_ms,percentage,source
+2025-07-23 23:12:10,"532.499: sourcing /Users/joshpeterson/.config/nvim/init.lua",2455.421,231.4%,profile
+2025-07-23 23:12:12,"232.266: sourcing /Users/joshpeterson/.config/nvim/init.lua",1556.289,146.6%,profile
+2025-07-23 23:12:11,"270.029: sourcing /Users/joshpeterson/.config/nvim/init.lua",1459.690,137.5%,profile
+2025-07-23 23:12:11,"217.172: sourcing /Users/joshpeterson/.config/nvim/init.lua",1277.397,120.4%,profile
+2025-07-23 23:12:12,"194.347: sourcing /Users/joshpeterson/.config/nvim/init.lua",1052.777,99.2%,profile
+2025-07-23 23:12:10,"184.162: sourcing /Users/joshpeterson/.config/nvim/init.lua",1038.194,97.8%,profile
+2025-07-23 23:12:10,"001.224: require('config')",790.537,74.5%,profile
+2025-07-23 23:12:09,"000.363: require('config')",755.232,71.2%,profile
+2025-07-23 23:12:12,"000.874: require('config')",623.295,58.7%,profile
+2025-07-23 23:12:12,"000.404: require('config')",562.427,53.0%,profile
+2025-07-23 23:12:10,"000.451: require('config')",507.629,47.8%,profile
+2025-07-23 23:12:09,"000.377: require('config')",487.697,46.0%,profile
+2025-07-23 23:12:11,"001.478: require('config.keymaps')",486.884,45.9%,profile
+2025-07-23 23:12:12,"001.565: require('config.keymaps')",470.816,44.4%,profile
+2025-07-23 23:12:13,"213.045: require('dap')",361.277,34.0%,profile
+2025-07-23 23:12:12,"223.978: require('dap')",335.735,31.6%,profile
+2025-07-23 23:12:10,"001.936: require('config.keymaps')",277.278,26.1%,profile
+2025-07-23 23:12:10,"001.238: require('config.keymaps')",266.685,25.1%,profile
+2025-07-23 23:12:11,"002.109: require('config.keymaps')",257.276,24.2%,profile
+2025-07-23 23:12:09,"001.010: require('config.keymaps')",200.366,18.9%,profile
+2025-07-23 23:12:11,"123.249: require('dap')",191.283,18.0%,profile
+2025-07-23 23:12:10,"004.857: require('config.telescope')",167.116,15.7%,profile
+2025-07-23 23:12:12,"119.694: require('dap')",166.856,15.7%,profile
+2025-07-23 23:12:11,"106.694: require('dap')",164.023,15.5%,profile
+2025-07-23 23:12:11,"004.966: require('config.telescope')",149.129,14.1%,profile
+2025-07-23 23:12:12,"001.535: require('CopilotChat')",139.391,13.1%,profile
+2025-07-23 23:12:11,"004.951: require('config.telescope')",136.884,12.9%,profile
+2025-07-23 23:12:10,"091.090: require('dap')",136.471,12.9%,profile
+2025-07-23 23:12:12,"003.670: require('config.telescope')",131.633,12.4%,profile
+2025-07-23 23:12:11,"000.412: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",128.771,12.1%,profile
+2025-07-23 23:12:12,"008.500: require('config.lsp')",121.866,11.5%,profile
+2025-07-23 23:12:12,"004.022: require('config.telescope')",120.833,11.4%,profile
+2025-07-23 23:12:12,"003.803: require('cmp')",117.901,11.1%,profile
+2025-07-23 23:12:10,"000.365: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",115.577,10.9%,profile
+2025-07-23 23:12:10,"003.476: require('config.telescope')",115.255,10.9%,profile
+2025-07-23 23:12:12,"002.315: require('cmp.core')",111.478,10.5%,profile
+2025-07-23 23:12:12,"001.280: require('CopilotChat.context')",108.863,10.3%,profile
+2025-07-23 23:12:12,"003.842: require('CopilotChat.client')",107.582,10.1%,profile
+2025-07-23 23:12:12,"094.794: require('CopilotChat.tiktoken')",103.740,9.8%,profile
+2025-07-23 23:12:10,"005.659: require('luasnip.loaders.from_vscode')",102.093,9.6%,profile
+2025-07-23 23:12:11,"082.128: require('lspconfig')",90.806,8.6%,profile
+2025-07-23 23:12:12,"000.468: sourcing /Users/joshpeterson/.local/share/nvim/lazy/plugin_neo_vim/plugin/pieces.lua",85.300,8.0%,profile
+2025-07-23 23:12:09,"005.696: require('harpoon')",82.146,7.7%,profile
+2025-07-23 23:12:12,"000.284: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",76.838,7.2%,profile
+2025-07-23 23:12:13,"068.160: require('harpoon')",76.450,7.2%,profile
+2025-07-23 23:12:11,"004.037: require('fzf-lua')",70.314,6.6%,profile
+2025-07-23 23:12:11,"004.323: require('luasnip.loaders.from_vscode')",62.532,5.9%,profile
+2025-07-23 23:12:10,"017.221: require('config.lualine')",61.484,5.8%,profile
+2025-07-23 23:12:10,"012.308: require('config.lualine')",56.369,5.3%,profile
+2025-07-23 23:12:13,"015.928: require('config.lualine')",55.349,5.2%,profile
+2025-07-23 23:12:12,"008.498: require('formatter.filetypes.any')",53.944,5.1%,profile
+2025-07-23 23:12:12,"002.532: require('luasnip.loaders.from_vscode')",52.975,5.0%,profile
+2025-07-23 23:12:10,"000.719: require('luasnip.util.parser')",52.397,4.9%,profile
+2025-07-23 23:12:13,"005.172: require('config.fidget')",51.415,4.8%,profile
+2025-07-23 23:12:10,"043.439: require('config.cmp')",50.760,4.8%,profile
+2025-07-23 23:12:12,"000.901: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",49.657,4.7%,profile
+2025-07-23 23:12:11,"000.779: require('cmp.source')",48.953,4.6%,profile
+2025-07-23 23:12:11,"011.429: require('cmp.entry')",48.174,4.5%,profile
+2025-07-23 23:12:13,"008.364: require('fidget')",46.242,4.4%,profile
+2025-07-23 23:12:13,"018.285: require('mason-lock')",46.186,4.4%,profile
+2025-07-23 23:12:12,"001.052: require('telescope._extensions.lazy')",45.839,4.3%,profile
+2025-07-23 23:12:12,"008.865: require('formatter.defaults')",45.446,4.3%,profile
+2025-07-23 23:12:12,"015.810: require('cmp.view')",44.497,4.2%,profile
+2025-07-23 23:12:12,"037.050: require('telescope._extensions.lazy.picker')",43.681,4.1%,profile
+2025-07-23 23:12:13,"036.587: require('copilot_cmp')",43.627,4.1%,profile
+2025-07-23 23:12:10,"002.703: require('CopilotChat')",43.425,4.1%,profile
+2025-07-23 23:12:12,"042.779: require('libdash_nvim')",42.779,4.0%,profile
+2025-07-23 23:12:10,"001.849: require('telescope._extensions.lazy')",42.202,4.0%,profile
+2025-07-23 23:12:09,"001.071: require('luasnip.util.parser.ast_parser')",41.701,3.9%,profile
+2025-07-23 23:12:11,"000.663: sourcing /Users/joshpeterson/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua",40.620,3.8%,profile
+2025-07-23 23:12:10,"003.954: require('kulala')",40.332,3.8%,profile
+2025-07-23 23:12:11,"007.768: require('nvim-treesitter-textobjects')",40.048,3.8%,profile
+2025-07-23 23:12:11,"039.807: require('mason-nvim-dap.mappings.configurations')",39.807,3.8%,profile
+2025-07-23 23:12:10,"000.493: require('telescope._extensions.jumper')",39.693,3.7%,profile
+2025-07-23 23:12:11,"003.620: require('pieces.copilot')",39.477,3.7%,profile
+2025-07-23 23:12:10,"001.628: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",39.312,3.7%,profile
+2025-07-23 23:12:10,"000.528: require('jumper.telescope_extension')",39.200,3.7%,profile
+2025-07-23 23:12:12,"010.045: require('config.lualine')",38.492,3.6%,profile
+2025-07-23 23:12:10,"000.920: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",38.137,3.6%,profile
+2025-07-23 23:12:10,"001.254: require('telescope._extensions.lazy')",38.050,3.6%,profile
+2025-07-23 23:12:10,"029.353: require('telescope._extensions.lazy.picker')",37.881,3.6%,profile
+2025-07-23 23:12:13,"000.220: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",37.439,3.5%,profile
+2025-07-23 23:12:12,"037.154: require('pieces.tutor')",37.154,3.5%,profile
+2025-07-23 23:12:09,"001.516: require('luasnip.util.parser.ast_utils')",36.946,3.5%,profile
+2025-07-23 23:12:13,"009.983: require('config.lualine')",36.390,3.4%,profile
+2025-07-23 23:12:10,"031.866: require('telescope._extensions.lazy.picker')",36.208,3.4%,profile
+2025-07-23 23:12:10,"011.154: require('harpoon')",35.950,3.4%,profile
+2025-07-23 23:12:11,"000.688: require('telescope._extensions.lazy')",35.795,3.4%,profile
+2025-07-23 23:12:13,"027.296: require('config.cmp')",35.759,3.4%,profile
+2025-07-23 23:12:09,"002.862: require('kulala')",35.739,3.4%,profile
+2025-07-23 23:12:11,"004.589: require('kulala')",35.560,3.4%,profile
+2025-07-23 23:12:12,"035.559: require('mason-nvim-dap.mappings.configurations')",35.559,3.4%,profile
+2025-07-23 23:12:11,"035.306: require('cmp.matcher')",35.306,3.3%,profile
+2025-07-23 23:12:10,"025.102: require('lualine')",35.042,3.3%,profile
+2025-07-23 23:12:09,"004.188: require('cmp')",34.969,3.3%,profile
+2025-07-23 23:12:12,"000.735: require('telescope._extensions.jumper')",34.535,3.3%,profile
+2025-07-23 23:12:11,"029.424: require('telescope._extensions.lazy.picker')",34.457,3.2%,profile
+2025-07-23 23:12:13,"010.395: require('fidget.progress')",33.958,3.2%,profile
+2025-07-23 23:12:12,"000.919: require('jumper.telescope_extension')",33.799,3.2%,profile
+2025-07-23 23:12:11,"010.339: require('config.lualine')",33.744,3.2%,profile
+2025-07-23 23:12:12,"004.275: require('kulala')",33.303,3.1%,profile
+2025-07-23 23:12:12,"033.288: require('luasnip.util.parser.neovim_ast')",33.288,3.1%,profile
+2025-07-23 23:12:11,"026.746: require('config.cmp')",33.071,3.1%,profile
+2025-07-23 23:12:09,"000.574: require('litee.gh')",33.044,3.1%,profile
+2025-07-23 23:12:10,"006.058: require('kulala')",33.026,3.1%,profile
+2025-07-23 23:12:11,"000.491: require('telescope._extensions.lazy')",32.509,3.1%,profile
+2025-07-23 23:12:11,"004.147: require('nvim-treesitter.configs')",32.280,3.0%,profile
+2025-07-23 23:12:13,"001.251: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",31.777,3.0%,profile
+2025-07-23 23:12:13,"001.179: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",31.763,3.0%,profile
+2025-07-23 23:12:13,"000.554: require('CopilotChat')",31.757,3.0%,profile
+2025-07-23 23:12:11,"003.575: require('luasnip')",31.635,3.0%,profile
+2025-07-23 23:12:10,"012.930: require('telescope.config')",31.559,3.0%,profile
+2025-07-23 23:12:13,"031.556: require('libdash_nvim')",31.556,3.0%,profile
+2025-07-23 23:12:11,"027.513: require('telescope._extensions.lazy.picker')",31.534,3.0%,profile
+2025-07-23 23:12:09,"000.728: require('telescope._extensions.lazy')",31.297,2.9%,profile
+2025-07-23 23:12:11,"000.642: require('luasnip.util.parser')",31.041,2.9%,profile
+2025-07-23 23:12:12,"004.370: require('dapui')",30.747,2.9%,profile
+2025-07-23 23:12:11,"004.004: require('kulala')",30.568,2.9%,profile
+2025-07-23 23:12:10,"000.951: require('telescope._extensions.jumper')",30.150,2.8%,profile
+2025-07-23 23:12:10,"000.612: require('CopilotChat.context')",29.922,2.8%,profile
+2025-07-23 23:12:09,"025.523: require('telescope._extensions.lazy.picker')",29.866,2.8%,profile
+2025-07-23 23:12:13,"000.825: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",29.827,2.8%,profile
+2025-07-23 23:12:13,"002.302: require('cmp.core')",29.696,2.8%,profile
+2025-07-23 23:12:10,"021.383: require('lualine')",29.554,2.8%,profile
+2025-07-23 23:12:12,"008.265: require('telescope._extensions.gpt')",29.523,2.8%,profile
+2025-07-23 23:12:10,"000.713: require('CopilotChat.client')",29.309,2.8%,profile
+2025-07-23 23:12:10,"000.716: require('jumper.telescope_extension')",29.200,2.8%,profile
+2025-07-23 23:12:12,"002.791: require('kulala')",28.647,2.7%,profile
+2025-07-23 23:12:10,"023.349: require('CopilotChat.tiktoken')",28.597,2.7%,profile
+2025-07-23 23:12:12,"004.081: require('harpoon')",28.581,2.7%,profile
+2025-07-23 23:12:11,"004.123: require('nvim-treesitter.query')",28.133,2.7%,profile
+2025-07-23 23:12:09,"000.403: require('litee.gh.commands')",28.074,2.6%,profile
+2025-07-23 23:12:10,"000.740: require('telescope._extensions.jumper')",28.003,2.6%,profile
+2025-07-23 23:12:13,"003.321: require('mason-registry')",27.902,2.6%,profile
+2025-07-23 23:12:09,"004.145: require('config.lsp')",27.574,2.6%,profile
+2025-07-23 23:12:12,"003.128: require('luasnip.loaders.from_vscode')",27.363,2.6%,profile
+2025-07-23 23:12:10,"000.572: require('jumper.telescope_extension')",27.262,2.6%,profile
+2025-07-23 23:12:12,"021.937: require('telescope')",27.198,2.6%,profile
+2025-07-23 23:12:11,"004.620: require('config.lsp')",26.851,2.5%,profile
+2025-07-23 23:12:13,"020.294: require('lualine')",26.831,2.5%,profile
+2025-07-23 23:12:09,"000.992: sourcing /Users/joshpeterson/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua",26.828,2.5%,profile
+2025-07-23 23:12:10,"002.410: require('luasnip.loaders.from_vscode')",26.759,2.5%,profile
+2025-07-23 23:12:10,"004.939: require('telescope._extensions.gpt')",26.755,2.5%,profile
+2025-07-23 23:12:13,"000.493: require('litee.gh.pr')",26.753,2.5%,profile
+2025-07-23 23:12:10,"000.203: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",26.575,2.5%,profile
+2025-07-23 23:12:10,"002.525: require('kulala')",26.124,2.5%,profile
+2025-07-23 23:12:12,"001.500: require('config.linter')",26.059,2.5%,profile
+2025-07-23 23:12:09,"002.940: require('nvim-treesitter-textobjects')",26.025,2.5%,profile
+2025-07-23 23:12:12,"018.177: require('config.cmp')",25.884,2.4%,profile
+2025-07-23 23:12:10,"001.271: require('telescope.pickers')",25.841,2.4%,profile
+2025-07-23 23:12:10,"002.848: require('mason-lock')",25.803,2.4%,profile
+2025-07-23 23:12:11,"000.324: sourcing /Users/joshpeterson/.local/share/nvim/lazy/plugin_neo_vim/plugin/pieces.lua",25.723,2.4%,profile
+2025-07-23 23:12:11,"019.336: require('config.cmp')",25.542,2.4%,profile
+2025-07-23 23:12:12,"005.093: require('harpoon')",25.360,2.4%,profile
+2025-07-23 23:12:11,"000.771: require('luasnip.util.parser')",25.283,2.4%,profile
+2025-07-23 23:12:13,"000.980: sourcing /Users/joshpeterson/.local/share/nvim/lazy/diffview.nvim/plugin/diffview.lua",25.227,2.4%,profile
+2025-07-23 23:12:09,"000.556: require('telescope._extensions.jumper')",24.863,2.3%,profile
+2025-07-23 23:12:11,"005.716: require('config.lsp')",24.814,2.3%,profile
+2025-07-23 23:12:10,"018.413: require('harpoon')",24.797,2.3%,profile
+2025-07-23 23:12:11,"001.027: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",24.757,2.3%,profile
+2025-07-23 23:12:11,"003.948: require('kulala')",24.707,2.3%,profile
+2025-07-23 23:12:12,"019.790: require('harpoon')",24.500,2.3%,profile
+2025-07-23 23:12:13,"000.686: require('litee.gh.pr.handlers')",24.429,2.3%,profile
+2025-07-23 23:12:13,"000.563: require('CopilotChat.context')",24.314,2.3%,profile
+2025-07-23 23:12:09,"000.573: require('jumper.telescope_extension')",24.307,2.3%,profile
+2025-07-23 23:12:13,"004.440: require('diffview.bootstrap')",24.248,2.3%,profile
+2025-07-23 23:12:13,"006.429: require('mason')",24.040,2.3%,profile
+2025-07-23 23:12:10,"001.706: require('fzf-lua.path')",23.852,2.2%,profile
+2025-07-23 23:12:10,"007.964: require('plenary.async')",23.835,2.2%,profile
+2025-07-23 23:12:13,"000.745: require('CopilotChat.client')",23.751,2.2%,profile
+2025-07-23 23:12:10,"004.786: require('telescope._extensions.gpt')",23.707,2.2%,profile
+2025-07-23 23:12:10,"000.175: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",23.446,2.2%,profile
+2025-07-23 23:12:09,"001.509: require('nvim-treesitter.configs')",23.085,2.2%,profile
+2025-07-23 23:12:13,"017.624: require('CopilotChat.tiktoken')",23.006,2.2%,profile
+2025-07-23 23:12:10,"012.134: require('mason-registry')",22.955,2.2%,profile
+2025-07-23 23:12:11,"004.440: require('telescope._extensions.gpt')",22.902,2.2%,profile
+2025-07-23 23:12:09,"017.491: require('config.cmp')",22.725,2.1%,profile
+2025-07-23 23:12:10,"002.352: require('pieces.copilot')",22.470,2.1%,profile
+2025-07-23 23:12:13,"004.407: require('config.lsp')",22.449,2.1%,profile
+2025-07-23 23:12:10,"004.707: require('multicursors')",22.408,2.1%,profile
+2025-07-23 23:12:13,"001.302: require('mason-lock')",22.340,2.1%,profile
+2025-07-23 23:12:12,"001.973: require('luasnip.loaders.from_vscode')",22.185,2.1%,profile
+2025-07-23 23:12:12,"004.064: require('config.lsp')",22.160,2.1%,profile
+2025-07-23 23:12:09,"004.714: require('multicursors')",22.102,2.1%,profile
+2025-07-23 23:12:11,"000.485: require('litee.gh')",21.992,2.1%,profile
+2025-07-23 23:12:09,"000.709: require('nvim-treesitter.query')",21.576,2.0%,profile
+2025-07-23 23:12:10,"002.749: require('chatgpt')",21.512,2.0%,profile
+2025-07-23 23:12:12,"000.549: require('mason-registry.sources.github')",21.424,2.0%,profile
+2025-07-23 23:12:13,"001.065: require('CopilotChat.config')",21.395,2.0%,profile
+2025-07-23 23:12:10,"002.389: require('fzf-lua.libuv')",21.044,2.0%,profile
+2025-07-23 23:12:13,"003.884: require('kulala')",21.038,2.0%,profile
+2025-07-23 23:12:12,"013.515: require('mason-registry')",21.038,2.0%,profile
+2025-07-23 23:12:12,"001.730: require('lint')",20.723,2.0%,profile
+2025-07-23 23:12:12,"005.459: require('telescope._extensions.emoji')",20.662,1.9%,profile
+2025-07-23 23:12:11,"000.661: require('litee.gh')",20.540,1.9%,profile
+2025-07-23 23:12:12,"004.338: require('chatgpt')",20.527,1.9%,profile
+2025-07-23 23:12:10,"001.924: require('kulala')",20.381,1.9%,profile
+2025-07-23 23:12:09,"005.608: require('telescope._extensions.git_signs')",20.350,1.9%,profile
+2025-07-23 23:12:12,"013.363: require('harpoon')",20.267,1.9%,profile
+2025-07-23 23:12:09,"000.777: require('luasnip')",20.164,1.9%,profile
+2025-07-23 23:12:09,"002.486: require('cmp')",20.000,1.9%,profile
+2025-07-23 23:12:10,"004.352: require('fzf-lua')",19.977,1.9%,profile
+2025-07-23 23:12:13,"002.589: require('copilot')",19.921,1.9%,profile
+2025-07-23 23:12:13,"019.916: require('mason-nvim-dap.mappings.configurations')",19.916,1.9%,profile
+2025-07-23 23:12:09,"000.228: sourcing /Users/joshpeterson/.local/share/nvim/lazy/plugin_neo_vim/plugin/pieces.lua",19.886,1.9%,profile
+2025-07-23 23:12:12,"006.736: require('multicursors')",19.815,1.9%,profile
+2025-07-23 23:12:10,"000.835: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",19.805,1.9%,profile
+2025-07-23 23:12:10,"006.344: require('multicursors')",19.795,1.9%,profile
+2025-07-23 23:12:09,"000.401: require('telescope._extensions.jumper')",19.751,1.9%,profile
+2025-07-23 23:12:12,"002.415: require('nvim-treesitter-textobjects')",19.662,1.9%,profile
+2025-07-23 23:12:12,"013.081: require('neodev')",19.599,1.8%,profile
+2025-07-23 23:12:11,"000.705: require('luasnip.util.parser.ast_parser')",19.354,1.8%,profile
+2025-07-23 23:12:13,"000.351: require('jumper.telescope_extension')",19.350,1.8%,profile
+2025-07-23 23:12:11,"002.874: require('cmp')",19.317,1.8%,profile
+2025-07-23 23:12:13,"003.957: require('harpoon')",19.260,1.8%,profile
+2025-07-23 23:12:11,"000.821: require('nio')",19.171,1.8%,profile
+2025-07-23 23:12:12,"004.864: require('telescope._extensions.git_signs')",19.111,1.8%,profile
+2025-07-23 23:12:11,"005.756: require('fzf-lua.core')",19.064,1.8%,profile
+2025-07-23 23:12:13,"007.037: require('telescope.config')",19.015,1.8%,profile
+2025-07-23 23:12:11,"018.994: require('lint')",18.994,1.8%,profile
+2025-07-23 23:12:11,"006.078: require('telescope._extensions.emoji')",18.926,1.8%,profile
+2025-07-23 23:12:13,"000.539: require('formatter.filetypes.any')",18.901,1.8%,profile
+2025-07-23 23:12:10,"002.764: require('chatgpt')",18.692,1.8%,profile
+2025-07-23 23:12:13,"013.741: require('lualine')",18.689,1.8%,profile
+2025-07-23 23:12:12,"013.687: require('lualine')",18.491,1.7%,profile
+2025-07-23 23:12:09,"000.845: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",18.383,1.7%,profile
+2025-07-23 23:12:13,"001.846: require('formatter.defaults')",18.362,1.7%,profile
+2025-07-23 23:12:13,"003.043: require('todo-comments')",18.299,1.7%,profile
+2025-07-23 23:12:11,"002.349: require('chatgpt')",18.183,1.7%,profile
+2025-07-23 23:12:12,"000.892: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",18.114,1.7%,profile
+2025-07-23 23:12:09,"000.877: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",18.113,1.7%,profile
+2025-07-23 23:12:13,"000.553: require('litee.gh')",18.045,1.7%,profile
+2025-07-23 23:12:13,"002.450: require('fzf-lua')",17.860,1.7%,profile
+2025-07-23 23:12:12,"000.574: require('formatter.filetypes.any')",17.642,1.7%,profile
+2025-07-23 23:12:09,"002.063: require('mason-lock')",17.469,1.6%,profile
+2025-07-23 23:12:13,"003.871: require('telescope._extensions.gpt')",17.428,1.6%,profile
+2025-07-23 23:12:12,"000.773: require('nvim-treesitter.configs')",17.247,1.6%,profile
+2025-07-23 23:12:10,"006.633: require('multicursors')",17.069,1.6%,profile
+2025-07-23 23:12:12,"002.444: require('formatter.defaults')",17.067,1.6%,profile
+2025-07-23 23:12:13,"003.017: require('pieces.copilot')",17.050,1.6%,profile
+2025-07-23 23:12:13,"001.626: require('kulala')",16.827,1.6%,profile
+2025-07-23 23:12:11,"012.572: require('lualine')",16.741,1.6%,profile
+2025-07-23 23:12:10,"000.366: require('chatgpt.module')",16.711,1.6%,profile
+2025-07-23 23:12:13,"001.230: require('cmp.core')",16.684,1.6%,profile
+2025-07-23 23:12:10,"000.863: sourcing /Users/joshpeterson/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua",16.562,1.6%,profile
+2025-07-23 23:12:12,"000.749: require('nvim-treesitter.query')",16.474,1.6%,profile
+2025-07-23 23:12:11,"000.663: require('cmp.view.docs_view')",16.468,1.6%,profile
+2025-07-23 23:12:11,"000.613: require('litee.gh.commands')",16.443,1.5%,profile
+2025-07-23 23:12:13,"002.723: require('diffview.logger')",16.302,1.5%,profile
+2025-07-23 23:12:11,"002.487: require('pieces.copilot.copilot_ui')",16.187,1.5%,profile
+2025-07-23 23:12:10,"004.219: require('telescope._extensions.git_signs')",16.157,1.5%,profile
+2025-07-23 23:12:11,"000.870: require('pieces.copilot.slash_commands')",16.150,1.5%,profile
+2025-07-23 23:12:11,"000.730: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",16.148,1.5%,profile
+2025-07-23 23:12:11,"004.042: require('luasnip.loaders')",16.142,1.5%,profile
+2025-07-23 23:12:09,"004.454: require('multicursors')",16.140,1.5%,profile
+2025-07-23 23:12:13,"000.977: require('kulala.augroups')",16.059,1.5%,profile
+2025-07-23 23:12:12,"002.773: require('fzf-lua')",16.032,1.5%,profile
+2025-07-23 23:12:11,"015.957: require('mason-nvim-dap.mappings.configurations')",15.957,1.5%,profile
+2025-07-23 23:12:11,"000.796: require('cmp.utils.window')",15.805,1.5%,profile
+2025-07-23 23:12:10,"003.557: require('telescope._extensions.git_signs')",15.711,1.5%,profile
+2025-07-23 23:12:13,"003.895: require('telescope.actions')",15.623,1.5%,profile
+2025-07-23 23:12:11,"002.085: require('cmp')",15.590,1.5%,profile
+2025-07-23 23:12:13,"002.394: require('cmp')",15.577,1.5%,profile
+2025-07-23 23:12:09,"000.624: require('CopilotChat')",15.537,1.5%,profile
+2025-07-23 23:12:10,"003.772: require('telescope._extensions.git_signs')",15.450,1.5%,profile
+2025-07-23 23:12:13,"001.431: require('mason-core.installer.InstallLocation')",15.418,1.5%,profile
+2025-07-23 23:12:13,"001.371: require('mason-registry')",15.406,1.5%,profile
+2025-07-23 23:12:12,"000.800: require('kulala.augroups')",15.390,1.5%,profile
+2025-07-23 23:12:12,"004.435: require('lspconfig')",15.361,1.4%,profile
+2025-07-23 23:12:11,"000.491: require('litee.gh.commands')",15.346,1.4%,profile
+2025-07-23 23:12:12,"001.055: require('render-markdown')",15.335,1.4%,profile
+2025-07-23 23:12:13,"012.598: require('harpoon')",15.303,1.4%,profile
+2025-07-23 23:12:11,"001.462: require('cmp.core')",15.295,1.4%,profile
+2025-07-23 23:12:11,"004.035: require('pieces.copilot.context.ui')",15.280,1.4%,profile
+2025-07-23 23:12:13,"000.380: require('formatter.filetypes.any')",15.253,1.4%,profile
+2025-07-23 23:12:09,"014.473: require('dap-go')",15.252,1.4%,profile
+2025-07-23 23:12:11,"002.819: require('render-markdown')",15.185,1.4%,profile
+2025-07-23 23:12:12,"015.170: require('CopilotChat.config.providers')",15.170,1.4%,profile
+2025-07-23 23:12:11,"000.607: require('mason-registry.sources.github')",15.158,1.4%,profile
+2025-07-23 23:12:11,"003.736: require('telescope._extensions.gpt')",15.055,1.4%,profile
+2025-07-23 23:12:13,"011.957: require('telescope')",15.020,1.4%,profile
+2025-07-23 23:12:11,"001.011: require('litee.gh.pr')",15.012,1.4%,profile
+2025-07-23 23:12:11,"015.009: require('cmp.utils.options')",15.009,1.4%,profile

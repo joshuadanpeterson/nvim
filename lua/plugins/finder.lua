@@ -96,6 +96,9 @@ return {
       'nvim-telescope/telescope-media-files.nvim',
     },
     cmd = 'Telescope',
+    config = function()
+      require('config.telescope')
+    end,
   },
 
   -- Tmux Telescope Plugin

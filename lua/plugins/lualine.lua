@@ -10,9 +10,10 @@ return {
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     },
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     config = function()
       require('lualine').setup {}
+      require('config.lualine')
     end,
   },
 

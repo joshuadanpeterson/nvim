@@ -60,6 +60,8 @@ return {
           lsp_doc_border = false,
         },
       }
+      -- Load additional noice configuration
+      require('config.noice')
     end,
   },
 }

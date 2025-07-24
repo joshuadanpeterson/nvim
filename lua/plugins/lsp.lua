@@ -13,6 +13,9 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'williamboman/nvim-lsp-installer',
     },
+    config = function()
+      require('config.lsp')
+    end,
   },
 
   -- Mason for managing LSP servers, linters, and formatters

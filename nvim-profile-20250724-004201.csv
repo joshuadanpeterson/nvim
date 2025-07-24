@@ -1,0 +1,62 @@
+timestamp,time_ms,item,percentage
+"20250724-004201",995.639,"199.997: sourcing /Users/joshpeterson/.config/nvim/init.lua",97.9%
+"20250724-004201",413.650,"000.365: require('config')",40.7%
+"20250724-004201",194.216,"001.048: require('config.keymaps')",19.1%
+"20250724-004201",140.977,"082.863: require('dap')",13.9%
+"20250724-004201",128.338,"003.762: require('config.telescope')",12.6%
+"20250724-004201",39.332,"002.068: sourcing /Users/joshpeterson/.local/share/nvim/lazy/render-markdown/plugin/render-markdown.lua",3.9%
+"20250724-004201",29.182,"000.565: require('telescope._extensions.lazy')",2.9%
+"20250724-004201",28.472,"001.102: require('CopilotChat')",2.8%
+"20250724-004201",28.080,"023.747: require('telescope._extensions.lazy.picker')",2.8%
+"20250724-004201",25.183,"001.798: require('luasnip.loaders.from_vscode')",2.5%
+"20250724-004201",24.912,"006.148: require('config.lualine')",2.4%
+"20250724-004201",23.723,"000.224: sourcing /Users/joshpeterson/.local/share/nvim/lazy/dash.nvim/plugin/dash.vim",2.3%
+"20250724-004201",21.309,"015.303: require('config.cmp')",2.1%
+"20250724-004201",20.704,"003.243: require('render-markdown')",2.0%
+"20250724-004201",19.826,"003.259: require('kulala')",1.9%
+"20250724-004201",19.102,"003.429: require('config.lsp')",1.9%
+"20250724-004201",18.974,"000.347: require('CopilotChat.context')",1.9%
+"20250724-004201",18.833,"001.393: require('mason-lock')",1.9%
+"20250724-004201",18.627,"000.367: require('CopilotChat.client')",1.8%
+"20250724-004201",18.597,"018.597: require('mason-nvim-dap.mappings.configurations')",1.8%
+"20250724-004201",18.582,"002.824: require('cmp')",1.8%
+"20250724-004201",18.260,"014.545: require('CopilotChat.tiktoken')",1.8%
+"20250724-004201",17.440,"009.282: require('mason-registry')",1.7%
+"20250724-004201",16.222,"001.420: require('kulala')",1.6%
+"20250724-004201",16.177,"000.245: sourcing /Users/joshpeterson/.local/share/nvim/lazy/plugin_neo_vim/plugin/pieces.lua",1.6%
+"20250724-004201",16.131,"004.975: require('telescope._extensions.emoji')",1.6%
+"20250724-004201",15.936,"003.793: require('harpoon')",1.6%
+"20250724-004201",15.748,"004.415: require('telescope._extensions.gpt')",1.5%
+"20250724-004201",15.286,"003.028: require('trouble.sources.telescope')",1.5%
+"20250724-004201",15.277,"001.160: require('cmp.core')",1.5%
+"20250724-004201",14.469,"000.494: require('telescope._extensions.jumper')",1.4%
+"20250724-004201",13.975,"000.399: require('jumper.telescope_extension')",1.4%
+"20250724-004201",13.547,"003.304: require('telescope._extensions.git_signs')",1.3%
+"20250724-004201",13.166,"003.281: require('copilot')",1.3%
+"20250724-004201",13.102,"002.074: require('config.fidget')",1.3%
+"20250724-004201",12.737,"001.778: require('pieces.copilot')",1.3%
+"20250724-004201",12.661,"009.653: require('lualine')",1.2%
+"20250724-004201",12.469,"003.622: require('multicursors')",1.2%
+"20250724-004201",12.273,"000.429: require('litee.gh')",1.2%
+"20250724-004201",12.143,"008.473: require('harpoon')",1.2%
+"20250724-004201",12.063,"000.222: require('formatter.filetypes.any')",1.2%
+"20250724-004201",11.841,"001.215: require('formatter.defaults')",1.2%
+"20250724-004201",11.155,"000.475: sourcing /Users/joshpeterson/.local/share/nvim/lazy/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim",1.1%
+"20250724-004201",11.096,"000.398: sourcing /Users/joshpeterson/.local/share/nvim/lazy/LuaSnip/plugin/luasnip.lua",1.1%
+"20250724-004201",11.028,"001.298: require('fidget')",1.1%
+"20250724-004201",11.026,"002.440: require('chatgpt')",1.1%
+"20250724-004201",10.914,"000.983: sourcing /Users/joshpeterson/.local/share/nvim/lazy/legendary.nvim/plugin/legendary.lua",1.1%
+"20250724-004201",10.339,"000.329: require('mason-registry.sources.github')",1.0%
+"20250724-004201",10.195,"000.342: require('luasnip.util.parser')",1.0%
+
+# Summary Statistics
+metric,value
+runs,5
+mean,1011.24
+median,1017.117
+min,807.086
+max,1200.130
+std_dev,138.121
+threshold,10
+analyzed_run,4
+items_found,49

@@ -5,8 +5,7 @@ return {
 
   {
     'hrsh7th/nvim-cmp',
-    lazy = false,
-    priority = 100,
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'onsails/lspkind.nvim',
       'hrsh7th/cmp-nvim-lsp',
@@ -19,6 +18,7 @@ return {
     },
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
+      require('config.cmp')
     end,
   },
 

@@ -1,0 +1,13 @@
+Module/Script,Time (ms)
+config.keymaps,207.671
+dap,125.294
+config.telescope,95.976
+fzf-lua.fzf,25.376
+render-markdown,20.259
+mason-core.EventEmitter,22.471
+mason-registry,23.682
+mason-lock,34.021
+dap,69.675
+litee.gh.pr,12.399
+config.dap,43.318
+config.fidget,32.699

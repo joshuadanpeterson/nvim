@@ -1,6 +1,16 @@
 -- plugins/markdown.lua
 
 return {
+  -- Load markdown configuration
+  {
+    "markdown-config",
+    name = "markdown-config",
+    ft = "markdown",
+    dir = vim.fn.stdpath("config"),
+    config = function()
+      require('config.markdown')
+    end,
+  },
 
   -- glow.nvim: markdown preview
   {

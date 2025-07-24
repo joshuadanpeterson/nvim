@@ -1,0 +1,13 @@
+timestamp,time_ms,item,percentage
+
+# Summary Statistics
+metric,value
+runs,5
+mean,927.176
+median,895.325
+min,808.599
+max,1049.553
+std_dev,85.4823
+threshold,15
+analyzed_run,2
+items_found,0

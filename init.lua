@@ -90,9 +90,6 @@ lazy.setup {
   },
 }
 
--- initialize configurations
-require 'config'
-
 -- Plugin Manager Setup
 
 -- Setup legendary.nvim

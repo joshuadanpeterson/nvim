@@ -68,7 +68,7 @@ return {
                 vim.cmd('cd /Users/joshpeterson/.config/nvim')
                 vim.cmd('edit init.lua')
                 vim.notify("Changed to Neovim config")
-                vim.cmd('source ~/.config/nvim/lua/config/keymaps.lua')
+                require('config.keymaps').setup()
               end,
               desc = ' Neovim Config',
               icon = ' ',
@@ -80,7 +80,7 @@ return {
                 vim.cmd('cd /Users/joshpeterson/.config/tmux')
                 vim.cmd('edit .tmux.conf')
                 vim.notify("Changed to Tmux config")
-                vim.cmd('source ~/.config/nvim/lua/config/keymaps.lua')
+                require('config.keymaps').setup()
               end,
               desc = ' Tmux Config',
               icon = ' ',
@@ -92,7 +92,7 @@ return {
                 vim.cmd('cd /Users/joshpeterson/.config/zsh-config/')
                 vim.cmd('edit .zshrc')
                 vim.notify("Changed to Zsh config")
-                vim.cmd('source ~/.config/nvim/lua/config/keymaps.lua')
+                require('config.keymaps').setup()
               end,
               desc = ' Zsh Config',
               icon = ' ',
@@ -105,7 +105,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Blogging | edit . | lua vim.notify("Changed working directory to Obsidian Blogging Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Blogging | edit . | lua vim.notify("Changed working directory to Obsidian Blogging Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Blogging Vault',
               icon = ' ',
               key = 'b'
@@ -113,7 +113,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Crypto | edit . | lua vim.notify("Changed working directory to Obsidian Crypto Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Crypto | edit . | lua vim.notify("Changed working directory to Obsidian Crypto Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Crypto Vault',
               icon = ' ',
               key = 'C'
@@ -121,7 +121,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Journals | edit . | lua vim.notify("Changed working directory to Obsidian Journal Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Journals | edit . | lua vim.notify("Changed working directory to Obsidian Journal Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Journal Vault',
               icon = ' ',
               key = 'j'
@@ -129,7 +129,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Poetry | edit . | lua vim.notify("Changed working directory to Obsidian Poetry Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Poetry | edit . | lua vim.notify("Changed working directory to Obsidian Poetry Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Poetry Vault',
               icon = ' ',
               key = 'P'
@@ -137,7 +137,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Programming | edit . | lua vim.notify("Changed working directory to Obsidian Programming Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Programming | edit . | lua vim.notify("Changed working directory to Obsidian Programming Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Programming Vault',
               icon = ' ',
               key = 'p'
@@ -145,7 +145,7 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Udemy/| edit . | lua vim.notify("Changed working directory to Obsidian Udemy Vault"); vim.cmd("source ~/.config/nvim/lua/config/keymaps.lua")')]],
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Udemy/| edit . | lua vim.notify("Changed working directory to Obsidian Udemy Vault"); require("config.keymaps").setup()')]],
               desc = ' Open Udemy Vault',
               icon = ' ',
               key = 'u'
