@@ -18,7 +18,14 @@ return {
       'nvim-neotest/nvim-nio',
     },
     lazy = true,
-    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue' },
+    keys = {
+      { '<leader>dd', desc = 'DAP Continue' },
+      { '<leader>db', desc = 'DAP Toggle Breakpoint' },
+      { '<leader>dB', desc = 'DAP Set Breakpoint' },
+      { '<leader>dr', desc = 'DAP Toggle REPL' },
+      { '<leader>du', desc = 'DAP UI Toggle' },
+    },
+    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue', 'DapStepInto', 'DapStepOver', 'DapStepOut' },
     config = function()
       require('dapui').setup()
     end,
@@ -34,7 +41,18 @@ return {
       'leoluz/nvim-dap-go',
     },
     lazy = true,
-    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue' },
+    keys = {
+      { '<leader>dd', function() require('dap').continue() end, desc = 'DAP Continue' },
+      { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'DAP Toggle Breakpoint' },
+      { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = 'DAP Set Breakpoint' },
+      { '<leader>dr', function() require('dap').repl.toggle() end, desc = 'DAP Toggle REPL' },
+      { '<leader>dl', function() require('dap').run_last() end, desc = 'DAP Run Last' },
+      { '<leader>di', function() require('dap').step_into() end, desc = 'DAP Step Into' },
+      { '<leader>do', function() require('dap').step_over() end, desc = 'DAP Step Over' },
+      { '<leader>dO', function() require('dap').step_out() end, desc = 'DAP Step Out' },
+      { '<leader>du', function() require('dapui').toggle() end, desc = 'DAP UI Toggle' },
+    },
+    cmd = { 'DapToggleBreakpoint', 'DapStart', 'DapContinue', 'DapStepInto', 'DapStepOver', 'DapStepOut' },
     config = function()
       local dap = require 'dap'
       local dapui = require 'dapui'

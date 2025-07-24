@@ -9,7 +9,8 @@ return {
   -- Telescope UI Select
   {
     'nvim-telescope/telescope-ui-select.nvim',
-    event = 'VimEnter',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Fuzzy Finder Algorithm
@@ -17,37 +18,43 @@ return {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
     cond = vim.fn.executable 'make' == 1,
-    event = 'VimEnter',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Telescope Project
   {
     'nvim-telescope/telescope-project.nvim',
-    cmd = 'Telescope',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Fzy Native Search
   {
     'nvim-telescope/telescope-fzy-native.nvim',
-    cmd = 'Telescope',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Telescope Zoxide
   {
     'jvgrootveld/telescope-zoxide',
-    cmd = 'Telescope',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Telescope Helpgrep
   {
     'catgoose/telescope-helpgrep.nvim',
-    cmd = 'Telescope',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Telescope Repo
   {
     'cljoly/telescope-repo.nvim',
-    cmd = 'Telescope',
+    lazy = true,
+    dependencies = { 'nvim-telescope/telescope.nvim' },
   },
 
   -- Fzf Vim
@@ -70,14 +77,14 @@ return {
       'nvim-telescope/telescope.nvim',
       'jackMort/ChatGPT.nvim',
     },
-    cmd = 'Telescope',
+    lazy = true,
   },
 
   -- Tldr Telescope Extension
   {
     'mrjones2014/tldr.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim' },
-    cmd = 'Telescope',
+    lazy = true,
   },
 
   -- Fuzzy Finder (files, lsp, etc)

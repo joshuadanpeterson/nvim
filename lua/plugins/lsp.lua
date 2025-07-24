@@ -22,6 +22,9 @@ return {
   {
     'williamboman/mason.nvim',
     cmd = 'Mason',
+    lazy = true,
+    -- Language servers will auto-bootstrap on first LspAttach
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason').setup {
         ui = {
@@ -34,14 +37,17 @@ return {
   -- Mason-LSPConfig to bridge Mason and nvim-lspconfig
   {
     'williamboman/mason-lspconfig.nvim',
-    after = 'mason.nvim',
+    lazy = true,
+    dependencies = { 'mason.nvim' },
+    event = { 'BufReadPre', 'BufNewFile' },
   },
 
   -- mason-lock.nvim for managing LSP server versions
   {
     "zapling/mason-lock.nvim",
-
-    after = 'mason.nvim',
+    lazy = true,
+    dependencies = { 'mason.nvim' },
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require("mason-lock").setup({
         lockfile_path = vim.fn.stdpath("config") .. "/mason-lock.json" -- (default)

@@ -6,6 +6,9 @@
 require 'config.settings' -- For basic Neovim settings
 -- require("config.vim")      -- For vim config
 
+-- Load lazy loading helpers
+require 'config.lazy-loading-helpers'
+
 -- lazy.nvim setup
 -- lazy.nvim is a lazy-loading plugin manager for Neovim.
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

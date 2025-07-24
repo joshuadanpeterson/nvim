@@ -7,11 +7,17 @@ return {
   -- nvim-treesitter for enhanced syntax highlighting and additional language features
   {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    -- Avoid run = ':TSUpdate' to prevent blocking on startup
+    -- Instead, run updates via Mason or a separate command
+    lazy = true,
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
+    config = function()
+      -- Load the actual Treesitter configuration
+      require('config.treesitter')
+    end,
   },
 
   -- nvim-treesitter/playground to explore Treesitter queries in a UI
