@@ -48,6 +48,40 @@ git clone https://github.com/joshuadanpeterson/nvim.git ~/.config/nvim
 
 The configuration is designed for easy customization. You're encouraged to modify the `init.lua` and files within the `lua/` directory to tailor the setup to your preferences. The scripts are well-documented to facilitate understanding and modifications.
 
+## Profiling Neovim Startup Performance
+
+A robust profiling script is available to analyze and optimize Neovim startup times, ensuring performance targets are met consistently. The profiling tool measures both cold start and cached startup times, and produces detailed reports in CSV format for thorough analysis.
+
+### Usage
+
+To profile your Neovim startup, navigate to the Neovim configuration directory and execute the profiling script:
+
+```bash
+python3 scripts/profile_init.py
+```
+
+### Performance Targets
+
+- **Cold Start:** < 400 ms
+- **Cached Start:** < 150 ms
+
+### Report
+
+The script generates a detailed `after.csv` report in the `profile/` directory, summarizing performance metrics and the execution times of various modules or scripts. This report serves as a benchmark for ongoing optimizations.
+
+### Best Practices for Adding New Plugins
+
+When adding new plugins to maintain optimal startup performance:
+
+1. **Use Lazy Loading**: Configure plugins to load only when needed using `lazy.nvim`'s event, command, or filetype triggers
+2. **Profile After Changes**: Run `python3 scripts/profile_init.py` after adding new plugins to ensure targets are still met
+3. **Optimize Heavy Plugins**: For plugins that significantly impact startup time:
+   - Consider alternatives with better performance
+   - Configure them to load on-demand rather than at startup
+   - Use the `event = "VeryLazy"` option for non-critical plugins
+4. **Monitor Module Load Times**: Review the CSV report to identify slow-loading modules
+5. **Set Budget Limits**: Aim to keep individual module load times under 20ms where possible
+
 ## Contribution
 
 Feel free to fork the repository and make your changes.
