@@ -14,15 +14,6 @@ return {
     end,
   },
 
-  -- nvim-autopairs: Automatically pairs brackets, quotes, etc.
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = function()
-      require('nvim-autopairs').setup {}
-    end,
-  },
-
   -- vim-commentary: Efficient commenting in Vim, toggle comments easily.
   {
     'tpope/vim-commentary',
