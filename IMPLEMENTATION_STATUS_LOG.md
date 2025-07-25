@@ -16,6 +16,23 @@ This log tracks the implementation status of the Neovim configuration project, d
 
 ## Recent Updates
 
+### 2025-07-25
+
+#### ISL-004: Dressing.nvim Configuration Refactoring 🟢 **DONE**
+- **Priority**: Medium
+- **Description**: Move dressing.nvim configuration to proper plugin spec location
+- **Status**: Completed
+- **Date Started**: 2025-07-25
+- **Date Completed**: 2025-07-25
+- **Changes Made**:
+  - Moved dressing.nvim setup from init.lua to lua/plugins/ui.lua
+  - Added proper plugin spec configuration with border and select options
+  - Cleaned up legendary.nvim setup by removing embedded dressing config
+  - Fixed typo in legendary.nvim comment (elescope -> telescope)
+- **Files Affected**: 2 files changed, 20 insertions(+), 21 deletions(-)
+- **Commit**: `88be469` - "refactor(config): 🚚 Move dressing.nvim config to plugin spec"
+- **Notes**: Better organization following lazy.nvim plugin spec patterns
+
 ### 2024-12-28
 
 #### ISL-001: Project Structure Reorganization 🟢 **DONE**
@@ -135,5 +152,5 @@ The Noice cmdline popup is a centered popup window that replaces Neovim's defaul
 
 ---
 
-*Last Updated: 2024-12-28*
-*Current Version: v1.0.0-reorganized*
+*Last Updated: 2025-07-25*
+*Current Version: v1.0.1-refactored*
