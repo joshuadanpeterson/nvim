@@ -26,7 +26,24 @@ return {
   {
     'stevearc/dressing.nvim',
     event = 'BufReadPre',
-    opts = {},
+    opts = {
+      input = {
+        border = 'rounded',
+      },
+      select = {
+        get_config = function(opts)
+          if opts.kind == 'legendary.nvim' then
+            return {
+              telescope = {
+                sorter = require('telescope.sorters').fuzzy_with_index_bias {},
+              },
+            }
+          else
+            return {}
+          end
+        end,
+      },
+    },
   },
 
   -- Customizable Neovim dashboard for better startup experience

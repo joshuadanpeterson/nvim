@@ -173,28 +173,10 @@ require('legendary').setup {
   -- in the legend by default, set to false to disable
   include_legendary_cmds = true,
   -- Options for list sorting. Note that fuzzy-finders will still
-  -- do their own sorting. For elescope.nvim, you can set it to use
+  -- do their own sorting. For telescope.nvim, you can set it to use
   -- `require('telescope.sorters').fuzzy_with_index_bias({})` when
   -- triggered via `legendary.nvim`. Example config for `dressing.nvim`:
-
-  require('dressing').setup {
-    input = {
-      border = 'rounded',
-    },
-    select = {
-      get_config = function(opts)
-        if opts.kind == 'legendary.nvim' then
-          return {
-            telescope = {
-              sorter = require('telescope.sorters').fuzzy_with_index_bias {},
-            },
-          }
-        else
-          return {}
-        end
-      end,
-    },
-  },
+  -- (The dressing.nvim setup should be done in its own plugin spec)
   sort = {
     -- put most recently selected item first, this works
     -- both within global and item group lists
