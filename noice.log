@@ -10,3 +10,3203 @@
 { "cmdline_show", "sl:1", "tick:647", "mode:c", { { 0, "Noice" } } }
 { "cmdline_show", "sl:1", "tick:649", "mode:c", { { 0, "NoiceDebug" } } }
 { "cmdline_hide", "sl:1", "tick:651", false, 1 }
+{
+  event = "msg_showcmd",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showcmd",
+  kind = { { 0, ":" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 0, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 4, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nice" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 3, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Nic" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 2, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "Ni" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{ 1, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "N" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{ 11, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceErrors" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{
+  event = "msg_showmode",
+  kind = {}
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{ 10, ":", "", 0, 1,
+  event = "cmdline_show",
+  kind = { { 0, "NoiceDebug" } }
+}
+{
+  event = "cmdline_hide",
+  kind = 1
+}
