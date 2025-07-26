@@ -111,16 +111,16 @@ function M.setup()
   { "<leader>lr",     ':Lspsaga rename<CR>',                                       desc = 'Rename' },
   { "<leader>lc",     ':Lspsaga code_action<CR>',                                  desc = 'Code Action' },
   { "<leader>ld",     ':Lspsaga peek_definition<CR>',                              desc = 'Peek Definition' },
-  { "<leader>lR",     require('telescope.builtin').lsp_references,                 desc = 'Goto References' },
-  { "<leader>li",     ':Lspsaga finder<CR>',                                       desc = 'Show References and Implementations' },
-  { "<leader>lt",     ':Lspsaga peek_type_definition<CR>',                         desc = 'Peek Type Definition' },
-  { "<leader>ls",     require('telescope.builtin').lsp_document_symbols,           desc = 'Document Symbols' },
-  { "<leader>lw",     require('telescope.builtin').lsp_workspace_symbols,          desc = 'Workspace Symbols' },
+  { "<leader>lR",     function() require('telescope.builtin').lsp_references() end,         desc = 'Goto References' },
+  { "<leader>li",     ':Lspsaga finder<CR>',                                                  desc = 'Show References and Implementations' },
+  { "<leader>lt",     ':Lspsaga peek_type_definition<CR>',                                    desc = 'Peek Type Definition' },
+  { "<leader>ls",     function() require('telescope.builtin').lsp_document_symbols() end,    desc = 'Document Symbols' },
+  { "<leader>lw",     function() require('telescope.builtin').lsp_workspace_symbols() end,   desc = 'Workspace Symbols' },
   { "<leader>lH",     ':Lspsaga hover_doc<CR>',                                    desc = 'Hover Documentation' },
-  { "<leader>lS",     vim.lsp.buf.signature_help,                                  desc = 'Signature Help' },
-  { "<leader>lg",     vim.lsp.buf.declaration,                                     desc = 'Goto Declaration' },
-  { "<leader>la",     vim.lsp.buf.add_workspace_folder,                            desc = 'Add Workspace Folder' },
-  { "<leader>lx",     vim.lsp.buf.remove_workspace_folder,                         desc = 'Remove Workspace Folder' },
+  { "<leader>lS",     function() vim.lsp.buf.signature_help() end,                          desc = 'Signature Help' },
+  { "<leader>lg",     function() vim.lsp.buf.declaration() end,                              desc = 'Goto Declaration' },
+  { "<leader>la",     function() vim.lsp.buf.add_workspace_folder() end,                    desc = 'Add Workspace Folder' },
+  { "<leader>lx",     function() vim.lsp.buf.remove_workspace_folder() end,                 desc = 'Remove Workspace Folder' },
   {
     "<leader>ll",
     function()
@@ -131,8 +131,8 @@ function M.setup()
 
   -- Diagnostic Mappings
   { "<leader>d",  group = "Diagnostic Mappings" },
-  { "<leader>dh", vim.diagnostic.open_float,                desc = 'Show Diagnostic Hover' },
-  { "<leader>di", require('telescope.builtin').diagnostics, desc = 'Search Workspace Diagnostics' },
+  { "<leader>dh", function() vim.diagnostic.open_float() end,                        desc = 'Show Diagnostic Hover' },
+  { "<leader>di", function() require('telescope.builtin').diagnostics() end,         desc = 'Search Workspace Diagnostics' },
   {
     "<leader>dd",
     function()
@@ -158,7 +158,7 @@ function M.setup()
   { "<leader>dl", ':LspInfo<CR>',                                                                         desc = 'Get LspInfo' },
   { "<leader>dc", ':CmpStatus<CR>',                                                                       desc = 'Get CmpStatus' },
   { "<leader>dC", ':ConformInfo<CR>',                                                                     desc = 'Get ConformInfo' },
-  { "<leader>dq", require('telescope.builtin').quickfix(),                                                desc = 'Search Quickfix List' },
+  { "<leader>dq", function() require('telescope.builtin').quickfix() end,                                 desc = 'Search Quickfix List' },
   { "<leader>ds", ':NoiceStats<CR>',                                                                      desc = 'Noice Stats' },
   { "<leader>de", ':NoiceErrors<CR>',                                                                     desc = 'Noice Errors' },
   { "<leader>da", ':NoiceAll<CR>',                                                                        desc = 'Noice All' },
@@ -272,22 +272,22 @@ function M.setup()
     desc = 'Search Files'
   },
   { "<leader>tR", '<cmd>Telescope registers<CR>',                         desc = 'Search Registers' },
-  { "<leader>tb", require('telescope.builtin').current_buffer_fuzzy_find, desc = 'Search Current Buffer' },
-  { "<leader>th", ':FuzzyHelp<CR>',                                       desc = 'Search Help' },
-  { "<leader>tw", require('telescope.builtin').grep_string,               desc = 'Search Current Word' },
-  { "<leader>tg", require('telescope.builtin').live_grep,                 desc = 'Search by Grep' },
-  { "<leader>tG", '<cmd>Telescope helpgrep<CR>',                          desc = 'Search Grep Help' },
-  { "<leader>tr", require('telescope.builtin').resume,                    desc = 'Resume Last Search' },
-  { "<leader>tc", require('telescope.builtin').commands,                  desc = 'Search Telescope Commands' },
-  { "<leader>tC", require('telescope.builtin').command_history,           desc = 'Search Command History' },
-  { "<leader>tH", require('telescope.builtin').search_history,            desc = 'Search History' },
-  { "<leader>tM", ':FuzzyMan<CR>',                                        desc = 'Search Man Pages' },
-  { "<leader>tk", require('telescope.builtin').keymaps,                   desc = 'Search Keymaps' },
-  { "<leader>ts", require('telescope.builtin').spell_suggest,             desc = 'Search Spelling Suggestions' },
-  { "<leader>tD", ':Dash<CR>',                                            desc = 'Search Dash' },
-  { "<leader>tW", ':DashWord<CR>',                                        desc = 'Search Dash by word' },
-  { "<leader>tt", '<cmd>Telescope themes<CR>',                            desc = 'Search Themes' },
-  { "<leader>t?", require('telescope.builtin').oldfiles,                  desc = 'Find recently opened files' },
+  { "<leader>tb", function() require('telescope.builtin').current_buffer_fuzzy_find() end, desc = 'Search Current Buffer' },
+  { "<leader>th", ':FuzzyHelp<CR>',                                                        desc = 'Search Help' },
+  { "<leader>tw", function() require('telescope.builtin').grep_string() end,               desc = 'Search Current Word' },
+  { "<leader>tg", function() require('telescope.builtin').live_grep() end,                 desc = 'Search by Grep' },
+  { "<leader>tG", '<cmd>Telescope helpgrep<CR>',                                           desc = 'Search Grep Help' },
+  { "<leader>tr", function() require('telescope.builtin').resume() end,                    desc = 'Resume Last Search' },
+  { "<leader>tc", function() require('telescope.builtin').commands() end,                  desc = 'Search Telescope Commands' },
+  { "<leader>tC", function() require('telescope.builtin').command_history() end,           desc = 'Search Command History' },
+  { "<leader>tH", function() require('telescope.builtin').search_history() end,            desc = 'Search History' },
+  { "<leader>tM", ':FuzzyMan<CR>',                                                         desc = 'Search Man Pages' },
+  { "<leader>tk", function() require('telescope.builtin').keymaps() end,                   desc = 'Search Keymaps' },
+  { "<leader>ts", function() require('telescope.builtin').spell_suggest() end,             desc = 'Search Spelling Suggestions' },
+  { "<leader>tD", ':Dash<CR>',                                                             desc = 'Search Dash' },
+  { "<leader>tW", ':DashWord<CR>',                                                         desc = 'Search Dash by word' },
+  { "<leader>tt", '<cmd>Telescope themes<CR>',                                             desc = 'Search Themes' },
+  { "<leader>t?", function() require('telescope.builtin').oldfiles() end,                  desc = 'Find recently opened files' },
   { "<leader>tS", '<cmd>Telescope uniswapfiles telescope_swap_files<CR>', desc = 'Search Swap Files' },
   { "<leader>to", '<cmd>Telescope oldfiles<cr>',                          desc = 'Recent Files' },
   { "<leader>tB", '<cmd>Telescope buffers<cr>',                           desc = 'List Buffers' },
@@ -436,12 +436,12 @@ function M.setup()
 
   -- Git Keymaps
   { "<leader>g",      group = "Git Keymaps" },
-  { "<leader>gr",     require('telescope.builtin').git_files,    desc = 'Search Git Files' },
-  { "<leader>gs",     require('telescope.builtin').git_stash,    desc = 'Search Git Stash' },
-  { "<leader>gS",     require('telescope.builtin').git_status,   desc = 'Search Git Status' },
-  { "<leader>gC",     '<cmd>Telescope git_bcommits<CR>',         desc = 'Search Git Buffer Commits' },
-  { "<leader>gd",     require('telescope.builtin').git_commits,  desc = 'Search Git Directory Commits' },
-  { "<leader>gb",     require('telescope.builtin').git_branches, desc = 'Search Git Branches' },
+  { "<leader>gr",     function() require('telescope.builtin').git_files() end,    desc = 'Search Git Files' },
+  { "<leader>gs",     function() require('telescope.builtin').git_stash() end,    desc = 'Search Git Stash' },
+  { "<leader>gS",     function() require('telescope.builtin').git_status() end,   desc = 'Search Git Status' },
+  { "<leader>gC",     '<cmd>Telescope git_bcommits<CR>',                          desc = 'Search Git Buffer Commits' },
+  { "<leader>gd",     function() require('telescope.builtin').git_commits() end,  desc = 'Search Git Directory Commits' },
+  { "<leader>gb",     function() require('telescope.builtin').git_branches() end, desc = 'Search Git Branches' },
   { "<leader>gp",     '<cmd>Telescope git_signs<CR>',            desc = 'Search Preview Hunks' },
   { "<leader>gT",     ':Gitsigns toggle_current_line_blame<CR>', desc = 'Toggle Git Blame' },
   { "<leader>gt",     '<cmd>Telescope repo list<CR>',            desc = 'Search Git Repos' },
@@ -558,12 +558,7 @@ local function isInObsidianVault()
   return vim.fn.isdirectory(obsidian_config_path) ~= 0
 end
 
-if isInObsidianVault() then
-  local status = pcall(require, 'obsidian')
-  if status then
-    wk.register(obsidianMappings, { prefix = '<leader>o', mode = 'n' })
-  end
-end
+-- Obsidian mappings are already registered above in the main wk.add() call
 
 -- Noice LSP Hoever Doc Scrolling Keymaps
 vim.keymap.set({ 'n', 'i', 's' }, '<c-f>', function()
