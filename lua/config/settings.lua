@@ -315,6 +315,7 @@ track_horizontal_scroll()
 vim.filetype.add({
   extension = {
     ['http'] = 'http',
+    ['jsx'] = 'javascriptreact',  -- Map .jsx files to javascriptreact filetype
   },
 })
 

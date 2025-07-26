@@ -37,7 +37,7 @@ require('nvim-treesitter.configs').setup {
     'html',
     'css',
     'javascript',
-    'jsx',
+    -- 'jsx' is not a separate parser, it's handled by javascript/tsx
     'typescript',
     'tsx',
     'latex',
@@ -161,3 +161,7 @@ require('ts_context_commentstring').setup {}
 -- Get Treesitter to support embeded languages
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.tsx.used_by = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' }
+
+-- JSX files should use the javascript parser (there's no separate jsx parser)
+vim.treesitter.language.register('javascript', 'javascriptreact')
+vim.treesitter.language.register('javascript', 'jsx')
