@@ -27,7 +27,7 @@ return {
     'xiyaowong/transparent.nvim',
     priority = 1000, -- load early to ensure proper initialization
     config = function()
-      require('transparent').setup({
+      require('transparent').setup {
         groups = { -- table: default groups
           'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
           'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
@@ -40,7 +40,7 @@ return {
         },
         exclude_groups = {},       -- table: groups you don't want to clear
         on_clear = function() end, -- function: code to be executed after highlight groups are cleared
-      })
+      }
     end,
   },
 

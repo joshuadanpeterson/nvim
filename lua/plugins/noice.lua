@@ -12,7 +12,11 @@ return {
     'rcarriga/nvim-notify',
     priority = 1001,
     config = function()
-      require("notify").setup({ stages = "fade", timeout = 3000 })
+      require("notify").setup({ 
+        stages = "fade", 
+        timeout = 3000,
+        background_colour = "#000000",  -- Set background color to avoid transparency warning
+      })
       vim.notify = require("notify")
     end,
   },
