@@ -5,6 +5,9 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
+    dependencies = {
+      { "keymap-config", name = "keymap-config", dir = vim.fn.stdpath("config") },
+    },
     config = function()
       local which_key = require 'which-key'
 
@@ -86,11 +89,13 @@ return {
           group = "+",
           ellipsis = "…",
           colors = true,
+          mappings = true,
+          rules = {},
           keys = {
-            Up = " ",
-            Down = " ",
-            Left = " ",
-            Right = " ",
+            Up = "↑ ",
+            Down = "↓ ",
+            Left = "← ",
+            Right = "→ ",
             C = "󰘴 ",
             M = "󰘵 ",
             S = "󰘶 ",
@@ -118,6 +123,9 @@ return {
       }
 
       which_key.setup(opts)
+      
+      -- Ensure keymaps are loaded
+      require('config.keymaps').setup()
     end,
     keys = {
       {

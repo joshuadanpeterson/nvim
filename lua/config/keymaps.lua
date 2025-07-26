@@ -548,9 +548,6 @@ if is_kulala_available() then
   })
 end
 
--- Setup with default options
-wk.setup {}
-
 -- Registering Obsidian mappings under the 'n' (normal) mode leader key
 -- Invoke only if Obsidian is loaded
 local function isInObsidianVault()
