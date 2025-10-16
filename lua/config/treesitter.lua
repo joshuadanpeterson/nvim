@@ -56,11 +56,6 @@ require('nvim-treesitter.configs').setup {
     updatetime = 25,         -- Debounced time for highlighting nodes from source code
     persist_queries = false, -- Persist queries across sessions
   },
-  rainbow = {
-    enable = true,
-    query = 'rainbow-parens',
-    strategy = require('ts-rainbow.strategy.global'),
-  },
   indent = { enable = true },
   incremental_selection = {
     enable = true,

@@ -251,10 +251,6 @@ require('legendary').setup {
   log_level = 'debug',
 }
 
--- multicursors.nvim Status Line module
-require('multicursors').setup {
-  hint_config = false,
-}
 
 -- CODESTATS_API_KEY
 local codestats_api_key = os.getenv 'CODESTATS_API_KEY'

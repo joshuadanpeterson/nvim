@@ -13,13 +13,30 @@ return {
     event = 'BufReadPre',
   },
 
-  -- Rainbow parentheses using nvim-ts-rainbow2
+  -- Rainbow delimiters (replaces deprecated nvim-ts-rainbow2)
   {
-    'HiPhish/nvim-ts-rainbow2',
+    'HiPhish/rainbow-delimiters.nvim',
     event = 'BufReadPre',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        priority = {
+          [''] = 110,
+          lua = 99,
+        },
+      }
+    end,
   },
 
   -- transparent plugin (avoid lazy loading as per plugin documentation)
