@@ -26,8 +26,9 @@ return {
     -- See Commands section for default commands if you want to lazy load on them
   },
 
-  -- Pieces for Neovim
+  -- Pieces for Neovim (disabled due to Python/pydantic remote plugin errors on 0.11)
   {
     'pieces-app/plugin_neo_vim',
+    enabled = false,
   },
 }

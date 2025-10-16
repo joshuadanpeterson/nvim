@@ -260,8 +260,11 @@ require('codestats-nvim').setup {
   token = codestats_api_key,
 }
 
--- Pieces for Neovim
-require("pieces.config").host = "http://localhost:1000"
+-- Pieces for Neovim (optional)
+local ok_pieces, pieces_cfg = pcall(require, "pieces.config")
+if ok_pieces and pieces_cfg then
+  pieces_cfg.host = "http://localhost:1000"
+end
 
 -- Delete temporary files
 vim.api.nvim_create_autocmd("VimLeave", {
