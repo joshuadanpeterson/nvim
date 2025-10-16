@@ -345,6 +345,9 @@ function M.setup()
   { "<leader>JH", ':SonicPiHideLogs<CR>',                          desc = 'Hide logs' },
   { "<leader>Jc", ':SonicPiCloseLogs<CR>',                         desc = 'Close logs' },
   { "<leader>JX", ':SonicPiStopAndClose<CR>',                      desc = 'Stop & close' },
+  { "<leader>Ja", function() require('config.sonicpi').toggle_autorun() end, desc = 'Toggle autorun' },
+  { "<leader>Jm", function() require('config.sonicpi').toggle_mode() end,    desc = 'Toggle hard/soft reload' },
+  { "<leader>Jw", function() require('config.sonicpi').toggle_write_only() end, desc = 'Toggle write-only trigger' },
 
   -- legendary.nvim Keymaps
   { "<leader>X",  group = "Legendary Keymaps" },

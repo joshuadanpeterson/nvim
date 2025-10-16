@@ -33,6 +33,8 @@ return {
         server_dir = "/Applications/Sonic Pi.app/Contents/Resources/app/server",
         lsp_diagnostics = true,
       })
+      -- QoL: setup autorun helpers (toggle via <leader>Ja / <leader>Jm)
+      pcall(require, 'config.sonicpi').setup()
     end,
   },
 }
