@@ -155,7 +155,7 @@ vim.lsp.config('solargraph', {
   on_init = function(client)
     local ok, sp = pcall(require, 'sonicpi')
     if ok then
-      sp.lsp_on_init(client, { server_dir = nil }) -- auto-detect
+sp.lsp_on_init(client, { server_dir = "/Applications/Sonic Pi.app/Contents/Resources/app/server" })
     end
   end,
 })

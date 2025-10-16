@@ -339,6 +339,7 @@ function M.setup()
   { "<leader>Jd", ':SonicPiStartDaemon<CR>',                       desc = 'Start daemon' },
   { "<leader>JS", ':SonicPiStopDaemon<CR>',                        desc = 'Stop daemon' },
   { "<leader>Jr", ':SonicPiSendBuffer<CR>',                        desc = 'Run buffer' },
+  { "<leader>Jr", ':SonicPiSendSelection<CR>',                     desc = 'Run selection', mode = 'v' },
   { "<leader>Js", ':SonicPiStop<CR>',                              desc = 'Stop run' },
   { "<leader>Jl", ':SonicPiLogs<CR>',                              desc = 'Show logs' },
   { "<leader>JH", ':SonicPiHideLogs<CR>',                          desc = 'Hide logs' },

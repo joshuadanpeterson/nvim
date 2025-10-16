@@ -29,7 +29,10 @@ return {
     ft = { "ruby", "sonicpi" },
     dependencies = { 'hrsh7th/nvim-cmp', 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require("sonicpi").setup({})
+      require("sonicpi").setup({
+        server_dir = "/Applications/Sonic Pi.app/Contents/Resources/app/server",
+        lsp_diagnostics = true,
+      })
     end,
   },
 }
