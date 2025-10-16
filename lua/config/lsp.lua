@@ -6,9 +6,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
--- Load required plugins
-local lspconfig = require('lspconfig')
-
 -- Enhanced capabilities for nvim-cmp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -61,7 +58,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Manual LSP server configurations to avoid automatic_enable issues
 -- Lua LSP
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -77,9 +74,10 @@ lspconfig.lua_ls.setup({
     },
   },
 })
+vim.lsp.enable('lua_ls')
 
 -- TypeScript/JavaScript LSP
-lspconfig.ts_ls.setup({
+vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
@@ -96,22 +94,25 @@ lspconfig.ts_ls.setup({
     },
   },
 })
+vim.lsp.enable('ts_ls')
 
 -- HTML LSP
-lspconfig.html.setup({
+vim.lsp.config('html', {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { 'html' },
 })
+vim.lsp.enable('html')
 
 -- CSS LSP
-lspconfig.cssls.setup({
+vim.lsp.config('cssls', {
   capabilities = capabilities,
   on_attach = on_attach,
 })
+vim.lsp.enable('cssls')
 
 -- Python LSP
-lspconfig.pyright.setup({
+vim.lsp.config('pyright', {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -124,9 +125,10 @@ lspconfig.pyright.setup({
     },
   },
 })
+vim.lsp.enable('pyright')
 
 -- Emmet LSP
-lspconfig.emmet_ls.setup({
+vim.lsp.config('emmet_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
@@ -138,6 +140,7 @@ lspconfig.emmet_ls.setup({
     },
   },
 })
+vim.lsp.enable('emmet_ls')
 
 -- Optional: Setup typescript.nvim plugin with filetype-based loading
 -- vim.api.nvim_create_autocmd("FileType", {
