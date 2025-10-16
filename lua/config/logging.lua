@@ -30,13 +30,15 @@ end
 
 -- Function to rotate log files if they exceed max size
 local function rotate_log_file(log_file)
-  local stat = vim.loop.fs_stat(log_file)
+  local uv = vim.uv or vim.loop
+  local stat = uv.fs_stat(log_file)
   if stat and stat.size > config.max_log_size then
     -- Rotate existing log files
+    local uv = vim.uv or vim.loop
     for i = config.max_log_files - 1, 1, -1 do
       local old_file = log_file .. '.' .. i
       local new_file = log_file .. '.' .. (i + 1)
-      if vim.loop.fs_stat(old_file) then
+      if uv.fs_stat(old_file) then
         os.rename(old_file, new_file)
       end
     end
@@ -199,7 +201,8 @@ function M.clean_logs(days_to_keep)
   }
   
   for _, log_file in ipairs(log_files) do
-    if vim.loop.fs_stat(log_file) then
+    local uv = vim.uv or vim.loop
+    if uv.fs_stat(log_file) then
       -- Read and filter log file
       local lines = {}
       for line in io.lines(log_file) do
@@ -253,7 +256,8 @@ function M.get_log_stats()
   }
   
   for _, log_info in ipairs(log_files) do
-    local stat = vim.loop.fs_stat(log_info.path)
+    local uv = vim.uv or vim.loop
+    local stat = uv.fs_stat(log_info.path)
     if stat then
       stats[log_info.name] = {
         size = stat.size,

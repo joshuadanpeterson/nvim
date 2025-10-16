@@ -228,7 +228,8 @@ function M.test_lsp_functionality()
         success_count = success_count + 1
         
         -- Check active clients
-        local clients = vim.lsp.get_active_clients()
+        local get_clients = vim.lsp.get_clients or vim.lsp.get_active_clients
+        local clients = get_clients() or {}
         if #clients > 0 then
             print_success('Active LSP clients: ' .. #clients)
             for _, client in ipairs(clients) do
@@ -588,9 +589,10 @@ function M.run_performance_test()
     print_info('Testing plugin loading performance...')
     
     -- Test lazy loading performance
-    local start_time = vim.loop.hrtime()
+    local uv = vim.uv or vim.loop
+    local start_time = uv.hrtime()
     pcall(require, 'lazy')
-    local lazy_time = (vim.loop.hrtime() - start_time) / 1000000 -- Convert to ms
+    local lazy_time = (uv.hrtime() - start_time) / 1000000 -- Convert to ms
     
     if lazy_time < 100 then
         print_success('Lazy.nvim loading time: ' .. string.format('%.2fms', lazy_time))
@@ -599,9 +601,10 @@ function M.run_performance_test()
     end
     
     -- Test telescope loading
-    start_time = vim.loop.hrtime()
+    local uv2 = vim.uv or vim.loop
+    start_time = uv2.hrtime()
     pcall(require, 'telescope')
-    local telescope_time = (vim.loop.hrtime() - start_time) / 1000000
+    local telescope_time = (uv2.hrtime() - start_time) / 1000000
     
     if telescope_time < 50 then
         print_success('Telescope loading time: ' .. string.format('%.2fms', telescope_time))

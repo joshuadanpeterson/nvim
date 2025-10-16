@@ -364,7 +364,7 @@ end, {})
 local function start_spinner()
   local spinner_frames = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
   local current_frame = 1
-  local spinner_timer = vim.loop.new_timer()
+  local spinner_timer = (vim.uv or vim.loop).new_timer()
 
   vim.notify('Starting directory listing...', vim.log.levels.INFO, { title = 'Noice' })
 

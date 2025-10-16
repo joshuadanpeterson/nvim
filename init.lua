@@ -12,7 +12,7 @@ require 'config.lazy-loading-helpers'
 -- lazy.nvim setup
 -- lazy.nvim is a lazy-loading plugin manager for Neovim.
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-local stat, _, _ = vim.loop.fs_stat(lazypath)
+local stat = (vim.uv or vim.loop).fs_stat(lazypath)
 if not stat then
   vim.fn.system {
     'git',
