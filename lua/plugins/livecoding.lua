@@ -1,7 +1,8 @@
--- strudel.lua
--- Live-coding with Strudel from Neovim
+-- livecoding.lua
+-- Live-coding plugins for Neovim: Strudel and Sonic Pi
 
 return {
+  -- Strudel: Browser-based live coding with JavaScript patterns
   {
     "gruvw/strudel.nvim",
     lazy = false,           -- eager-load to avoid filetype issues per README
@@ -19,6 +20,16 @@ return {
         },
         -- Keep other defaults (e.g., sync_cursor, report_eval_errors, browser paths)
       })
+    end,
+  },
+
+  -- Sonic Pi: Live coding music with Ruby
+  {
+    "magicmonty/sonicpi.nvim",
+    ft = { "ruby", "sonicpi" },
+    dependencies = { 'hrsh7th/nvim-cmp', 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("sonicpi").setup({})
     end,
   },
 }

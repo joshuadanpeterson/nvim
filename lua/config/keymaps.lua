@@ -334,6 +334,17 @@ function M.setup()
   { "<leader>jb", function() require('strudel').set_buffer() end,  desc = 'Strudel Set Buffer' },
   { "<leader>jx", function() require('strudel').execute() end,     desc = 'Strudel Execute' },
 
+  -- Sonic Pi Keymaps
+  { "<leader>J",  group = "Sonic Pi Keymaps" },
+  { "<leader>Jd", ':SonicPiStartDaemon<CR>',                       desc = 'Start daemon' },
+  { "<leader>JS", ':SonicPiStopDaemon<CR>',                        desc = 'Stop daemon' },
+  { "<leader>Jr", ':SonicPiSendBuffer<CR>',                        desc = 'Run buffer' },
+  { "<leader>Js", ':SonicPiStop<CR>',                              desc = 'Stop run' },
+  { "<leader>Jl", ':SonicPiLogs<CR>',                              desc = 'Show logs' },
+  { "<leader>JH", ':SonicPiHideLogs<CR>',                          desc = 'Hide logs' },
+  { "<leader>Jc", ':SonicPiCloseLogs<CR>',                         desc = 'Close logs' },
+  { "<leader>JX", ':SonicPiStopAndClose<CR>',                      desc = 'Stop & close' },
+
   -- legendary.nvim Keymaps
   { "<leader>X",  group = "Legendary Keymaps" },
   { "<leader>Xg", ':Legendary<CR>',                desc = 'Search Legendary' },

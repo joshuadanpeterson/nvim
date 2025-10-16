@@ -206,6 +206,17 @@ cmp.setup.filetype('lua', {
   -- print 'Cmp sources for Lua filetype set',
 })
 
+-- Sonic Pi filetype completion
+cmp.setup.filetype('sonicpi', {
+  sources = cmp.config.sources {
+    { name = 'sonicpi' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+})
+
 cmp.setup.filetype('sql', {
   sources = cmp.config.sources {
     { name = 'copilot' },

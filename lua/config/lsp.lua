@@ -142,6 +142,25 @@ vim.lsp.config('emmet_ls', {
 })
 vim.lsp.enable('emmet_ls')
 
+-- Sonic Pi LSP: solargraph integration (enables Ruby LSP with Sonic Pi helpers)
+vim.lsp.config('solargraph', {
+  settings = {
+    solargraph = {
+      diagnostics = true,
+      useBundler = false,
+      formatting = true,
+      single_file_support = true,
+    },
+  },
+  on_init = function(client)
+    local ok, sp = pcall(require, 'sonicpi')
+    if ok then
+      sp.lsp_on_init(client, { server_dir = nil }) -- auto-detect
+    end
+  end,
+})
+vim.lsp.enable('solargraph')
+
 -- Optional: Setup typescript.nvim plugin with filetype-based loading
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
