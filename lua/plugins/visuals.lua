@@ -13,18 +13,13 @@ return {
     event = 'BufReadPre',
   },
 
-  -- Rainbow delimiters for Neovim using Tree-sitter
+  -- Rainbow parentheses using nvim-ts-rainbow2
   {
-    'HiPhish/rainbow-delimiters.nvim',
+    'HiPhish/nvim-ts-rainbow2',
     event = 'BufReadPre',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
     },
-    config = function()
-      require('rainbow-delimiters.setup').setup {
-        -- Configuration options
-      }
-    end,
   },
 
   -- transparent plugin (avoid lazy loading as per plugin documentation)
