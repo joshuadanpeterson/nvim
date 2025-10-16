@@ -8,7 +8,13 @@ require('fidget').setup {
     ignore_empty_message = false, -- Ignore new tasks that don't contain a message
     -- Clear notification group when LSP server detaches
     clear_on_detach = function(client_id)
-      local client = vim.lsp.get_client_by_id(client_id)
+      local client
+      if vim.lsp.get_clients then
+        local list = vim.lsp.get_clients({ id = client_id })
+        client = list and list[1]
+      else
+        client = vim.lsp.get_client_by_id(client_id)
+      end
       return client and client.name or nil
     end,
     -- How to get a progress message's notification group key

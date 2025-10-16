@@ -11,7 +11,6 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'williamboman/nvim-lsp-installer',
     },
     config = function()
       require('config.lsp')

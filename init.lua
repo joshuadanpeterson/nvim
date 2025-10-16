@@ -4,6 +4,7 @@
 
 -- Custom configs
 require 'config.settings' -- For basic Neovim settings
+require 'config.compat.health_shim' -- Shim health API for Neovim 0.11+ (compat)
 -- require("config.vim")      -- For vim config
 
 -- Load lazy loading helpers
