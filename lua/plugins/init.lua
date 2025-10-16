@@ -21,6 +21,7 @@ local linters = require 'plugins.linters'
 local autocomplete = require 'plugins.autocomplete'
 local visuals = require 'plugins.visuals'
 local markdown = require 'plugins.markdown'
+local strudel = require 'plugins.strudel'
 
 return {
   colorscheme,
@@ -40,5 +41,6 @@ return {
   linters,
   autocomplete,
   visuals,
+  strudel,
   markdown,
 }

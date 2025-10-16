@@ -324,6 +324,16 @@ function M.setup()
     desc = 'Open Ranger'
   },
 
+  -- Strudel Keymaps
+  { "<leader>j",  group = "Strudel Keymaps" },
+  { "<leader>jl", function() require('strudel').launch() end,      desc = 'Strudel Launch' },
+  { "<leader>jq", function() require('strudel').quit() end,        desc = 'Strudel Quit' },
+  { "<leader>jt", function() require('strudel').toggle() end,      desc = 'Strudel Toggle' },
+  { "<leader>ju", function() require('strudel').update() end,      desc = 'Strudel Update' },
+  { "<leader>js", function() require('strudel').stop() end,        desc = 'Strudel Stop' },
+  { "<leader>jb", function() require('strudel').set_buffer() end,  desc = 'Strudel Set Buffer' },
+  { "<leader>jx", function() require('strudel').execute() end,     desc = 'Strudel Execute' },
+
   -- legendary.nvim Keymaps
   { "<leader>X",  group = "Legendary Keymaps" },
   { "<leader>Xg", ':Legendary<CR>',                desc = 'Search Legendary' },
