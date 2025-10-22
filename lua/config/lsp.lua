@@ -183,35 +183,6 @@ vim.lsp.config('strudel_ls', {
 vim.lsp.enable('strudel_ls')
 
 
--- Fallback autostart for Strudel LSP if not auto-attached (pure vim.lsp)
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'strudel', 'strdl', 'str' },
-  callback = function(args)
-    local bufnr = args.buf
-    local attached = vim.lsp.get_clients({ bufnr = bufnr, name = 'strudel_ls' })
-    if attached and #attached > 0 then return end
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    local start_dir = (fname ~= '' and vim.fs.dirname(fname)) or vim.loop.cwd()
-    local mark = vim.fs.find({ '.git', 'package.json', '.strudelrc' }, { path = start_dir, upward = true })[1]
-    local root = mark and vim.fs.dirname(mark) or start_dir
-    vim.lsp.start({
-      name = 'strudel_ls',
-      cmd = { vim.fn.exepath('node'), '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-ls/dist/server.js', '--stdio' },
-      root_dir = root,
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { 'strudel', 'strdl', 'str' },
-      settings = {
-        strudel = {
-          diagnostics = { enable = true, unknownTransform = 'warning' },
-          completions = { snippets = true, builtinsOnly = true, maxItems = 50 },
-          formatting = { enable = true, lineWidth = 100 },
-          telemetry = { enable = false },
-        },
-      },
-    })
-  end,
-})
 
 -- Optional: Setup typescript.nvim plugin with filetype-based loading
 -- vim.api.nvim_create_autocmd("FileType", {
