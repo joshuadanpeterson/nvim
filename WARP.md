@@ -273,3 +273,20 @@ nvim -c "checkhealth" -c "qa"
 git add .
 git commit -m "type(scope): emoji description"
 ```
+
+## Local Development: Strudel (LSP, Tree-sitter, Prettier)
+
+- LSP (strudel-ls):
+  cmd = {'node', '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-ls/dist/server.js', '--stdio'}
+
+- Tree-sitter parser:
+  url = '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/tree-sitter-strdl'
+  files = { 'src/parser.c' }
+
+- Formatting (Conform + Prettier v3):
+  command = 'prettier'
+  --plugin '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-prettier-plugin/dist/index.js'
+  --parser 'strudel'
+
+Validation:
+- :LspInfo, :TSModuleInfo, :ConformInfo, :Format
