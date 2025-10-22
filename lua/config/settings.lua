@@ -317,6 +317,10 @@ vim.filetype.add({
   extension = {
     ['http'] = 'http',
     ['jsx'] = 'javascriptreact',  -- Map .jsx files to javascriptreact filetype
+    ['strudel'] = 'strudel',
+    ['strdl'] = 'strudel',
+    ['str'] = 'strudel',
+    ['std'] = 'strudel',
   },
 })
 

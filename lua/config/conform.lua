@@ -14,6 +14,7 @@ require('conform').setup {
     yaml = { 'prettier' },
     markdown = { 'prettier' },
     graphql = { 'prettier' },
+    strudel = { 'prettier_strudel' },
     python = function(bufnr)
       -- Using a function to dynamically select the formatter, but keeping it simple for now
       return { 'black' }
@@ -37,7 +38,16 @@ require('conform').setup {
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
   formatters = {
-    -- Add or modify custom formatter configurations here if needed
+    prettier_strudel = {
+      command = 'prettier',
+      args = {
+        '--plugin', '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-prettier-plugin/src/index.js',
+        '--parser', 'strudel',
+        '--stdin-filepath', '$FILENAME',
+      },
+      stdin = true,
+      inherit_env = true,
+    },
   },
 }
 

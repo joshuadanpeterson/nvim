@@ -229,6 +229,16 @@ cmp.setup.filetype('sql', {
   -- print 'Cmp sources for sql filetype set',
 })
 
+-- Strudel filetypes
+cmp.setup.filetype({ 'strudel', 'strdl', 'str' }, {
+  sources = cmp.config.sources {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
+})
+
 cmp.setup.filetype({ 'txt', 'md', 'tape', 'vhs' }, {
   sources = cmp.config.sources {
     { name = 'copilot' },

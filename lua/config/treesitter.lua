@@ -41,6 +41,7 @@ require('nvim-treesitter.configs').setup {
     'typescript',
     'tsx',
     'latex',
+    'strudel',
   },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -151,8 +152,20 @@ require('ts_context_commentstring').setup {}
 
 -- Get Treesitter to support embeded languages
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+parser_config.strudel = {
+  install_info = {
+    url = '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/tree-sitter-strdl',
+    files = { 'src/parser.c' },
+    branch = 'main',
+  },
+  filetype = 'strudel',
+}
 parser_config.tsx.used_by = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' }
 
 -- JSX files should use the javascript parser (there's no separate jsx parser)
 vim.treesitter.language.register('javascript', 'javascriptreact')
 vim.treesitter.language.register('javascript', 'jsx')
+
+-- Strudel filetype aliases
+vim.treesitter.language.register('strudel', 'strdl')
+vim.treesitter.language.register('strudel', 'str')
