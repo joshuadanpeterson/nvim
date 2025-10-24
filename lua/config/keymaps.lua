@@ -259,6 +259,7 @@ function M.setup()
   { "<leader>vh", toggle_inlay_hints,                                                                     desc = 'Toggle Inlay Hints' },
   { "<leader>vp", ':MarkdownPreview<CR>',                                                                 desc = 'Markdown Preview' },
   { "<leader>vr", ':RenderMarkdownToggle<CR>',                                                            desc = 'Render Markdown' },
+  { "<leader>vP", function() require('precognition').toggle() end,                                        desc = 'Toggle Precognition' },
 
   -- Telescope Keymaps
   { "<leader>t",  group = "Telescope Keymaps" },

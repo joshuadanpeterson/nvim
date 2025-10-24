@@ -383,6 +383,11 @@ return {
   -- precognition.nvim assists with discovering motions (Both vertical and horizontal) to navigate your current buffer
   {
     'tris203/precognition.nvim',
+    opts = {
+      startVisible = true,
+      showBlankVirtLine = true,
+      highlightColor = { link = 'Comment' },
+    },
   },
 
   -- oil.nvim: A vim-vinegar like file explorer that lets you edit your filesystem like a normal Neovim buffer.
