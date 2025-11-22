@@ -16,6 +16,22 @@ This log tracks the implementation status of the Neovim configuration project, d
 
 ## Recent Updates
 
+### 2025-11-22
+
+#### ISL-006: Simplify Obsidian and Dashboard Configuration 🟢 **DONE**
+- **Priority**: Low
+- **Description**: Simplify Obsidian workspaces and dashboard actions to focus on "main" vault
+- **Status**: Completed
+- **Date Started**: 2025-11-22
+- **Date Completed**: 2025-11-22
+- **Changes Made**:
+  - Consolidated Obsidian workspaces to single "main" vault in `lua/plugins/obsidian.lua`
+  - Updated dashboard actions in `lua/plugins/ui.lua` to reflect vault changes
+  - Removed unused dashboard actions (Journals, Poetry, Programming, Udemy)
+- **Files Affected**: 2 files changed
+- **Commit**: `pending` - "chore(config): 🔧 Simplify Obsidian workspaces and dashboard"
+- **Notes**: Streamlining configuration for current usage patterns
+
 ### 2025-07-25
 
 #### ISL-005: Fix Neovim Startup Errors 🟢 **DONE**

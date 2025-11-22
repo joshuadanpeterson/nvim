@@ -18,9 +18,7 @@ return {
                         require('obsidian').setup({
                                 -- Workspaces: Each workspace corresponds to an Obsidian vault
                                 workspaces = {
-                                        { name = "Programming", path = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/main" },
-                                        { name = "Blogging",    path = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/Blogging" },
-                                        { name = "Crypto",      path = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/genealogy/" },
+                                        { name = "main", path = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/main" },
                                 },
 
                                 -- Log level for debugging purposes

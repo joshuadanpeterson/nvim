@@ -117,51 +117,20 @@ return {
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Blogging | edit . | lua vim.notify("Changed working directory to Obsidian Blogging Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Blogging Vault',
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/main | edit . | lua vim.notify("Changed working directory to Obsidian main Vault"); require("config.keymaps").setup()')]],
+              desc = ' Open main Vault',
               icon = ' ',
               key = 'b'
             },
 
             {
               action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Crypto | edit . | lua vim.notify("Changed working directory to Obsidian Crypto Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Crypto Vault',
+              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/genealogy/| edit . | lua vim.notify("Changed working directory to Obsidian genealogy Vault"); require("config.keymaps").setup()')]],
+              desc = ' Open genealogy Vault',
               icon = ' ',
               key = 'C'
             },
 
-            {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Journals | edit . | lua vim.notify("Changed working directory to Obsidian Journal Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Journal Vault',
-              icon = ' ',
-              key = 'j'
-            },
-
-            {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Poetry | edit . | lua vim.notify("Changed working directory to Obsidian Poetry Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Poetry Vault',
-              icon = ' ',
-              key = 'P'
-            },
-
-            {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Programming | edit . | lua vim.notify("Changed working directory to Obsidian Programming Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Programming Vault',
-              icon = ' ',
-              key = 'p'
-            },
-
-            {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/Udemy/| edit . | lua vim.notify("Changed working directory to Obsidian Udemy Vault"); require("config.keymaps").setup()')]],
-              desc = ' Open Udemy Vault',
-              icon = ' ',
-              key = 'u'
-            },
             { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
           },
           footer = function()
