@@ -234,13 +234,14 @@ end
 
 -- Function to track horizontal scrolling
 local function track_horizontal_scroll()
-  local bufnr = vim.api.nvim_get_current_buf()
   local ns_id = vim.api.nvim_create_namespace 'precognition'
-  local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns_id, 0, -1, { details = true })
 
   -- Update virtual text on BufWinEnter and WinScrolled events
   vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinScrolled' }, {
     callback = function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      -- Get extmarks for the current buffer
+      local extmarks = vim.api.nvim_buf_get_extmarks(bufnr, ns_id, 0, -1, { details = true })
       update_virtual_text(bufnr, ns_id, extmarks)
     end,
   })
