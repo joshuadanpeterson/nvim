@@ -309,9 +309,9 @@ function M.setup()
   { "<leader>tl", ':Telescope lsp_document_symbols<CR>',  desc = 'Telescope LSP Document Symbols' },
   { "<leader>te", ':Telescope lsp_workspace_symbols<CR>', desc = 'Telescope LSP Workspace Symbols' },
   { "<leader>tx", ':Telescope commands<CR>',              desc = 'Telescope Commands' },
-  { \"<leader>td\", function() require(\"telescope\").extensions.jumper.jump_to_directory() end,               desc = 'Jump to Directory' },
-  { \"<leader>tF\", function() require(\"telescope\").extensions.jumper.find_in_files() end,                   desc = 'Find in Files' },
-  { \"<leader>tj\", function() require(\"telescope\").extensions.jumper.jump_to_file() end,                    desc = 'Jump to File' },
+  { "<leader>td", function() require("telescope").extensions.jumper.jump_to_directory() end,               desc = 'Jump to Directory' },
+  { "<leader>tF", function() require("telescope").extensions.jumper.find_in_files() end,                   desc = 'Find in Files' },
+  { "<leader>tj", function() require("telescope").extensions.jumper.jump_to_file() end,                    desc = 'Jump to File' },
 
   -- Rnvimr and Ranger Keymaps
   { "<leader>r",  group = "Rnvimr and Ranger Keymaps" },
@@ -365,10 +365,10 @@ function M.setup()
   { "<leader>x",  group = "tmux Telescope Keymaps" },
   { "<leader>xt", ':TmuxJumpFile<CR>',             desc = 'Jump to File in Tmux Pane' },
   { "<leader>x;", ':TmuxJumpFirst<CR>',            desc = 'Jump to First Tmux Pane' },
-  { \"<leader>xs\", function() require('config.tmux').switch_to_tmux_session() end,     desc = 'Switch Tmux Session',                  noremap = true, silent = true },
-  { \"<leader>xw\", function() require('config.tmux').switch_tmux_window() end,         desc = 'Switch Tmux Window',                   noremap = true, silent = true },
-  { \"<leader>xp\", function() require('config.tmux').switch_tmux_pane() end,           desc = 'Switch Tmux Pane',                     noremap = true, silent = true },
-  { \"<leader>xm\", function() require('config.tmux').tmux_menu_picker() end,           desc = 'Tmux Menu Picker',                     noremap = true, silent = true },
+  { "<leader>xs", function() require('config.tmux').switch_to_tmux_session() end,     desc = 'Switch Tmux Session',                  noremap = true, silent = true },
+  { "<leader>xw", function() require('config.tmux').switch_tmux_window() end,         desc = 'Switch Tmux Window',                   noremap = true, silent = true },
+  { "<leader>xp", function() require('config.tmux').switch_tmux_pane() end,           desc = 'Switch Tmux Pane',                     noremap = true, silent = true },
+  { "<leader>xm", function() require('config.tmux').tmux_menu_picker() end,           desc = 'Tmux Menu Picker',                     noremap = true, silent = true },
 
   -- Harpoon Keymaps
   { "<leader>h",  group = "Harpoon Keymaps" },
@@ -544,10 +544,10 @@ function M.setup()
   { "<leader>Cb",   '<cmd>FloatermNew bpytop<CR>',                   desc = 'Launch Bpytop' },
 
   -- DAP Plugin Keymaps
-  { \"<leader>D\",    group = \"DAP Plugin Keymaps\" },
-  { \"<leader>Db\",   function() require('dap').toggle_breakpoint() end,                           desc = 'Debug: Toggle Breakpoint' },
+  { "<leader>D",    group = "DAP Plugin Keymaps" },
+  { "<leader>Db",   function() require('dap').toggle_breakpoint() end,                           desc = 'Debug: Toggle Breakpoint' },
   {
-    \"<leader>DB\",
+    "<leader>DB",
     function()
       require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
     end,
@@ -598,11 +598,11 @@ end, { silent = true, expr = true })
 
 -- For F-keys which are not under the leader key, you can register them separately
 wk.add({
-  { \"<F1>\", function() require('dap').step_into() end, desc = 'Debug: Step Into' },
-  { \"<F2>\", function() require('dap').step_over() end, desc = 'Debug: Step Over' },
-  { \"<F3>\", function() require('dap').step_out() end,  desc = 'Debug: Step Out' },
-  { \"<F5>\", function() require('dap').continue() end,  desc = 'Debug: Start/Continue' },
-  { \"<F7>\", function() require('dapui').toggle() end,  desc = 'Debug: See last session result.' },
+  { "<F1>", function() require('dap').step_into() end, desc = 'Debug: Step Into' },
+  { "<F2>", function() require('dap').step_over() end, desc = 'Debug: Step Over' },
+  { "<F3>", function() require('dap').step_out() end,  desc = 'Debug: Step Out' },
+  { "<F5>", function() require('dap').continue() end,  desc = 'Debug: Start/Continue' },
+  { "<F7>", function() require('dapui').toggle() end,  desc = 'Debug: See last session result.' },
 }, { mode = 'n' })
 
   -- Registering numeric mappings for selecting Harpoon files

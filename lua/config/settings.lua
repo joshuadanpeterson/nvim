@@ -223,6 +223,8 @@ vim.cmd [[
 local function update_virtual_text(bufnr, ns_id, extmarks)
   for _, extmark in ipairs(extmarks) do
     local id, lnum, col, opts = unpack(extmark)
+    -- Remove invalid keys from opts
+    opts.ns_id = nil
     -- Calculate new column position based on current window view
     local new_col = col - vim.fn.winsaveview().leftcol
     if new_col >= 0 then
