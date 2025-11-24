@@ -22,6 +22,9 @@ local autocomplete = require 'plugins.autocomplete'
 local visuals = require 'plugins.visuals'
 local markdown = require 'plugins.markdown'
 local livecoding = require 'plugins.livecoding'
+local legendary = require 'plugins.legendary'
+local codestats = require 'plugins.codestats'
+local pieces = require 'plugins.pieces'
 
 return {
   colorscheme,
@@ -43,4 +46,7 @@ return {
   visuals,
   livecoding,
   markdown,
+  legendary,
+  codestats,
+  pieces,
 }

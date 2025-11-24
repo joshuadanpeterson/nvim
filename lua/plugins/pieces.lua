@@ -1,7 +1,13 @@
 return {
   {
-    'pieces-app/plugin_neo_vim',
+    'pieces-app/plugin_neovim',
+    dependencies = {
+      'kyazdani42/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+      'hrsh7th/nvim-cmp',
+    },
     event = 'VeryLazy',
+    build = ':UpdateRemotePlugins',
     config = function()
       -- Pieces for Neovim (optional)
       local ok_pieces, pieces_cfg = pcall(require, "pieces.config")
