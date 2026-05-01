@@ -155,7 +155,11 @@ function M.set_core_plugins_debug()
   end
   
   -- Set LSP log level to debug
-  vim.lsp.set_log_level('debug')
+  if vim.lsp.log and vim.lsp.log.set_level then
+    vim.lsp.log.set_level('debug')
+  else
+    vim.lsp.set_log_level('debug')
+  end
   
   -- Set legendary.nvim log level to debug (if it supports it)
   -- Note: This will be set in the main init.lua where legendary is configured
