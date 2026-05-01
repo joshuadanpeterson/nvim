@@ -154,7 +154,7 @@ require('ts_context_commentstring').setup {}
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.strudel = {
   install_info = {
-    url = '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/tree-sitter-strdl',
+    url = '/Users/joshpeterson/Dropbox/programming/projects/strudel/tree-sitter-strdl',
     files = { 'src/parser.c' },
     branch = 'main',
   },
