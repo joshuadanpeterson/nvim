@@ -1,171 +1,192 @@
 -- Treesitter configuration
 -- config/treesitter.lua
 
--- Set this to true to skip the deprecated module loading for context_commentstring
-vim.g.skip_ts_context_commentstring_module = true
-
-require 'plugins.treesitter'
-
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {
-    'bash',
-    'comment',
-    'csv',
-    'dockerfile',
-    'dart',
-    'go',
-    'graphql',
-    'http',
-    'htmldjango',
-    'json',
-    'jq',
-    'markdown',
-    'php',
-    'regex',
-    'scss',
-    'toml',
-    'xml',
-    'yaml',
-    'c',
-    'lua',
-    'vimdoc',
-    'vim',
-    'python',
-    'html',
-    'css',
-    'javascript',
-    -- 'jsx' is not a separate parser, it's handled by javascript/tsx
-    'typescript',
-    'tsx',
-    'latex',
-    'strudel',
-  },
-
-  -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = true,
-  sync_install = true,
-
-  additional_vim_regex_highlighting = false,
-
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25,         -- Debounced time for highlighting nodes from source code
-    persist_queries = false, -- Persist queries across sessions
-  },
-  indent = { enable = true },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<C-space>',
-      node_incremental = '<C-space>',
-      scope_incremental = false,
-      node_decremental = '<C-bs>',
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['a='] = { query = '@assignment.outer', desc = 'Select outer part of an assignment' },
-        ['i='] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
-        ['l='] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
-        ['r='] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignment' },
-
-        ['aa'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter/argument' },
-        ['ia'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter/argument' },
-
-        ['ai'] = { query = '@conditional.outer', desc = 'Select outer part of a conditional' },
-        ['ii'] = { query = '@conditional.inner', desc = 'Select inner part of a conditional' },
-
-        ['al'] = { query = '@loop.outer', desc = 'Select outer part of a loop' },
-        ['il'] = { query = '@loop.inner', desc = 'Select inner part of a loop' },
-
-        ['af'] = { query = '@call.outer', desc = 'Select outer part of a function call' },
-        ['if'] = { query = '@call.inner', desc = 'Select inner part of a function call' },
-
-        ['am'] = { query = '@function.outer', desc = 'Select outer part of a method/function definition' },
-        ['im'] = { query = '@function.inner', desc = 'Select inner part of a method/function definition' },
-
-        ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class' },
-        ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class' },
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>Sa'] = { '@parameter.inner', desc = 'Swap parameters/argument with next' },
-        ['<leader>Sf'] = { '@function.outer', desc = 'Swap function with next' },
-      },
-      swap_previous = {
-        ['<leader>SA'] = { '@parameter.inner', desc = 'Swap parameters/argument with prev' },
-        ['<leader>SF'] = { '@function.outer', desc = 'Swap function with previous' },
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']f'] = { query = '@call.outer', desc = 'Next function call start' },
-        [']m'] = { query = '@function.outer', desc = 'Next method/function def start' },
-        [']c'] = { query = '@class.outer', desc = 'Next class start' },
-        [']i'] = { query = '@conditional.outer', desc = 'Next conditional start' },
-        [']l'] = { query = '@loop.outer', desc = 'Next loop start' },
-
-        -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
-        -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-        [']s'] = { query = '@scope', query_group = 'locals', desc = 'Next scope' },
-        [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
-      },
-      goto_next_end = {
-        [']F'] = { query = '@call.outer', desc = 'Next function call end' },
-        [']M'] = { query = '@function.outer', desc = 'Next method/function def end' },
-        [']C'] = { query = '@class.outer', desc = 'Next class end' },
-        [']I'] = { query = '@conditional.outer', desc = 'Next conditional end' },
-        [']L'] = { query = '@loop.outer', desc = 'Next loop end' },
-      },
-      goto_previous_start = {
-        ['[f'] = { query = '@call.outer', desc = 'Prev function call start' },
-        ['[m'] = { query = '@function.outer', desc = 'Prev method/function def start' },
-        ['[c'] = { query = '@class.outer', desc = 'Prev class start' },
-        ['[i'] = { query = '@conditional.outer', desc = 'Prev conditional start' },
-        ['[l'] = { query = '@loop.outer', desc = 'Prev loop start' },
-      },
-      goto_previous_end = {
-        ['[F'] = { query = '@call.outer', desc = 'Prev function call end' },
-        ['[M'] = { query = '@function.outer', desc = 'Prev method/function def end' },
-        ['[C'] = { query = '@class.outer', desc = 'Prev class end' },
-        ['[I'] = { query = '@conditional.outer', desc = 'Prev conditional end' },
-        ['[L'] = { query = '@loop.outer', desc = 'Prev loop end' },
-      },
-    },
-  },
+local languages = {
+  'bash',
+  'c',
+  'comment',
+  'csv',
+  'css',
+  'dart',
+  'dockerfile',
+  'go',
+  'graphql',
+  'html',
+  'htmldjango',
+  'http',
+  'javascript',
+  'jq',
+  'json',
+  'latex',
+  'lua',
+  'markdown',
+  'php',
+  'python',
+  'regex',
+  'scss',
+  'toml',
+  'tsx',
+  'typescript',
+  'vim',
+  'vimdoc',
+  'xml',
+  'yaml',
 }
 
--- Setup ts_context_commentstring
-require('ts_context_commentstring').setup {}
+require('nvim-treesitter').setup {
+  install_dir = vim.fn.stdpath('data') .. '/site',
+}
 
--- Get Treesitter to support embeded languages
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-parser_config.strudel = {
+if vim.fn.executable('tree-sitter') == 0 and vim.fn.executable('/usr/local/bin/tree-sitter') == 1 then
+  vim.env.PATH = '/usr/local/bin:' .. vim.env.PATH
+end
+
+local parsers = require('nvim-treesitter.parsers')
+local strudel_parser = {
   install_info = {
-    url = '/Users/joshpeterson/Dropbox/programming/projects/strudel/tree-sitter-strdl',
-    files = { 'src/parser.c' },
-    branch = 'main',
+    path = '/Users/joshpeterson/Dropbox/programming/projects/strudel/tree-sitter-strdl',
+    queries = 'queries',
   },
-  filetype = 'strudel',
 }
-parser_config.tsx.used_by = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'html' }
+parsers.strudel = strudel_parser
 
--- JSX files should use the javascript parser (there's no separate jsx parser)
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'TSUpdate',
+  callback = function()
+    parsers.strudel = strudel_parser
+  end,
+})
+
+vim.api.nvim_create_user_command('TSInstallConfigured', function()
+  require('nvim-treesitter').install(languages):wait(300000)
+end, { desc = 'Install configured Treesitter parsers' })
+
+local filetypes = {
+  'bash',
+  'c',
+  'comment',
+  'csv',
+  'css',
+  'dart',
+  'dockerfile',
+  'go',
+  'graphql',
+  'html',
+  'htmldjango',
+  'http',
+  'javascript',
+  'javascriptreact',
+  'jq',
+  'json',
+  'latex',
+  'lua',
+  'markdown',
+  'php',
+  'python',
+  'regex',
+  'scss',
+  'strudel',
+  'strdl',
+  'str',
+  'toml',
+  'typescript',
+  'typescriptreact',
+  'vim',
+  'vimdoc',
+  'xml',
+  'yaml',
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = filetypes,
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+    vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
 vim.treesitter.language.register('javascript', 'javascriptreact')
 vim.treesitter.language.register('javascript', 'jsx')
+vim.treesitter.language.register('tsx', 'typescriptreact')
+vim.treesitter.language.register('strudel', { 'strdl', 'str' })
 
--- Strudel filetype aliases
-vim.treesitter.language.register('strudel', 'strdl')
-vim.treesitter.language.register('strudel', 'str')
+local ts_select = require('nvim-treesitter-textobjects.select')
+local ts_swap = require('nvim-treesitter-textobjects.swap')
+local ts_move = require('nvim-treesitter-textobjects.move')
+
+require('nvim-treesitter-textobjects').setup {
+  select = {
+    lookahead = true,
+  },
+  move = {
+    set_jumps = true,
+  },
+}
+
+local function map_textobject(keys, query, desc)
+  vim.keymap.set({ 'x', 'o' }, keys, function()
+    ts_select.select_textobject(query, 'textobjects')
+  end, { desc = desc })
+end
+
+map_textobject('a=', '@assignment.outer', 'Select outer part of an assignment')
+map_textobject('i=', '@assignment.inner', 'Select inner part of an assignment')
+map_textobject('l=', '@assignment.lhs', 'Select left hand side of an assignment')
+map_textobject('r=', '@assignment.rhs', 'Select right hand side of an assignment')
+map_textobject('aa', '@parameter.outer', 'Select outer part of a parameter/argument')
+map_textobject('ia', '@parameter.inner', 'Select inner part of a parameter/argument')
+map_textobject('ai', '@conditional.outer', 'Select outer part of a conditional')
+map_textobject('ii', '@conditional.inner', 'Select inner part of a conditional')
+map_textobject('al', '@loop.outer', 'Select outer part of a loop')
+map_textobject('il', '@loop.inner', 'Select inner part of a loop')
+map_textobject('af', '@call.outer', 'Select outer part of a function call')
+map_textobject('if', '@call.inner', 'Select inner part of a function call')
+map_textobject('am', '@function.outer', 'Select outer part of a method/function definition')
+map_textobject('im', '@function.inner', 'Select inner part of a method/function definition')
+map_textobject('ac', '@class.outer', 'Select outer part of a class')
+map_textobject('ic', '@class.inner', 'Select inner part of a class')
+
+vim.keymap.set('n', '<leader>Sa', function()
+  ts_swap.swap_next('@parameter.inner')
+end, { desc = 'Swap parameters/argument with next' })
+
+vim.keymap.set('n', '<leader>Sf', function()
+  ts_swap.swap_next('@function.outer')
+end, { desc = 'Swap function with next' })
+
+vim.keymap.set('n', '<leader>SA', function()
+  ts_swap.swap_previous('@parameter.inner')
+end, { desc = 'Swap parameters/argument with prev' })
+
+vim.keymap.set('n', '<leader>SF', function()
+  ts_swap.swap_previous('@function.outer')
+end, { desc = 'Swap function with previous' })
+
+local function map_move(keys, fn, query, query_group, desc)
+  vim.keymap.set({ 'n', 'x', 'o' }, keys, function()
+    fn(query, query_group or 'textobjects')
+  end, { desc = desc })
+end
+
+map_move(']f', ts_move.goto_next_start, '@call.outer', nil, 'Next function call start')
+map_move(']m', ts_move.goto_next_start, '@function.outer', nil, 'Next method/function def start')
+map_move(']c', ts_move.goto_next_start, '@class.outer', nil, 'Next class start')
+map_move(']i', ts_move.goto_next_start, '@conditional.outer', nil, 'Next conditional start')
+map_move(']l', ts_move.goto_next_start, '@loop.outer', nil, 'Next loop start')
+map_move(']s', ts_move.goto_next_start, '@local.scope', 'locals', 'Next scope')
+map_move(']z', ts_move.goto_next_start, '@fold', 'folds', 'Next fold')
+map_move(']F', ts_move.goto_next_end, '@call.outer', nil, 'Next function call end')
+map_move(']M', ts_move.goto_next_end, '@function.outer', nil, 'Next method/function def end')
+map_move(']C', ts_move.goto_next_end, '@class.outer', nil, 'Next class end')
+map_move(']I', ts_move.goto_next_end, '@conditional.outer', nil, 'Next conditional end')
+map_move(']L', ts_move.goto_next_end, '@loop.outer', nil, 'Next loop end')
+map_move('[f', ts_move.goto_previous_start, '@call.outer', nil, 'Prev function call start')
+map_move('[m', ts_move.goto_previous_start, '@function.outer', nil, 'Prev method/function def start')
+map_move('[c', ts_move.goto_previous_start, '@class.outer', nil, 'Prev class start')
+map_move('[i', ts_move.goto_previous_start, '@conditional.outer', nil, 'Prev conditional start')
+map_move('[l', ts_move.goto_previous_start, '@loop.outer', nil, 'Prev loop start')
+map_move('[F', ts_move.goto_previous_end, '@call.outer', nil, 'Prev function call end')
+map_move('[M', ts_move.goto_previous_end, '@function.outer', nil, 'Prev method/function def end')
+map_move('[C', ts_move.goto_previous_end, '@class.outer', nil, 'Prev class end')
+map_move('[I', ts_move.goto_previous_end, '@conditional.outer', nil, 'Prev conditional end')
+map_move('[L', ts_move.goto_previous_end, '@loop.outer', nil, 'Prev loop end')

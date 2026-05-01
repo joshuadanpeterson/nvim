@@ -422,13 +422,16 @@ function M.test_treesitter()
         success_count = success_count + 1
         
         -- Check parsers
-        local status, parsers = pcall(require, 'nvim-treesitter.parsers')
-        if status and parsers then
-            local available_parsers = parsers.get_parser_configs()
+        local status, config = pcall(require, 'nvim-treesitter.config')
+        if status and config then
+            local available_lookup = {}
+            for _, lang in ipairs(config.get_available()) do
+                available_lookup[lang] = true
+            end
+
             local installed_parsers = {}
-            
-            for lang, _ in pairs(available_parsers) do
-                if parsers.has_parser(lang) then
+            for _, lang in ipairs(config.get_installed('parsers')) do
+                if available_lookup[lang] then
                     table.insert(installed_parsers, lang)
                 end
             end

@@ -23,6 +23,10 @@ return {
     config = function()
       local rainbow_delimiters = require 'rainbow-delimiters'
       vim.g.rainbow_delimiters = {
+        condition = function(bufnr)
+          local buftype = vim.bo[bufnr].buftype
+          return buftype == ''
+        end,
         strategy = {
           [''] = rainbow_delimiters.strategy['global'],
           vim = rainbow_delimiters.strategy['local'],
@@ -413,9 +417,6 @@ return {
     dependencies = 'kevinhwang91/promise-async',
     event = "BufReadPost",
     config = function()
-      local ts_utils = require('nvim-treesitter.ts_utils')
-      local parsers = require('nvim-treesitter.parsers')
-
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
           return { 'treesitter', 'indent' }
@@ -434,16 +435,22 @@ return {
 
           -- Use Tree-sitter to get relevant information for the fold
           local bufnr = vim.api.nvim_get_current_buf()
-          local lang = parsers.get_buf_lang(bufnr)
+          local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
           if not lang then return virtText end
 
           local query_string = [[
           (function_declaration
             name: (identifier) @function.name)
         ]]
-          local parsed_query = vim.treesitter.query.parse(lang, query_string)
-          local parser = parsers.get_parser(bufnr)
+          local ok_query, parsed_query = pcall(vim.treesitter.query.parse, lang, query_string)
+          if not ok_query then return virtText end
+
+          local ok_parser, parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+          if not ok_parser or not parser then return virtText end
+
           local tree = parser:parse()[1]
+          if not tree then return virtText end
+
           local root = tree:root()
 
           for id, node in parsed_query:iter_captures(root, bufnr, lnum, endLnum) do

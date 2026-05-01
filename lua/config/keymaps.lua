@@ -165,7 +165,7 @@ function M.setup()
   { "<leader>dB", ':NoiceDebug<CR>',                                                                      desc = 'Noice Debug' },
   { "<leader>dI", ':Inspect<CR>',                                                                         desc = 'Inspect' },
   { "<leader>dx", ':TodoTelescope<CR>',                                                                   desc = 'Search TODOs in Telescope' },
-  { "<leader>dp", ':TSPlaygroundToggle<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>', desc = 'Open Treesitter Playground' },
+  { "<leader>dp", ':InspectTree<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>',        desc = 'Open Treesitter Inspector' },
 
   -- GitHub Copilot Chat Mappings
   { "<leader>G",  group = "GitHub Copilot Chat Mappings" },
