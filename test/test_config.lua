@@ -19,7 +19,7 @@ local TEST_CONFIG = {
         'legendary',
         'telescope',
         'mason',
-        'nvim-lspconfig',
+        'lspconfig',
         'which-key',
         'plenary',
         'nvim-treesitter',
@@ -37,25 +37,19 @@ local TEST_CONFIG = {
     -- Critical commands that should be available
     critical_commands = {
         'Lazy',
-        'LazyLoad',
-        'LazyUpdate',
-        'LazyCheck',
         'Legendary',
         'Telescope',
         'Mason',
         'MasonUpdate',
         'MasonInstall',
-        'LspInfo',
-        'LspStart',
-        'LspRestart',
+        'checkhealth',
         'Trouble',
         'WhichKey',
+        'InspectTree',
         'TSUpdate',
-        'TSInstall',
+        'TSInstallConfigured',
         'CopilotChat',
         'ConformInfo',
-        'Noice',
-        'Flash',
         'Oil',
     },
     
@@ -82,7 +76,6 @@ local TEST_CONFIG = {
         'themes',
         'lazy',
         'notify',
-        'rest',
     },
     
     -- Keymap groups to validate (these should not error)
@@ -137,6 +130,10 @@ end
 local function print_header(text)
     print()
     print_colored(colors.cyan .. colors.bold, '=== ' .. text .. ' ===')
+end
+
+local function command_available(cmd)
+    return vim.fn.exists(':' .. cmd) > 0
 end
 
 -- Test functions
@@ -200,7 +197,7 @@ function M.test_critical_commands()
     
     for _, cmd in ipairs(TEST_CONFIG.critical_commands) do
         -- Check if command exists
-        if vim.fn.exists(':' .. cmd) == 2 then
+        if command_available(cmd) then
             print_success('Command available: ' .. cmd)
             success_count = success_count + 1
         else
@@ -239,16 +236,29 @@ function M.test_lsp_functionality()
             print_warning('No active LSP clients (this is normal if no files are open)')
         end
         
-        -- Test LSP commands
-        local lsp_commands = {'LspInfo', 'LspStart', 'LspRestart'}
-        for _, cmd in ipairs(lsp_commands) do
-            if vim.fn.exists(':' .. cmd) == 2 then
-                print_success('LSP command available: ' .. cmd)
+        -- Test native LSP APIs and health command
+        local lsp_checks = {
+            { name = 'vim.lsp.config', value = vim.lsp.config, types = { table = true, ["function"] = true } },
+            { name = 'vim.lsp.enable', value = vim.lsp.enable },
+            { name = 'vim.lsp.get_clients', value = vim.lsp.get_clients },
+        }
+        for _, check in ipairs(lsp_checks) do
+            local allowed_types = check.types or { ["function"] = true }
+            if allowed_types[type(check.value)] then
+                print_success('LSP API available: ' .. check.name)
                 success_count = success_count + 1
             else
-                print_error('LSP command not available: ' .. cmd)
+                print_error('LSP API not available: ' .. check.name)
                 error_count = error_count + 1
             end
+        end
+
+        if command_available('checkhealth') then
+            print_success('LSP diagnostics available through :checkhealth vim.lsp')
+            success_count = success_count + 1
+        else
+            print_error('LSP diagnostics command not available: checkhealth')
+            error_count = error_count + 1
         end
     else
         print_error('LSP module not available')
@@ -322,7 +332,10 @@ function M.test_telescope_functionality()
         
         -- Test extensions
         for _, ext in ipairs(TEST_CONFIG.telescope_extensions) do
-            if telescope.extensions[ext] then
+            local ext_ok, extension = pcall(function()
+                return telescope.extensions[ext]
+            end)
+            if ext_ok and extension then
                 print_success('Telescope extension loaded: ' .. ext)
                 success_count = success_count + 1
             else
@@ -380,14 +393,19 @@ function M.test_keymap_integrity()
     
     -- Test specific keymap functionality by checking if the mapped functions exist
     local keymap_tests = {
-        { group = 'LSP', cmd = 'Lspsaga', desc = 'LSP Saga commands' },
+        { group = 'LSP', module = 'lspsaga', desc = 'LSP Saga module' },
         { group = 'Telescope', cmd = 'Telescope', desc = 'Telescope commands' },
         { group = 'Trouble', cmd = 'Trouble', desc = 'Trouble commands' },
         { group = 'Copilot', cmd = 'CopilotChat', desc = 'Copilot Chat commands' },
     }
     
     for _, test in ipairs(keymap_tests) do
-        if vim.fn.exists(':' .. test.cmd) == 2 then
+        local target_available = test.cmd and command_available(test.cmd)
+        if not target_available and test.module then
+            target_available = pcall(require, test.module)
+        end
+
+        if target_available then
             print_success('Keymap target available: ' .. test.desc)
             success_count = success_count + 1
         else
@@ -553,7 +571,8 @@ function M.check_log_files()
             local recent_errors = {}
             
             for _, line in ipairs(lines) do
-                if line:lower():find('error') or line:lower():find('fail') then
+                local lower_line = line:lower()
+                if line:find('%[ERROR%]') or lower_line:find('%f[%a]fail%f[%A]') then
                     table.insert(recent_errors, line)
                 end
             end

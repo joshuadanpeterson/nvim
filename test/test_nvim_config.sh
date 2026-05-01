@@ -26,10 +26,11 @@ run_quick_test() {
             local test = dofile(vim.fn.stdpath('config') .. '/test/quick_test.lua')
             return test
         end)
-        if success then
+        if success and result ~= false then
             print('Test completed')
         else
             print('Test failed: ' .. tostring(result))
+            vim.cmd('cquit')
         end
         vim.cmd('qa!')
     "
@@ -40,13 +41,14 @@ run_full_test() {
     echo "Running comprehensive test suite..."
     nvim --headless -c "
         lua local success, result = pcall(function() 
-            local test_config = require('test.test_config')
+            local test_config = dofile(vim.fn.stdpath('config') .. '/test/test_config.lua')
             return test_config.run_all_tests()
         end)
-        if success then
+        if success and result ~= false then
             print('Full test suite completed')
         else
             print('Test suite failed: ' .. tostring(result))
+            vim.cmd('cquit')
         end
         vim.cmd('qa!')
     "

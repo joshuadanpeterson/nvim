@@ -44,10 +44,10 @@ local function quick_test()
     table.insert(results, print_result(wk_ok, "Which-key help system"))
     
     -- Test 8: Critical commands
-    local commands = {'Telescope', 'Lazy', 'Mason', 'LspInfo'}
+    local commands = {'Telescope', 'Lazy', 'Mason', 'checkhealth'}
     local cmd_results = {}
     for _, cmd in ipairs(commands) do
-        cmd_results[cmd] = vim.fn.exists(':' .. cmd) == 2
+        cmd_results[cmd] = vim.fn.exists(':' .. cmd) > 0
     end
     local cmd_ok = true
     for _, status in pairs(cmd_results) do

@@ -155,7 +155,7 @@ function M.setup()
   { "<leader>dn", ':FuzzyNoice<CR>',                                                                      desc = 'Search Noice Messages' },
   { "<leader>dN", '<cmd>Telescope notify<CR>',                                                            desc = 'Search Notify Messages' },
   { "<leader>dm", ':messages<CR>',                                                                        desc = 'Get Messages' },
-  { "<leader>dl", ':LspInfo<CR>',                                                                         desc = 'Get LspInfo' },
+  { "<leader>dl", ':checkhealth vim.lsp<CR>',                                                             desc = 'Check LSP Health' },
   { "<leader>dc", ':CmpStatus<CR>',                                                                       desc = 'Get CmpStatus' },
   { "<leader>dC", ':ConformInfo<CR>',                                                                     desc = 'Get ConformInfo' },
   { "<leader>dq", function() require('telescope.builtin').quickfix() end,                                 desc = 'Search Quickfix List' },
