@@ -70,8 +70,9 @@ return {
     'preservim/vim-pencil',
   },
 
-  -- ChatGPT
+  -- ChatGPT (commented out for future use)
   -- Integration of ChatGPT into Neovim for generating code and more.
+  --[[
   {
     'jackMort/ChatGPT.nvim',
     event = 'VeryLazy',
@@ -86,6 +87,7 @@ return {
       'nvim-telescope/telescope.nvim',
     },
   },
+  --]]
 
   -- Multi-cursor configuration
   -- This is the Neovim implementation of the famous Emacs Hydra package.

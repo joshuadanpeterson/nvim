@@ -26,7 +26,7 @@ local TEST_CONFIG = {
         'trouble',
         'harpoon',
         'lualine',
-        'copilot',
+        -- 'copilot',
         'cmp',
         'conform',
         'noice',
@@ -48,7 +48,7 @@ local TEST_CONFIG = {
         'InspectTree',
         'TSUpdate',
         'TSInstallConfigured',
-        'CopilotChat',
+        -- 'CopilotChat',
         'ConformInfo',
         'Oil',
     },
@@ -85,7 +85,7 @@ local TEST_CONFIG = {
         '<leader>s',  -- SQL Keymaps
         '<leader>l',  -- LSP Keymaps
         '<leader>d',  -- Diagnostic Mappings
-        '<leader>G',  -- GitHub Copilot Chat
+        -- '<leader>G',  -- GitHub Copilot Chat
         '<leader>T',  -- Trouble Mappings
         '<leader>f',  -- File operations
         '<leader>g',  -- Git operations
@@ -396,7 +396,7 @@ function M.test_keymap_integrity()
         { group = 'LSP', module = 'lspsaga', desc = 'LSP Saga module' },
         { group = 'Telescope', cmd = 'Telescope', desc = 'Telescope commands' },
         { group = 'Trouble', cmd = 'Trouble', desc = 'Trouble commands' },
-        { group = 'Copilot', cmd = 'CopilotChat', desc = 'Copilot Chat commands' },
+        -- { group = 'Copilot', cmd = 'CopilotChat', desc = 'Copilot Chat commands' },
     }
     
     for _, test in ipairs(keymap_tests) do

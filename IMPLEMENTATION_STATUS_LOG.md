@@ -16,6 +16,23 @@ This log tracks the implementation status of the Neovim configuration project, d
 
 ## Recent Updates
 
+### 2026-11-02
+
+#### ISL-007: Disable Neovim AI Integrations
+- **Priority**: High
+- **Description**: Comment out AI integrations while preserving their settings for future use
+- **Status**: DONE
+- **Date Started**: 2026-11-02
+- **Date Completed**: 2026-11-02
+- **Changes Made**:
+  - Commented out Copilot, Copilot Chat, ChatGPT.nvim, and both Pieces plugin specs
+  - Commented out AI completion sources, keymaps, and Copilot status-line integrations
+  - Commented out test expectations requiring Copilot to be enabled
+  - Documented disabled integrations and restart requirements in README.md
+- **Validation**: Lua syntax checks passed; headless runtime checks confirmed all seven AI plugin specs and their hooks are inactive; all 8 quick configuration tests passed
+- **Notes**: Lua linting could not run because the installed luacheck is missing its luacheck.main module
+- **Commit**: Not committed
+
 ### 2025-11-22
 
 #### ISL-006: Simplify Obsidian and Dashboard Configuration 🟢 **DONE**

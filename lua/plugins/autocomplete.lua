@@ -42,13 +42,15 @@ return {
       -- Path completion
       'hrsh7th/cmp-path',
 
-      -- Copilot
+      -- Copilot (commented out for future use)
+      --[[
       {
         'zbirenbaum/copilot-cmp',
         config = function()
           require('copilot_cmp').setup()
         end,
       },
+      --]]
 
       -- UI enhancements
       {

@@ -49,6 +49,8 @@ local datetime = {
 }
 
 local filetype = { 'filetype', colored = true }
+-- Copilot status-line settings are commented out for future use.
+--[[
 
 local copilot = {
   'copilot',
@@ -75,6 +77,7 @@ local copilot = {
   show_colors = true,
   show_loading = true,
 }
+--]]
 
 local pluginUpdates = {
   require('lazy.status').updates,
@@ -113,7 +116,10 @@ local config = {
       -- 'grapple',
     },
     lualine_c = { harpoonline, searchcount },
-    lualine_x = { 'encoding', filetype, copilot },
+    lualine_x = {
+      'encoding', filetype,
+      -- copilot,
+    },
     lualine_y = { 'progress', 'location' },
     lualine_z = { pluginUpdates, icon, datetime },
   },
@@ -122,7 +128,9 @@ local config = {
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { 'copilot' },
+    lualine_y = {
+      -- 'copilot',
+    },
     lualine_z = { 'location' },
   },
   tabline = {},

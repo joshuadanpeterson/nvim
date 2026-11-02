@@ -4,6 +4,8 @@
 ]]
 
 return {
+  -- AI integrations are commented out for future use.
+  --[[
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
@@ -31,4 +33,5 @@ return {
     'pieces-app/plugin_neo_vim',
     enabled = false,
   },
+  --]]
 }

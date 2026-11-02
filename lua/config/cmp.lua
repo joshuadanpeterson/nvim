@@ -67,7 +67,7 @@ cmp.setup {
     end,
   },
   sources = cmp.config.sources {
-    { name = 'copilot', group_index = 2 },
+    -- { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp', max_item_count = 5 },
     { name = 'luasnip', max_item_count = 5 },
     { name = 'buffer', max_item_count = 5 },
@@ -91,7 +91,7 @@ cmp.setup {
         mode = 'symbol_text',
         maxwidth = 50,
         ellipsis_char = '...',
-        symbol_map = { Copilot = '' },
+        -- symbol_map = { Copilot = '' },
       }(entry, vim_item)
 
       -- Specific logic for html-css source
@@ -100,7 +100,7 @@ cmp.setup {
       else
         -- Set the menu field for other sources
         vim_item.menu = ({
-          copilot = '[Copilot]',
+          -- copilot = '[Copilot]',
           buffer = '[Buffer]',
           nvim_lsp = '[LSP]',
           luasnip = '[LuaSnip]',
@@ -143,7 +143,7 @@ cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('html', {
   sources = cmp.config.sources({
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'html-css' },
@@ -164,7 +164,7 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     require('cmp').setup.buffer {
       sources = {
-        { name = 'copilot' },
+        -- { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
@@ -181,7 +181,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Additional configuration for specific filetypes (optional)
 cmp.setup.filetype('javascript', {
   sources = cmp.config.sources {
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
@@ -194,7 +194,7 @@ cmp.setup.filetype('javascript', {
 
 cmp.setup.filetype('lua', {
   sources = cmp.config.sources {
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
@@ -219,7 +219,7 @@ cmp.setup.filetype('sonicpi', {
 
 cmp.setup.filetype('sql', {
   sources = cmp.config.sources {
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
@@ -241,7 +241,7 @@ cmp.setup.filetype({ 'strudel', 'strdl', 'str' }, {
 
 cmp.setup.filetype({ 'txt', 'md', 'tape', 'vhs' }, {
   sources = cmp.config.sources {
-    { name = 'copilot' },
+    -- { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },

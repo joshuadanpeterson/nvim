@@ -17,11 +17,13 @@ return {
     end,
   },
 
-  -- copilot lualine
+  -- copilot lualine (commented out for future use)
+  --[[
   {
     'AndreM222/copilot-lualine',
     event = 'BufReadPre',
   },
+  --]]
 
   -- harpoonline
   {

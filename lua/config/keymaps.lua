@@ -167,7 +167,8 @@ function M.setup()
   { "<leader>dx", ':TodoTelescope<CR>',                                                                   desc = 'Search TODOs in Telescope' },
   { "<leader>dp", ':InspectTree<CR>:lua vim.defer_fn(function() vim.cmd("wincmd L") end, 50)<CR>',        desc = 'Open Treesitter Inspector' },
 
-  -- GitHub Copilot Chat Mappings
+  -- GitHub Copilot Chat Mappings (commented out for future use)
+  --[[
   { "<leader>G",  group = "GitHub Copilot Chat Mappings" },
   { "<leader>Gx", ':CopilotChatToggle<CR>',                                                               desc = 'Toggle Copilot Chat' },
   { "<leader>Gs", ':CopilotChatStop<CR>',                                                                 desc = 'Stop Current Copilot Output' },
@@ -185,6 +186,7 @@ function M.setup()
   -- TODO: Additional future mappings
   -- { "<leader>GS", 'CopilotChatSave <name>?', desc = 'Save Chat History to File' },
   -- { "<leader>GL", 'CopilotChatLoad <name>?', desc = 'Load Chat History from File' },
+  --]]
 
   -- Trouble Mappings
   { "<leader>T",  group = "Trouble Mappings" },
@@ -210,7 +212,8 @@ function M.setup()
   { "<leader>pe", ':LazyExtras<CR>',                                                                      desc = 'Open LazyExtras' },
 
 
-  -- Plugin Mappings for Pieces
+  -- Plugin Mappings for Pieces (commented out for future use)
+  --[[
   -- Disabled due to PydanticUndefinedAnnotation error with pieces_os_client
   { "<leader>P",  group = "Pieces Mappings" },
 
@@ -233,6 +236,7 @@ function M.setup()
   { "<leader>Po", ':PiecesLogout<CR>',                                                                    desc = 'Logout from Pieces Account' },
   { "<leader>Pc", ':PiecesConnectCloud<CR>',                                                              desc = 'Connect to Pieces Cloud' },
   { "<leader>Px", ':PiecesDisconnectCloud<CR>',                                                           desc = 'Disconnect from Pieces Cloud' },
+  --]]
 
   -- UI Mappings
   { "<leader>u",  group = "UI Mappings" },
@@ -517,7 +521,8 @@ function M.setup()
   { "<leader>ghtn", '<cmd>GHNextThread<cr>',                         desc = 'Next Thread' },
   { "<leader>ghtt", '<cmd>GHToggleThread<cr>',                       desc = 'Toggle Thread' },
 
-  -- ChatGPT Keymaps
+  -- ChatGPT Keymaps (commented out for future use)
+  --[[
   { "<leader>c",    group = "ChatGPT Keymaps" },
   { "<leader>cc",   '<cmd>ChatGPT<CR>',                              desc = 'ChatGPT' },
   { "<leader>cC",   '<cmd>Telescope gpt<CR>',                        desc = 'Telescope GPT' },
@@ -533,6 +538,7 @@ function M.setup()
   { "<leader>cx",   '<cmd>ChatGPTRun explain_code<CR>',              desc = 'Explain Code',              mode = { 'n', 'v' } },
   { "<leader>cr",   '<cmd>ChatGPTRun roxygen_edit<CR>',              desc = 'Roxygen Edit',              mode = { 'n', 'v' } },
   { "<leader>cl",   '<cmd>ChatGPTRun code_readability_analysis<CR>', desc = 'Code Readability Analysis', mode = { 'n', 'v' } },
+  --]]
 
   -- CLI App Keymaps
   { "<leader>C",    group = "CLI App Mappings" },

@@ -1,4 +1,6 @@
 return {
+  -- AI integration is commented out for future use.
+  --[[
   {
     'pieces-app/plugin_neovim',
     dependencies = {
@@ -16,4 +18,5 @@ return {
       end
     end,
   },
+  --]]
 }

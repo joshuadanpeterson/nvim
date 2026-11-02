@@ -1,3 +1,5 @@
+-- Copilot settings are commented out for future use.
+--[=[
 local copilot = require 'copilot'
 local chat = require 'CopilotChat'
 
@@ -166,3 +168,4 @@ chat.setup {
     },
   },
 }
+--]=]

@@ -48,6 +48,13 @@ git clone https://github.com/joshuadanpeterson/nvim.git ~/.config/nvim
 
 The configuration is designed for easy customization. You're encouraged to modify the `init.lua` and files within the `lua/` directory to tailor the setup to your preferences. The scripts are well-documented to facilitate understanding and modifications.
 
+### AI Integrations
+
+GitHub Copilot, Copilot Chat, ChatGPT.nvim, and Pieces are disabled. Their plugin
+specs, AI completion sources, keymaps, and Copilot status-line components are
+commented out for future use. Normal LSP, snippets, buffer, and path completion
+remain enabled. Restart Neovim to apply these changes to existing sessions.
+
 ## Profiling Neovim Startup Performance
 
 A robust profiling script is available to analyze and optimize Neovim startup times, ensuring performance targets are met consistently. The profiling tool measures both cold start and cached startup times, and produces detailed reports in CSV format for thorough analysis.
