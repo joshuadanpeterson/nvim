@@ -17,9 +17,13 @@ return {
                 config = function()                        -- Configuration function for the plugin
                         require('obsidian').setup({
                                 -- Workspaces: Each workspace corresponds to an Obsidian vault
-                                workspaces = {
-                                        { name = "main", path = "/Users/joshpeterson/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/main" },
-                                },
+                                workspaces = (function()
+                                        local p = vim.fn.expand('~') .. '/Library/CloudStorage/Dropbox/DropsyncFiles/Obsidian Vault/main'
+                                        if vim.fn.isdirectory(p) == 1 then
+                                                return { { name = "main", path = p } }
+                                        end
+                                        return {}
+                                end)(),
 
                                 -- Log level for debugging purposes
                                 log_level = vim.log.levels.INFO,

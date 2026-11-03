@@ -1,5 +1,5 @@
 -- clean_lsp_log.lua
-local log_file_path = '/Users/joshpeterson/.local/state/nvim/lsp.log'
+local log_file_path = vim.fn.expand('~') .. '/.local/state/nvim/lsp.log'
 local days_to_keep = 1
 
 -- Function to parse the date from the log entry

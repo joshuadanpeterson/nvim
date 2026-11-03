@@ -42,13 +42,21 @@ if vim.fn.executable('tree-sitter') == 0 and vim.fn.executable('/usr/local/bin/t
 end
 
 local parsers = require('nvim-treesitter.parsers')
-local strudel_parser = {
-  install_info = {
-    path = '/Users/joshpeterson/Dropbox/programming/projects/strudel/tree-sitter-strdl',
-    queries = 'queries',
-  },
-}
-parsers.strudel = strudel_parser
+local strudel_parser = (function()
+  local p = vim.fn.expand('~') .. '/Dropbox/programming/projects/strudel/tree-sitter-strdl'
+  if vim.fn.isdirectory(p) == 1 then
+    return {
+      install_info = {
+        path = p,
+        queries = 'queries',
+      },
+    }
+  end
+  return nil
+end)()
+if strudel_parser then
+  parsers.strudel = strudel_parser
+end
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',

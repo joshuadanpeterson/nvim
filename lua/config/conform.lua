@@ -40,11 +40,13 @@ require('conform').setup {
   formatters = {
     prettier_strudel = {
       command = 'prettier',
-      args = {
-        '--plugin', '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-prettier-plugin/src/index.js',
-        '--parser', 'strudel',
-        '--stdin-filepath', '$FILENAME',
-      },
+      args = (function()
+        local p = vim.fn.expand('~') .. '/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-prettier-plugin/src/index.js'
+        if vim.fn.filereadable(p) == 1 then
+          return { '--plugin', p, '--parser', 'strudel', '--stdin-filepath', '$FILENAME' }
+        end
+        return { '--parser', 'strudel', '--stdin-filepath', '$FILENAME' }
+      end)(),
       stdin = true,
       inherit_env = true,
     },

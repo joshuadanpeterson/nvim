@@ -163,11 +163,13 @@ vim.lsp.enable('solargraph')
 
 -- Strudel LSP (local dev)
 vim.lsp.config('strudel_ls', {
-  cmd = {
-    vim.fn.exepath('node'),
-    '/Users/joshpeterson/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-ls/dist/server.js',
-    '--stdio',
-  },
+  cmd = (function()
+    local p = vim.fn.expand('~') .. '/Library/CloudStorage/Dropbox/programming/projects/strudel/strudel-ls/packages/strudel-ls/dist/server.js'
+    if vim.fn.filereadable(p) == 1 then
+      return { vim.fn.exepath('node'), p, '--stdio' }
+    end
+    return nil
+  end)(),
   filetypes = { 'strudel', 'strdl', 'str' },
   capabilities = capabilities,
   on_attach = on_attach,

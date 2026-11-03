@@ -13,7 +13,7 @@ vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { italic = true })
 vim.opt.conceallevel = 1
-vim.g.db_ui_sqlfluff_path = '/Users/joshpeterson/.pyenv/shims/sqlfluff'
+vim.g.db_ui_sqlfluff_path = vim.fn.expand('~') .. '/.pyenv/shims/sqlfluff'
 -- vim.opt.cursorline = true
 vim.opt.wrap = true
 
@@ -49,6 +49,18 @@ vim.g.tpipeline_restore = 1
 
 -- Fold management
 
+-- Safe wrapper for treesitter foldexpr.
+-- Using a global so it can be referenced from the 'foldexpr' option string.
+-- This prevents errors when switching buffers (:bnext / :bprevious) on filetypes
+-- that don't have a treesitter parser installed (common in the clean shared multi-user config).
+_G._nvim_safe_ts_foldexpr = function()
+  local ok, res = pcall(vim.treesitter.foldexpr)
+  if ok then
+    return res
+  end
+  return "0"
+end
+
 vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "BufWinEnter" }, {
   pattern = "*",
   callback = function()
@@ -56,9 +68,28 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "BufWinEnter" }, {
     vim.opt_local.foldenable = true
     vim.o.foldlevel = 99          -- Using ufo provider need a large value, feel free to decrease the value
     vim.o.foldlevelstart = 99
-    vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+    -- Only attempt treesitter folds for real file buffers that have a parser.
+    -- Skip special buffers (help, quickfix, terminals, prompts, etc.) and buffers
+    -- without a filetype or without an installed parser. This makes :bnext / :bprevious
+    -- (and switching back) safe across accounts in the shared setup.
+    local buftype = vim.bo.buftype
+    local ft = vim.bo.filetype
+
+    if buftype == "" and ft ~= "" then
+      local ok, parser = pcall(vim.treesitter.get_parser, 0)
+      if ok and parser then
+        vim.opt_local.foldmethod = "expr"
+        vim.opt_local.foldexpr = "v:lua._nvim_safe_ts_foldexpr()"
+        vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+        return
+      end
+    end
+
+    -- Safe no-op folding for buffers that don't support it
+    vim.opt_local.foldmethod = "manual"
+    vim.opt_local.foldexpr = "0"
+    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   end
 })
 

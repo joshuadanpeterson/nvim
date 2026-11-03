@@ -166,9 +166,14 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
   },
 
-  -- lsp inlay-hints
+  -- lsp inlay-hints (guarded: the plugin is not present for all accounts in the clean shared setup)
   {
     'MysticalDevil/inlay-hints.nvim',
+    enabled = (function()
+      -- Only enable if the plugin is already installed for this user (lazy data dir)
+      local p = vim.fn.stdpath('data') .. '/lazy/inlay-hints.nvim'
+      return vim.fn.isdirectory(p) == 1
+    end)(),
     event = 'LspAttach',
     dependencies = { 'neovim/nvim-lspconfig' },
     config = function()

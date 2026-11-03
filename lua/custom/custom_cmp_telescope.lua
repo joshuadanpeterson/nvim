@@ -3,7 +3,7 @@
 
 local cmp = require 'cmp'
 local telescope = require 'telescope.builtin'
-local log_file_path = '/Users/joshpeterson/.local/state/nvim/custom_cmp_telescope.log'
+local log_file_path = vim.fn.expand('~') .. '/.local/state/nvim/custom_cmp_telescope.log'
 
 local source = {}
 

@@ -97,7 +97,11 @@ return {
   -- true-zen
   {
     -- 'Pocco81/true-zen.nvim',
-    dir = '~/Dropbox/programming/projects/contributions/true-zen.nvim', -- true-zen test
+    dir = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/true-zen.nvim',
+    enabled = (function()
+      local p = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/true-zen.nvim'
+      return vim.fn.isdirectory(p) == 1
+    end)(),
     cmd = { 'TZAtaraxis', 'TZMinimalist', 'TZFocus', 'TZBottom' },
     config = function()
       require('true-zen').setup {
@@ -510,12 +514,20 @@ return {
   -- Currently working on developing PR for Neovim adaptation
   {
     -- 'AndrewRadev/typewriter.vim',
-    dir = '~/Dropbox/programming/projects/contributions/typewriter.vim', -- typewriter.vim test
+    dir = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/typewriter.vim',
+    enabled = (function()
+      local p = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/typewriter.vim'
+      return vim.fn.isdirectory(p) == 1
+    end)(),
   },
 
   -- vim-keysound: Typewriter sounds for Vim
   {
     -- 'skywind3000/vim-keysound',
-    dir = '~/Dropbox/programming/projects/contributions/vim-keysound', -- vim-keysound test
+    dir = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/vim-keysound',
+    enabled = (function()
+      local p = vim.fn.expand('~') .. '/Dropbox/programming/projects/contributions/vim-keysound'
+      return vim.fn.isdirectory(p) == 1
+    end)(),
   },
 }

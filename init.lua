@@ -84,6 +84,10 @@ lazy.setup({
     }),
   },
 }, {
+  -- Clean shared multi-user setup:
+  -- Because ~/.config/nvim is a symlink to /Users/Shared/nvim_config (group-writable, setgid),
+  -- we resolve through the symlink so every account writes to the single canonical lockfile.
+  lockfile = vim.fn.resolve(vim.fn.stdpath('config')) .. '/lazy-lock.json',
   performance = {
     cache = {
       enabled = true, -- Enable byte-compilation cache for faster startup

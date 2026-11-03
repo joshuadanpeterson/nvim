@@ -78,7 +78,7 @@ return {
     event = 'VeryLazy',
     config = function()
       require('chatgpt').setup {
-        api_key_cmd = "grep 'OPENAI_API_KEY' /Users/joshpeterson/.zshenv_private | cut -d'=' -f2 | tr -d \"'\"",
+        api_key_cmd = "grep 'OPENAI_API_KEY' " .. vim.fn.expand('~') .. "/.zshenv_private | cut -d'=' -f2 | tr -d \"'\"",
       }
     end,
     dependencies = {

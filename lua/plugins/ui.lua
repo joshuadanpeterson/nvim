@@ -77,37 +77,43 @@ return {
             { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
             {
               action = function()
-                vim.cmd('cd /Users/joshpeterson/.config/nvim')
+                vim.cmd('cd ' .. vim.fn.stdpath('config'))
                 vim.cmd('edit init.lua')
                 vim.notify("Changed to Neovim config")
                 require('config.keymaps').setup()
               end,
               desc = ' Neovim Config',
-              icon = ' ',
+              icon = ' ',
               key = 'c'
             },
 
             {
               action = function()
-                vim.cmd('cd /Users/joshpeterson/.config/tmux')
-                vim.cmd('edit .tmux.conf')
-                vim.notify("Changed to Tmux config")
-                require('config.keymaps').setup()
+                local tmux = vim.fn.expand('~') .. '/.config/tmux'
+                if vim.fn.isdirectory(tmux) == 1 then
+                  vim.cmd('cd ' .. tmux)
+                  vim.cmd('edit .tmux.conf')
+                  vim.notify("Changed to Tmux config")
+                  require('config.keymaps').setup()
+                end
               end,
               desc = ' Tmux Config',
-              icon = ' ',
+              icon = ' ',
               key = 't'
             },
 
             {
               action = function()
-                vim.cmd('cd /Users/joshpeterson/.config/zsh-config/')
-                vim.cmd('edit .zshrc')
-                vim.notify("Changed to Zsh config")
-                require('config.keymaps').setup()
+                local z = vim.fn.expand('~') .. '/.config/zsh-config'
+                if vim.fn.isdirectory(z) == 1 then
+                  vim.cmd('cd ' .. z)
+                  vim.cmd('edit .zshrc')
+                  vim.notify("Changed to Zsh config")
+                  require('config.keymaps').setup()
+                end
               end,
               desc = ' Zsh Config',
-              icon = ' ',
+              icon = ' ',
               key = 'z'
             },
             { action = 'lua require("persistence").load()', desc = ' Restore Session', icon = ' ', key = 's' },
@@ -116,16 +122,26 @@ return {
             { action = 'Leet', desc = ' LeetCode', icon = ' ', key = 'd' },
 
             {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/main | edit . | lua vim.notify("Changed working directory to Obsidian main Vault"); require("config.keymaps").setup()')]],
+              action = (function()
+                local v = vim.fn.expand('~') .. '/Dropbox/DropsyncFiles/Obsidian Vault/main'
+                if vim.fn.isdirectory(v) == 1 then
+                  return [[lua vim.cmd('cd ]] .. v .. [[ | edit . | lua vim.notify("Changed working directory to Obsidian main Vault"); require("config.keymaps").setup()')]]
+                end
+                return 'echo'
+              end)(),
               desc = ' Open main Vault',
               icon = ' ',
               key = 'b'
             },
 
             {
-              action =
-              [[lua vim.cmd('cd /Users/joshpeterson/Dropbox/DropsyncFiles/Obsidian Vault/genealogy/| edit . | lua vim.notify("Changed working directory to Obsidian genealogy Vault"); require("config.keymaps").setup()')]],
+              action = (function()
+                local v = vim.fn.expand('~') .. '/Dropbox/DropsyncFiles/Obsidian Vault/genealogy'
+                if vim.fn.isdirectory(v) == 1 then
+                  return [[lua vim.cmd('cd ]] .. v .. [[ | edit . | lua vim.notify("Changed working directory to Obsidian genealogy Vault"); require("config.keymaps").setup()')]]
+                end
+                return 'echo'
+              end)(),
               desc = ' Open genealogy Vault',
               icon = ' ',
               key = 'C'
